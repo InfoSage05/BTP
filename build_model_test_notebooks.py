@@ -25,7 +25,7 @@ def mape(y_true, y_pred):
 def r2(y_true, y_pred):
     return float(r2_score(y_true, y_pred))
 
-df_raw = pd.read_csv("../chf_long_clean.csv")
+df_raw = pd.read_csv("../../data/chf_long_clean.csv")
 df = df_raw[df_raw.X != 1.0].reset_index(drop=True)
 FEATURES = ["P", "G", "X"]
 TARGET = "CHF"
@@ -62,9 +62,11 @@ def build_notebook(model_name, filename, intro_md, imports, fit_code, edge_case_
         "kernelspec": {"display_name": "Python (CHF venv)", "language": "python", "name": "chf-venv"},
         "language_info": {"name": "python", "version": "3.12"},
     }
-    with open(f"model_tests/{filename}", "w", encoding="utf-8") as f:
+    import os
+    os.makedirs("notebooks/model_tests", exist_ok=True)
+    with open(f"notebooks/model_tests/{filename}", "w", encoding="utf-8") as f:
         nbf.write(nb, f)
-    print(f"Built model_tests/{filename}")
+    print(f"Built notebooks/model_tests/{filename}")
 
 
 # ============================================================================

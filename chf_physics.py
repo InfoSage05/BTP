@@ -150,9 +150,13 @@ FEATURE_NAMES = [
 
 if __name__ == "__main__":
     # Quick smoke test
-    import pandas as pd
-    from sklearn.metrics import r2_score
-    df = pd.read_csv("chf_long_clean.csv")
+    from pathlib import Path
+    data_path = Path("data/chf_long_clean.csv")
+    if not data_path.exists():
+        data_path = Path("../data/chf_long_clean.csv")
+    if not data_path.exists():
+        data_path = Path("chf_long_clean.csv")
+    df = pd.read_csv(data_path)
     df = df[df.X != 1.0]
     P, G, X, CHF = df.P.values, df.G.values, df.X.values, df.CHF.values
 

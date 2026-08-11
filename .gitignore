@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# IDE / Editor configuration
+.vscode/
+.idea/
+.claude/
+
+# Temporary / Scratch data & log files
+*.log
+pdf_summary_out.json
+pdf_summaries_list.txt
+pdf_analysis.txt
+pdf_details.txt
+notebooks_dump.txt
+dump_*.py
+inspect_*.py
+print_summary.py

@@ -132,7 +132,7 @@ md(r"""
 """)
 
 code(r"""
-df_raw = pd.read_csv("chf_long_clean.csv")
+df_raw = pd.read_csv("../data/chf_long_clean.csv")
 
 print("Raw shape:", df_raw.shape)
 assert df_raw.shape[0] == 11592, "expected 11,592 grid rows"
@@ -677,6 +677,6 @@ if __name__ == "__main__":
         "kernelspec": {"display_name": "Python (CHF venv)", "language": "python", "name": "chf-venv"},
         "language_info": {"name": "python", "version": "3.12"},
     }
-    with open("CHF_ML_Modeling.ipynb", "w", encoding="utf-8") as f:
+    with open("notebooks/CHF_ML_Modeling.ipynb", "w", encoding="utf-8") as f:
         nbf.write(nb, f)
-    print(f"Notebook built: CHF_ML_Modeling.ipynb ({len(cells)} cells)")
+    print(f"Notebook built: notebooks/CHF_ML_Modeling.ipynb ({len(cells)} cells)")

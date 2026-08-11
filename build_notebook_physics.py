@@ -87,7 +87,7 @@ def mape(y_true, y_pred):
 def r2(y_true, y_pred):
     return float(r2_score(y_true, y_pred))
 
-df_raw = pd.read_csv("chf_long_clean.csv")
+df_raw = pd.read_csv("../data/chf_long_clean.csv")
 df = df_raw[df_raw.X != 1.0].reset_index(drop=True)
 FEATURES = ["P", "G", "X"]
 TARGET = "CHF"
@@ -507,6 +507,6 @@ if __name__ == "__main__":
         "kernelspec": {"display_name": "Python (CHF venv)", "language": "python", "name": "chf-venv"},
         "language_info": {"name": "python", "version": "3.12"},
     }
-    with open("CHF_Physics_Informed_Extensions.ipynb", "w", encoding="utf-8") as f:
+    with open("notebooks/CHF_Physics_Informed_Extensions.ipynb", "w", encoding="utf-8") as f:
         nbf.write(nb, f)
-    print(f"Notebook built: CHF_Physics_Informed_Extensions.ipynb ({len(cells)} cells)")
+    print(f"Notebook built: notebooks/CHF_Physics_Informed_Extensions.ipynb ({len(cells)} cells)")

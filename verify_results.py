@@ -25,7 +25,15 @@ from scipy.interpolate import RegularGridInterpolator
 
 warnings.filterwarnings("ignore")
 
-df = pd.read_csv("chf_long_clean.csv")
+from pathlib import Path
+
+data_path = Path("data/chf_long_clean.csv")
+if not data_path.exists():
+    data_path = Path("../data/chf_long_clean.csv")
+if not data_path.exists():
+    data_path = Path("chf_long_clean.csv")
+
+df = pd.read_csv(data_path)
 df = df[df.X != 1.0].reset_index(drop=True)
 FEATURES = ["P", "G", "X"]
 
