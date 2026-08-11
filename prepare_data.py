@@ -70,8 +70,8 @@ def parse_lut(xlsx_path: str) -> pd.DataFrame:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--input", default="2006_CHF_Lookup_Table.xlsx")
-    ap.add_argument("--output", default="chf_long_clean.csv")
+    ap.add_argument("--input", default="data/2006_CHF_Lookup_Table.xlsx")
+    ap.add_argument("--output", default="data/chf_long_clean.csv")
     args = ap.parse_args()
 
     df = parse_lut(args.input)
