@@ -1,0 +1,322 @@
+==================================================
+File: Applications ML.pdf
+Pages: 8 | Total Characters: 53335
+First Page Excerpt:
+Chemical Thermodynamics and Thermal Analysis 8 (2022) 100081 
+Contents lists available at ScienceDirect 
+Chemical Thermodynamics and Thermal Analysis 
+journal homepage: www.elsevier.com/locate/ctta 
+Applications of machine learning methods for boiling modeling and 
+prediction: A comprehensive review 
+M.M. Rashidi a , b , d , ∗ , M. Alhuyi Nazari c , C. Harley d , E. Momoniat e , I. Mahariq f , N. Ali f 
+a Faculty of Science, University of Johannesburg, PO Box 524, Auckland Park, 2006, South Africa 
+b Institute of Fundamental and Frontier Sciences, University of Electronic Science and Technology of China, Chengdu, Sichuan 610054, PR China 
+c Faculty of New Sciences and Technologies, University of Tehran, Tehran, Iran 
+d Data Science Across Disciplines Research Group, Institute for the Future of Knowledge, Faculty of Engineering and the Built Environment, University of Johannesburg, 
+Johannesburg, South Africa 
+e Department of Mathematics and Applied Mathematics, University of Johannesbu
+Second Page Excerpt:
+M.M. Rashidi, M. Alhuyi Nazari, C. Harley et al. Chemical Thermodynamics and Thermal Analysis 8 (2022) 100081 
+cleus formation rate is proportional to 𝑒 − 𝜎3 [11] , meaning higher rates 
+of formation in cases of lower surface tensions. According to the cor- 
+relations proposed for boiling heat transfer, increment in the density 
+diﬀerence can result in higher heat ﬂux [10] . Furthermore, some other 
+factors such as the boiling surface inﬂuence the boiling heat transfer. For 
+instance, Kim et al. [12] investigated the pool boiling heat transfer rate 
+at the surface with moderate wettability. They noticed that the critical 
+heat ﬂux in case of the roughest surface was higher than the smoothest 
+surface. In another study, Ahmad et al. [13] investigated the impact 
+of surface roughness on the heat transfer rate of R-123 pool boiling. A 
+signiﬁcant enhancement in the heat transfer rate was observed in case 
+of using a rough surface compared with a smooth surface. In addition, 
+they applied
+
+==================================================
+File: Boiling pressure drop, local heat transfer distribution and critical heat flux in.pdf
+Pages: 17 | Total Characters: 63270
+First Page Excerpt:
+Contents lists available at ScienceDirect
+International Journal of Thermal Sciences
+journal homepage: www.elsevier.com/locate/ijts
+Boiling pressure drop, local heat transfer distribution and critical heat ﬂux in
+helical coils with R123
+B.K. Hardik, S.V. Prabhu ∗
+Department of Mechanical Engineering, Indian Institute of Technology, Bombay, India
+ARTICLE INFO
+Keywords:
+Local heat transfer coe ﬃcient
+Two-phase pressure drop
+Critical heat ﬂux
+Flow boiling
+Infra-red thermal camera
+ABSTRACT
+The objectives of the present work are to study the in ﬂuence of curvature on local heat transfer coe ﬃcient, two-
+phase pressure drop and CHF in helical coils. The curvature of coil generates secondary ﬂow of ﬂuid which
+aﬀects the mechanism inside helical coils. Very less information is available on the in ﬂuence of curvature on
+ﬂow boiling system. The present work investigates the characteristics of single phase ﬂow and ﬂow boiling in
+helical coils. Infra-red thermal imaging technique is used to measure
+Second Page Excerpt:
+g Vapour
+h Heated
+in Inlet
+l Liquid
+lo Liquid only
+P Phase
+rad Radiation
+s Straight tube
+c Helical coil
+sat Saturated
+SC Subcooled
+sys System
+w wall
+Abbreviation Deﬁ nition
+CHF Critical Heat Flux W m/ 2
+HTC Heat Transfer Coe ﬃcient W mK/ 2
+R123 2,2-Dichloro-1,1,1-triﬂuoroethane
+Dimensionless number
+Bo Boiling number =Bo q G i''/   fg
+Ja Jakob number =Nuh d K·/
+Nu Nusselt number
+Pr Prandtl number =Prμ C p K·/
+Re Reynolds number =Rem π d μ4 ˙/
+Dn Dean number =Dn Re d D /
+1. Introduction
+Helical coils are widely used in chemical, mechanical, biological,
+petrochemical and nuclear industries due to its compact structures,
+high heat transfer coe ﬃcients and good thermal expansion perfor-
+mances. Helical coiled steam generators (HCSG) are of major interest in
+the nuclear industry for electricity production [1]. Helically coiled
+steam generator is an attractive option for marine nuclear reactor.
+Study of boiling mechanism inside a helical coil tube is important in
+helical coil steam generator
+
+==================================================
+File: Boiling pressure drop, local heat transfer distribution and critical heat.pdf
+Pages: 16 | Total Characters: 62055
+First Page Excerpt:
+Boiling pressure drop, local heat transfer distribution and critical heat
+ﬂux in horizontal straight tubes
+B.K. Hardik, Gajendra Kumar, S.V. Prabhu ⇑
+Department of Mechanical Engineering, Indian Institute of Technology, Bombay, India
+article info
+Article history:
+Received 7 December 2016
+Received in revised form 9 May 2017
+Accepted 18 May 2017
+Available online 3 June 2017
+Keywords:
+Local heat transfer coefﬁcient
+Pressure drop
+Critical heat ﬂux
+Infrared thermal camera
+Two-phase ﬂow
+abstract
+The objective of the present work is to measure the heat transfer and pressure drop in ﬂow boiling with
+refrigerant R123 as the working medium. Local heat transfer coefﬁcient along the axial length of tube and
+overall averaged heat transfer coefﬁcient are compared with available correlations. In the present study,
+spatial variation in heat transfer coefﬁcient along the axial length of tube is analysed with the increase of
+quality. Variation in heat transfer coefﬁcient in different ﬂow boiling region
+Second Page Excerpt:
+parameters used to derive correlation of each work are presented
+in Table 1 .
+Comprehensive literature review on boiling heat transfer coefﬁ-
+cient and two-phase pressure drop is presented in Hardik and
+Prabhu [14]. Hardik and Prabhu [14] collected the correlations
+available in literature on boiling heat transfer coefﬁcient and
+two-phase pressure drop. Kandlikar [17] presented quantitative
+ﬂow boiling curve which represents heat transfer coefﬁcient with
+increase of quality. The heat transfer coefﬁcient varies with
+increase of quality. The curve changes it slope in different regions
+of ﬂow boiling i.e. subcooled ﬂow boiling, nucleate ﬂow boiling and
+convective ﬂow boiling. The boiling curve describes the boiling
+process for different liquid to vapour density ratio ﬂuids. Kandlikar
+[17] shows that the boiling process varies with variation in liquid
+to vapour density ratio. Almost all the available literature derived
+the correlations using different number of data points. Till now
+there i
+
+==================================================
+File: CHF Look Up Table.pdf
+Pages: 14 | Total Characters: 31788
+First Page Excerpt:
+Nuclear Engineering and Design 237 (2007) 1909–1922
+The 2006 CHF look-up table
+D.C. Groenevelda,b,∗, J.Q. Shan c, A.Z. Vasi´c b, L.K.H. Leung b,
+A. Durmayaz d,J .Y a n ga,b, S.C. Cheng a, A. Tanasea
+a University of Ottawa, Department of Mechanical Engineering, Ottawa, Ont., Canada
+b Chalk River Laboratories, Atomic Energy of Canada Ltd., Chalk River , Ont., Canada K0J 1J0
+c Department of Nuclear Engineering, Xi’an Jiaotong University, P .R. China
+d Istanbul Technical University, Institute of Energy, Istanbul, Turkey
+Received 2 May 2006; received in revised form 26 February 2007; accepted 26 February 2007
+Abstract
+CHF look-up tables are used widely for the prediction of the critical heat ﬂux (CHF). The CHF look-up table is basically a normalized data bank
+for a vertical 8 mm water-cooled tube. The 2006 CHF look-up table is based on a database containing more than 30,000 data points and provides
+CHF values at 24 pressures, 20 mass ﬂuxes, and 23 qualities, covering the full range of condi
+Second Page Excerpt:
+1910 D.C. Groeneveld et al. / Nuclear Engineering and Design 237 (2007) 1909–1922
+Nomenclature
+AECL Atomic Energy of Canada Limited
+CHF critical heat ﬂux (kW m −2)
+D inside diameter (m)
+G mass ﬂux (kg m−2 s−1)
+H enthalpy (kJ kg−1)
+Hfg latent heat (kJ kg−1)
+/Delta1Hin inlet subcooling = (H − Hin)/Hfg (kJ kg−1)
+ID inside diameter
+L, L
+h heated length (m)
+LQR limiting quality region
+LUT look-up table
+p pressure at CHF (kPa)
+q
+cr critical heat ﬂux (kW m−2)
+T ﬂuid temperature (◦C)
+X thermodynamic quality
+Greek letter
+Ω smoothness index
+Subscripts
+CHF pertaining to the CHF
+exp experimental
+in inlet conditions
+lim limiting quality as explained in Appendix A
+• Fluctuations in the value of the CHF with pressure, mass
+ﬂux and quality. This can cause difﬁculties when using look-
+up tables inside safety analysis codes in which iteration is
+required.
+• Large variations in CHF between the adjacent table entries,
+especially in the region of the so-called limiting quality (this
+region is discussed in
+
+==================================================
+File: CRITICAL HEAT FLUX (CHF) AND POST-CHF HEAT.pdf
+Pages: 8 | Total Characters: 20505
+First Page Excerpt:
+Int. J. Multiphase Flow Vol. 15, No. 3, pp. 385-392, 1989 0301-9322/89 $3.00+0.00 
+Printed in Great Britain. All rights reserved Copyright © 1989 Pergamon Press/Elsevier 
+CRITICAL HEAT FLUX (CHF) AND POST-CHF HEAT 
+TRANSFER IN HORIZONTAL AND INCLINED 
+EVAPORATOR TUBES 
+V. KEFER, W. KOHLER and W. KASTNER 
+Thermohydraulics and Process Engineering Laboratories, Siemens AG, KWU Group, Erlangen, F.R.G. 
+(Received I October 1988; in revised form 15 November 1988) 
+Abstract--The paper describes heat transfer experiments performed on evaporator tubes at various 
+inclinations and over a parameter range typical of fossil-fired once-through boilers and waste heat recovery 
+boilers. Particular attention is paid to the influence of tube inclination on the occurrence of the boiling 
+crisis (dryout) and on heat transfer in the post-CHF regime. The paper identifies calculation models which 
+can be used to determine the critical steam quality and wall temperatures in partially wetted and dried-out 
+tub
+Second Page Excerpt:
+386 v. KEFER etaL 
+test section 
+400 kW 
+BO1 
+Z 900 EW ='l"-~m, ~--'--(~JJ 3/h \ ~ / 
+Z 3m3~~ 
+.o2 }4 m~Jh_.~__T I 
+100 kW 7Water treatment plant DO2,h - 
+$17 B09 
+BO1 Thermal pressurizer 
+1302 Spray-type condenser 
+BO3 Feed-water tank 
+HO2 Preheeter 
+HO6 Main heater 
+DO1 Centrifugal pump 
+DO2 Reciprocating pump 
+$17 Reduction valve 
+Figure 1. BENSON test facility. 
+plant which is fed into the pressurized part of the loop by a reciprocating pump. The water flows 
+through an electrical heater which can be controlled to vary the thermodynamic condition of the 
+fluid as it enters the test section. The test tube is also heated electrically to simulate boiler 
+conditions. The steam formed in the heater and in the test section is condensed in a downstream 
+spray-type condenser. From here, the water is passed via a centrifugal pump to the main cooler 
+before being discharged through a reduction valve. Pressure in the loop is controlled by means of 
+a thermal pressurizer. 
+Tube wall ten" 
+650
+
+==================================================
+File: Critical heat Flux.pdf
+Pages: 32 | Total Characters: 113628
+First Page Excerpt:
+Critical heat ﬂux (CHF) for water ﬂow in tubes—I.
+Compilation and assessment of world CHF data
+David D. Hall, Issam Mudawar*
+Boiling and Two-Phase Flow Laboratory, School of Mechanical Engineering, Purdue University, West Lafayette, IN 47907, USA
+Received 29 September 1998; received in revised form 24 May 1999
+Abstract
+The nuclear and conventional power industries have spent enormous resources during the past ﬁfty years
+investigating the critical heat ﬂux (CHF) phenomenon for a multitude of pool and ﬂow boiling conﬁgurations.
+Experimental CHF data form the basis for the development of correlations and mechanistic models and comparison
+with them is the sole criterion for a reliable assessment of a correlation or model. However, experimental CHF data
+are rarely published, remaining in the archives of the authors or in obscure technical reports of an organization. The
+Purdue University-Boiling and Two-Phase Flow Laboratory (PU-BTPFL) CHF database for water ﬂow in a
+uniformly heated tube w
+Second Page Excerpt:
+and ﬂow boiling conﬁgurations. Investigators routinely
+conduct expensive experimental tests to ascertain the
+behavior of this phenomenon at speciﬁc operating con-
+ditions, often not realizing that similar tests had been
+conducted elsewhere. Experimental data form the basis
+for the development of CHF correlations and mechan-
+istic (phenomenological) models and comparison with
+them is the sole criterion for a reliable assessment of a
+correlation or model. However, experimental CHF
+data are rarely published, remaining in the archives of
+the original authors or in obscure technical reports of
+an organization.
+The present study was motivated by the lack of a
+large, reliable, error-free CHF database for developing
+correlations and mechanistic models to predict CHF in
+ﬂow boiling. The objectives of the present study are
+the following: (1) examine all known CHF databases
+for imperfections, (2) compile all known CHF data
+obtained with vertical upﬂow or horizontal ﬂow of
+water in a uniformly hea
+
+==================================================
+File: Critical heat flux in helical coils at low pressure.pdf
+Pages: 17 | Total Characters: 59924
+First Page Excerpt:
+Research Paper
+Critical heat ﬂux in helical coils at low pressure
+B.K. Hardik, S.V. Prabhu ⇑
+Department of Mechanical Engineering, Indian Institute of Technology, Bombay, India
+highlights
+/C15 Review is presented on critical heat ﬂux in helical coils.
+/C15 Axial wall temperature distribution is analysed on inner and outer side of coils.
+/C15 Effect of heat ﬂux, mass ﬂux, curvature and quality on CHF is studied.
+/C15 CHF is studied in complete saturated region with quality ranging from 0 to 1.
+/C15 Simple correlation is developed to predict the critical heat ﬂux at low pressure.
+article info
+Article history:
+Received 17 August 2016
+Revised 14 October 2016
+Accepted 19 October 2016
+Available online 28 October 2016
+Keywords:
+Helical coil
+Local wall temperature distribution
+Critical heat ﬂux
+Low pressure
+Infrared thermal camera
+abstract
+The work presents the study on ﬂow boiling crisis in helical coils at low pressure with water as working
+medium. Published correlations of critical heat ﬂux
+Second Page Excerpt:
+drop and heat transfer. Hence, there is still lack of literature on the
+review of work done on boiling crises and the present status of
+knowledge for critical heat ﬂux in helical coils.
+Berthoud and Jayanti [5] characterised the dryout in helical
+coils. They analysed the mechanism based dryout for high pressure
+system. Unlike the straight tubes, the dryout in helical coils is
+divided as ﬁrst dryout, partial dryout and total dryout. The correla-
+tions are developed for total dryout. Based on the occurrence of
+dryout, the ﬁrst dryout is classiﬁed as stratiﬁcation - redeposition
+- entrainment dominated dryout. The dryout map as shown in
+Fig. 1(A) is developed to divide and measure the ﬁrst dryout in dif-
+ferent dominated zones. The inﬂuence of system parameters on
+dryout is studied. Recently, Hwang et al. [6] conducted experi-
+ments with three helical coils. They concluded that the secondary
+ﬂow is not affecting boiling heat transfer in helical coil. Different
+from that the dryout is sign
+
