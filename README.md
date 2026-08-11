@@ -33,6 +33,7 @@ This repository contains the complete codebase, data pipelines, Jupyter notebook
 ├── notebooks/
 │   ├── CHF_ML_Modeling.ipynb                    # Primary Phase-1 Machine Learning Modeling notebook
 │   ├── CHF_Physics_Informed_Extensions.ipynb    # Primary Phase-2 Physics-Informed Extensions notebook
+│   ├── CHF_PINN_Model.ipynb                     # Phase-3 PINN with grid search & multi-seed evaluation
 │   └── model_tests/                             # Focused per-model unit-test & diagnostic notebooks
 │       ├── test_extra_trees.ipynb
 │       ├── test_gpr.ipynb
