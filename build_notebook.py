@@ -241,6 +241,8 @@ md(r"""
 * **Compact MLP Architecture**: 2 hidden layers (64 → 32 units, ReLU activation, Adam optimizer, early stopping). Keeps capacity small to prevent grid memorization.
 * **GPR Subsampling**: Subsampled to 2,000 points due to $O(n^3)$ Gaussian Process complexity.
 * **Grid Interpolation**: Evaluated on Splits B and C. Skipped on Split A because row-level random holdouts punch holes in the rectilinear grid.
+* **⚡ Modal Cloud GPU Acceleration**: Heavy fits can be executed on Modal Cloud GPUs using `python -m modal run modal_btp_gpu_pipeline.py`.
+
 """)
 
 code(r"""

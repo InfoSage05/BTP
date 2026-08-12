@@ -120,6 +120,15 @@ All 4 physics approaches are evaluated across the exact same 3 splits:
 * **Split A**: Random 80/20 train/test split.
 * **Split B**: Interior pressure-level holdout.
 * **Split C**: Edge extrapolation ($P_{\text{train}} \le 16,000\text{ kPa}$, $P_{\text{test}} > 16,000\text{ kPa}$).
+
+---
+
+### ⚡ Modal Cloud GPU Acceleration
+Heavy PyTorch physics penalty training loops can be executed on **Modal Cloud GPUs (NVIDIA A10G)** using:
+```bash
+python -m modal run modal_btp_gpu_pipeline.py
+```
+
 """)
 
 code(r"""
