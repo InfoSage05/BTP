@@ -55,12 +55,26 @@ This repository contains the complete codebase, data pipelines, Jupyter notebook
 │   ├── split_C_results.csv
 │   └── split_C_multiseed_verification.csv
 │
-├── build_notebook.py                 # Rebuilds CHF_ML_Modeling.ipynb
-├── build_notebook_physics.py         # Rebuilds CHF_Physics_Informed_Extensions.ipynb
-├── build_model_test_notebooks.py     # Rebuilds model test notebooks in notebooks/model_tests/
-├── prepare_data.py                   # Data extraction & Excel cleaning pipeline
-├── verify_results.py                 # Senior scientist audit & multi-seed verification script
-├── chf_physics.py                    # Physical correlation modules (Biasi, Zuber, hybrid models)
+├── scripts/
+│   ├── build_notebook.py             # Rebuilds CHF_ML_Modeling.ipynb
+│   ├── build_notebook_physics.py     # Rebuilds CHF_Physics_Informed_Extensions.ipynb
+│   ├── build_notebook_pinn.py        # Rebuilds CHF_PINN_Model.ipynb
+│   ├── build_model_test_notebooks.py # Rebuilds model test notebooks in notebooks/model_tests/
+│   ├── prepare_data.py               # Data extraction & Excel cleaning pipeline
+│   ├── verify_results.py             # Senior scientist audit & multi-seed verification script
+│   ├── chf_physics.py                # Physical correlation modules (Biasi, Zuber, hybrid models)
+│   ├── run_pinn_quick.py             # Quick local PINN sanity run
+│   ├── modal_btp_gpu_pipeline.py     # Modal.com GPU pipeline for full training runs
+│   └── modal_pinn_grid_search.py     # Modal.com GPU grid search for PINN hyperparameters
+│
+├── docs/
+│   ├── CHF_ML_Context.md             # Background/context on the modeling problem
+│   ├── CHF_Physics_Approaches_Explained.md
+│   ├── CHF_Project_Simple_Explanation.md
+│   ├── GOOGLE_DOC_SUMMARY.md
+│   ├── GOOGLE_DOC_SUMMARY.txt
+│   └── SENIOR_REVIEW.md
+│
 ├── requirements.txt                  # Python dependencies
 └── README.md                         # Project documentation
 ```
@@ -119,21 +133,22 @@ pip install -r requirements.txt
 ```
 
 ### 2. Re-generating Data & Rebuilding Notebooks
-To clean raw Excel data:
+Run all commands below from the repository root. To clean raw Excel data:
 ```bash
-python prepare_data.py
+python scripts/prepare_data.py
 ```
 
 To build all Jupyter notebooks:
 ```bash
-python build_notebook.py
-python build_notebook_physics.py
-python build_model_test_notebooks.py
+python scripts/build_notebook.py
+python scripts/build_notebook_physics.py
+python scripts/build_notebook_pinn.py
+python scripts/build_model_test_notebooks.py
 ```
 
 To run the verification audit:
 ```bash
-python verify_results.py
+python scripts/verify_results.py
 ```
 
 ---

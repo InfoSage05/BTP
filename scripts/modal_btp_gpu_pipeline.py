@@ -34,7 +34,7 @@ image = (
         "matplotlib",
     )
     .add_local_file("data/chf_long_clean.csv", remote_path="/root/data/chf_long_clean.csv")
-    .add_local_file("chf_physics.py", remote_path="/root/chf_physics.py")
+    .add_local_file("scripts/chf_physics.py", remote_path="/root/chf_physics.py")
 )
 
 app = modal.App("chf-btp-gpu-pipeline")

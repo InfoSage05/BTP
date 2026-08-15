@@ -80,7 +80,7 @@ warnings.filterwarnings("ignore")
 
 # Import Zuber correlation for pressure-trend physics penalty
 import sys
-sys.path.insert(0, "..")
+sys.path.insert(0, "../scripts")
 from chf_physics import zuber_pool_boiling_chf
 
 GLOBAL_SEED = 42

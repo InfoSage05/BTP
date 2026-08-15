@@ -66,6 +66,8 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import r2_score
 from sklearn.ensemble import ExtraTreesRegressor
 
+import sys
+sys.path.insert(0, "../scripts")
 from chf_physics import biasi_chf, zuber_pool_boiling_chf, hybrid_reference_chf, physics_basis_features
 
 warnings.filterwarnings("ignore")
