@@ -45,7 +45,7 @@ def zuber_sign(p): return np.interp(np.asarray(p, float), _ZP, _ZS)
 
 # ---- PINN Model ----
 class PINN(nn.Module):
-    def __init__(self, layers=[128, 64, 32]):
+    def __init__(self, layers=[16, 16, 8]):
         super().__init__()
         mods = []
         d = 3
@@ -57,7 +57,7 @@ class PINN(nn.Module):
     def forward(self, x): return self.net(x).squeeze(-1)
 
 # ---- Training function ----
-def train_pinn(Xtr, ytr, Xte, yte, layers=[128,64,32],
+def train_pinn(Xtr, ytr, Xte, yte, layers=[16,16,8],
                lam_m=0.3, lam_z=0.1, lam_p=0.05, ncol=512,
                lr=1e-3, epochs=3000, patience=100, seed=42):
     torch.manual_seed(seed)
@@ -121,13 +121,13 @@ XtrA, XteA, ytrA, yteA = get_split_A()
 XtrB, XteB, ytrB, yteB = get_split_B()
 
 configs = [
-    {"name": "Small [64,32] lm=0.3 lz=0.1",  "layers": [64,32],    "lam_m": 0.3, "lam_z": 0.1, "lr": 1e-3},
-    {"name": "Med [128,64,32] lm=0.3 lz=0.1", "layers": [128,64,32],"lam_m": 0.3, "lam_z": 0.1, "lr": 1e-3},
-    {"name": "Med [128,64,32] lm=0.1 lz=0.1", "layers": [128,64,32],"lam_m": 0.1, "lam_z": 0.1, "lr": 1e-3},
-    {"name": "Med [128,64,32] lm=0.5 lz=0.0", "layers": [128,64,32],"lam_m": 0.5, "lam_z": 0.0, "lr": 1e-3},
-    {"name": "Large [128,128,64] lm=0.3 lz=0.1","layers":[128,128,64],"lam_m":0.3,"lam_z":0.1,"lr":1e-3},
-    {"name": "Med [128,64,32] lm=0.3 lz=0.1 lr=5e-4","layers":[128,64,32],"lam_m":0.3,"lam_z":0.1,"lr":5e-4},
-    {"name": "No physics [128,64,32] lm=0 lz=0","layers":[128,64,32],"lam_m":0.0,"lam_z":0.0,"lr":1e-3},
+    {"name": "Small [8,8] lm=0.3 lz=0.1",  "layers": [8,8],    "lam_m": 0.3, "lam_z": 0.1, "lr": 1e-3},
+    {"name": "Med [16,8] lm=0.3 lz=0.1", "layers": [16,8],"lam_m": 0.3, "lam_z": 0.1, "lr": 1e-3},
+    {"name": "Med [16,8] lm=0.1 lz=0.1", "layers": [16,8],"lam_m": 0.1, "lam_z": 0.1, "lr": 1e-3},
+    {"name": "Med [16,8] lm=0.5 lz=0.0", "layers": [16,8],"lam_m": 0.5, "lam_z": 0.0, "lr": 1e-3},
+    {"name": "Large [16,16,8] lm=0.3 lz=0.1","layers":[16,16,8],"lam_m":0.3,"lam_z":0.1,"lr":1e-3},
+    {"name": "Med [16,8] lm=0.3 lz=0.1 lr=5e-4","layers":[16,8],"lam_m":0.3,"lam_z":0.1,"lr":5e-4},
+    {"name": "No physics [16,8] lm=0 lz=0","layers":[16,8],"lam_m":0.0,"lam_z":0.0,"lr":1e-3},
 ]
 
 SEEDS = [0, 1, 2, 42, 99]

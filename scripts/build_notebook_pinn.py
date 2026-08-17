@@ -162,7 +162,7 @@ md(r"""
 ### Design Decisions:
 * **Activation**: Tanh (smooth, infinitely differentiable — required for autograd physics penalties).
 * **Target**: $\ln(\text{CHF})$ (log-target proven more stable from Phase 2 multi-seed findings).
-* **Architecture Search**: Test 3 sizes: `[64,32]`, `[128,64,32]`, `[128,128,64]`.
+* **Architecture Search**: Test 3 sizes: `[8,8]`, `[16,8]`, `[16,16,8]` — kept small since the model only maps 3 inputs (P, G, X) to 1 output.
 * **Input Scaling**: StandardScaler fit on training data only.
 * **Output Scaling**: Z-score normalize $\ln(\text{CHF})$ for stable gradient flow.
 """)
@@ -171,7 +171,7 @@ code(r"""
 class PINN_CHF(nn.Module):
     # Physics-Informed Neural Network for CHF prediction.
     
-    def __init__(self, hidden_layers=[128, 64, 32], activation=nn.Tanh):
+    def __init__(self, hidden_layers=[16, 16, 8], activation=nn.Tanh):
         super().__init__()
         layers = []
         in_dim = 3  # P, G, X
@@ -187,9 +187,9 @@ class PINN_CHF(nn.Module):
 
 
 # Verify model creation
-for arch_name, arch in [("Small [64,32]", [64, 32]),
-                         ("Medium [128,64,32]", [128, 64, 32]),
-                         ("Large [128,128,64]", [128, 128, 64])]:
+for arch_name, arch in [("Small [8,8]", [8, 8]),
+                         ("Medium [16,8]", [16, 8]),
+                         ("Large [16,16,8]", [16, 16, 8])]:
     model = PINN_CHF(hidden_layers=arch)
     n_params = sum(p.numel() for p in model.parameters())
     print(f"  {arch_name}: {n_params:,} trainable parameters")
@@ -250,7 +250,7 @@ md(r"""
 
 code(r"""
 def train_pinn(Xtr, ytr, Xte, yte,
-               hidden_layers=[128, 64, 32],
+               hidden_layers=[16, 16, 8],
                lam_mono=0.3, lam_zuber=0.1, lam_pos=0.05,
                n_collocation=512,
                lr=1e-3, epochs=3000, patience=100,
@@ -419,7 +419,7 @@ print("=" * 70)
 t0 = time.time()
 result_demo = train_pinn(
     XtrC, ytrC, XteC, yteC,
-    hidden_layers=[128, 64, 32],
+    hidden_layers=[16, 16, 8],
     lam_mono=0.3, lam_zuber=0.1, lam_pos=0.05,
     n_collocation=512, lr=1e-3, epochs=3000, patience=100,
     seed=42, verbose=True
@@ -477,7 +477,7 @@ Each configuration is evaluated with **5 random seeds** on Split C (the hardest 
 ### Search Grid:
 | Parameter | Values |
 |:---|:---|
-| Hidden layers | `[64,32]`, `[128,64,32]`, `[128,128,64]` |
+| Hidden layers | `[8,8]`, `[16,8]`, `[16,16,8]` |
 | $\lambda_{\text{mono}}$ | 0.0, 0.1, 0.3, 0.5 |
 | $\lambda_{\text{zuber}}$ | 0.0, 0.1, 0.3 |
 | Learning rate | 1e-3, 5e-4 |
@@ -508,7 +508,7 @@ else:
     print("Running local hyperparameter search (no Modal summary found)...")
     SEARCH_SEEDS = [0, 1, 42]
     grid = {
-        "hidden_layers": [[64, 32], [128, 64, 32], [128, 128, 64]],
+        "hidden_layers": [[8, 8], [16, 8], [16, 16, 8]],
         "lam_mono": [0.1, 0.3],
         "lam_zuber": [0.1, 0.3],
         "lr": [1e-3, 5e-4],

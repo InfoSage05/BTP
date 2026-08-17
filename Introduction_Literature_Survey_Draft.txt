@@ -1,0 +1,82 @@
+INTRODUCTION AND LITERATURE SURVEY DRAFT
+
+Working title:
+Physics-informed and machine-learning prediction of critical heat flux under interpolation and high-pressure extrapolation conditions
+
+Draft status:
+This is a journal-oriented working draft for Nuclear Engineering and Design. Citation labels [S1]-[S16] correspond to the sixteen papers supplied by the supervisor and are retained as source links at the end of this file. Author names, article titles, DOI metadata and exact paper-specific numerical claims must be populated from the final PDFs or bibliographic export before submission. Project-specific numerical results are drawn from the current repository documentation and should be rechecked against the final reproducible runs.
+
+1. Introduction
+
+Critical heat flux (CHF) is a limiting heat-transfer condition in which the ability of a heated surface to remove energy through nucleate boiling deteriorates sharply. In water-cooled nuclear systems, departure from nucleate boiling and the associated reduction in heat-transfer capability can produce a rapid increase in cladding or wall temperature. Reliable CHF prediction is therefore important for thermal design, operating-limit definition, safety analysis and the assessment of design margins in reactor and high-pressure thermal-hydraulic systems. The difficulty is that CHF is not governed by a single independent variable. It reflects the coupled influence of pressure, mass flux, thermodynamic quality, channel geometry, heated length, inlet subcooling, orientation, surface condition and flow regime. The resulting response is strongly nonlinear and may change character across subcooled, saturated and post-dryout regimes.
+
+Conventional CHF prediction has traditionally relied on mechanistic correlations, empirical correlations and look-up tables developed from large experimental databases. These approaches remain valuable because they encode engineering knowledge and offer transparent reference predictions. The 2006 Groeneveld CHF look-up table is a particularly important benchmark for water flow in tubes because it provides a structured representation of CHF over broad ranges of pressure, mass flux and quality. However, a look-up table is not automatically a predictive model outside its tabulated domain. Interpolation between neighbouring states is fundamentally different from extrapolation into a pressure, flow or quality range that is not represented by the available data. This distinction is especially important for machine-learning studies, where random row-wise splitting of a structured table can place nearly identical neighbouring states in both the training and test sets and thereby produce deceptively optimistic performance.
+
+Recent research has increasingly explored machine learning (ML), deep learning and hybrid physics–data methods for boiling heat transfer, critical heat flux and related thermal-hydraulic prediction tasks [S1–S16]. The appeal of these methods is clear: nonlinear regressors can approximate complex interactions among operating variables without requiring a single closed-form correlation, and they can exploit large experimental or tabulated datasets. Neural networks, tree ensembles, kernel methods, polynomial models and other regressors have consequently been used for heat-transfer coefficient, boiling-transition, dryout and CHF prediction. The recent literature also demonstrates a shift from purely black-box prediction toward physically constrained, interpretable and transferable models. In particular, physics-informed neural networks (PINNs), residual-learning strategies, physics-guided feature engineering and hybrid model blends seek to reduce nonphysical behaviour and improve generalization in sparse-data regions [S1–S16].
+
+Despite this progress, three methodological issues remain central. First, reported accuracy depends strongly on how the data are split. A random split is useful for measuring local interpolation but is insufficient for assessing deployment at unobserved operating conditions. Second, a high coefficient of determination within the data domain does not demonstrate physically meaningful extrapolation. Many decision-tree methods partition the input space into terminal regions and therefore provide piecewise-constant predictions; their strong interpolation performance can coexist with severe degradation beyond the largest pressure represented in training. Third, CHF values commonly span several orders of magnitude and exhibit heteroscedastic error. A model optimized directly on the raw target may focus on high-CHF states, whereas a logarithmic target can provide a more balanced representation of relative error. These issues motivate a validation framework that reports both raw-scale goodness of fit and percentage-based error under deliberately distinct interpolation and extrapolation protocols.
+
+The present work develops and evaluates a reproducible ML and physics-informed framework for predicting CHF from pressure (P), mass flux (G) and thermodynamic quality (X). The primary data source is the 2006 Groeneveld look-up table, represented as a 24 × 21 × 23 structured grid containing 11,592 states. The all-steam boundary entries at X = 1.0 are treated as placeholder zero-CHF values and excluded from model fitting, leaving 11,088 non-zero samples. The study compares linear and polynomial regression, k-nearest neighbours, random forest, extremely randomized trees, gradient-boosting models, Gaussian-process regression, a compact multilayer perceptron and trilinear grid interpolation. In addition, physics-informed extensions are examined through physical feature construction, residual learning, soft physics penalties and pressure-gated hybrid prediction.
+
+The evaluation is designed around three progressively more demanding tests. Split A is a five-seed random 80/20 split and measures optimistic local interpolation. Split B holds out interior pressure levels while retaining neighbouring pressure levels in the training set and therefore assesses structured interpolation across missing pressure slices. Split C trains only on P <= 16,000 kPa and tests on the five highest pressure levels, 17,000–21,000 kPa, providing an explicit edge-extrapolation benchmark. All models are evaluated using R2 and MAPE on the original CHF scale, including models trained on log(CHF). This design makes it possible to distinguish memorization or local interpolation from smooth physical trend continuation.
+
+The contribution of this study is consequently methodological as well as predictive. It establishes a fair benchmark for CHF regression on a dense reference table, quantifies the generalization gap between random interpolation and pressure extrapolation, tests whether physics-informed extensions improve that gap, and highlights the importance of multi-seed verification for neural models. The resulting framework is intended to support future validation against independent experimental datasets and, ultimately, to provide a more reliable basis for ML-assisted CHF prediction in nuclear thermal-hydraulic applications.
+
+2. Literature survey
+
+2.1 CHF databases, correlations and look-up tables
+
+CHF prediction has been shaped by extensive experimental programs and by efforts to consolidate data across pressure, mass flux, quality and geometry. Large databases and generalized look-up tables provide a practical engineering alternative to fitting a separate correlation for every channel and operating regime. Their principal strength is broad empirical coverage and direct usability in system analysis. Their principal limitation is that the table entries inherit the coverage, uncertainty and regime assumptions of the underlying database. The 2006 Groeneveld table is therefore best treated as a high-value reference surface: interpolation within the populated domain is meaningful, while extrapolation requires an explicit physical or statistical assumption. This distinction is directly relevant to the present work because the table itself is used as a benchmark against which learned models are evaluated, rather than as an opponent that a machine-learning model is expected to outperform.
+
+2.2 Machine learning for boiling and CHF prediction
+
+The broader boiling-heat-transfer literature shows that ML methods can capture nonlinear interactions that are difficult to express using a compact analytical correlation. Feed-forward neural networks are flexible universal approximators and can represent smooth multivariable response surfaces when trained with sufficient coverage. Tree ensembles are often strong on tabular data because they capture threshold effects and variable interactions with limited preprocessing. Kernel methods can be effective when the response is smooth but the dataset is not excessively large. Polynomial and other low-order smooth models remain useful as interpretable baselines, especially when extrapolation behaviour is part of the research question.
+
+The supplied recent studies [S1–S16] collectively motivate a hybrid view of these methods. High predictive accuracy is useful, but it must be interpreted alongside the data regime, operating range, geometry and validation procedure used in each paper. Results obtained from random splits may represent interpolation among closely related measurements; results obtained from geometry, pressure or quality holdouts provide stronger evidence of transferability. For CHF, this distinction is particularly important because the response may be smooth over one portion of the domain and highly regime-dependent over another. Accordingly, the current study reports model family, target transformation, split definition and seed variability together rather than presenting a single aggregate score.
+
+2.3 Physics-informed and hybrid learning
+
+Purely data-driven models may violate basic engineering expectations when queried in sparsely sampled or out-of-domain regions. Examples include negative CHF, implausible pressure trends, excessive oscillation, or a failure to preserve the qualitative effect of quality and mass flux. Physics-informed approaches address this problem in several ways. Physics-guided features add dimensionless groups or correlation-based terms to the input representation. Residual learning predicts the discrepancy between a baseline correlation and the data, potentially reducing the burden placed on the ML model. PINNs and related constrained neural networks introduce governing-equation residuals, monotonicity conditions or other physical penalties into the objective function. Hybrid or mixture-of-experts models assign different predictors to different regimes, such as interpolation-dominated interior states and extrapolation-dominated boundary states.
+
+These strategies are promising, but their success depends on the correctness and applicability of the imposed physics. A penalty that is appropriate for one flow regime may be unsuitable near a transition or at a boundary where the table uses a special convention. Similarly, a residual model can extrapolate poorly if the baseline-correlation error changes systematically outside the calibration range. Therefore, physics-informed learning should be assessed under explicit out-of-domain tests rather than inferred from random-split accuracy alone. The present project follows this principle by comparing physics-informed extensions against both the learned models and the direct grid-interpolation baseline on the same pressure-extrapolation test.
+
+2.4 Generalization, extrapolation and evaluation gaps
+
+A recurring issue in the literature is the conflation of interpolation with extrapolation. In a structured table, random row-wise sampling distributes neighbouring values across both folds. A flexible model can then achieve an apparently excellent R2 while learning only local continuity or even memorizing the grid. This is not evidence that the model can predict a new high-pressure operating regime. The current benchmark addresses this issue by holding out complete pressure levels and, most importantly, by placing all pressures above 16,000 kPa in the test set for Split C.
+
+Preliminary project results show the expected separation. On the edge-extrapolation test, raw-target trilinear grid interpolation gives R2 approximately 0.84, while degree-2 ridge polynomial regression trained on log(CHF) gives approximately 0.75. The log-target multilayer perceptron is competitive but exhibits seed-dependent variability, with a verified mean R2 near 0.63 in the current documentation. Tree-based models that perform near-perfectly under random interpolation fall to approximately R2 = 0.43 on the high-pressure edge. These values are working benchmarks, not final manuscript claims; they should be regenerated and reported with confidence intervals or multi-seed summaries in the final results section. Their scientific implication is nevertheless clear: model ranking is not invariant to the definition of generalization, and smoothness or physical trend continuation becomes decisive under extrapolation.
+
+2.5 Research gap and positioning of the present study
+
+The literature supports the usefulness of ML and physics-informed methods for boiling and CHF prediction, but a focused comparison that simultaneously addresses structured-table leakage, target scaling, multi-seed stability, physical constraints and edge extrapolation remains necessary for this problem. The present work fills that methodological gap by treating the look-up table as a structured physical reference, separating interpolation from extrapolation, and evaluating models using both accuracy and reliability. It does not claim that a learned model replaces the look-up table. Instead, it asks a more practical question: under which operating-domain assumptions does each model provide a trustworthy CHF estimate, and can physics-informed extensions improve predictions when the test pressure lies beyond the training range?
+
+3. Citation source list to be completed from the PDFs
+
+[S1] https://www.sciencedirect.com/science/article/pii/S0029549325006119
+[S2] https://www.sciencedirect.com/science/article/pii/S0029549324008367
+[S3] https://www.sciencedirect.com/science/article/pii/S0029549324006873
+[S4] https://www.sciencedirect.com/science/article/pii/S0029549325002882
+[S5] https://www.sciencedirect.com/science/article/pii/S0029549322001790
+[S6] https://www.sciencedirect.com/science/article/pii/S0029549325001013
+[S7] https://www.sciencedirect.com/science/article/pii/S002954932600364X
+[S8] https://www.sciencedirect.com/science/article/pii/S0029549326002530
+[S9] https://www.sciencedirect.com/science/article/pii/S0029549324002073
+[S10] https://www.sciencedirect.com/science/article/pii/S0029549321000364
+[S11] https://www.sciencedirect.com/science/article/pii/S1359431125020393
+[S12] https://www.sciencedirect.com/science/article/pii/S0735193326004008
+[S13] https://www.sciencedirect.com/science/article/pii/S0735193326001806
+[S14] https://www.sciencedirect.com/science/article/pii/S0735193325007055
+[S15] https://www.sciencedirect.com/science/article/pii/S0306454925006218
+[S16] https://www.sciencedirect.com/science/article/pii/S0306454926000277
+
+Additional previously shared sources to integrate when the final bibliography is assembled:
+- Groeneveld et al., The 2006 CHF look-up table, Nuclear Engineering and Design (2007).
+- Hall and Mudawar, Critical heat flux for water flow in tubes—Compilation and assessment of world CHF data (2000).
+- Rashidi et al., Applications of machine learning methods for boiling modeling and prediction: A comprehensive review (2022).
+
+Editorial checks before submission:
+1. Replace [S1–S16] with author–year or numbered citations in the exact Nuclear Engineering and Design style.
+2. Verify every title, author list, publication year, DOI and article number from the final PDFs.
+3. Insert the final reproducible Split A/B/C metrics, uncertainty estimates and the exact PINN formulation.
+4. State the scope limitation that the primary dataset is a generalized 8-mm-tube look-up table, not an independent experimental campaign.
+5. Add independent experimental validation, if available, before making claims about reactor-scale deployment.

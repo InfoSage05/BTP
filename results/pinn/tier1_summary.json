@@ -1,0 +1,24 @@
+{
+  "best_config": {
+    "hidden_layers": [
+      16,
+      8
+    ],
+    "lam_mono": 0.3,
+    "lam_zuber": 0.0,
+    "lr": 0.001,
+    "n_collocation": 512,
+    "epochs": 1000,
+    "patience": 50,
+    "batch_size": 2048
+  },
+  "proxy_log_r2_mean": 0.958215788831988,
+  "single_seed_raw_r2_mean": 0.5613639978141978,
+  "single_seed_raw_r2_std": 0.17903341422387897,
+  "ensemble_raw_r2": 0.7315503956228822,
+  "ensemble_log_r2": 0.8434368303870692,
+  "ensemble_mape": 37.75913596572124,
+  "gridinterp_baseline_raw_r2": 0.8415,
+  "proxy_search_seconds": 67.69110226631165,
+  "final_eval_seconds": 106.70549821853638
+}
