@@ -1,0 +1,27 @@
+{
+  "best_config": {
+    "hidden_layers": [
+      16,
+      8
+    ],
+    "target_mode": "direct",
+    "activation": "tanh",
+    "lam_mono": 0.3,
+    "lam_zuber": 0.0,
+    "lr": 0.001,
+    "n_collocation": 512,
+    "epochs": 1000,
+    "patience": 50,
+    "batch_size": 2048
+  },
+  "best_physics_lam_mono": 0.3,
+  "best_physics_lam_zuber": 0.1,
+  "proxy_log_r2_mean": 0.958215788831988,
+  "best_ensemble_raw_r2": 0.770014391846604,
+  "best_ensemble_log_r2": 0.8294433019137979,
+  "best_ensemble_mape": 37.223458440967,
+  "gridinterp_baseline_raw_r2": 0.8415,
+  "tier1_ensemble_raw_r2": 0.7316,
+  "beats_gridinterp": false,
+  "proxy_search_seconds": 57.61113786697388
+}

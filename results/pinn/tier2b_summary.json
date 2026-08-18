@@ -1,0 +1,23 @@
+{
+  "config": {
+    "hidden_layers": [
+      16,
+      8
+    ],
+    "target_mode": "residual",
+    "activation": "silu",
+    "lr": 0.001,
+    "n_collocation": 512,
+    "epochs": 1000,
+    "patience": 50,
+    "batch_size": 2048
+  },
+  "best_physics_lam_mono": 0.0,
+  "best_physics_lam_zuber": 0.0,
+  "best_ensemble_raw_r2": 0.8473994918923274,
+  "best_ensemble_log_r2": 0.8920859850587975,
+  "best_ensemble_mape": 20.436212068982194,
+  "gridinterp_baseline_raw_r2": 0.8415,
+  "tier2_direct_tanh_ensemble_raw_r2": 0.77,
+  "beats_gridinterp": true
+}
