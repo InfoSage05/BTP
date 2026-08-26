@@ -1,0 +1,5 @@
+table,n,fluid,geometry,P_min_bar,P_max_bar,G_min,G_max,CHF_min_kW_m2,CHF_max_kW_m2,lut_zero_shot_r2,lut_zero_shot_mdape_pct,lut_zero_shot_within_20pct,pressure_ood,zero_shot_status,reason
+D.1,55,R123,straight,1.62,3.19,262.6,1643.8,74.5,337.3,-405.8678191936709,826.1922225312933,0.0,False,diagnostic_only,"current LUT is water, vertical 8-mm normalized, P in kPa; appendix includes R123 and helical coils"
+D.2,156,water,helical,1.22,6.36,92.0,1241.0,0.578,5.504,-1953064616510355.8,2083394495.2093139,0.0,False,diagnostic_only,"current LUT is water, vertical 8-mm normalized, P in kPa; appendix includes R123 and helical coils"
+D.3,140,R123,helical,1.74,3.68,145.0,1620.0,60.0,343.5,-686.8839455335935,908.6736415622498,0.04285714285714286,False,diagnostic_only,"current LUT is water, vertical 8-mm normalized, P in kPa; appendix includes R123 and helical coils"
+D.4,117,R123,helical,2.71,6.8,147.0,2062.0,37.7,419.8,-389.3201067334516,116.33415689440997,0.19658119658119658,False,diagnostic_only,"current LUT is water, vertical 8-mm normalized, P in kPa; appendix includes R123 and helical coils"

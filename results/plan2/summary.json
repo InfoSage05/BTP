@@ -1,0 +1,59 @@
+{
+  "mentor_audit": {
+    "rows": 55,
+    "green_columns": [
+      "Angle",
+      "L_effective_mm",
+      "Width_mm",
+      "Pnet",
+      "Tsat_Tpool",
+      "Surface_tension",
+      "rho_l",
+      "Cp",
+      "Kl",
+      "l_w",
+      "mu_l",
+      "alpha",
+      "Ja",
+      "R"
+    ],
+    "primary_features": [
+      "Angle",
+      "L_effective_mm",
+      "Width_mm",
+      "Tsat_Tpool",
+      "Surface_tension",
+      "rho_l",
+      "Cp",
+      "Kl",
+      "l_w",
+      "mu_l",
+      "alpha",
+      "Ja",
+      "R"
+    ],
+    "geometry_groups": 24,
+    "max_abs_target_identity_error": 0.0,
+    "max_abs_unit_conversion_error": 0.0,
+    "target_unit": "MW/m^2",
+    "target_source": "U / CHF(MW/m^2)"
+  },
+  "pdf_rows": 468,
+  "pdf_counts": {
+    "D.2": 156,
+    "D.3": 140,
+    "D.4": 117,
+    "D.1": 55
+  },
+  "primary_cv_best": {
+    "track": "mentor_group_cv",
+    "model": "poly2_ridge_log",
+    "n": 55,
+    "r2": 0.9139056134653173,
+    "mae": 0.3350427183301557,
+    "rmse": 0.4483899257761654,
+    "log_rmse": 0.1824902642423621,
+    "mdape_pct": 9.661671745605743,
+    "within_20pct": 0.8181818181818182
+  }
+}
