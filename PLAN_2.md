@@ -21,8 +21,8 @@ multi-seed protocol as the deterministic baselines.
 
 ## Data contract and leakage controls
 
-The workbook has 55 populated mentor experiments. The green columns found in
-`Final Master file` are:
+The workbook `data/raw/mentor_master_experiments.xlsx` has 55 populated mentor
+experiments. The green columns found in `Final Master file` are:
 
 `Angle`, `L_effective(mm)`, `Width(mm)`, `Pnet`, `Tsat-Tpool`, `Surface tension`,
 `rho_l`, `Cp`, `Kl`, `l/w`, `mu_l`, `alpha`, `Ja`, and `R`.
@@ -63,7 +63,8 @@ geometry-out on the selected candidate. No tuning may use the PDF labels.
 
 ## Implemented PDF extraction and external test
 
-The PDF contains four appendix tables and 468 records:
+The PDF `data/raw/external_coil_tube_chf_appendix.pdf` contains four appendix
+tables and 468 records:
 
 - D.1: 55 R123 straight-tube records.
 - D.2: 156 water helical-coil records.

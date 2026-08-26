@@ -2,8 +2,6 @@
 
 A comprehensive machine learning and physics-informed framework for predicting **Critical Heat Flux (CHF)** in water-cooled thermal systems using the **2006 Groeneveld Look-Up Table (LUT)** dataset.
 
----
-
 ## 📌 Repository Overview
 
 This repository contains the complete codebase, data pipelines, Jupyter notebooks, literature references, and verification scripts for the Bachelor's Thesis Project (BTP) on CHF prediction.
@@ -21,14 +19,14 @@ This repository contains the complete codebase, data pipelines, Jupyter notebook
 ```
 .
 ├── data/
-│   ├── 2006_CHF_Lookup_Table.xlsx     # Original digitized lookup table (Groeneveld et al., 2007)
-│   └── chf_long_clean.csv            # Cleaned 11,592-row long-format dataset
+│   ├── raw/                           # Original supplied/source files
+│   │   ├── mentor_master_experiments.xlsx
+│   │   ├── external_coil_tube_chf_appendix.pdf
+│   │   └── groeneveld_2006_chf_lookup_table.xlsx
+│   ├── chf_long_clean.csv             # Canonical cleaned 11,592-row LUT dataset
+│   └── chf_long_with_gridbase.csv     # Derived grid-base dataset
 │
-├── pdfs/                             # Key scientific literature & research papers
-│   ├── CHF Look Up Table.pdf         # The 2006 Groeneveld LUT reference paper (2007)
-│   ├── Applications ML.pdf           # Review paper on ML in boiling heat transfer (2022)
-│   ├── Critical heat Flux.pdf        # Purdue world CHF dataset benchmark (Hall & Mudawar, 2000)
-│   └── ...                           # Experimental papers on helical coils and pipe geometries
+├── docs/references/                  # Scientific literature and source papers
 │
 ├── notebooks/
 │   ├── CHF_ML_Modeling.ipynb                    # Primary Phase-1 Machine Learning Modeling notebook
@@ -49,6 +47,7 @@ This repository contains the complete codebase, data pipelines, Jupyter notebook
 ├── results/                          # Generated numeric results, summary CSVs, and figures
 │   ├── figures/
 │   ├── physics_informed/
+│   ├── plan2/                         # Mentor/PDF audit and external evaluation
 │   ├── combined_summary_all_splits.csv
 │   ├── split_A_summary.csv
 │   ├── split_B_results.csv
@@ -73,7 +72,10 @@ This repository contains the complete codebase, data pipelines, Jupyter notebook
 │   ├── CHF_Project_Simple_Explanation.md
 │   ├── GOOGLE_DOC_SUMMARY.md
 │   ├── GOOGLE_DOC_SUMMARY.txt
-│   └── SENIOR_REVIEW.md
+│   ├── SENIOR_REVIEW.md
+│   ├── project_status.pdf
+│   ├── manuscript/
+│   └── references/
 │
 ├── requirements.txt                  # Python dependencies
 └── README.md                         # Project documentation
@@ -149,6 +151,11 @@ python scripts/build_model_test_notebooks.py
 To run the verification audit:
 ```bash
 python scripts/verify_results.py
+```
+
+To run the leakage-safe mentor audit and PDF extraction:
+```bash
+python scripts/plan2_pipeline.py
 ```
 
 ---

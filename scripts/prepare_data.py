@@ -22,7 +22,7 @@ Verified output (as of the source file used to write this script):
   - CHF range (excluding the X==1.0 placeholders): ~15 to ~44,338 kW/m^2
 
 Usage:
-    python prepare_data.py --input 2006_CHF_Lookup_Table.xlsx --output chf_long_clean.csv
+    python scripts/prepare_data.py --input data/raw/groeneveld_2006_chf_lookup_table.xlsx --output data/chf_long_clean.csv
 """
 import argparse
 import pandas as pd
@@ -70,7 +70,7 @@ def parse_lut(xlsx_path: str) -> pd.DataFrame:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--input", default="data/2006_CHF_Lookup_Table.xlsx")
+    ap.add_argument("--input", default="data/raw/groeneveld_2006_chf_lookup_table.xlsx")
     ap.add_argument("--output", default="data/chf_long_clean.csv")
     args = ap.parse_args()
 
