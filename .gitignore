@@ -29,3 +29,4 @@ notebooks_dump.txt
 dump_*.py
 inspect_*.py
 print_summary.py
+.env
