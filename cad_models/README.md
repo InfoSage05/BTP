@@ -37,6 +37,8 @@ The generated files are placed in `cad_models\output`:
 - `02_platform.step` and `02_platform.stl`
 - `02_insert_box.step` and `02_platform_assembly.step`
 
+Reference/render images for each model (moved here from the repo root during the 2026-08-31 cleanup) also live in `cad_models\output`: `01_hollow_box_render.jpg`, `01_hollow_box_render_2.png`, `02_platform_render.jpg`.
+
 ## Assumptions
 
 ### Hollow box

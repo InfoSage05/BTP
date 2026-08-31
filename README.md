@@ -47,7 +47,7 @@ Negative results are important. Near-critical logarithmic features can explode d
 
 ## Open blockers before publication
 
-See [CHF Extrapolation Audit.html](<CHF Extrapolation Audit.html>) and [docs/SENIOR_REVIEW.md](docs/SENIOR_REVIEW.md).
+See the [CHF Extrapolation Audit](https://claude.ai/code/artifact/cb561999-76c3-4558-9d25-8d928b40490c) (published artifact — the up-to-date version; the file that used to be checked in here was a stale local browser snapshot and has been removed) and [docs/SENIOR_REVIEW.md](docs/SENIOR_REVIEW.md).
 
 - Re-run physics-informed selection only with a training-only proxy validation band; evaluate Split C once at the end.
 - Retire the earlier test-selected PINN headline `R²=0.8123` everywhere.
@@ -63,6 +63,7 @@ The separate external-data track, `scripts/plan2_pipeline.py`, audits mentor/PDF
 ```text
 data/raw/                         supplied workbooks and PDFs
 data/chf_long_clean.csv           canonical usable LUT data
+data/synthetic/                   GP-generated synthetic training augmentation (never test data — see its README)
 cad_models/                       CAD generation and STEP/STL exports
 notebooks/                        modelling, physics, PINN, and diagnostics
 scripts/prepare_data.py           data cleaning and CSV generation
@@ -72,7 +73,8 @@ scripts/chf_physics.py            Biasi, Zuber, and hybrid utilities
 scripts/build_notebook*.py        notebook builders
 results/                          CSV/JSON summaries, figures, and outputs
 docs/                             context, review, manuscript, and references
-CHF Extrapolation Audit.html      publication-readiness audit
+docs/references/README.md         index of every reference PDF: citation, advisor-assigned status, extracted-data location
+data/raw/external/README.md       index of every external dataset: point-level vs. source-list-only, status
 requirements.txt                  Python dependencies
 ```
 

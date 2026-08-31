@@ -1,0 +1,36 @@
+# Reference library index
+
+Every PDF in this folder, identified by title/authors/venue, its ScienceDirect PII or DOI where known, whether the advisor explicitly assigned it, and — critically — whether any usable dataset has been pulled out of it and where that dataset now lives. Filenames were normalized during the 2026-08-31 cleanup so a stranger can identify a file without opening it.
+
+## Advisor-assigned papers (Mail_ID_content.txt, 2026-08-05 email)
+
+These four are the ones Dr. Pattanayak explicitly asked the team to extract datasets from. All four have now been cross-checked against the repository's existing extraction pipeline.
+
+| File | Citation | PII | Data extracted? | Where |
+|---|---|---|---|---|
+| `Hardik_Kumar_Prabhu_2017_CHF_straight_tubes_R123_IJHMT.pdf` | B.K. Hardik, G. Kumar, S.V. Prabhu, "Boiling pressure drop, local heat transfer distribution and critical heat flux in horizontal straight tubes," *Int. J. Heat Mass Transf.* 113 (2017) 466–481 | S0017931016340443 | **Yes — complete.** Paper's own Appendix A (55 rows) matches `results/plan2/external_pdf_data.csv` table `D.1` row-for-row (verified: row 1 = 5.5mm/500mm/1.99bar/G=400.5/X=0.624/CHF=126.8, exact match). | `results/plan2/external_pdf_data.csv` (`table == "D.1"`) |
+| `Hardik_Prabhu_2017_CHF_helical_coils_water_lowP_ATE.pdf` | B.K. Hardik, S.V. Prabhu, "Critical heat flux in helical coils at low pressure," *Appl. Therm. Eng.* 112 (2017) 1223–1239 | S1359431116325650 | **Yes — complete.** Paper's own Appendix A (156 rows) matches `D.2` row-for-row (verified: row 1 = G=568/P=4.33bar/X=0.410/CHF=2324, exact match). | `results/plan2/external_pdf_data.csv` (`table == "D.2"`) |
+| `Hardik_Prabhu_2018_CHF_helical_coils_R123_IJTS.pdf` | B.K. Hardik, S.V. Prabhu, "Boiling pressure drop, local heat transfer distribution and critical heat flux in helical coils with R123," *Int. J. Therm. Sci.* 125 (2018) 149–165 | S1290072917306968 | **Yes.** This paper reports 140 CHF points but only shows them in scatter plots (Figs. 9–11), not a table. The point-level data (140 low-P + 117 high-P = 257 rows) is already in the repo, sourced from a fuller appendix document (not this journal PDF itself). | `results/plan2/external_pdf_data.csv` (`table == "D.3"` / `"D.4"`); also duplicated in `data/raw/external/helical_coil_r123_appendixCD.csv` — see note in `data/raw/external/README.md` |
+| `Kefer_Kohler_Kastner_1989_inclined_evaporator_tubes_CHF_IJMF.pdf` | V. Kefer, W. Köhler, W. Kastner, "Critical heat flux (CHF) and post-CHF heat transfer in horizontal and inclined evaporator tubes," *Int. J. Multiph. Flow* 15 (1989) 385–392 | 0301932289900086 | **Partial — and that's all there is.** This paper has **no CHF data table**. It's a wall-temperature/dryout-quality modeling paper with one worked numeric example (Experiment 223600, Fig. 2) and a validated correlation Δẋ꜀ᵣ = 16/(2+Fr)². About 10 points were already read off its figures; there is no larger table hiding in it to extract. | ~10 points noted in `docs/project_status.pdf` §10 ("inclined-tube paper") |
+
+**Net: all 4 assigned papers are as fully mined as they can be.** Three had real data tables (or an equivalent point-level extraction) and those are already in the repo; the fourth simply doesn't contain a data table to extract.
+
+## Other references
+
+| File | Citation (as identified) | Used for |
+|---|---|---|
+| `CHF_Look_Up_Table.pdf` | D.C. Groeneveld et al., "The 2006 CHF look-up table," *Nucl. Eng. Des.* 237 (2007) 1909–1922 | The primary dataset's source paper |
+| `Critical_heat_Flux.pdf` | D.D. Hall, I. Mudawar, "Critical heat flux (CHF) for water flow in tubes—I. Compilation and assessment of world CHF data," *Int. J. Heat Mass Transf.* 43 (2000) 2573–2604 | Background / metric conventions (ref [12] in the manuscript draft) |
+| `Applications_ML.pdf` | M.M. Rashidi, J.A. Esfahani, B. Sundén, "Applications of machine learning methods for boiling modeling and prediction: A comprehensive review," *Appl. Therm. Eng.* 209 (2022) 118274 | General ML-in-boiling motivation |
+| `Diameter effect on CHF.pdf` | A. Tanase, S.C. Cheng, D.C. Groeneveld, J.Q. Shan, "Diameter effect on critical heat flux," *Nucl. Eng. Des.* 239 (2009) 289–294 | Source of `data/raw/external/tanase2009_diameter_correction_exponent_grid.csv` — the (8/D)ⁿ correction table |
+| `Critical Heat Flux of Flowing Water.pdf` | Y. Chen, M. Zhao, K. Bi et al., China Institute of Atomic Energy | Supplementary CHF reference, not yet cross-linked to any extracted dataset |
+| `ML19029B306.pdf` | NRC ADAMS accession ML19029B306 — NUREG/KM-0011, "Critical Heat Flux Data Used to Generate the 2006 Groeneveld Look-Up Table" | Source document for `data/raw/external/nureg_km0011_table4-1_SAMPLE_ONLY.csv` and `_table4-2_source_dataset_ranges.csv` — see `data/raw/external/README.md` for why this is only a sample, not the full ~25,000-point database |
+| `Prediction of "critical heat flux" for supercritical water and CO2.pdf` | Supercritical CHF-analogue (heat-transfer-deterioration) reference, Luo et al. lineage | Source of `data/raw/external/supercritical_co2_source_summary_luo2020.csv` and `_water_source_summary_luo2020.csv` (source-list summaries, not point data) |
+| `Critical heat flux prediction through machine learning model for narrow.pdf` | Narrow-rectangular-channel CHF-ML paper (PII S1290072925003734, per live literature search) | Source of `data/raw/external/narrowchannel_chf_ml2025_source_summary.csv` (source-list summary, not point data) |
+| `Yang_etal_2026_transfer_learning_CHF_2006LUT_ATE.pdf` | S. Yang et al., "A transfer learning framework for critical heat flux prediction pretrained on the 2006 lookup table," *Appl. Therm. Eng.* 287 (2026) 129451 (PII S1359431125040438) | **Closest prior art** — pretrains on this same LUT, fine-tunes on real experimental data. Cited throughout the manuscript draft and the publication-readiness audit. Renamed from `sample_reference.pdf` for clarity during cleanup. |
+| `Benchmark on Artificial Intelligence and Machine Learning for Scientific Computing in Nuclear Engineering. Phase 1 Critical Heat Flux Exercise Specifications.pdf` | OECD/NEA AI/ML CHF Benchmark, Phase 1 specification document | Describes the formal international CHF-ML benchmark (see `arXiv:2507.00034` for Phase II); this project does not yet participate in it — see the publication-readiness audit, Part 30 |
+
+## 2026-08-31 cleanup log
+
+- Removed one exact byte-duplicate of the OECD/NEA benchmark spec PDF (two copies existed with a period vs. a colon in the filename).
+- The 4 advisor-assigned papers had been downloaded twice — once earlier under generic/legacy filenames, once again into a `docs/testing_dataset/` folder with standard ScienceDirect names. Confirmed same-paper matches by PII, title, and page count, then kept a single copy of each under a traceable `Author_Year_topic_Venue.pdf` name and removed the older duplicate and the now-empty `testing_dataset/` folder.
