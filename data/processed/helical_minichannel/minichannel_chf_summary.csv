@@ -1,0 +1,33 @@
+run_id,run_num,source_file,material,channel_pitch_mm,insert_type,version_tag,test_date,n_samples,duration_s,chf_detection_confidence,t_chf_s,mass_flow_avg_kg_s_at_chf,suction_pressure_bar_at_chf,high_pressure_bar_at_chf,subcooling_T_C_at_chf,power_actual_W_at_chf,max_wall_te_C_at_chf
+Test Run 1,1,V1Alu-pf-St2mm10.11.2021_17_00_10.11.2021_17_05.csv,aluminium,2.0,none,1,10.11.2021,10085,5042.0,high,3050.0,3.162,3.264,9.526,-33.661,271.24,-2.502
+Test Run 2,2,V1Alu-pf-St2mm08.11.2021_16_30_08.11.2021_16_39.csv,aluminium,2.0,none,1,08.11.2021,7763,-6311.0,high,7592.5,2.914,3.029,9.749,-34.275,248.34,0.637
+Test Run 3,3,V1Alu-pf-St2mm10.11.2021_18_30_10.11.2021_18_40.csv,aluminium,2.0,none,1,10.11.2021,8898,4448.5,high,7237.0,3.01,3.154,9.627,-35.209,265.94,3.666
+Test Run 4,4,V1Alu-pf-St2mm10.11.2021_20_00_10.11.2021_20_06.csv,aluminium,2.0,none,1,10.11.2021,4408,2203.5,high,10821.5,3.127,3.258,9.578,-33.969,269.54,1.542
+Test Run 5,5,V1_Kupfer_Swirlomat_Q_Krit_zmdt_23.03.2021_16_30.csv,copper,,swirl_insert,1,23.03.2021,15015,7507.0,high,5194.0,1.904,1.821,9.135,-34.411,278.14,-1.794
+Test Run 6,6,V2_Kupfer_Swirlomat_Q_Krit_emdt_24.03.2021_15_46.csv,copper,,swirl_insert,2,24.03.2021,15014,7506.5,low,3580.5,1.805,1.806,9.221,-33.931,277.24,-1.293
+Test Run 7,7,V3_Kupfer_Swirlomat_Q_Krit_emdt_26.03.2021_14_02.csv,copper,,swirl_insert,3,26.03.2021,9020,4509.5,high,2264.5,1.689,1.745,9.335,-35.209,268.84,-1.418
+Test Run 8,8,V3_kupfer_lang_qkrit_3mdt_16.03.2021_17_10.csv,copper,,long_tube,3,16.03.2021,7755,3877.0,none,,,,,,,
+Test Run 9,9,V1_kupfer_kurz_qkrit_3mdt_15.03.2021_17_32.csv,copper,,short_tube,1,15.03.2021,6718,3358.5,none,,,,,,,
+Test Run 10,10,V3.1Alu-pf-St3mm12.11.2021_13_30_12.11.2021_13_22.csv,aluminium,3.0,none,3.1,12.11.2021,6318,3158.5,high,13746.5,3.298,3.257,9.467,-34.68,261.24,-0.705
+Test Run 11,11,V4Alu-pf-St3mm_11.11.2021_16_10_11.11.2021_16_14.csv,aluminium,3.0,none,4,11.11.2021,3475,1737.0,high,1463.0,2.63,2.601,9.271,-35.209,270.14,-8.064
+Test Run 12,12,V1.1 Alu-pf-St3mm12.11.2021_10_00_12.11.2021.csv,aluminium,3.0,none,1.1,12.11.2021,16366,8182.5,high,2981.0,3.224,3.431,9.398,-34.235,250.34,-6.869
+Test Run 13,13,V1Alu-pf-St3mm12.11.2021_12_00_12.11.2021_12_19.csv,aluminium,3.0,none,1,12.11.2021,7083,3541.0,high,10286.0,3.189,3.306,9.497,-34.053,260.84,-2.19
+Test Run 14,14,V1Alu-pf-St3mm12.11.2021_13_30_12.11.2021_13_22.csv,aluminium,3.0,none,1,12.11.2021,6318,3158.5,high,13746.5,3.298,3.257,9.467,-34.68,261.24,-0.705
+Test Run 15,15,V1Alu-pf-St5mm15.11.2021_11_10_15.11.2021_11_12.csv,aluminium,5.0,none,1,15.11.2021,10462,5230.5,high,3933.0,3.109,3.134,9.499,-33.831,261.84,-3.718
+Test Run 16,16,V3_kupfer_plastikoptimiert_1q_krit_6mdt_18.03.2021_17_16.csv,copper,,plastic_insert_optimized,3,18.03.2021,11212,5605.5,low,5543.0,1.584,1.677,9.729,-35.133,264.94,22.221
+Test Run 17,17,V4_kupfer_plastikoptimiert_1q_krit_7mdt_18.03.2021_18_57.csv,copper,,plastic_insert_optimized,4,18.03.2021,12239,6119.0,high,11759.0,1.633,1.788,9.613,-35.209,257.84,21.506
+Test Run 18,18,V1Alu-pf-St6mm17.11.2021_10_00_17.11.2021_10_53.csv,aluminium,6.0,none,1,17.11.2021,14389,7194.0,high,4304.5,3.324,3.175,9.504,-35.121,260.54,-5.776
+Test Run 19,19,V2Alu-pf-St6mm18.11.2021_11_00_18.11.2021_11_31.csv,aluminium,6.0,none,2,18.11.2021,17955,8977.0,high,6594.0,3.097,3.194,9.613,-34.193,260.04,-7.235
+Test Run 20,20,V3Alu-pf-St6mm18.11.2021_14_00_18.11.2021_14_10.csv,aluminium,6.0,none,3,18.11.2021,15786,7892.5,high,15929.0,3.019,3.185,9.664,-35.209,259.44,1.947
+Test Run 21,21,V1_Kupfer_PlastikNormal_qkrit_zmdt_17.03.2021_14_32.csv,copper,,plastic_insert_normal,1,17.03.2021,12109,6054.0,low,5064.0,1.507,1.794,9.175,-34.223,265.74,-6.237
+Test Run 22,22,V2_Kupfer_PlastikNormal_qkrit_3mdt_17.03.2021_16_22.csv,copper,,plastic_insert_normal,2,17.03.2021,15294,7646.5,low,13883.5,1.683,1.619,9.405,-35.209,266.04,10.133
+Test Run 23,23,V3_Kupfer_PlastikNormal_qkrit_4mdt_17.03.2021_18_39.csv,copper,,plastic_insert_normal,3,17.03.2021,21312,10655.5,none,,,,,,,
+Test Run 24,24,V1_kupfer_plastikoptimiert_qkrit_zmdt_18.03.2021_11_58.csv,copper,,plastic_insert_optimized,1,18.03.2021,22557,11278.0,none,,,,,,,
+Test Run 25,25,V2_kupfer_plastikoptimiert_1q_krit_5mdt_18.03.2021_16_38.csv,copper,,plastic_insert_optimized,2,18.03.2021,3947,1973.0,none,,,,,,,
+Test Run 26,26,V1Alu-pf-St5mm15.11.2021_12_50_15.11.2021_12_45.csv,aluminium,5.0,none,1,15.11.2021,6718,3358.5,high,6318.0,2.915,3.153,9.608,-34.267,250.04,-1.182
+Test Run 27,27,V1Alu-pf-St5mm15.11.2021_14_00_15.11.2021_13_50.csv,aluminium,5.0,none,1,15.11.2021,4223,2111.0,high,9649.5,3.099,3.132,9.788,-35.209,250.64,-3.425
+Test Run 28,28,V2Alu-pf-St7mm19.11.2021_11_30_19.11.2021_14_23.csv,aluminium,7.0,none,2,19.11.2021,14630,7314.5,high,14366.5,3.038,3.168,9.651,-34.646,251.64,-4.598
+Test Run 29,29,V1Alu-pf-St7mm19.11.2021_11_30_19.11.2021_11_26.csv,aluminium,7.0,none,1,19.11.2021,18801,9400.0,high,3455.5,3.107,3.286,9.521,-33.968,219.34,-8.095
+Test Run 30,30,V1_Kupfer_Leerlauf_Q_Krit_zmdt_29.03.2021_13_57.csv,copper,,no_insert_baseline,1,29.03.2021,8845,4422.0,low,4073.5,1.737,1.778,9.311,-33.465,267.54,-1.897
+Test Run 31,31,V2_Kupfer_Leerlauf_Q_Krit_4mdt_29.03.2021_15_57.csv,copper,,no_insert_baseline,2,29.03.2021,3882,1940.5,low,9571.0,1.52,1.636,9.509,-33.84,263.04,23.454
+Test Run 32,32,V3_Kupfer_Leerlauf_Q_Krit_6mdt_29.03.2021_17_28.csv,copper,,no_insert_baseline,3,29.03.2021,6026,3012.5,none,,,,,,,
