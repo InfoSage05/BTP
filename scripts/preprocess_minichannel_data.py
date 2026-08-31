@@ -33,7 +33,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-RAW_ROOT = "data/Experimental Data on Critical Heat Flux of Short Helical Minichanel Evaporators/CHF_Experiments_Raw_Data"
+RAW_ROOT = "data/raw/helical_minichannel/CHF_Experiments_Raw_Data"
 OUT_ROOT = "data/processed/helical_minichannel"
 TS_DIR = os.path.join(OUT_ROOT, "timeseries")
 FIG_DIR = os.path.join(OUT_ROOT, "figures")
