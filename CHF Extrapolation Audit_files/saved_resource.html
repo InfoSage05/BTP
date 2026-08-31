@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<!-- saved from url=(0133)https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/?__frame_v=manifest.155e997702a4b8fc.json -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- frame-runtime --><!--<base href="/_f/1788085838-d541/">--><base href="."><script>window.__FRAME_PREAMBLE={"v":1,"capabilities":{"artifact":"artifact.D_F1mx8d.js","assets":"assets.8Gk803W0.js","comments":"comments.GLuHR3zP.js","db":"db.h-3sndFg.js","downloads":"downloads.C3GSvEDP.js","embed":"embed.CxGAyc-v.js","mcp":"mcp.Bvma3qD7.js","network":"network.B5UA9Su4.js","notifications":"notifications.ssU4jy7G.js","permissions":"permissions.BNySkLV5.js","room":"room.BMMoe2BY.js","sample":"sample.BW2Uysoh.js","self":"artifact.D_F1mx8d.js","user":"user.BpKav-Rf.js"},"transforms":"_transforms.DSB5x63f.js","comments":"_comments.BoakUwmM.js","translate":"_translate.5HCW4BJh.js"}</script><script>(function(){"use strict";var te=["light","dark","system"],re=/^[A-Za-z0-9_-]{1,64}$/,$=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,ne=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function oe(e){const t=e.toLowerCase();return t.startsWith("data-")||t.startsWith("aria-")||ne.has(t)}var Be="http://www.w3.org/1999/xhtml",se="http://www.w3.org/2000/svg",ae=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),ie=new Set(["script","style"]);function ce(e){const t=e.localName.toLowerCase();return e.namespaceURI==="http://www.w3.org/1999/xhtml"?!ae.has(t):e.namespaceURI===se?!ie.has(t):!1}function M(e,t){return e===t||(e===160||e===32)&&(t===160||t===32)}function le(e,t){const r=e.length,n=t.length;let s=0;for(;s<r&&s<n&&M(e.charCodeAt(s),t.charCodeAt(s));)s++;let o=0;for(;o<r-s&&o<n-s&&M(e.charCodeAt(r-1-o),t.charCodeAt(n-1-o));)o++;return{p:s,s:o}}function ue(e,t){const r=e.firstChild;if(e.childNodes.length!==1||r===null||r.nodeType!==Node.TEXT_NODE){e.textContent=t;return}const n=r.data,s=n.length,o=t.length,{p:i,s:c}=le(n,t);i===s&&c===0&&s===o||r.replaceData(i,s-i-c,t.slice(i,o-c));const h=r.data,p=e.ownerDocument.getSelection?.()??null,w=p!==null&&p.rangeCount>0&&(p.anchorNode===r||p.focusNode===r)?{anchor:p.anchorNode,anchorOffset:p.anchorOffset,focus:p.focusNode,focusOffset:p.focusOffset}:null;let m=-1,g=-1;for(let f=0;f<h.length&&f<t.length;f++){const v=h.charCodeAt(f),b=t.charCodeAt(f);v!==b&&M(v,b)&&(m<0&&(m=f),g=f)}const a=m>=0;if(a&&r.replaceData(m,g-m+1,t.slice(m,g+1)),a&&w!==null&&w.anchor!==null&&w.focus!==null)try{p.setBaseAndExtent(w.anchor,w.anchorOffset,w.focus,w.focusOffset)}catch{}}var fe=new Set(["html","head","body","frameset"]);function de(e){return e.namespaceURI==="http://www.w3.org/1999/xhtml"&&fe.has(e.localName)}function pe(e){if(e===null||typeof e!="object")return!1;const t=e;if(typeof t.target!="string"||!re.test(t.target)||t.text!==void 0&&typeof t.text!="string")return!1;if(t.attrsSet!==void 0){if(t.attrsSet===null||typeof t.attrsSet!="object")return!1;for(const[r,n]of Object.entries(t.attrsSet))if(!$.test(r)||typeof n!="string")return!1}if(t.attrsRemoved!==void 0){if(!Array.isArray(t.attrsRemoved))return!1;for(const r of t.attrsRemoved)if(typeof r!="string"||!$.test(r))return!1}return!0}function me(e,t){if(e===null||typeof e!="object")return!1;const{seq:r,elements:n}=e;if(typeof r!="number"||!Number.isSafeInteger(r)||!Array.isArray(n)||n.length===0||n.length>64)return!1;for(let s=0;s<n.length;s++)if(!t(n[s]))return!1;return!0}function he(e){return e===null||typeof e!="object"?!1:me(e.__frame_patch,pe)}function _e(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function ve(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function ye(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const r=t.theme;return typeof r=="string"&&te.includes(r)}var A=/^[\w.-]+\.js$/;function we(e,t,r){return r?"inert":typeof t=="string"&&A.test(t)?e?[t]:"inert":e?"inert":"framed"}function ge(){return{post(e,t){parent.postMessage(e,t)},on(e){const t=r=>{r.source===parent&&e(r.data,r.origin,r.isTrusted)};return addEventListener("message",t),()=>removeEventListener("message",t)}}}function be(){return{post:()=>{},on:()=>()=>{}}}var j="__frame_scroll",Ee=150,Ae=310,Se=160,Te=3e4;function ke(){let e=0,t=!1,r=!1,n=!1,s=0,o=null;const i=l=>{try{sessionStorage.setItem(j,JSON.stringify({y:l}))}catch{}},c=()=>{if(clearTimeout(e),o===null)return;const l=o;o=null,i(l)},h=()=>{if(t){t=!1;return}r=!0,o=scrollY,clearTimeout(e),e=setTimeout(c,Ee)};try{addEventListener("scroll",h,{passive:!0}),addEventListener("pagehide",c)}catch{}const p=()=>{let l;try{l=sessionStorage.getItem(j)}catch{return null}if(l===null)return null;let _;try{_=JSON.parse(l)}catch{_=null}const d=_?.y;if(!(typeof d=="number"&&Number.isFinite(d)&&d>=0)){try{sessionStorage.removeItem(j)}catch{}return null}return d};let w=!1;const m=l=>{try{const _=scrollY;scrollTo({top:l,left:0,behavior:"instant"}),s=l,n=!0,clearTimeout(e),o=null,i(l);const d=scrollY;d!==_&&(t=!0),d!==l&&!w&&(w=!0,addEventListener("load",()=>{try{if(scrollY===d){const T=p();m(T!==null?T:s)}}catch{}},{once:!0}))}catch{}},g=()=>{try{return!!location.hash}catch{return!0}};let a=!1;const f=()=>{try{if(a||innerWidth>Ae||innerHeight>Se)return;a=!0;const l=Date.now(),_=()=>{try{removeEventListener("resize",_)}catch{}if(Date.now()-l>Te||r||g())return;const d=p();m(d!==null?d:s)};addEventListener("resize",_)}catch{}};let v=!1,b=!1;return{restore(){if(v||(v=!0,g()))return;const l=p();l!==null&&(m(l),f())},promoted(){if(b||(b=!0,g()))return;const l=p();l!==null?(m(l),f()):n&&m(s)}}}function Re(e,t,r,n){let s=null;try{s=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:h=>h})??null}catch{}const o=window.Worker,i=o?.prototype,c=Object.freeze({Worker:o,workerOn:i?.addEventListener,workerPost:i?.postMessage,workerTerminate:i?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,policy:s,origins:t});r(e).then(h=>h?.bootTopLevel?h.bootTopLevel(c,n):n.settle()).catch(()=>n.settle())}var De="modulepreload",Ie=function(e){return"/"+e},Ue={},Le=function(t,r,n){let s=Promise.resolve();function o(i){const c=new Event("vite:preloadError",{cancelable:!0});if(c.payload=i,window.dispatchEvent(c),!c.defaultPrevented)throw i}return s.then(i=>{for(const c of i||[])c.status==="rejected"&&o(c.reason);return t().catch(o)})},Oe=window===top,q=Object.getOwnPropertyDescriptor(window,"claude"),k=we(Oe,window.__FRAME_PREAMBLE?.topLevel,q?.writable===!1),N=typeof k=="object"&&k[0],y=N?be():ge();(function(){const e=Object.defineProperty,t=globalThis,r=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let n=0;for(let s=0;s<r.length;s++){const o=r[s];try{e(t,o,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[o]}catch{}try{e(t,o,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[o]=="function"&&n++}if(n&&k==="framed")try{y.post({__frame_rtc_lockdown_failed:n},"*")}catch{}})();var Pe=1e4,Y=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function X(e){for(const t of Y)if(t.endsWith(":*"))try{const r=new URL(e);if(`${r.protocol}//${r.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}var R=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),B=window.__FRAME_PREAMBLE?.transforms,D=window.__FRAME_PREAMBLE?.comments,I=window.__FRAME_PREAMBLE?.translate;function S(e){return Le(()=>import("/_runtime/"+e),void 0)}function G(e,t){return{contract:e.contract,changes:new Set(e.changes??[]),flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:new Map,shellOrigin:t,mount:x,hooks:O,pipe:()=>({wrap:(r,n)=>(...s)=>{try{return n(...s)}catch(o){return Promise.reject(o)}}})}}var L=null,E=null;function V(e,t,r){try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var U=!1,O={editBefore:null,edit:null};function Ce(e,t,r=!1){const n=[];let s;if(r)try{O.editBefore?.(e)}catch{}for(const o of e.elements){const i=document.querySelector(`[data-id="${o.target}"]`);if(!i){s=o.target;break}if([...Object.keys(o.attrsSet??{}),...o.attrsRemoved??[]].some(c=>!oe(c))){s=o.target;break}if(o.text!==void 0&&(!ce(i)||de(i))){s=o.target;break}for(const[c,h]of Object.entries(o.attrsSet??{}))if(!J(i,c)){try{i.setAttribute(c,h)}catch{}Z(i,c,h)}for(const c of o.attrsRemoved??[])J(i,c)||(i.removeAttribute(c),Z(i,c,null));typeof o.text=="string"&&ue(i,o.text),n.push(o.target)}if(r)try{O.edit?.(e.seq,n,s)}catch{}if(s!==void 0){y.post({__frame_patch_miss:{seq:e.seq}},t);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:e.seq,targets:n}}))}catch{}}function Z(e,t,r){if(!(e instanceof HTMLInputElement))return;const n=t.toLowerCase();n==="checked"?e.checked=r!==null:n==="value"&&e.type!=="file"&&(e.value=r??"")}function J(e,t){const r=t.toLowerCase(),n=e;return r==="data-id"||(r==="value"||r==="checked")&&(n.__artifactSecret===!0||/^(password|hidden|file)$/.test(n.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${e.getAttribute("autocomplete")??""} ${n.autocomplete??""}`))}function Q(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,U=!0):U&&(delete t.dataset.theme,t.style.colorScheme="",U=!1)}var P=new Map;function Me(){let e;const t={u:new Promise(r=>{e=r}),r:r=>{t.done=!0,e(r)},done:!1,nulled:!1};return t}function F(){for(const e of P.values())e.done||(e.nulled=!0,e.r(null))}var je=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),x=(e,t)=>{const r=P.get(e);if(!r||r.done){r?.nulled&&E&&y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:e}},E);return}const n=typeof t=="function"?Object.setPrototypeOf(t,je):Object.assign(Object.create(null),t);typeof n.then=="function"&&delete n.then,r.r(Object.freeze(n))};function ee(){const e=q?.value??{};V(window,"claude",e);for(const t of Object.keys(R)){if(e[t]!==void 0){V(e,t,e[t]);continue}P.set(t,Me())}if(e.use===void 0){const t=r=>{if(typeof r!="string"||!Object.hasOwn(R,r))return Promise.resolve(null);const n=P.get(r);return n?n.u:Promise.resolve(e[r]??null)};try{Object.defineProperty(e,"use",{value:t,writable:!0,configurable:!0,enumerable:!1})}catch{}}}if(k==="framed"){const e=B&&A.test(B)?S(B).catch(()=>{}):Promise.resolve(void 0),t=a=>{if(a.type==="auxclick"&&a.button!==1)return;const f=a.target,v=f&&f.closest?f.closest("a[href],area[href]"):null;if(!v)return;const b=v.getAttribute("href");if(!b)return;let l;try{l=new URL(b,document.baseURI)}catch{return}if((l.protocol==="http:"||l.protocol==="https:")&&l.origin!==location.origin){a.preventDefault();const _=(v.getAttribute("target")??"").toLowerCase(),d=a.type==="auxclick"||a.metaKey||a.ctrlKey||a.shiftKey||a.altKey||!["","_self","_top","_parent"].includes(_);y.post({__frame_nav:!0,url:l.href,newTab:d},"*")}};addEventListener("click",t,!0),addEventListener("auxclick",t,!0);const r={},n=a=>{a.isTrusted&&(r.pointer=!0)},s=a=>{a.isTrusted&&(r.click=!0)};addEventListener("pointermove",n,{capture:!0,passive:!0}),addEventListener("click",s,{capture:!0,passive:!0}),e.then(a=>{a?.wireNav&&(a.wireNav(),removeEventListener("click",t,!0),removeEventListener("auxclick",t,!0),removeEventListener("pointermove",n,!0),removeEventListener("click",s,!0),a.wireEngagement?.(r))});let o=null;try{o=ke()}catch{}ee();let i=null,c=null,h=0;const p=y.on((a,f)=>{X(f)&&_e(a)&&(i=a.__frame_init,E=f,p(),clearTimeout(h),c?.())});y.post({__frame_connect:!0},"*");const w=new Promise(a=>{c=a,h=setTimeout(()=>{p(),a()},Pe)}),m=document.readyState==="loading"?new Promise(a=>document.addEventListener("DOMContentLoaded",()=>a(),{once:!0})):Promise.resolve();m.then(()=>{try{o?.restore()}catch{}});const g={cb:null};y.on((a,f)=>{if(X(f)&&ve(a)){try{o?.promoted()}catch{}g.cb?.()}}),w.then(async()=>{if(!i||!E){F();return}Q(i.theme);const a=E;let f=!1,v=!1;y.on((u,z,C)=>{if(z!==a)return;ye(u)&&Q(u.__frame_theme.theme),he(u)&&Ce(u.__frame_patch,a,C);const H=u?.__fc_mode;H&&typeof H=="object"&&!f&&D&&A.test(D)&&(f=!0,S(D).then(K=>K.install?.(a,H.on===!0)).catch(()=>{}));const W=u?.__ft_cmd;W&&typeof W=="object"&&!v&&I&&A.test(I)&&(v=!0,S(I).then(K=>K.install?.(a,W)).catch(()=>{}))});const b=Object.keys(i.capabilities??{}).filter(u=>Object.hasOwn(R,u)).map(u=>[u,R[u]]).filter(u=>typeof u[1]=="string"&&A.test(u[1])),l=await Promise.allSettled(b.map(([,u])=>S(u))),_=await e,d=E;if(_?.buildBoot||y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),_?.buildBoot)try{L=_.buildBoot(i,_.TRANSFORMS??{},{shellOrigin:d,mount:x,hooks:O},u=>y.post({__frame_cap_telemetry:u},d))}catch{y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),L=G(i,d)}else L=G(i,d);const T=u=>y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:u}},d),Ne=L;l.forEach((u,z)=>{const C=b[z][0];if(u.status!=="fulfilled"){T(C);return}try{u.value?.install?.(Ne)}catch{T(C)}}),F(),await m,y.post({__frame_ready:!0},E),e.then(u=>u?.installSizeReporter?.(d,g))})}else N&&(ee(),Re(N,Y,S,{settle:F,mount:x}))})();</script><!-- /frame-runtime --><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>CHF Extrapolation Audit</title>
+<meta name="description" content="A skeptical, evidence-traced research audit of the CHF machine-learning BTP: what&#39;s built, what&#39;s novel, and what&#39;s missing before publication.">
+<style>
+:root{
+  --bg:#eef1f4; --surface:#ffffff; --surface-2:#e3e9ee; --ink:#161a22; --muted:#525c68;
+  --accent:#bd5620; --accent-2:#1f6f78; --good:#2f7d4f; --warn:#9c6a1a; --bad:#ac3939; --line:#d7dce2;
+  --shadow: 0 1px 2px rgba(20,25,35,.06), 0 8px 24px -12px rgba(20,25,35,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1319; --surface:#161c24; --surface-2:#1c2430; --ink:#e7ebf0; --muted:#9aa7b4;
+    --accent:#e2894f; --accent-2:#5cc0c9; --good:#59b98a; --warn:#d8ac5c; --bad:#e2807f; --line:#2a3340;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1319; --surface:#161c24; --surface-2:#1c2430; --ink:#e7ebf0; --muted:#9aa7b4;
+  --accent:#e2894f; --accent-2:#5cc0c9; --good:#59b98a; --warn:#d8ac5c; --bad:#e2807f; --line:#2a3340;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px -12px rgba(0,0,0,.6);
+}
+
+@font-face{font-family:'x';src:local('x');}
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  font-size:16px; line-height:1.6;
+}
+::selection{ background: color-mix(in srgb, var(--accent) 30%, transparent); }
+
+h1,h2,h3,h4{ font-family:'Fraunces', Georgia, serif; font-weight:600; text-wrap:balance; letter-spacing:-0.01em; color:var(--ink); }
+a{ color:var(--accent-2); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, .navlink:focus-visible{ outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius:3px; }
+code, .mono, .num, td.num, th.num{ font-family:'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+.wrap{ max-width: 1220px; margin: 0 auto; padding: 0 24px 120px; }
+
+/* ---------- Masthead ---------- */
+.masthead{
+  border-bottom: 1px solid var(--line);
+  padding: 40px 0 28px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 6%, var(--bg)), var(--bg));
+}
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--accent); font-weight:600; display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{ content:''; width:8px; height:8px; background:var(--accent); border-radius:1px; transform:rotate(45deg); display:inline-block; }
+.masthead h1{ font-size: clamp(2rem, 4.4vw, 3.1rem); margin: 14px 0 10px; max-width: 18ch; line-height:1.05; }
+.masthead .sub{ color:var(--muted); max-width: 62ch; font-size:1.08rem; }
+.meta-row{ display:flex; flex-wrap:wrap; gap: 22px 34px; margin-top:22px; font-size:.92rem; color:var(--muted); }
+.meta-row b{ color:var(--ink); font-weight:600; }
+
+/* ---------- Score dashboard ---------- */
+.dash{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:26px; }
+@media (max-width:760px){ .dash{ grid-template-columns:1fr; } }
+.tile{
+  background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:18px 20px;
+  box-shadow: var(--shadow); position:relative; overflow:hidden;
+}
+.tile .k{ font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:600; }
+.tile .v{ font-family:'Fraunces', serif; font-size:2.6rem; font-weight:600; line-height:1; margin:8px 0 4px; }
+.tile .v small{ font-size:1.1rem; color:var(--muted); font-weight:500; }
+.tile .d{ font-size:.86rem; color:var(--muted); }
+.tile.low .v{ color:var(--bad); }
+.tile.mid .v{ color:var(--warn); }
+.tile.hi .v{ color:var(--good); }
+
+/* ---------- Layout: TOC + content ---------- */
+.layout{ display:grid; grid-template-columns: 240px 1fr; gap: 48px; margin-top: 36px; align-items:start; }
+@media (max-width: 920px){ .layout{ grid-template-columns: 1fr; } .toc{ position:static !important; order:2; } }
+
+.toc{ position: sticky; top: 20px; max-height: calc(100vh - 40px); overflow-y:auto; padding-right:6px; }
+.toc-title{ font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:600; margin-bottom:10px; }
+.toc ol{ list-style:none; margin:0; padding:0; border-left:1px solid var(--line); }
+.toc li{ margin:0; }
+.toc a{
+  display:block; padding: 5px 0 5px 14px; margin-left:-1px; border-left: 2px solid transparent;
+  color:var(--muted); text-decoration:none; font-size: .86rem; line-height:1.35;
+}
+.toc a:hover{ color:var(--ink); }
+.toc a.active{ color:var(--accent); border-left-color:var(--accent); font-weight:600; }
+
+main{ min-width:0; }
+section.part{ padding-top: 6px; margin-bottom: 46px; scroll-margin-top: 20px; }
+section.part h2{
+  font-size: 1.55rem; display:flex; align-items:baseline; gap:12px; margin: 0 0 4px;
+  border-bottom:1px solid var(--line); padding-bottom:10px;
+}
+section.part h2 .idx{ font-family:'IBM Plex Mono',monospace; color:var(--accent); font-size:.95rem; font-weight:600; }
+section.part h3{ font-size:1.12rem; margin: 26px 0 8px; }
+section.part > .lede{ color:var(--muted); font-size:1.02rem; margin: 10px 0 18px; max-width:74ch; }
+p{ max-width: 74ch; }
+.prose p, .prose li{ max-width:74ch; }
+ul,ol{ padding-left:1.3em; }
+li{ margin: 4px 0; }
+
+.tag{
+  display:inline-flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace; font-size:.72rem;
+  padding: 2px 8px; border-radius: 20px; border:1px solid var(--line); color:var(--muted); font-weight:500;
+  white-space:nowrap;
+}
+.tag.evidence{ color:var(--accent-2); border-color: color-mix(in srgb, var(--accent-2) 45%, var(--line)); }
+.tag.inference{ color:var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+.tag.hypothesis{ color:var(--muted); }
+.tag.prof{ color:var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+
+.card{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:18px 20px; box-shadow:var(--shadow); margin: 14px 0; }
+.card h4{ margin:0 0 8px; font-size:1rem; }
+.card.finding{ border-left:3px solid var(--accent); }
+.card.good{ border-left:3px solid var(--good); }
+.card.bad{ border-left:3px solid var(--bad); }
+
+.grid2{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+@media (max-width:700px){ .grid2{ grid-template-columns:1fr; } }
+
+blockquote{
+  margin: 14px 0; padding: 10px 18px; border-left: 3px solid var(--accent-2); background: var(--surface-2);
+  border-radius: 0 8px 8px 0; color: var(--ink); font-size:.98rem;
+}
+blockquote cite{ display:block; margin-top:6px; font-size:.8rem; color:var(--muted); font-style:normal; }
+
+.tblwrap{ overflow-x:auto; border:1px solid var(--line); border-radius:10px; margin: 16px 0; box-shadow:var(--shadow); }
+table{ border-collapse:collapse; width:100%; font-size:.88rem; background:var(--surface); min-width: 560px;}
+th,td{ padding:9px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+thead th{ background:var(--surface-2); font-family:'IBM Plex Mono',monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600; position:sticky; top:0; }
+tbody tr:last-child td{ border-bottom:none; }
+tbody tr:hover{ background: color-mix(in srgb, var(--accent) 4%, transparent); }
+td.num, th.num{ text-align:right; white-space:nowrap; }
+
+.pill{ display:inline-block; font-size:.72rem; font-weight:600; padding:2px 9px; border-radius:20px; font-family:'IBM Plex Mono',monospace; }
+.pill.complete{ background: color-mix(in srgb, var(--good) 18%, transparent); color:var(--good); }
+.pill.mostly{ background: color-mix(in srgb, var(--good) 10%, transparent); color:var(--good); }
+.pill.partial{ background: color-mix(in srgb, var(--warn) 18%, transparent); color:var(--warn); }
+.pill.missing{ background: color-mix(in srgb, var(--bad) 18%, transparent); color:var(--bad); }
+.pill.na{ background: var(--surface-2); color:var(--muted); }
+
+.chip-row{ display:flex; flex-wrap:wrap; gap:6px; margin: 8px 0 16px; }
+
+.roadmap{ display:flex; flex-direction:column; gap:0; margin: 18px 0; border-left: 2px solid var(--line); padding-left: 0; }
+.stage{ position:relative; padding: 4px 0 22px 26px; border-left: 2px solid var(--line); margin-left:9px; }
+.stage:last-child{ border-left: 2px solid transparent; padding-bottom:2px; }
+.stage::before{ content:''; position:absolute; left:-7px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--surface); border:2px solid var(--accent); }
+.stage h4{ margin:0 0 4px; font-size:1rem; }
+.stage .meta{ font-size:.82rem; color:var(--muted); margin-bottom:4px; }
+
+.verdict-box{ background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 10%, var(--surface)), var(--surface)); border:1px solid var(--line); border-radius:12px; padding:26px 28px; margin:20px 0; }
+.verdict-box h3{ margin-top:0; }
+
+footer.endnote{ margin-top: 60px; padding-top: 20px; border-top:1px solid var(--line); color:var(--muted); font-size:.85rem; }
+hr.rule{ border:none; border-top:1px solid var(--line); margin: 30px 0; }
+
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+html{ scroll-behavior:smooth; }
+</style>
+
+<div class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Research audit · skeptical peer review</div>
+    <h1>Critical Heat Flux ML/PINN BTP: a strict publication-readiness audit</h1>
+    <p class="sub">A ground-up reconstruction of the CHF prediction thesis — what the professor asked for, what the repository actually contains, what is genuinely novel, and what stands between this work and a credible submission to <em>Nuclear Engineering and Design</em>.</p>
+    <div class="meta-row">
+      <span><b>Scope audited:</b> full <code>BTP/docs/</code> reference set + full repository (data, notebooks, scripts, results)</span>
+      <span><b>Advisor:</b> Dr. Bikash Pattanayak, IIT Jodhpur / IIT Kharagpur</span>
+      <span><b>Target venue (stated):</b> Nuclear Engineering and Design (Elsevier)</span>
+    </div>
+    <div class="dash">
+      <div class="tile hi">
+        <div class="k">BTP readiness</div>
+        <div class="v">7<small>/10</small></div>
+        <div class="d">Strong undergraduate thesis: disciplined protocol, an honest retraction, real bug-catches.</div>
+      </div>
+      <div class="tile mid">
+        <div class="k">Research readiness</div>
+        <div class="v">4<small>/10</small></div>
+        <div class="d">Viable direction, but largely confirms what two closely-related 2025–26 papers already show.</div>
+      </div>
+      <div class="tile low">
+        <div class="k">Publication readiness</div>
+        <div class="v">2<small>/10</small></div>
+        <div class="d">Only Intro + Lit. Survey drafted; headline number is test-leaked; citations unverified.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="layout">
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+  <ol id="toc-list">
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p1" class="navlink">1. Executive summary</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p2" class="navlink">2. What this BTP is solving</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p3" class="navlink">3. Problem formulation</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p4" class="navlink">4. Research question &amp; hypothesis</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p5" class="navlink">5. Literature mapping</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p6" class="navlink">6. Reference-by-reference analysis</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p7" class="navlink">7. Professor's guidance vs. our work</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p8" class="navlink">8. Audit of work done</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p9" class="navlink">9. Current novelty assessment</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p10" class="navlink">10. Intended novelty</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p11" class="navlink">11. Literature gap</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p12" class="navlink">12. Methodology assessment</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p13" class="navlink">13. Experimental rigor</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p14" class="navlink">14. Reproducibility</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p15" class="navlink">15. Research integrity</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p16" class="navlink">16. Publication standards</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p17" class="navlink">17. Major research gaps</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p18" class="navlink">18. Critical blockers</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p19" class="navlink">19. Work still required</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p20" class="navlink">20. Alternative novelty directions</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p21" class="navlink">21. Strongest paper story</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p22" class="navlink">22. BTP vs research vs publication</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p23" class="navlink">23. Readiness checklist</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p24" class="navlink">24. Venue/tier assessment</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p25" class="navlink">25. Roadmap to submission</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p26" class="navlink">26. Plain-language explainer</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p27" class="navlink">27. Source traceability</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p28" class="navlink">28. Reviewer-style critique</a></li>
+    <li><a href="https://cb561999-76c3-4558-9d25-8d928b40490c.frame.claudeusercontent.com/_f/1788085838-d541/#p29" class="navlink active">29. Final verdict</a></li>
+  </ol>
+</nav>
+
+<main class="prose">
+
+<section class="part" id="p1">
+<h2><span class="idx">01</span> Executive summary</h2>
+<p class="lede">The team has built a methodologically careful <strong>benchmark-and-audit study</strong> on the 2006 Groeneveld CHF look-up table — not yet the <strong>engineered-surface CHF study</strong> the advisor's own paper outline describes. Both facts are supported directly by files in this repository.</p>
+
+<div class="card finding">
+<h4>The single most important finding</h4>
+<p>Your team's own <code>docs/manuscript/literature_survey_draft.txt</code> (lines 9–10) already states this plainly: <em>"The supplied outline is written for a new experimental database covering engineered surfaces... The current BTP repository is a different study; it uses the 2006 Groeneveld look-up table and contains only pressure P, mass flux G, thermodynamic quality X and CHF."</em> The advisor's outline (<code>docs/manuscript/paper_outline.docx</code>) asks for surface roughness, wettability, contact angle, CHF-detection criteria, an experimental facility diagram, and leave-one-surface-out validation — none of which exist anywhere in this repository. This is not a hypothetical risk; it is an acknowledged, unresolved scope gap that needs an explicit conversation with Dr. Pattanayak before more manuscript time is spent.</p>
+</div>
+
+<p>Within the scope the team actually pursued, the work is genuinely strong: a three-tier validation protocol (random split / interior pressure holdout / edge-pressure extrapolation) correctly separates interpolation from extrapolation; ten-plus model families were benchmarked; a single-seed "best result" (pressure-gated blend, R²=0.855) was caught, multi-seed-verified, and <strong>publicly retracted</strong> inside the project's own documentation (<code>docs/SENIOR_REVIEW.md</code>); and two physics-informed approaches failed in mechanistically well-explained ways rather than being swept under the rug.</p>
+
+<p>But three things currently block publication, independent of the scope question above: (1) the headline "PINN" number of R²=0.8123 was very likely selected using the extrapolation test set itself, contradicting the project's own stated rule; (2) the best-performing "physics-informed" residual model has its physics-penalty weights tuned to exactly zero, meaning the physics constraints are not doing any of the claimed work; and (3) the literature review's comparison table presents specific author names, DOIs and metrics for roughly fifteen papers that are explicitly caveated in the same file as unverified against full text. Each is addressed with file-level evidence below.</p>
+</section>
+
+<section class="part" id="p2">
+<h2><span class="idx">02</span> What this BTP is actually trying to solve</h2>
+<div class="chip-row">
+  <span class="tag prof">Professor-stated</span><span class="tag evidence">Evidence</span><span class="tag inference">Inference</span><span class="tag hypothesis">Speculative</span>
+</div>
+
+<h3>Core problem <span class="tag evidence">evidence</span></h3>
+<p>Critical Heat Flux is the heat-flux threshold at which nucleate boiling on a heated surface transitions to a vapor-blanketed regime (departure from nucleate boiling / dryout), causing a sharp, potentially damaging rise in wall temperature (<code>docs/CHF_Project_Simple_Explanation.md</code>:9–16; <code>docs/manuscript/literature_survey_journal_ready.md</code> §1.1). The BTP's task is to predict CHF as a function of pressure (P), mass flux (G), and thermodynamic quality (X) using the 2006 Groeneveld look-up table (11,088 usable rows after removing 504 all-steam placeholder zeros), and to test whether that prediction survives being asked about pressures never seen in training.</p>
+
+<h3>Domain and stated application <span class="tag inference">inference — internally inconsistent</span></h3>
+<p>The professor's emails (<code>docs/Mail_ID_content.txt</code>) frame the motivation entirely in reactor/nuclear thermal-hydraulics terms and ask for flow-boiling CHF datasets with inputs "length, diameter, mass flux, dryness fraction, pressure." The literature-survey manuscript frames the motivation the same way — PWR/BWR/SMR fuel-cladding safety margins (§1.1). But <code>docs/project_status.pdf</code> (p.1) is titled <em>"Weekly Project Update: CHF Prediction for Lithium Battery Cooling"</em> and frames the same work as battery thermal management. <strong>Nothing in the professor's emails mentions batteries.</strong> This is either an internal team reframing that was never sent to the advisor, or a stray document from a different context that drifted into the shared repo — either way, the project currently has two incompatible statements of "why this matters" living side by side, and only one of them can be the one the advisor actually endorsed.</p>
+
+<h3>Expected inputs / outputs <span class="tag evidence">evidence</span></h3>
+<p>Input: (P, G, X) triplet, each a scalar float. Output: CHF in kW/m². The advisor's outline (Part 7 below) implies a much larger input vector for the intended paper — geometry, fluid properties, and surface characteristics — that the current pipeline does not accept.</p>
+
+<h3>Constraints and assumptions <span class="tag evidence">evidence</span></h3>
+<ul>
+  <li>Only water, only vertical tubes normalized to an 8&nbsp;mm reference diameter (the LUT's own domain, per Groeneveld et al. 2007).</li>
+  <li>X=1.0 rows are placeholder zeros, not measurements, and are excluded (<code>docs/CHF_ML_Context.md</code>:38–41) — a correct and verified cleaning decision.</li>
+  <li>CHF spans 15–44,338 kW/m² (three orders of magnitude), forcing a log-target treatment for most smooth models.</li>
+  <li>The table itself is discrete and empirical; the manuscript draft is explicit that "interpolation should not be confused with a fundamental CHF law" (§1.2) — a correct, non-trivial epistemic caveat that a weaker paper would have glossed over.</li>
+</ul>
+
+<h3>Practical vs. scientific contribution intended</h3>
+<p><span class="tag inference">Inference:</span> practical impact is "tell an engineer which ML model family is safe to trust outside its training envelope, and by how much it degrades." Scientific contribution intended, per the literature draft's own framing (§2.6): resolve four methodological gaps in how CHF-ML papers currently validate themselves (interpolation/extrapolation conflation, tree-ensemble extrapolation collapse, PINN-taxonomy confusion, single-seed reporting). Whether that framing survives contact with the closest prior art is assessed in Part 9 and Part 11.</p>
+</section>
+
+<section class="part" id="p3">
+<h2><span class="idx">03</span> Problem formulation</h2>
+<table class="fmt">
+</table>
+<div class="tblwrap"><table>
+<thead><tr><th>Element</th><th>As implemented</th><th>As the advisor's outline implies</th></tr></thead>
+<tbody>
+<tr><td>Inputs</td><td>P, G, X (3 scalars)</td><td>+ geometry (D, L, L/D), fluid properties, surface roughness/wettability/contact angle/material/orientation</td></tr>
+<tr><td>Output</td><td>CHF (kW/m²)</td><td>CHF, plus regime label (DNB vs. dryout) implied by "regime identification" in one candidate title</td></tr>
+<tr><td>Data source</td><td>Single digitized look-up table (secondary/tabulated data)</td><td>An original or consolidated experimental database with a described facility, CHF-detection criterion, and uncertainty budget</td></tr>
+<tr><td>Validation axis</td><td>Pressure (interpolation vs. extrapolation)</td><td>Surface/condition-wise (random / condition-wise / surface-wise / leave-one-surface-out)</td></tr>
+<tr><td>Interpretability</td><td>None implemented yet (permutation importance suggested, not run)</td><td>Global SHAP feature importance over surface + operating variables</td></tr>
+</tbody>
+</table></div>
+<p>This table is the crux of the audit: every later readiness judgment forks depending on which right-hand column the finished paper is actually held to.</p>
+</section>
+
+<section class="part" id="p4">
+<h2><span class="idx">04</span> Research question and hypothesis</h2>
+<h3>Primary research question <span class="tag evidence">evidence, as stated in manuscript draft §1.5</span></h3>
+<blockquote>How do diverse ML model families perform when systematically transitioned from optimistic random interpolation to structured interior holdout and honest edge-extrapolation regimes, and do physics-informed extensions measurably improve true out-of-domain extrapolation on the 2006 Groeneveld CHF table?<cite>literature_survey_journal_ready.md §1.5</cite></blockquote>
+
+<h3>Secondary questions <span class="tag evidence">evidence</span></h3>
+<ol>
+<li>Do tree ensembles structurally fail at pressure extrapolation regardless of tuning? (Answered: yes, mechanistically explained — piecewise-constant leaf outputs.)</li>
+<li>Are single-seed neural-network extrapolation scores reliable? (Answered: no — directly demonstrated via retraction.)</li>
+<li>Do physics-guided features, residual learning, soft-penalty constraints, or gated blends improve extrapolation over a plain smooth model? (Answered, mostly: two failed outright; one (soft-penalty) helped only marginally and only when layered on a strong deterministic baseline, at which point its own physics terms went to zero weight — see Part 9.)</li>
+</ol>
+
+<h3>Hypothesis <span class="tag inference">inference — implicit, never written as a single falsifiable statement</span></h3>
+<p>No single-sentence, falsifiable hypothesis appears anywhere in the repository. The closest equivalent is the four-level "research gap" framing (Part 11). For a journal submission this needs to be sharpened into an explicit claim of the form <em>"physics-constrained residual learning on a deterministic table baseline improves edge-pressure extrapolation accuracy over both the baseline and an unconstrained neural network, without requiring the physics terms to be active at the optimum"</em> — which is in fact closer to what the data show (Part 9) than the framing currently in the manuscript draft.</p>
+
+<h3>Expected contribution if the hypothesis holds <span class="tag inference">inference</span></h3>
+<p>A validated, reproducible protocol for auditing CHF-ML extrapolation claims (splits + multi-seed verification), transferable to any future dataset the team collects — this is the most durable output regardless of how the novelty question resolves.</p>
+</section>
+
+<section class="part" id="p5">
+<h2><span class="idx">05</span> Research context and literature mapping</h2>
+<p>The manuscript draft's own Table&nbsp;1 (<code>literature_survey_journal_ready.md</code>, §2.5) is a genuinely useful map, so this audit reuses its structure rather than re-deriving one. Four clusters matter for novelty positioning:</p>
+<div class="grid2">
+<div class="card">
+<h4>Cluster A — the table itself</h4>
+<p>Groeneveld et al. 2007 (the LUT), Hall &amp; Mudawar 2000 (world CHF data compilation), Groeneveld 1986/1995 predecessor tables. Establishes the dataset as an international standard, not a novel data source the team collected.</p>
+</div>
+<div class="card">
+<h4>Cluster B — closest prior art</h4>
+<p><strong>Yang et al. (2026, Applied Thermal Engineering, ref [47])</strong> pretrains a DNN on this exact same LUT, then fine-tunes on 1,637 tube + 768 5×5-bundle experimental points, and already performs "window-type extrapolation mapping" with reported R²≈0.985. This is the paper the team itself calls "the primary reference benchmark" — and it already does, with real experimental fine-tuning data, most of what this project does with LUT-only holdout.</p>
+</div>
+<div class="card">
+<h4>Cluster C — the PIML taxonomy this project reinvents</h4>
+<p><strong>Wu, Gui &amp; Wu (2025, NED, ref [65])</strong> already compares physics-guided features, residual/deviation learning, and soft-penalty PINN formulations for CHF — the exact three-way taxonomy behind this project's Phase-2 "Approaches 1–3." The novelty has to be "we did this specific comparison on the specific extrapolation axis these authors didn't test," not "we invented this comparison."</p>
+</div>
+<div class="card">
+<h4>Cluster D — surface-characteristic CHF ML</h4>
+<p>Serrao et al. 2025 (ref [73], n=850, ATF surface roughness/wettability, leave-one-surface-out, SHAP) is the closest existing analogue to what the <em>advisor's outline</em> actually wants — and it already exists, at small N, meaning even the "engineered surface" pivot would need to clearly out-do or meaningfully extend this specific paper, not just resemble it.</p>
+</div>
+</div>
+<p>Net position: the team is benchmarking on a dataset and along a taxonomy that two 2025–26 NED-track papers have already substantially covered. That does not make the work worthless — see Part 9 for what remains defensible — but it does mean the "four-level research gap" claim in the manuscript draft is currently overstated relative to what Clusters B and C already establish.</p>
+</section>
+
+<section class="part" id="p6">
+<h2><span class="idx">06</span> Reference-by-reference analysis</h2>
+<p class="lede">The manuscript draft's Table 1 already performs this exercise for 18 studies at the level of depth requested (dataset, geometry, inputs, model, physical constraint, validation strategy, metrics, strengths, gaps). Rather than duplicate all 18 rows, this section flags what a skeptical reviewer would check first, and records the single most important caveat the team's own draft already discloses about that table.</p>
+
+<div class="card bad">
+<h4>Provisional-citation flag <span class="tag inference">integrity risk, not yet resolved</span></h4>
+<p><code>literature_survey_journal_ready.md</code> §2.5 states, in the table's own caption: <em>"Dataset sizes, architectures and reported metrics for refs. [58], [61]–[75] are drawn from title/topic matching pending full-text confirmation and should be treated as provisional."</em> That is roughly fifteen of the eighteen comparison rows — each with specific author names, journal volumes, page numbers, DOIs, and numeric R²/MAPE values presented in normal table formatting indistinguishable from confirmed entries. This is exactly the failure mode research-integrity bodies (COPE) warn about: a caveat that is true and disclosed today, but invisible the moment someone copies this table into the actual submission draft without carrying the footnote. <strong>This is a "critical blocker," not a stylistic nitpick — every one of those ~15 rows needs the actual PDF pulled and the row corrected or removed before this table can appear in anything sent to a journal.</strong></p>
+</div>
+
+<div class="tblwrap"><table>
+<thead><tr><th>Ref.</th><th>Relevance to BTP</th><th>Influence on our approach</th><th>Novelty implication</th></tr></thead>
+<tbody>
+<tr><td>[23] Groeneveld 2007 (LUT)</td><td>Direct data source</td><td>Defines the domain (P/G/X grid, 8mm reference) and the "interpolation ≠ law" caveat this project correctly upholds</td><td>None claimed — provenance only</td></tr>
+<tr><td>[47] Yang et al. 2026 (transfer learning on same LUT)</td><td>Closest prior art; same source domain</td><td>Structuring principle for splitting source vs. target domain; the paper's own future-work gap (no surface descriptors) licenses this project's narrower scope</td><td>Shrinks available novelty — extrapolation-on-LUT is not new; transfer-to-real-experiments (which this project has not done) is what would be new</td></tr>
+<tr><td>[65] Wu, Gui &amp; Wu 2025 (PIML comparison)</td><td>Defines the exact 3-paradigm taxonomy reused here</td><td>Directly mirrored by Phase-2 Approaches 1–3</td><td>Weakens claim of a novel PIML taxonomy; strengthens claim of a novel <em>extrapolation-axis</em> test of that taxonomy</td></tr>
+<tr><td>[26] Rashidi et al. 2022 (ML-in-boiling review)</td><td>General motivation for ML in boiling</td><td>Cited context, not a methodological input</td><td>None — background only</td></tr>
+<tr><td>[12,13] Hall &amp; Mudawar 2000</td><td>Defines standard CHF error-metric conventions (R², error bands)</td><td>Metric choices (R², MAPE) trace to this lineage</td><td>None — methodological convention only</td></tr>
+<tr><td>[73] Serrao et al. 2025 (ATF surfaces, SHAP)</td><td>Nearest existing analogue to the advisor's outline</td><td>Not yet used — no surface data exists in this repo to apply it to</td><td>Sets the bar any future surface-characteristic pivot must clear</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section class="part" id="p7">
+<h2><span class="idx">07</span> Professor's guidance and intended direction</h2>
+<div class="chip-row"><span class="tag prof">Explicitly instructed</span><span class="tag inference">Strongly implied</span><span class="tag hypothesis">Team inference</span></div>
+
+<div class="tblwrap"><table>
+<thead><tr><th>Date</th><th>What the email says <span class="tag prof">explicit</span></th><th>File</th></tr></thead>
+<tbody>
+<tr><td>2026-08-05</td><td>"Please extract data sets from these papers [4 ScienceDirect links] in excel files and use them while testing your models... For flow boiling we will have input parameters as length, diameter, mass flux, dryness fraction, pressure output is CHF. As of now for initial modelling use lookup table."</td><td><code>Mail_ID_content.txt</code>:9–17</td></tr>
+<tr><td>2026-08-14</td><td>Shares 16 further papers; "will be used to prepare our introduction and literature review section... prepare a journal ready Introduction and literature survey section... template would be the journal Nuclear Engineering and Design."</td><td><code>Mail_ID_content.txt</code>:31–44</td></tr>
+<tr><td>2026-08-17</td><td>"Please find the paper outline. We will prepare our paper for the NED journal... Include heat maps as well for all models and all studies."</td><td><code>Mail_ID_content.txt</code>:61–63; full outline in <code>paper_outline.docx</code></td></tr>
+</tbody>
+</table></div>
+
+<h3>What the outline explicitly instructs <span class="tag prof">explicit</span></h3>
+<ul>
+<li>An engineered-surface framing: three candidate titles, all naming "engineered surfaces" or "surface characteristics" (<code>paper_outline.docx</code>, opening lines).</li>
+<li>A four-level research-gap structure the team should adapt (surface characteristics unaccounted for; random-split leakage; unproven cross-surface generalization; black-box interpretability).</li>
+<li>An experimental-database section "extremely detailed... credibility of the ML model depends on the experimental database," including a facility schematic figure, four input-variable groups (geometrical, operating, fluid, surface), and an explicit CHF-detection-criterion subsection with four named criteria.</li>
+<li>Four validation strategies, explicitly ranked in importance: random split, condition-wise, surface-wise, and leave-one-surface-out — flagged by the advisor as "potentially one of the most important contributions."</li>
+<li>At least five ML models including a named "Proposed" model, SHAP-based global feature importance, and a specific formatting requirement (Times New Roman, 18pt bold figure titles, 12pt/1.5-spacing body text).</li>
+</ul>
+
+<h3>What is strongly implied but not stated <span class="tag inference">inference</span></h3>
+<p>The advisor's phrase "As of now for initial modelling use lookup table" (Aug&nbsp;5 email) is reasonably read as authorizing the LUT-only Phase 1 as a <em>starting</em> point, not as the final analysis the paper will report. The subsequent outline (Aug&nbsp;17), which never mentions the LUT once, is consistent with the LUT phase being an internal warm-up rather than the paper's evidentiary core.</p>
+
+<h3>What the team has correctly inferred and disclosed <span class="tag hypothesis">team inference, self-flagged</span></h3>
+<p>The literature draft's own "Scope reconciliation with the paper outline" section (lines 9–10, quoted in Part 1) is the team recognizing this gap itself — which is good practice — but that recognition has not yet visibly been escalated back to the advisor as a decision request. <strong>This audit's strongest single process recommendation: send Dr. Pattanayak a short, direct message stating the LUT-only scope explicitly and asking whether the NED submission should (a) proceed as a narrower LUT/extrapolation-methodology paper, or (b) wait on an engineered-surface dataset before the Methods section is drafted.</strong> Continuing to draft in the current direction without that confirmation risks discovering the mismatch only after a full manuscript exists.</p>
+</section>
+
+<section class="part" id="p8">
+<h2><span class="idx">08</span> Complete audit of work done so far</h2>
+
+<h3>Data <span class="tag evidence">evidence</span></h3>
+<ul>
+<li><strong>Primary dataset:</strong> 2006 Groeneveld LUT, digitized to 11,592 grid rows (24P×21G×23X), cleaned to 11,088 rows by removing 504 X=1.0 placeholder zeros. Verified independently against the project's own stated facts by <code>docs/SENIOR_REVIEW.md</code> §1 ("no further cleaning is needed... verified end-to-end").</li>
+<li><strong>Secondary/mentor dataset:</strong> 55 real experimental rows (<code>data/raw/mentor_master_experiments.xlsx</code>) with 14 "green" columns; the team discovered and correctly excluded a target-identity leak (CHF = Pnet/(L·Width) exactly, max error 0.0) before modelling — a genuinely good data-leakage catch (<code>PLAN_2.md</code>:30–38).</li>
+<li><strong>Tertiary/external dataset:</strong> 468 rows parsed from a PDF appendix (55 R123-straight, 156 water-helical, 140+117 R123-helical at low/high pressure) — used only as a zero-shot diagnostic, never as training data. Results are catastrophically poor (R² from −390 to roughly −2×10<sup>15</sup> across tables, per <code>results/plan2/external_validation_report.csv</code>) — correctly interpreted by the team as evidence of domain shift (different fluid, different geometry), not model failure, but this also means <strong>no unified cross-geometry or cross-fluid model exists yet</strong> in any form.</li>
+<li><strong>No original experimental data.</strong> A CAD experimental rig is mentioned as "underway" (<code>project_status.pdf</code> §11) but no CAD files, facility description, or measurements exist anywhere in the repository. Status: <strong>planned but not started.</strong></li>
+</ul>
+
+<h3>Methods implemented <span class="tag evidence">evidence</span></h3>
+<div class="tblwrap"><table>
+<thead><tr><th>Component</th><th>Status</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr><td>10-model LUT benchmark (Linear→Poly2/4→KNN→RF/ET/XGB/LGBM→GPR→MLP→GridInterp)</td><td><span class="pill complete">Completed</span></td><td><code>notebooks/CHF_ML_Modeling.ipynb</code> — 12/12 code cells executed with outputs</td></tr>
+<tr><td>3-tier split protocol (A/B/C) with Split-B "sandwiching" bug caught and fixed</td><td><span class="pill complete">Completed</span></td><td><code>SENIOR_REVIEW.md</code> §2</td></tr>
+<tr><td>Multi-seed verification &amp; retraction of the R²=0.855 claim</td><td><span class="pill complete">Completed</span></td><td><code>SENIOR_REVIEW.md</code> headline; <code>results/split_C_multiseed_verification.csv</code></td></tr>
+<tr><td>Physics-informed Approaches 1–2 (feature engineering, residual learning)</td><td><span class="pill complete">Completed — negative result</span></td><td><code>results/MASTER_results_table.csv</code> rows for PhysicsFeatures_*, ResidualLearning_*</td></tr>
+<tr><td>Physics-informed Approach 3 (soft-penalty collocation MLP / "PINN")</td><td><span class="pill partial">Partial — test-leakage risk</span></td><td>720-config grid search reported directly against Split C (<code>GOOGLE_DOC_SUMMARY.txt</code> §6.5); later fixed via proxy band in Tier 1/2 (<code>project_status.pdf</code> §9)</td></tr>
+<tr><td>Physics-informed Approach 4 (pressure-gated mixture-of-experts)</td><td><span class="pill complete">Completed — retracted headline, verified secondary result stands</span></td><td><code>MASTER_results_table.csv</code> row <code>PressureGatedBlend</code></td></tr>
+<tr><td>Residual-on-GridInterp SiLU ensemble (Tier 2b)</td><td><span class="pill mostly">Mostly complete</span></td><td><code>results/pinn/tier2b_summary.json</code> — best physics weights = 0.0 (see Part 9)</td></tr>
+<tr><td>Mentor-data grouped-CV audit (leakage-safe, n=55)</td><td><span class="pill partial">Partial — small-N, explicitly flagged as preliminary</span></td><td><code>PLAN_2.md</code>:58–62; <code>results/plan2/summary.json</code></td></tr>
+<tr><td>External PDF zero-shot validation</td><td><span class="pill complete">Completed (as a diagnostic; not a validated model)</span></td><td><code>results/plan2/external_validation_report.csv</code></td></tr>
+<tr><td>5-tier heat-map visualization framework requested by advisor</td><td><span class="pill partial">Partial</span></td><td>Planned in detail (<code>literature_survey_draft.txt</code> §3) but only 2 of 5 tiers appear to have rendered figures in <code>results/figures_paper/</code> (hexbin/scatter heatmap, model comparison bars) — no literature-coverage heatmap, no seed-variability heatmap, no reliability-boundary map yet</td></tr>
+<tr><td>Manuscript: Introduction + Literature Survey</td><td><span class="pill mostly">Mostly complete (pending citation verification)</span></td><td><code>docs/manuscript/literature_survey_journal_ready.md</code>, <code>_reviewed.md</code></td></tr>
+<tr><td>Manuscript: Methods / Results / Discussion / Conclusion</td><td><span class="pill missing">Not started</span></td><td>No file in <code>docs/manuscript/</code> contains these sections</td></tr>
+<tr><td>Physical experiment (CAD rig)</td><td><span class="pill missing">Planned but not started</span></td><td><code>project_status.pdf</code> §11; no CAD artifacts in repo</td></tr>
+<tr><td>Engineered-surface dataset (per advisor outline)</td><td><span class="pill missing">Referenced but not implemented</span></td><td>No such data anywhere in repository</td></tr>
+</tbody>
+</table></div>
+
+<h3>Analysis quality <span class="tag evidence">evidence</span></h3>
+<p>The project's best analytical habit is stated directly in <code>SENIOR_REVIEW.md</code>: numeric claims were checked against expectations rather than assumed, which is how the raw-vs-log MLP anomaly (raw-target R²=0.850 beating log-target R²=0.342 on Split C — the opposite of the general expectation) was caught, and how the Biasi-correlation dimensional-constant bug and the CoolProp/Zuber curve-crossing bug were both found. This is a genuinely above-average engineering-verification discipline for a BTP.</p>
+</section>
+
+<section class="part" id="p9">
+<h2><span class="idx">09</span> Current novelty assessment</h2>
+<p class="lede">Strict test applied to every claimed contribution: <em>would a reviewer familiar with refs [47] and [65] recognize this as new?</em></p>
+
+<div class="tblwrap"><table>
+<thead><tr><th>Claimed contribution</th><th>Classification</th><th>Closest prior art</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>3-tier split protocol (random / interior / edge-pressure)</td><td>Methodological modification of standard train/test discipline</td><td>Standard ML generalization theory; [47]'s "window-type extrapolation mapping" does something similar with real fine-tuning data</td><td>Not novel as a concept; the specific, disciplined application to this exact table with reported multi-seed statistics is a legitimate, useful engineering contribution — modest novelty</td></tr>
+<tr><td>Tree-ensemble structural collapse under pressure extrapolation</td><td>Empirical finding / replication</td><td>Well-known in general ML (piecewise-constant leaf extrapolation is textbook); demonstrated for CHF context specifically here</td><td>Confirmatory, not novel in mechanism; the specific magnitude (R²&nbsp;0.999→0.43) on this exact table is a useful, citable number but not a discovery</td></tr>
+<tr><td>Four physics-informed extensions taxonomy</td><td>Direct reuse of an existing taxonomy</td><td>[65] Wu, Gui &amp; Wu 2025 defines essentially the same three-way split</td><td>Not a novel taxonomy; novelty, if any, is in applying it to genuine pressure-range extrapolation, which [65] reportedly does not test</td></tr>
+<tr><td>Multi-seed retraction of the R²=0.855 claim</td><td>Reproducibility auditing / methodological demonstration</td><td>General ML reproducibility literature (well-established concern); rarely demonstrated this explicitly, in public, inside a CHF-specific project</td><td><strong>The strongest, most defensible novel element currently in the project</strong> — a concrete, quantified case study of single-seed unreliability in physics-hybrid CHF models</td></tr>
+<tr><td>Residual-on-GridInterp SiLU ensemble (best R²=0.847, Tier 2b)</td><td>Engineering implementation / incremental improvement</td><td>Residual-on-baseline learning is a standard PIML pattern (also in [65])</td><td>Real but marginal (+0.006 R² over the deterministic 0.8415 baseline); critically, the best configuration sets <code>lam_mono=0.0</code>, <code>lam_zuber=0.0</code> (<code>tier2b_summary.json</code>) — <strong>the physics penalty terms contribute nothing at the optimum.</strong> This should be reframed honestly as "residual learning on a deterministic table baseline," not "physics-informed neural network," or the paper will overclaim its own best result.</td></tr>
+<tr><td>Mechanistic failure diagnosis (feature explosion near P<sub>crit</sub>; residual-shape drift)</td><td>Novel empirical finding, narrow scope</td><td>Plausible in general PIML theory, not previously demonstrated quantitatively for this table</td><td>Legitimate, modest, citable novelty — a good candidate for a paper's Discussion section</td></tr>
+<tr><td>Mentor-data leakage catch (CHF ≡ Pnet/(L·W))</td><td>Data-integrity engineering, not a research contribution</td><td>Standard due diligence</td><td>Good practice, zero novelty, but worth one sentence in Methods as evidence of care</td></tr>
+</tbody>
+</table></div>
+
+<div class="card bad">
+<h4>What this table means in one sentence</h4>
+<p>Every individually strong result in this project is either <em>confirmatory</em> of what is already known/suspected, <em>a direct reuse</em> of an existing taxonomy from a paper the team has already read, or <em>marginal</em> once you look past the headline number. The one place genuine novelty survives scrutiny is the reproducibility-auditing angle — which the current manuscript draft does not yet foreground as the paper's main selling point.</p>
+</div>
+</section>
+
+<section class="part" id="p10">
+<h2><span class="idx">10</span> Intended novelty / research contribution</h2>
+<p><span class="tag inference">Inferred</span> from the manuscript draft's framing (§2.6–2.7): the team is aiming to be the paper that "simultaneously addresses structured-table leakage, target scaling, multi-seed stability, physical constraints and edge extrapolation" for CHF — i.e., a <em>methodology and rigor</em> paper positioned as filling gaps in how the field validates itself, rather than a paper claiming a new predictive method.</p>
+<p><strong>Current demonstrated novelty:</strong> a disciplined, multi-seed-audited benchmark of existing model families and an existing PIML taxonomy on a well-known table, with one genuine reproducibility case study (the retraction) and two well-diagnosed negative results.</p>
+<p><strong>Intended future novelty</strong> <span class="tag hypothesis">speculative, not yet demonstrated</span>: if the advisor's engineered-surface direction is pursued, the novelty target shifts to cross-surface generalization with leave-one-surface-out validation and SHAP-based surface-feature interpretability — a materially more novel and more publishable direction, contingent entirely on acquiring a dataset that does not currently exist in this repository.</p>
+<p><strong>Required evidence to validate the current (narrower) novelty claim:</strong> (1) a corrected, non-leaked PINN/residual result; (2) an explicit statement that the physics terms are inert at the optimum, framed as a finding rather than hidden; (3) a statistical significance test between the top 2–3 Split-C models, since a 0.006 R² gap between the residual ensemble and plain grid interpolation is currently asserted, not tested, to be real.</p>
+</section>
+
+<section class="part" id="p11">
+<h2><span class="idx">11</span> Literature gap</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Gap (manuscript's own framing)</th><th>Classification</th><th>This audit's assessment</th></tr></thead>
+<tbody>
+<tr><td>Gap 1 — interpolation/extrapolation conflation in published CHF-ML studies</td><td>Strongly supported inference</td><td>Plausible and well-argued, but the draft itself admits "a reproducible count across the full reviewed set has not been performed" (§2.6) — the gap is asserted qualitatively, not measured</td></tr>
+<tr><td>Gap 2 — tree-ensemble extrapolation collapse "never systematically audited" for CHF</td><td>Our hypothesis</td><td>Overstated: ref [64] (Liu et al. 2025) already reports "tree models exhibit step-function extrapolation errors above 15 MPa" for annular-channel CHF — a very close prior demonstration of exactly this phenomenon</td></tr>
+<tr><td>Gap 3 — "PINN misnomer" for CHF (no governing PDE)</td><td>Strongly supported inference</td><td>Correct and well-argued; a genuinely useful terminological correction the paper should keep</td></tr>
+<tr><td>Gap 4 — lack of multi-seed auditing in neural CHF papers</td><td>Strongly supported inference, directly evidenced by this project's own retraction</td><td>The strongest of the four gaps — directly demonstrated, not just argued</td></tr>
+</tbody>
+</table></div>
+<p>Net: two of the four claimed gaps (1 and 4) are well-supported; one (2) is weakened by existing evidence the team's own table already cites; one (3) is a valid but narrow terminological contribution. A revised gap statement leaning on Gaps 1 and 4 — reframed as the paper's actual center of gravity — would be more defensible than the current four-way framing.</p>
+</section>
+
+<section class="part" id="p12">
+<h2><span class="idx">12</span> Current methodology assessment</h2>
+<p>Sound in its bones: log-target handling, train-fold-only scaling, explicit multi-seed protocol, a caught and fixed Split-B sandwiching bug, and a documented refusal to use the Groeneveld correlation family itself as a physics prior (correctly identified as a leakage risk since the LUT was partly built from Groeneveld correlations — <code>scripts/chf_physics.py</code>:6–10). This is better data-leakage hygiene than the median published CHF-ML paper in the team's own comparison table shows.</p>
+<p>Weak points: (1) the 720-config PINN grid search selected against Split C directly (Part 13); (2) no nested cross-validation or held-out validation band was used consistently across all four physics-informed approaches — only later Tier 1/2/2b iterations adopted a proxy band; (3) hyperparameters for the classical ML baselines (RF/XGB/LGBM depth, n_estimators, etc.) are not documented in any file reviewed, making those specific numbers hard to audit even though the split protocol around them is sound.</p>
+</section>
+
+<section class="part" id="p13">
+<h2><span class="idx">13</span> Experimental rigor assessment</h2>
+<div class="card bad">
+<h4>Test-set tuning risk — the most technically important single finding in this audit</h4>
+<p>The project's own context document states the rule explicitly: <em>"Never tune any hyperparameter using the Split C (extrapolation) test data — that would be leakage into the very test meant to be honest"</em> (<code>docs/CHF_ML_Context.md</code>:137–140). Yet <code>docs/GOOGLE_DOC_SUMMARY.txt</code> §6.5 presents "PINN Grid Search Results — Top 15 Configurations (<strong>Split C</strong>, 5-Seed Mean)" as the basis for selecting the winning 128×128×64 architecture out of 720 candidates — i.e., the model that produced the oft-cited R²=0.8123 headline number appears to have been chosen by looking directly at Split C performance across hundreds of configurations. <code>project_status.pdf</code> §9 confirms the fix came later: <em>"The main tuning lesson was that the model should not be selected using the real high-pressure test rows. The proxy search used lower pressures for training and the 15,000–16,000 kPa band for validation; only the final selected configuration was evaluated at 17,000–21,000 kPa"</em> — but this correction applies to Tier 1/2/2b (R²=0.73–0.85), not to the original 0.8123 number, which is still the figure quoted in the literature-survey manuscript's positioning section and in <code>GOOGLE_DOC_SUMMARY.md</code>. <strong>A reviewer who checks this would flag it immediately; it needs to be re-run under the proxy-band protocol and the old number retired before any submission, exactly as the R²=0.855 gated-blend number already was.</strong></p>
+</div>
+
+<h3>Other rigor gaps</h3>
+<ul>
+<li><strong>No significance testing</strong> anywhere: every model ranking (e.g., residual ensemble 0.847 vs. grid interpolation 0.8415) is reported as a point estimate; no bootstrap CI or paired test establishes whether a given gap exceeds seed/sampling noise.</li>
+<li><strong>No ablation isolating the physics terms' contribution</strong> in the winning Tier 2b model, despite the grid search itself showing <code>lam_mono=lam_zuber=0</code> is optimal — the paper needs to say this plainly rather than let a reader infer it from a JSON file.</li>
+<li><strong>Small-N mentor data (n=55)</strong> grouped-CV result (R²=0.914) is explicitly self-flagged in <code>PLAN_2.md</code> as "not proof of final performance," which is the correct posture — but this also means it cannot yet support any publication-strength claim.</li>
+<li><strong>External-validation R² values are not physically interpretable</strong> (values like −2×10<sup>15</sup>) and, while correctly labeled "diagnostic_only," would need a bounded or rank-based metric (e.g., MdAPE, within-20%-band) reported instead of raw R² if shown in a paper, to avoid looking like a reporting error.</li>
+</ul>
+</section>
+
+<section class="part" id="p14">
+<h2><span class="idx">14</span> Reproducibility assessment</h2>
+<div class="grid2">
+<div class="card good"><h4>What reproduces well</h4>
+<ul>
+<li>Notebooks are executed with saved outputs, not just static code (verified programmatically: 12/12, 8/8, 13/14 code cells carry outputs across the three main notebooks).</li>
+<li><code>results/seed_and_version_log.json</code> pins the global seed (42), Split-A seed list (0–4), GPR subsample size, and exact library versions used at run time.</li>
+<li>Rebuild scripts exist for every notebook (<code>scripts/build_notebook*.py</code>) and for the data pipeline (<code>prepare_data.py</code>), and the repo is under git version control with CI configured (<code>.github/workflows/</code>).</li>
+</ul>
+</div>
+<div class="card bad"><h4>What would block a stranger from reproducing this</h4>
+<ul>
+<li><code>requirements.txt</code> pins only floors (e.g. <code>numpy&gt;=1.24.0</code>), while the logged run used <code>numpy 2.5.1</code> — two major versions ahead. Environment drift has already happened once; a fresh <code>pip install</code> today is not guaranteed to match the reported numbers.</li>
+<li>Classical-ML hyperparameters (tree depths, estimator counts, MLP training schedule details beyond what's in the loss-function writeups) are not centrally documented outside notebook cells.</li>
+<li>No single, current, canonical results table exists — see Part 15 — so a stranger reading only the README would reproduce a different "best model" than one reading <code>project_status.pdf</code>.</li>
+<li>Modal.com GPU credentials/account are required to literally re-run the PINN grid searches; no offline-equivalent config is documented for someone without Modal access.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="part" id="p15">
+<h2><span class="idx">15</span> Research integrity and publication-ethics assessment</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Issue</th><th>Status</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td>Unverified/provisional citations presented as confirmed</td><td><span class="pill missing">Unresolved</span></td><td>See Part 6 — ~15 of 18 comparison-table rows are caveated as unconfirmed; must be resolved before submission (COPE-aligned concern: presenting unverified bibliographic detail is adjacent to citation fabrication risk even when unintentional)</td></tr>
+<tr><td>Selective/overclaimed result reporting</td><td><span class="pill partial">Partially self-corrected</span></td><td>The team already retracted one overclaimed result (R²=0.855) publicly within its own docs — good practice; the leaked-tuning R²=0.8123 number has not yet received the same treatment</td></tr>
+<tr><td>Data leakage in a training feature</td><td><span class="pill complete">Caught and excluded</span></td><td>Pnet/(L·W) identity in mentor data, correctly excluded before modelling</td></tr>
+<tr><td>Dataset licensing / provenance</td><td><span class="pill partial">Needs an explicit statement</span></td><td>The Groeneveld LUT, mentor workbook, and external PDF appendix all carry different provenance and (likely) different reuse terms; the eventual paper needs a data-availability statement clarifying what can be shared</td></tr>
+<tr><td>AI-tool use disclosure</td><td><span class="pill missing">Not addressed</span></td><td>Given the literature survey draft reads as partly AI-assisted (structure, hedging edits between the two nearly-identical draft files), NED/Elsevier's AI-use disclosure policy should be checked and, if applicable, stated in the submission</td></tr>
+<tr><td>Authorship / contribution transparency</td><td class="tag hypothesis">Not established by the provided material</td><td>No author-contribution notes found in the repository</td></tr>
+<tr><td>Ethics/IRB approval</td><td><span class="pill na">Not applicable</span></td><td>No human/animal subjects; a physical CAD experiment, if built, would need standard lab safety sign-off, not IRB</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section class="part" id="p16">
+<h2><span class="idx">16</span> Publication-standards assessment</h2>
+<p>Elsevier/NED-specific requirements (verify against the current NED "Guide for Authors" before submission — not independently re-verified live in this audit): structured abstract length, reference style, figure/table formatting (the advisor's outline already specifies Times New Roman 18pt bold titles / 12pt 1.5-spacing body — <span class="tag prof">explicit instruction</span>, easy to satisfy but easy to forget until late), and a data-availability statement (Elsevier now requires one for most journals). General research principles that apply regardless of venue: pre-registration is not expected in this field, but a frozen, versioned results table before writing Results is good practice and currently missing (Part 14). Field-specific expectation for nuclear thermal-hydraulics papers: explicit statement of the model's validity domain (P, G, X ranges; fluid; geometry) on every reported number — the manuscript draft already does this reasonably well in its Introduction.</p>
+</section>
+
+<section class="part" id="p17">
+<h2><span class="idx">17</span> Major research gaps</h2>
+<ol>
+<li><strong>No genuinely new dataset.</strong> Every claim rests on a 2007-published table, a 55-row internal spreadsheet, or a diagnostic-only external PDF extraction.</li>
+<li><strong>No cross-geometry or cross-fluid validated model.</strong> The one attempt (external PDF) is explicitly a negative/diagnostic result.</li>
+<li><strong>No statistically tested claim of "best model."</strong> Every ranking is a point-estimate comparison.</li>
+<li><strong>No resolution of the scope conflict</strong> between the advisor's engineered-surface outline and the team's LUT-only implementation.</li>
+</ol>
+</section>
+
+<section class="part" id="p18">
+<h2><span class="idx">18</span> Critical blockers</h2>
+<p class="lede">Without these, the central claims cannot be defended in front of a reviewer who has read refs [47] and [65].</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Blocker</th><th>Why critical</th><th>Depends on</th></tr></thead>
+<tbody>
+<tr><td>Re-run PINN model selection without Split-C leakage</td><td>The current headline number is not trustworthy as stated</td><td>Nothing — can start immediately, infrastructure (Modal pipeline, proxy-band logic) already exists</td></tr>
+<tr><td>Verify or replace ~15 provisional literature-table entries</td><td>Citation-integrity risk if submitted as-is</td><td>Access to the 16 supplied ScienceDirect papers' full text</td></tr>
+<tr><td>Resolve LUT-only vs. engineered-surface scope with advisor</td><td>Determines what "Methods" section is even possible to write</td><td>A direct conversation with Dr. Pattanayak</td></tr>
+<tr><td>Reconcile one canonical results table</td><td>Four documents currently report four different "best" numbers</td><td>Blockers above being resolved first</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section class="part" id="p19">
+<h2><span class="idx">19</span> Experiments and analysis still required</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Task</th><th>Purpose</th><th>Priority</th><th>If the result is negative</th></tr></thead>
+<tbody>
+<tr><td>Re-run 720-config (or reduced) PINN search using only the proxy validation band; report the corrected Split-C number</td><td>Removes the test-leakage blocker</td><td>Critical</td><td>Still publishable — the corrected Tier&nbsp;2b number (0.847) already exists and is leakage-clean</td></tr>
+<tr><td>Bootstrap or paired significance test between GridInterp, Poly2_Ridge, and the residual ensemble on Split C</td><td>Establishes whether the "best model" claim survives noise</td><td>Critical</td><td>If the gap is not significant, the honest headline becomes "several methods are statistically indistinguishable near R²≈0.84" — still a defensible, if less exciting, finding</td></tr>
+<tr><td>Full-text verification of the 16 advisor-supplied + ~15 provisional-table papers</td><td>Removes citation-integrity risk</td><td>Critical</td><td>N/A — this is due diligence, not a hypothesis test</td></tr>
+<tr><td>Ablation explicitly isolating physics-penalty contribution in Tier 2b</td><td>Tests whether "physics-informed" framing is honest</td><td>High</td><td>Confirms the current suspicion; paper should state this as a finding, not hide it</td></tr>
+<tr><td>Render the remaining 3 of 5 requested heat-map tiers (literature coverage, seed-variability, reliability-boundary map)</td><td>Directly requested by advisor</td><td>High</td><td>N/A</td></tr>
+<tr><td>Draft Methods/Results/Discussion sections against the reconciled results table</td><td>No paper exists without this</td><td>Critical, depends on all of the above</td><td>N/A</td></tr>
+<tr><td>Decide and execute (or explicitly defer) the engineered-surface data acquisition</td><td>Resolves the single largest scope risk</td><td>Critical, depends on advisor conversation</td><td>If deferred, paper scope narrows to a methodology/rigor paper (Part 20, Direction B)</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section class="part" id="p20">
+<h2><span class="idx">20</span> Alternative novelty directions</h2>
+<div class="grid2">
+<div class="card">
+<h4>Direction A — Follow the advisor's outline as written</h4>
+<p><strong>RQ:</strong> Does surface characteristic (roughness/wettability/contact angle) generalize across engineered surfaces under a leave-one-surface-out protocol? <strong>Novelty:</strong> Real, if a genuine multi-surface dataset is obtained — closest comparator (Serrao et al. [73], n=850) is beatable with a larger or more diverse database. <strong>Requires:</strong> an experimental dataset the team does not have (own CAD rig, or a consolidated multi-paper surface database). <strong>Risk:</strong> highest effort, most schedule risk, most scientifically valuable if it lands. <strong>Rank: 1st by scientific value, last by feasibility on current timeline.</strong></p>
+</div>
+<div class="card">
+<h4>Direction B — Reframe as a rigor/reproducibility methods paper</h4>
+<p><strong>RQ:</strong> How much do single-seed reporting and test-leaked hyperparameter selection distort claimed CHF-ML extrapolation performance, and what protocol prevents it? <strong>Novelty:</strong> Builds directly on the one thing this project has already demonstrated better than anyone in its own comparison table — the retraction. <strong>Requires:</strong> the leakage fix (Part 18) plus a clean write-up; no new data needed. <strong>Risk:</strong> lowest effort, most achievable on current timeline; narrower audience/impact than Direction A. <strong>Rank: highest feasibility, most realistic near-term path to a defensible NED submission.</strong></p>
+</div>
+<div class="card">
+<h4>Direction C — Mentor/coil-geometry extension</h4>
+<p><strong>RQ:</strong> Can a leakage-safe, geometry-grouped model (already piloted at n=55, R²=0.914) be extended with more mentor-supplied geometries into a genuinely cross-geometry validated result? <strong>Novelty:</strong> Moderate — helical-coil CHF with proper geometry-grouped CV is less saturated in the literature than tube CHF. <strong>Requires:</strong> more mentor experimental rows (dependent on the advisor/lab, not purely a team effort). <strong>Risk:</strong> medium effort, data availability outside team's control. <strong>Rank: 2nd — good middle path if more mentor data can be obtained soon.</strong></p>
+</div>
+<div class="card">
+<h4>Direction D — Transfer-learning replication + extension of Yang et al. [47]</h4>
+<p><strong>RQ:</strong> Does the residual-on-GridInterp approach transfer better than [47]'s pretrain-finetune approach when both are evaluated on the same external experimental target set? <strong>Novelty:</strong> A direct, fair head-to-head against the closest prior art, which would be a genuinely interesting result either way. <strong>Requires:</strong> access to (or reconstruction of) the experimental target-domain data [47] used, or the team's own external PDF data reframed as a fine-tuning (not zero-shot) target. <strong>Risk:</strong> medium-high; depends on data access and successful reimplementation of a competing method. <strong>Rank: 3rd — highest scientific interest-to-effort ratio if [47]'s data or a substitute can be obtained.</strong></p>
+</div>
+</div>
+</section>
+
+<section class="part" id="p21">
+<h2><span class="idx">21</span> Strongest possible paper story</h2>
+<blockquote>
+CHF prediction is safety-critical, and published ML studies routinely report near-perfect accuracy that reflects grid memorization, not generalization (Problem/Motivation). Existing work already flags this risk in principle ([48]) and closely related papers ([47],[65]) study parts of it, but neither reports a case where a single favorable random seed produced a headline result later shown, by the same authors, to be unrepresentative under 30-seed verification (Gap). This paper asks: how much does seed selection and validation-band discipline change the apparent ranking of CHF-ML and physics-informed methods under genuine pressure-edge extrapolation, and can a simple, leakage-clean residual-on-table-baseline model be made to beat a deterministic physical baseline reliably (Research question/Hypothesis)? Using the complete 2006 Groeneveld LUT, ten model families and four physics-informed extensions are benchmarked under a three-tier split protocol with mandatory multi-seed reporting (Method). One early result (R²=0.855) is shown, and then retracted, on camera (in the data), demonstrating the failure mode concretely; a corrected, leakage-clean residual ensemble reaches R²=0.847 against a deterministic R²=0.8415 baseline — a real but small gain whose own physics-penalty terms are shown, by the grid search itself, to contribute nothing at the optimum (Results). The paper's honest contribution is therefore a validated auditing protocol and a demonstrated case study of how much single-seed, test-leaked reporting can mislead — not a new state-of-the-art predictor (Analysis/Limitations). This is scientifically meaningful because it targets a documented, field-wide reporting weakness with a concrete, reproducible demonstration rather than another marginal accuracy claim (Implication).
+</blockquote>
+<p>This story (Direction B) is the version of the paper the current evidence base can support <em>without</em> exaggeration. The advisor's engineered-surface story (Direction A) would be more exciting but is not yet evidenced by anything in this repository.</p>
+</section>
+
+<section class="part" id="p22">
+<h2><span class="idx">22</span> BTP vs. research vs. publication readiness</h2>
+<div class="grid2">
+<div class="card good"><h4>BTP readiness — strong</h4><p>Exceeds typical undergraduate-thesis expectations for methodological self-criticism: a real retraction, real bug catches, a genuine leakage audit, and disciplined multi-seed reporting are not common at this level. Missing pieces (the CAD rig, the engineered-surface data) are appropriately framed as future work for a thesis.</p></div>
+<div class="card"><h4>Research readiness — viable but not yet demonstrated</h4><p>The core question is answerable with the current data and mostly has been — but the answer largely confirms what refs [47], [64], and [65] already show in adjacent settings. The one genuinely load-bearing original finding (the retraction) has not yet been foregrounded as the paper's actual contribution.</p></div>
+<div class="card bad"><h4>Publication readiness — not yet</h4><p>No Methods/Results/Discussion draft exists; the headline number has a leakage problem; the literature table has unverified entries; the scope conflict with the advisor's outline is unresolved. None of these are small fixes, but none require new science either — they are due-diligence and honesty-in-framing tasks.</p></div>
+</div>
+</section>
+
+<section class="part" id="p23">
+<h2><span class="idx">23</span> Publication readiness checklist</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Requirement</th><th>Status</th><th>Evidence</th><th>Missing work</th><th>Priority</th></tr></thead>
+<tbody>
+<tr><td>Research problem</td><td><span class="pill mostly">Mostly complete</span></td><td>§1.1–1.4 of manuscript draft</td><td>Reconcile battery vs. reactor framing (Part 2)</td><td>High</td></tr>
+<tr><td>Research question</td><td><span class="pill partial">Partial</span></td><td>§1.5 of draft</td><td>Sharpen into one falsifiable hypothesis (Part 4)</td><td>High</td></tr>
+<tr><td>Literature grounding</td><td><span class="pill partial">Partial</span></td><td>Table 1, §2.1–2.4</td><td>Verify ~15 provisional entries</td><td>Critical</td></tr>
+<tr><td>Research gap</td><td><span class="pill partial">Partial</span></td><td>§2.6 four-level gap</td><td>Reweight toward Gaps 1 &amp; 4 (Part 11)</td><td>Medium</td></tr>
+<tr><td>Novel contribution</td><td><span class="pill partial">Partial</span></td><td>Retraction case study</td><td>Reframe paper around it explicitly (Part 20, Direction B)</td><td>High</td></tr>
+<tr><td>Methodology</td><td><span class="pill mostly">Mostly complete</span></td><td>3-tier split protocol, seed logging</td><td>Document classical-model hyperparameters centrally</td><td>Medium</td></tr>
+<tr><td>Dataset quality</td><td><span class="pill complete">Complete (for LUT scope)</span></td><td><code>SENIOR_REVIEW.md</code> §1</td><td>None for current scope; a new dataset needed only for Direction A</td><td>—</td></tr>
+<tr><td>Baselines</td><td><span class="pill complete">Complete</span></td><td>10 model families + GridInterp</td><td>None</td><td>—</td></tr>
+<tr><td>Experimental design</td><td><span class="pill partial">Partial</span></td><td>3-tier splits sound; PINN selection leaked</td><td>Re-run PINN selection cleanly (Part 18)</td><td>Critical</td></tr>
+<tr><td>Statistical rigor</td><td><span class="pill missing">Missing</span></td><td>No significance tests found</td><td>Bootstrap/paired test on top models</td><td>Critical</td></tr>
+<tr><td>Ablations</td><td><span class="pill partial">Partial</span></td><td>Grid search implicitly ablates lambdas</td><td>Explicit stated ablation table for physics terms</td><td>High</td></tr>
+<tr><td>Robustness</td><td><span class="pill mostly">Mostly complete</span></td><td>30-seed verification</td><td>Extend to Tier 2b ensemble explicitly</td><td>Medium</td></tr>
+<tr><td>Error analysis</td><td><span class="pill partial">Partial</span></td><td>1D slice plots, per-pressure breakdowns exist</td><td>LQR-region-specific error analysis (flagged in <code>SENIOR_REVIEW.md</code> §1 as not yet done)</td><td>Medium</td></tr>
+<tr><td>Reproducibility</td><td><span class="pill mostly">Mostly complete</span></td><td>Executed notebooks, seed/version log, git+CI</td><td>Pin exact dependency versions; consolidate results table</td><td>Medium</td></tr>
+<tr><td>Limitations</td><td><span class="pill mostly">Mostly complete</span></td><td>Draft already self-limits scope (lines 9–10)</td><td>Carry this into a formal Limitations section</td><td>Low</td></tr>
+<tr><td>Ethics/compliance</td><td><span class="pill na">Not applicable / N/A</span></td><td>No human subjects</td><td>Data-availability + AI-use disclosure statements</td><td>Medium</td></tr>
+<tr><td>Publication integrity</td><td><span class="pill partial">Partial</span></td><td>One retraction already handled well</td><td>Retire the leaked 0.8123 number the same way</td><td>Critical</td></tr>
+<tr><td>Paper evidence (full draft)</td><td><span class="pill missing">Missing</span></td><td>Only Intro + Lit. Survey exist</td><td>Methods/Results/Discussion/Conclusion</td><td>Critical</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section class="part" id="p24">
+<h2><span class="idx">24</span> Venue and publication-tier realism</h2>
+<p>As currently scoped (LUT-only benchmark), this sits at <strong>modest peer-reviewed contribution</strong> tier at best — realistically closer to a strong <strong>workshop/short-communication</strong> or a methods-note within a larger NED paper, once the blockers in Part 18 are cleared and the story is reframed per Direction B. It is not yet a "solid conference/journal candidate" for a full NED research article, because two of its closest comparators ([47], [65]) already occupy similar ground with more complete validation (real fine-tuning data, in one case). If Direction A (engineered surfaces) or Direction D (head-to-head with [47]) is pursued successfully, the ceiling rises to a legitimate solid NED-journal candidate. Satisfying every item in the Part 23 checklist does not guarantee acceptance — it only removes the objections a reviewer would raise for free; the accept/reject decision will still hinge on whether the retraction-and-rigor story or the surface-generalization story is judged sufficiently important by an editor.</p>
+</section>
+
+<section class="part" id="p25">
+<h2><span class="idx">25</span> Remaining-work roadmap</h2>
+<div class="stage"><h4>1. Advisor scope conversation</h4><div class="meta">Depends on: nothing · Deliverable: written confirmation of LUT-only vs. engineered-surface scope</div><p>Send the reconciliation already drafted internally (<code>literature_survey_draft.txt</code> lines 9–10) directly to Dr. Pattanayak as a question, not an assumption.</p></div>
+<div class="stage"><h4>2. Retire the leaked PINN number</h4><div class="meta">Depends on: nothing · Deliverable: corrected, proxy-band-only Split-C result replacing R²=0.8123 everywhere it is cited</div></div>
+<div class="stage"><h4>3. Statistical significance pass</h4><div class="meta">Depends on: (2) · Deliverable: bootstrap/paired CI on GridInterp vs. Poly2_Ridge vs. residual ensemble</div></div>
+<div class="stage"><h4>4. Literature verification pass</h4><div class="meta">Depends on: nothing, can run in parallel · Deliverable: every Table 1 row confirmed against full text or removed</div></div>
+<div class="stage"><h4>5. One canonical, versioned results table</h4><div class="meta">Depends on: (2), (3) · Deliverable: single CSV/JSON all documents cite, replacing README/GOOGLE_DOC_SUMMARY/project_status inconsistencies</div></div>
+<div class="stage"><h4>6. Novelty reframe (Direction B write-up, or pivot to A/C/D per advisor's answer)</h4><div class="meta">Depends on: (1), (5) · Deliverable: one-paragraph explicit novelty statement in the manuscript</div></div>
+<div class="stage"><h4>7. Remaining heat-map tiers + LQR error analysis</h4><div class="meta">Depends on: (5) · Deliverable: 5/5 requested heat-map figures</div></div>
+<div class="stage"><h4>8. Draft Methods / Results / Discussion / Conclusion</h4><div class="meta">Depends on: (2)–(7) · Deliverable: full manuscript draft</div></div>
+<div class="stage"><h4>9. Internal review against this checklist</h4><div class="meta">Depends on: (8)</div></div>
+<div class="stage"><h4>10. Target-venue confirmation + submission</h4><div class="meta">Depends on: (9)</div></div>
+</section>
+
+<section class="part" id="p26">
+<h2><span class="idx">26</span> Plain-language explainer</h2>
+<p><strong>What are we trying to do?</strong> Predict the pressure/flow/steam-quality combination at which a water-cooled tube's surface would suddenly overheat (CHF), and find out whether machine-learning models that look accurate inside their training data are still accurate outside it.</p>
+<p><strong>Why does it matter?</strong> Because this exact failure — a model that looks perfect on paper but fails at conditions it never saw — is a real safety concern in reactor thermal design, and (per one internal document) possibly battery cooling design, though which of those two applications the advisor actually wants is currently unresolved.</p>
+<p><strong>What does existing research already know?</strong> That tree-based models are excellent inside their training range and bad outside it (general ML fact, now also shown here); that physics-informed tricks can help CHF models generalize (shown by others, replicated in part here); and that a very closely related paper already pretrains on this same table and fine-tunes on real experiments with better numbers than this project currently reports.</p>
+<p><strong>What gap are we targeting?</strong> Mainly: nobody has shown, concretely, how badly a single lucky random seed can mislead a CHF-ML paper's headline claim — this project shows it, on itself, and fixes it.</p>
+<p><strong>What have we built?</strong> A ten-model benchmark, four physics-informed variants, a multi-seed audit tool, a small real-experiment leakage audit, and a diagnostic external validation test — all on a 2007-published reference table, plus a start on the paper's introduction and literature review.</p>
+<p><strong>What have we experimentally demonstrated?</strong> Tree models collapse under pressure extrapolation (R²: 0.999→0.43); smooth models and table interpolation hold up much better (R²≈0.75–0.84); one impressive early result was a statistical fluke and has been publicly retracted; a residual neural correction on top of the table narrowly beats the table alone, but not because of the "physics" terms — those turned out to be worth zero in the best configuration.</p>
+<p><strong>What is genuinely novel right now?</strong> The retraction and the mechanistic failure diagnoses. Everything else mostly confirms what two very similar 2025–26 papers already show.</p>
+<p><strong>What novelty are we trying to achieve?</strong> Depends on an unanswered question: does the advisor want the bigger engineered-surface paper the outline describes, or is the current table-based work the actual paper? That decision has not yet been made explicit.</p>
+<p><strong>What remains to be done?</strong> Fix the one leaked test result, verify the borrowed citations, decide the scope question with the advisor, run a significance test, and then — only then — write the paper's back half.</p>
+<p><strong>What would the eventual paper claim?</strong> Most defensibly: "single-seed and test-leaked reporting can substantially mislead CHF-ML extrapolation claims; here is a validated protocol, and a modest but honestly-reported residual model, that avoids it."</p>
+</section>
+
+<section class="part" id="p27">
+<h2><span class="idx">27</span> Source-to-conclusion traceability</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Conclusion / claim</th><th>Source</th><th>Location</th><th>Evidence type</th><th>Confidence</th></tr></thead>
+<tbody>
+<tr><td>Scope mismatch: repo is LUT-only, outline wants engineered surfaces</td><td><code>literature_survey_draft.txt</code> + <code>paper_outline.docx</code></td><td>Draft lines 9–10; outline opening section</td><td>Direct evidence</td><td>High</td></tr>
+<tr><td>Battery-cooling vs. reactor framing inconsistency</td><td><code>project_status.pdf</code> vs. <code>Mail_ID_content.txt</code></td><td>PDF p.1 title vs. full email thread</td><td>Direct evidence</td><td>High</td></tr>
+<tr><td>R²=0.855 claim retracted after 30-seed verification</td><td><code>docs/SENIOR_REVIEW.md</code>; <code>results/split_C_multiseed_verification.csv</code></td><td>Headline retraction section</td><td>Direct evidence</td><td>High</td></tr>
+<tr><td>Best Tier-2b physics weights = 0</td><td><code>results/pinn/tier2b_summary.json</code></td><td>Keys <code>best_physics_lam_mono</code>, <code>best_physics_lam_zuber</code></td><td>Direct evidence</td><td>High</td></tr>
+<tr><td>720-config PINN search evaluated against Split C directly</td><td><code>docs/GOOGLE_DOC_SUMMARY.txt</code> §6.5, header row</td><td>"Top 15 Configurations (Split C, 5-Seed Mean)"</td><td>Direct evidence</td><td>High</td></tr>
+<tr><td>Later proxy-band fix applied only to Tier 1/2/2b</td><td><code>project_status.pdf</code> p.7–8</td><td>§9, "Grid search, hyperparameter tuning"</td><td>Direct evidence</td><td>High</td></tr>
+<tr><td>~15 of 18 literature-table rows unverified</td><td><code>literature_survey_journal_ready.md</code> §2.5 table caption</td><td>Italic note above Table 1</td><td>Direct evidence</td><td>High</td></tr>
+<tr><td>Mentor-data leakage identity caught (CHF≡Pnet/(L·W))</td><td><code>PLAN_2.md</code> lines 30–38; <code>results/plan2/summary.json</code></td><td>"max_abs_target_identity_error": 0.0</td><td>Direct evidence</td><td>High</td></tr>
+<tr><td>External PDF zero-shot result is diagnostic, not a validated model</td><td><code>results/plan2/external_validation_report.csv</code>; <code>PLAN_2.md</code> lines 76–89</td><td>"zero_shot_status": "diagnostic_only"</td><td>Direct evidence</td><td>High</td></tr>
+<tr><td>Closest prior art already does LUT-pretrain + real-data extrapolation mapping</td><td><code>literature_survey_journal_ready.md</code> §2.4, ref [47]</td><td>"the primary reference benchmark for the present study"</td><td>Direct evidence (as reported by team; original paper not independently re-verified in this audit)</td><td>Medium–High</td></tr>
+<tr><td>Notebooks are actually executed, not just authored</td><td>Programmatic inspection of <code>.ipynb</code> JSON</td><td>Cell <code>execution_count</code>/<code>outputs</code> fields</td><td>Direct evidence (independently verified by this audit)</td><td>High</td></tr>
+<tr><td>No CAD/physical experiment exists yet</td><td>Full repository file listing</td><td>Absence of any CAD/experimental-facility files</td><td>Absence-of-evidence (a form of direct evidence for a negative claim)</td><td>High</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section class="part" id="p28">
+<h2><span class="idx">28</span> Strict reviewer-style critique</h2>
+<h3>If I were a reviewer, why might I reject this paper?</h3>
+<ol>
+<li>The headline PINN result appears to have been selected using the test set it is supposed to be evaluated on — this alone is grounds for a major-revision or reject decision at a serious venue.</li>
+<li>The "physics-informed" framing is not supported by the paper's own best configuration, where the physics penalty weights are zero — this reads as a mislabeled contribution if not corrected.</li>
+<li>The core empirical findings (tree extrapolation collapse, PIML taxonomy comparison) closely track two papers already in the reference list ([47], [65]) without a sharp enough differentiation of what is actually new.</li>
+<li>No statistical test establishes that the reported "best model" differs meaningfully from the deterministic baseline it barely edges out.</li>
+<li>Several comparator studies in Table 1 are cited with specific metrics that the authors themselves flag as unverified — unacceptable in a submitted manuscript.</li>
+<li>The dataset is a single, decades-old, secondary (tabulated, not raw experimental) source; no independent experimental validation succeeded.</li>
+</ol>
+<h3>What would make me change my recommendation?</h3>
+<ul>
+<li>A re-run, leakage-clean PINN/residual result with the physics-term ablation stated explicitly as a finding rather than buried in a JSON file.</li>
+<li>A significance test showing the residual ensemble's edge over grid interpolation is real.</li>
+<li>A verified literature table with no provisional entries.</li>
+<li>A sharply reframed novelty statement centered on the retraction/rigor story (Direction B) — or, if time and data allow, real progress on the engineered-surface direction the advisor actually asked for.</li>
+<li>At least one genuinely independent validation result (even small-N, if honestly caveated) that isn't a diagnostic negative result.</li>
+</ul>
+</section>
+
+<section class="part" id="p29">
+<h2><span class="idx">29</span> Final verdict</h2>
+<div class="verdict-box">
+<h3>Project objective</h3>
+<p>Determine whether machine-learning and physics-informed models can predict Critical Heat Flux reliably when asked about pressure conditions beyond their training range, using the 2006 Groeneveld look-up table as the initial testbed for a paper the advisor intends to be about engineered-surface CHF prediction.</p>
+<h3>Current state</h3>
+<p>A complete, executed 10-model benchmark with a disciplined 3-tier split protocol, a publicly retracted overclaimed result, two mechanistically-diagnosed negative physics-informed results, one marginal positive result whose "physics" component is inert, a small leakage-audited real-data side-study, a diagnostic (negative) external-generalization test, and a drafted Introduction + Literature Survey — with no Methods/Results/Discussion yet written.</p>
+<h3>Current novelty</h3>
+<p>Modest and specific: the multi-seed retraction case study and the mechanistic failure diagnoses. The broader "four-level gap" framing overlaps substantially with two already-published 2025–26 papers.</p>
+<h3>Intended novelty</h3>
+<p>Unresolved — depends on an advisor conversation that has not yet happened about whether the paper is the narrower LUT/rigor study this repo supports, or the larger engineered-surface study the circulated outline describes.</p>
+<h3>Strongest evidence</h3>
+<p>The retraction itself (<code>SENIOR_REVIEW.md</code>, <code>split_C_multiseed_verification.csv</code>) — a concrete, quantified, self-inflicted demonstration of exactly the reproducibility failure the field is criticized for.</p>
+<h3>Biggest weakness</h3>
+<p>The project's own headline "physics-informed" number was very likely selected using the test set it claims to generalize to, and its best configuration's physics terms contribute nothing — the paper is currently one honest correction away from either a much weaker or a much more interesting (rigor-focused) claim, and hasn't yet chosen which.</p>
+<h3>Most important next experiment</h3>
+<p>Re-run the PINN/residual model selection strictly within the proxy validation band (never touching Split C until final evaluation), report that corrected number as the sole headline, and run a bootstrap significance test against the grid-interpolation baseline.</p>
+<h3>Critical missing work</h3>
+<p>Advisor scope resolution; literature-table verification; the leakage-clean re-run above; one canonical results table; and the entire back half of the manuscript.</p>
+<div class="dash" style="margin-top:22px;">
+<div class="tile hi"><div class="k">BTP readiness</div><div class="v">7<small>/10</small></div><div class="d">Viable research direction, strong execution discipline</div></div>
+<div class="tile mid"><div class="k">Research readiness</div><div class="v">4<small>/10</small></div><div class="d">Early research — largely confirmatory of adjacent published work</div></div>
+<div class="tile low"><div class="k">Publication readiness</div><div class="v">2<small>/10</small></div><div class="d">Exploratory / not yet submission-ready</div></div>
+</div>
+</div>
+
+<div class="card finding">
+<h4>Five-question summary</h4>
+<p><strong>1. What are we trying to contribute?</strong> A validated protocol for honestly evaluating CHF-ML extrapolation, and (pending the advisor's answer) possibly an engineered-surface generalization study.<br>
+<strong>2. What have we actually contributed so far?</strong> The benchmark, the retraction, and two well-diagnosed negative results — real, but narrower than the manuscript currently implies.<br>
+<strong>3. Is it genuinely novel?</strong> Only the retraction/rigor angle clearly is; the rest closely tracks refs [47] and [65].<br>
+<strong>4. What evidence is missing?</strong> A leakage-clean headline number, a significance test, verified citations, and a resolved scope.<br>
+<strong>5. What must happen next?</strong> Fix the leaked result, verify the literature, get the advisor's scope decision in writing, then draft the rest of the paper around whichever honest story survives.</p>
+</div>
+</section>
+
+<footer class="endnote">
+Audit method: full read of <code>BTP/docs/</code> (all markdown, the professor's email export, both literature-survey drafts, the paper outline, the project-status PDF) cross-checked against <code>results/</code> JSON/CSV outputs, <code>scripts/</code> source, and programmatic inspection of notebook execution state. Findings marked "evidence" are drawn directly from repository files as cited; findings marked "inference" are this audit's interpretation and should be checked against the advisor's actual intent before being treated as settled.
+</footer>
+
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.navlink'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if(!('IntersectionObserver' in window) || sections.length === 0) return;
+  var map = new Map();
+  sections.forEach(function(s, i){ map.set(s, links[i]); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var link = map.get(entry.target);
+      if(!link) return;
+      if(entry.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('active'); });
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+  sections.forEach(function(s){ io.observe(s); });
+})();
+</script>
+
+</body></html>
