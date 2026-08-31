@@ -1,0 +1,3 @@
+Dataset,Dh_mm_max,Dh_mm_min,L_m_max,L_m_min,P_MPa_max,P_MPa_min,G_kg_m2s_max,G_kg_m2s_min,DHsubin_kJkg_max,DHsubin_kJkg_min,xe_cr_max,xe_cr_min,CHF_kW_m2_max,CHF_kW_m2_min
+NRC_source_tube,16.0,2.0,20.0,0.05,20.0,0.01,7964,8,1644,-1211,0.99,-0.5,16339,50
+DeBortoli_target_rectangular,4.66,2.42,0.69,0.15,13.79,4.12,6487,23,1521.5,28.41,0.99,0.01,7772,151
