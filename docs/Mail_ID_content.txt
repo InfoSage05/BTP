@@ -1,0 +1,65 @@
+
+Bikash Pattanayak <bikash.ptnk@gmail.com>
+Attachments
+Aug 5, 2026, 4:56 PM
+to me, Mayanknagar, mr.infosagepoint, Chirodeep
+
+Dear All,
+
+Please extract data sets from these papers in excel files and use them while testing your models.
+https://www.sciencedirect.com/science/article/abs/pii/S1359431116325650
+https://www.sciencedirect.com/science/article/abs/pii/S0017931016340443
+https://www.sciencedirect.com/science/article/abs/pii/S1290072917306968
+https://www.sciencedirect.com/science/article/abs/pii/0301932289900086
+
+For flow boiling we will have input parameters as length, diameter, mass flux, dryness fraction, pressure output is CHF.
+
+As of now for initial modelling use lookup table. 
+
+
+--
+Thanks and Regards
+Dr. Bikash Pattanayak
+Ph.D. Dept. of Mechanical Engineering, IIT Jodhpur
+IPDF, School of Energy Science and Engineering, IIT Kgp
+
+
+Bikash Pattanayak <bikash.ptnk@gmail.com>
+Aug 14, 2026, 1:48 PM
+to me, Mayanknagar, mr.infosagepoint
+
+Dear all,
+
+These papers along with the previously shared papers will be used to prepare our introduction and literature review section. Kindly go through it and prepare a journal ready Introduction and literature survey section for our paper.
+The template would be the journal Nuclear Engineering and Design. The outline for the same will be shared subsequently.
+
+https://www.sciencedirect.com/science/article/pii/S0029549325006119
+https://www.sciencedirect.com/science/article/pii/S0029549324008367
+https://www.sciencedirect.com/science/article/pii/S0029549324006873
+https://www.sciencedirect.com/science/article/pii/S0029549325002882
+https://www.sciencedirect.com/science/article/pii/S0029549322001790
+https://www.sciencedirect.com/science/article/pii/S0029549325001013
+https://www.sciencedirect.com/science/article/pii/S002954932600364X
+https://www.sciencedirect.com/science/article/pii/S0029549326002530
+https://www.sciencedirect.com/science/article/pii/S0029549324002073
+https://www.sciencedirect.com/science/article/pii/S0029549321000364
+https://www.sciencedirect.com/science/article/pii/S1359431125020393
+https://www.sciencedirect.com/science/article/pii/S0735193326004008
+https://www.sciencedirect.com/science/article/pii/S0735193326001806
+https://www.sciencedirect.com/science/article/pii/S0735193325007055
+https://www.sciencedirect.com/science/article/pii/S0306454925006218
+https://www.sciencedirect.com/science/article/pii/S0306454926000277
+
+Thank you
+
+
+Bikash Pattanayak <bikash.ptnk@gmail.com>
+Attachments
+Aug 17, 2026, 1:48 PM (13 days ago)
+to me, Mayanknagar, mr.infosagepoint
+
+Dear all,
+Please find the paper outline.  We will prepare our paper for the NED journal and can use the below paper as a reference. Include heat maps as well for all models and all studies.
+
+
+
