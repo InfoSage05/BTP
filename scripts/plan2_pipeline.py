@@ -188,8 +188,8 @@ def external_report(pdf_df: pd.DataFrame, mentor_audit: dict) -> pd.DataFrame:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mentor", default="data/raw/mentor_master_experiments.xlsx")
-    ap.add_argument("--pdf", default="data/raw/external_coil_tube_chf_appendix.pdf")
+    ap.add_argument("--mentor", default="data/raw/external/paper_extracted_test_only/mentor_master_experiments.xlsx")
+    ap.add_argument("--pdf", default="data/raw/external/paper_extracted_test_only/external_coil_tube_chf_appendix.pdf")
     ap.add_argument("--out", default="results/plan2")
     args = ap.parse_args()
     out = ROOT / args.out
