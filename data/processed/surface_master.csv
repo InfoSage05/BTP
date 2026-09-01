@@ -1,0 +1,91 @@
+study,CHF_kW_m2,Ra_um,CA_deg,material,geometry,fluid,P_kPa,orient_deg
+He2022,567.3,5.11,65.71,Zircaloy 4,horizontal_tube,water,84.0,0.0
+He2022,607.89,23.62,65.71,Zircaloy 4,horizontal_tube,water,84.0,0.0
+He2022,419.32,3.76,63.87,Zirlo,horizontal_tube,water,84.0,0.0
+He2022,549.48,,,Zirlo,horizontal_tube,water,84.0,0.0
+He2022,417.41,4.15,57.11,Zr 705,horizontal_tube,water,84.0,0.0
+He2022,521.41,,,Zr 705,horizontal_tube,water,84.0,0.0
+He2022,648.25,2.12,66.53,FeCrAl-C26M,horizontal_tube,water,84.0,0.0
+He2022,858.2,,,FeCrAl-C26M,horizontal_tube,water,84.0,0.0
+He2022,420.55,4.86,74.86,FeCrAl-B126Y,horizontal_tube,water,84.0,0.0
+He2022,499.21,,,FeCrAl-B126Y,horizontal_tube,water,84.0,0.0
+He2022,380.96,6.84,81.84,FeCrAl-B136Y,horizontal_tube,water,84.0,0.0
+He2022,549.5,,,FeCrAl-B136Y,horizontal_tube,water,84.0,0.0
+He2022,748.52,25.21,54.12,Titanium-2,horizontal_tube,water,84.0,0.0
+He2022,398.18,6.55,59.56,Titanium-9,horizontal_tube,water,84.0,0.0
+He2022,611.71,,,Titanium-9,horizontal_tube,water,84.0,0.0
+He2022,763.86,19.29,67.92,Inconel 400,horizontal_tube,water,84.0,0.0
+He2022,645.24,19.29,67.92,Inconel 400,horizontal_tube,water,84.0,0.0
+He2022,588.62,2.64,62.14,Inconel 625,horizontal_tube,water,84.0,0.0
+He2022,646.04,1.55,65.54,Inconel 600,horizontal_tube,water,84.0,0.0
+He2022,452.23,1.55,65.54,Inconel 600,horizontal_tube,water,84.0,0.0
+He2022,419.32,1.55,65.54,Inconel 600,horizontal_tube,water,84.0,0.0
+He2022,571.49,,,Inconel 600,horizontal_tube,water,84.0,0.0
+He2022,564.96,4.77,70.77,SS 304,horizontal_tube,water,84.0,0.0
+He2022,723.66,,,SS 304,horizontal_tube,water,84.0,0.0
+He2022,441.38,4.77,70.77,SS 304,horizontal_tube,water,84.0,0.0
+He2022,922.25,,,SS 304,horizontal_tube,water,84.0,0.0
+He2022,559.27,4.77,70.77,SS 304,horizontal_tube,water,84.0,0.0
+He2022,620.43,,,SS 304,horizontal_tube,water,84.0,0.0
+He2022,525.82,4.77,70.77,SS 304,horizontal_tube,water,84.0,0.0
+He2022,519.5,4.77,70.77,SS 304,horizontal_tube,water,84.0,0.0
+He2022,551.94,5.97,73.7,SS 316,horizontal_tube,water,84.0,0.0
+He2022,518.93,5.97,73.7,SS 316,horizontal_tube,water,84.0,0.0
+He2022,485.51,5.97,73.7,SS 316,horizontal_tube,water,84.0,0.0
+He2022,673.27,,,SS 316,horizontal_tube,water,84.0,0.0
+He2022,460.54,5.97,73.7,SS 316,horizontal_tube,water,84.0,0.0
+He2022,427.9,5.97,73.7,SS 316,horizontal_tube,water,84.0,0.0
+He2022,556.65,5.62,77.62,SS 321,horizontal_tube,water,84.0,0.0
+He2022,751.47,,,SS 321,horizontal_tube,water,84.0,0.0
+He2022,434.63,4.72,72.14,SS 347,horizontal_tube,water,84.0,0.0
+He2022,564.03,,,SS 347,horizontal_tube,water,84.0,0.0
+Ahn2010,1924.0,0.32,0.0,Zircaloy-4,flat_plate,water,101.325,0.0
+Ahn2010,1770.0,0.31,0.0,Zircaloy-4,flat_plate,water,101.325,0.0
+Ahn2010,1406.0,0.07,2.1,Zircaloy-4,flat_plate,water,101.325,0.0
+Ahn2010,1669.0,0.05,3.2,Zircaloy-4,flat_plate,water,101.325,0.0
+Ahn2010,1352.0,0.15,9.1,Zircaloy-4,flat_plate,water,101.325,0.0
+Ahn2010,1167.0,0.11,14.6,Zircaloy-4,flat_plate,water,101.325,0.0
+Ahn2010,1148.0,0.13,15.6,Zircaloy-4,flat_plate,water,101.325,0.0
+Ahn2010,1240.0,0.16,25.7,Zircaloy-4,flat_plate,water,101.325,0.0
+Ahn2010,1272.0,0.15,29.4,Zircaloy-4,flat_plate,water,101.325,0.0
+Ahn2010,1004.0,0.15,49.3,Zircaloy-4,flat_plate,water,101.325,0.0
+Yeom2020,645.0,0.12,72.0,Zirlo,rodlet,water,101.325,0.0
+Yeom2020,814.0,0.21,52.0,Zirlo,rodlet,water,101.325,0.0
+Yeom2020,931.0,5.72,107.0,Cold spray Cr coated Zirlo,rodlet,water,101.325,0.0
+Yeom2020,558.0,0.07,77.0,Cold spray Cr coated Zirlo,rodlet,water,101.325,0.0
+Yeom2020,550.0,0.17,93.0,Cold spray Cr coated Zirlo,rodlet,water,101.325,0.0
+Yeom2020,630.0,0.07,86.0,Cold spray FeCrAl coated Zirlo,rodlet,water,101.325,0.0
+Yeom2020,737.0,0.15,79.0,Cold spray FeCrAl coated Zirlo,rodlet,water,101.325,0.0
+Yeom2020,454.0,0.14,33.0,CVD SiC,rodlet,water,101.325,0.0
+Yeom2020,667.0,0.15,77.0,CVD SiC,rodlet,water,101.325,0.0
+Ali2020,784.14,0.35,71.82,Bare Zircaloy-4,flat_plate,water,101.325,0.0
+Ali2020,749.66,0.34,81.2,Bare Zircaloy-4,flat_plate,water,101.325,0.0
+Ali2020,711.67,0.12,73.49,Cr-coated 30um polished,flat_plate,water,101.325,0.0
+Ali2020,676.83,0.13,83.39,Cr-coated 30um polished,flat_plate,water,101.325,0.0
+Ali2020,,0.66,68.4,Cr-coated 5um polished,flat_plate,water,101.325,0.0
+Ali2020,,0.66,79.31,Cr-coated 5um polished,flat_plate,water,101.325,0.0
+Ali2020,,0.85,68.87,Cr-coated 5um unpolished,flat_plate,water,101.325,0.0
+Ali2020,,0.87,79.46,Cr-coated 5um unpolished,flat_plate,water,101.325,0.0
+Ali2018,784.1,0.358,74.56,Zircaloy-4,flat_plate,water,101.325,0.0
+Ali2018,807.5,0.59,,Fe13Cr4Al,flat_plate,water,101.325,0.0
+Ali2018,970.2,0.61,,Fe13Cr4Al,flat_plate,water,101.325,0.0
+Ali2018,1088.7,0.63,,Fe13Cr4Al,flat_plate,water,101.325,0.0
+Kam2015,1020.0,0.025438,61.0,Bare stainless steel,flat_plate,water,101.325,0.0
+Kam2015,940.0,,59.0,Zircaloy-4,flat_plate,water,101.325,0.0
+Kam2015,1230.0,0.021496,24.0,SiC-coated,flat_plate,water,101.325,0.0
+Kam2015,1470.0,0.022267,19.0,SiC-coated,flat_plate,water,101.325,0.0
+Kam2015,,0.024593,81.0,Cr-coated,flat_plate,water,101.325,0.0
+Kam2015,,,81.0,Cr-coated,flat_plate,water,101.325,0.0
+Zhang2023,980.0,,29.0,Chromium,flat_plate,water,101.2,0.0
+Zhang2023,1710.0,,10.0,Alumina,flat_plate,water,101.2,0.0
+Zhang2023,1180.0,,85.0,ITO,flat_plate,water,101.2,0.0
+Zhang2023,1470.0,,0.0,ZnO nanowires,flat_plate,water,101.2,0.0
+Zhang2023,1920.0,,0.0,CuO nanoleaves,flat_plate,water,101.2,0.0
+Zhang2023,2220.0,,0.0,SiO2 nanoparticles,flat_plate,water,101.2,0.0
+Kim2019,705.0,0.10527,80.8,Bare SS304L,vertical_tube,water,101.325,0.0
+Kim2019,,0.098,,Fresh Cr-coated,vertical_tube,water,101.325,0.0
+Kim2019,,0.09682,,Fresh Cr-coated,vertical_tube,water,101.325,0.0
+Kim2019,,0.09377,,Fresh Cr-coated,vertical_tube,water,101.325,0.0
+Kim2019,,0.10653,,Oxidized Cr-coated,vertical_tube,water,101.325,0.0
+Kim2019,,0.09637,,Oxidized Cr-coated,vertical_tube,water,101.325,0.0
+Kim2019,,0.09294,,Oxidized Cr-coated,vertical_tube,water,101.325,0.0

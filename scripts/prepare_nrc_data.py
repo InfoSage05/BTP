@@ -47,14 +47,37 @@ RENAME = {
 }
 
 
+def _has_units_row(path):
+    """True if the second line of the file is the units row rather than data.
+
+    The raw export originally shipped with a units row ("-,-,m,m,kPa,...")
+    directly under the header. That row was later stripped at source on the
+    `main` branch. Hard-coding skiprows=[1] is therefore unsafe in both
+    directions: on the old file it is required, on the new file it would
+    silently delete the first genuine measurement. Detect instead of assume.
+    """
+    with open(path, "r", encoding="utf-8", errors="replace") as fh:
+        fh.readline()                       # header
+        second = fh.readline().split(",")
+    # a data row starts with an integer index; the units row does not
+    return not second[0].strip().lstrip("-").isdigit()
+
+
 def main():
-    df = pd.read_csv(RAW_PATH, skiprows=[1])  # row 1 is the units row, not data
-    assert df["CHF Result"].notna().sum() == 0, (
-        "CHF Result column expected to be entirely empty (unused placeholder "
-        "column in the source table) -- found non-null values, investigate "
-        "before proceeding."
-    )
-    df = df.drop(columns=["CHF Result"])
+    skip = [1] if _has_units_row(RAW_PATH) else None
+    print(f"units row detected: {skip is not None}")
+    df = pd.read_csv(RAW_PATH, skiprows=skip)
+
+    # 'CHF Result' is an unused placeholder column present only in the older
+    # export; it was removed at source on main. Drop it if present, after
+    # confirming it really is empty.
+    if "CHF Result" in df.columns:
+        assert df["CHF Result"].notna().sum() == 0, (
+            "CHF Result column expected to be entirely empty (unused placeholder "
+            "column in the source table) -- found non-null values, investigate "
+            "before proceeding."
+        )
+        df = df.drop(columns=["CHF Result"])
 
     for col in NUMERIC_COLS:
         df[col] = pd.to_numeric(df[col], errors="coerce")
