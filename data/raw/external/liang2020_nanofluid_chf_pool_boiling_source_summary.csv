@@ -1,0 +1,63 @@
+author_source,pressure,heater_material,heater_size_mm,base_fluid,particle_material,particle_size_nm,particle_concentration,n_data_points
+Bang and Chang,atmospheric,copper,4x100 (1.9),water,Al2O3,47,0-4 vol.%,8
+Kim et al. (a),atmospheric,stainless steel,0.381,water,"Al2O3, SiO2, ZrO2",20-250,0.001-0.1 vol.%,9
+Bang et al.,atmospheric,sapphire,24x10 (1),ethanol,Al2O3,118.2,0.01 vol.%,1
+Park et al. (a),atmospheric,NiCr,0.98,water,"Al2O3, graphene, graphene-oxide",<45000,0.001 vol.%,3
+Lee et al. (a),atmospheric,NiCr,0.49,water,CuO,15,0.001 vol.%,2
+Park et al. (b),atmospheric,NiCr,0.49,water,"graphene-oxide, Al2O3, SiO2",<45000,0.0001 vol.%,9
+Park and Bang,atmospheric,NiCr,0.49,water,"ZnO, SiC, CuO, graphene-oxide, Al2O3, SiO2",<45000,0.01 vol.%,6
+Song et al.,atmospheric,stainless steel,"10x50 (0.4), 50x50 (0.4)",water,SiC,<100,0.0001-0.01 vol.%,9
+Gerardi et al.,atmospheric,ITO,10x30 (0.0007),water,"diamond, SiO2",<=173,0.01-0.1 vol.%,5
+Ahn et al.,atmospheric,SiO2,20x25,water,reduced graphene-oxide,500-1000,0.0001-0.001 wt.%,7
+Kim et al. (b),atmospheric,"NiCr, Ti",0.2-0.25,water,"Al2O3, TiO2",47-85,0.00001-0.1 vol.%,13
+Kim and Kim,atmospheric,NiCr,0.2,water,SiO2,90,0.0001-1 vol.%,5
+Kim et al. (c),atmospheric,"copper, nickel",20,water,"Al2O3, TiO2",45-47,0.01 vol.%,6
+Jung et al. (a),atmospheric,copper,20,water,TiO2,27.2-85.3,0.00001-1 vol.%,12
+Jung et al. (b),Tsat=29C,copper,10x10 (30),water,Al2O3,45,0.00001-0.1 vol.%,10
+Jung et al. (c),4 kPa,copper,10x10 (30),LiBr-water mixture,Al2O3,46,0.01-0.1 vol.%,12
+Kathiravan et al. (a),atmospheric,stainless steel,10.6,water,Cu,10-20,0.028-0.113 vol.%,4
+Kathiravan et al. (b),atmospheric,stainless steel,30,water,Cu,10-20,0.028-0.113 vol.%,6
+Kathiravan et al. (c),atmospheric,stainless steel,30,water,CNT,10-15,0.25-1 vol.%,6
+Vazquez and Kumar,atmospheric,NiCr,0.79x0.127,water,SiO2,10,0.1-2 vol.%,21
+He et al.,atmospheric,NiCr,0.5,ethylene glycol-water mixture,ZnO,30,5.25 wt.%,3
+Hu et al. (a),atmospheric,platinum,0.07,ethylene glycol-water mixture,graphene,0.335-3.35,0.005-0.1 wt.%,5
+Liu et al.,7.4-103 kPa,copper,40x40,water,CNT,15,0.5-2.5 wt.%,15
+Yang and Liu,7.4-103 kPa,copper,40x40,water,SiO2,30,1.5 wt.%,3
+Coursey and Kim,Tsat=29.8C,copper,2 cm2,"water, ethanol",Al2O3,45,0.026-10.07 g/L,11
+Golubovic et al.,atmospheric,NiCr,0.64,water,"Al2O3, BiO2",22.6-46,0.0005-0.01 vol.%,20
+Hegde et al. (a),atmospheric,NiCr,0.19,water,Al2O3,10-80,0.01-0.09 vol.%,5
+Hegde et al. (b),atmospheric,NiCr,0.19,water,CuO,50,0.01-0.5 vol.%,7
+Lee et al. (b),atmospheric,NiCr,0.4,water,"Fe3O4, Al2O3, TiO2",15-80,0.0001-0.01 vol.%,11
+Lee et al. (c),101-1100 kPa,NiCr,0.4,water,"Fe3O4, Al2O3",20-30,0.0001 vol.%,5
+Sheikhbahai et al.,atmospheric,NiCr,unspecified,ethylene glycol-water mixture,Fe3O4,<50,0.01-0.1 vol.%,3
+Ahn and Kim,atmospheric,copper,10,water,Al2O3,47,0.001 vol.%,1
+Kim et al. (d),4 kPa,NiCr,0.2,water,Al2O3,40-50,0.00001-0.1 vol.%,5
+Mourgues et al.,atmospheric,stainless steel,15,water,ZnO,unspecified,0.01 vol.%,2
+Shahmoradi et al.,atmospheric,copper,38,water,Al2O3,40,0.001-0.1 vol.%,5
+Amiri et al.,atmospheric,stainless steel,15,water,CNT,<60,0.01-0.1 wt.%,13
+Kole and Dey,atmospheric,Constantan wire,0.07,water,Cu,40-60,0.005-0.5 wt.%,3
+Lee et al. (d),atmospheric,NiCr,0.4,water,Fe3O4,25,0.0001-0.1 vol.%,6
+Park and Kim,19.61 kPa,zirconium,9.53x9.53 (4),water,CNT,10-15,0.0001-0.1 vol.%,12
+Kamatchi et al.,atmospheric,NiCr,0.45,water,reduced graphene-oxide,2.98,0.01-0.3 g/L,3
+Sakashita,0.1-0.8 MPa,copper,7,water,TiO2,25,0.002 wt.%,6
+Ciloglu,atmospheric,copper,40,water,SiO2,20,0.01-0.1 vol.%,3
+Dadjoo et al.,atmospheric,copper,30,water,SiO2,7-14,0.001-0.005 vol.%,9
+Ham et al.,3 kPa,copper,unspecified,water,Al2O3,50,0.001-0.1 vol.%,8
+Hu et al. (b),unspecified,platinum,0.07,ethylene glycol-water mixture,SiO2,120,0.25 vol.%,1
+Sulaiman et al.,atmospheric,copper,20,water,"SiO2, Al2O3, TiO2",13-21,0.04-1 g/L,18
+Vassallo et al.,atmospheric,NiCr,0.4,water,SiO2,15-50,0.5 vol.%,2
+Park et al. (c),Tsat=60C,copper,9.53x9.53 (4),water,CNT,10-20,0.0001-0.05 vol.%,4
+Park et al. (d),Tsat=60C,"copper, titanium","9.53x9.53 (4), 0.25",water,CNT,10-20,0.0001-0.05 vol.%,7
+Sarafraz et al. (a),unspecified,copper,11,ethylene glycol-water mixture,ZrO2,20-25,0.025-0.1 wt.%,4
+Salari et al. (a),unspecified,copper,11,water,Fe3O4,20,0.1-0.3 wt.%,3
+Sarafraz et al. (b),atmospheric,copper,11,water,CNT,10-20,0.1-0.3 wt.%,3
+Salari et al. (b),atmospheric,copper,11,water,TiO2,40-50,0.1-0.3 wt.%,3
+You et al.,Tsat=60C,copper,10x10,water,Al2O3,unspecified,0.001-0.05 g/L,5
+Kim et al. (e),Tsat=60C,copper,10x10,water,Al2O3,32,0.025 g/L,5
+Kwark et al.,atmospheric,copper,10x10 (3),water,"Al2O3, CuO, diamond",86-139,0.001-1 g/L,21
+Rostamian and Etesami,atmospheric,copper,28,water,SiO2,7-14,0.005 vol.%,1
+Dareh et al.,atmospheric,copper,20x20 (5),water,Al2O3,20-25,0.0025-0.01 vol.%,3
+Kumar et al.,atmospheric,NiCr,0.27,water,"Fe2O3, Al2O3, CuO",10-26,0.01-0.1 vol.%,15
+Hu et al. (c),atmospheric,platinum,0.07,water,SiO2,98,0.081-0.325 wt.%,3
+Yao et al.,70-130 kPa,copper,unspecified,water,"Al2O3, SiO2",30-50,0.01 wt.%,10
+Kshirsagar and Shrivastava,atmospheric,NiCr,unspecified,water,Al2O3,30,0.3-1.5 wt.%,5

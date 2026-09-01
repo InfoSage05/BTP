@@ -1,0 +1,7 @@
+surface_coating,substrate,static_contact_angle_deg,contact_angle_qualifier,roughness_Ra_um,CHF_kW_m2,pressure_MPa,surface_orientation_deg,heated_area_mm2,dimensional_feature,fluid,notes
+Chromium,sapphire,29,approximate_from_Fig5h,,980,0.1012,0,100,4,water,"lowest CHF of the set; matches lower bound of Serrao 2025 Table 2.3 range (980) exactly"
+Alumina,sapphire,10,approximate_from_Fig5h,,1710,0.1012,0,100,4,water,""
+ITO,sapphire,85,approximate_from_Fig5h,,1180,0.1012,0,100,4,water,"matches upper bound of Serrao 2025 Table 2.3 contact-angle range (85) exactly"
+ZnO nanowires,sapphire,0,superhydrophilic,,1470,0.1012,0,100,4,water,""
+CuO nanoleaves,sapphire,0,superhydrophilic,,1920,0.1012,0,100,4,water,""
+SiO2 nanoparticles,sapphire,0,superhydrophilic,,2220,0.1012,0,100,4,water,"highest CHF of the set; matches upper bound of Serrao 2025 Table 2.3 range (2220) exactly"

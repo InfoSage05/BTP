@@ -1,0 +1,9 @@
+surface,irradiation_state,roughness_Ra_um,static_contact_angle_deg,CHF_kW_m2,pressure,surface_orientation_deg,fluid,notes
+Bare Zircaloy-4,pre-irradiation,0.35,71.82,784.14,atmospheric,0,water,""
+Bare Zircaloy-4,post-ion-irradiation,0.34,81.20,749.66,atmospheric,0,water,""
+Cr-coated 30um polished,pre-irradiation,0.12,73.49,711.67,atmospheric,0,water,""
+Cr-coated 30um polished,post-ion-irradiation,0.13,83.39,676.83,atmospheric,0,water,"lowest CHF of the set; matches lower bound of Serrao 2025 range (677) exactly"
+Cr-coated 5um polished,pre-irradiation,0.66,68.40,,atmospheric,0,water,"no CHF measured for this surface (limited sample availability, stated in paper)"
+Cr-coated 5um polished,post-ion-irradiation,0.66,79.31,,atmospheric,0,water,"as above"
+Cr-coated 5um unpolished,pre-irradiation,0.85,68.87,,atmospheric,0,water,"as above; Ra 0.85 is outside Serrao's quoted 0.12-0.66 range, i.e. Serrao appears to have excluded the unpolished surfaces"
+Cr-coated 5um unpolished,post-ion-irradiation,0.87,79.46,,atmospheric,0,water,"as above"

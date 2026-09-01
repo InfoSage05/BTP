@@ -1,0 +1,15 @@
+external_layers,dimensional_feature_mm,avg_roughness_range_um,static_contact_angle_range_deg,surface_orientation_deg,CHF_range_kW_m2,reference
+"Bare Zirlo, Bare SS304, Cr-coated Zirlo, FeCrAl-coated Zirlo",7.968,0.067-0.12,64-89,0,571-709,Jo et al. 2019
+"Bare Zirlo, Cr-coated Zirlo, FeCrAl-coated Zirlo, SiC",7.968,0.07-5.72,33-107,0,454-931,Yeom et al. 2020
+"Bare FeCrAl C26M/B126Y/B136Y, Bare Zircaloy-4, Bare Zirlo, Bare Zr705, Bare Inconel 400/600/625, Bare SS304/316/321/347, Bare Titanium-2/9, Oxidized samples",1.476-1.484,1.55-25.21,54-82,0,381-922,He et al. 2022
+"Cr/Al2O3/ITO/CuO/ZnO/SiO2-coated sapphire",4,0.01-0.31,0-85,0,980-2220,Zhang et al. 2023
+"Bare SS304L, Cr-coated samples, Oxidized samples",4,0.093-0.107,0-81,0,705-1041,Kim et al. 2019
+"Bare Fe13Cr4Al, Bare Zircaloy-4, Fe13Cr4Al PWR, Fe13Cr4Al BWR-NWC",3.968,0.32-0.61,68-75,0,784-1089,"Ali et al. 2018 (cross-check: matches this repo's own ali2018_fecral_atf_pool_boiling_chf.csv, 784.1-1088.7 kW/m2)"
+"800/60 grit polished SS316L, Fe20Cr5Al-coated samples, Cr-coated samples",11.916,0.02-0.18,0-68,90,715-947,Son et al. 2019
+"Zircaloy-4, SiC",1.492-1.6,0.088-0.107,85-93,0,635-1037,Seo et al. 2015
+"Bare Zircaloy-4, Bare SS, SiC-coated samples, Cr-coated samples",6,0.021-0.028,19-81,0,660-1223,Kam et al. 2015
+"Bare FeCrAl C26M/B126Y/B136Y, Bare Zircaloy-4, Bare Zirlo, Bare Zr705, Oxidized samples",11.811-11.874,2.12-6.84,64-82,90,608-1062,He and Chen 2023
+"Bare Zircaloy-4, Cr-coated samples, Irradiated samples, Polished samples",3.968,0.12-0.66,68-83,0,677-791,Ali et al. 2020
+"Bare Zircaloy-4, ZrSi2-coated Zr-4, Oxidized samples",8,0.154-0.207,0-65,0,804-1004,Cheol Lee et al. 2019
+"Bare Zircaloy-2, Polished samples",3.051,1.8-4.4,41-59,0,860-1350,Fong et al. 2003
+"Bare Zircaloy-4, Oxidized samples",4,0.05-0.32,0-49,0,1004-1924,Ahn et al. 2010
