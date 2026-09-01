@@ -8,6 +8,8 @@
   `.claude/worktrees/...`) -- avoid spawning agents/isolation modes that
   create these for this repo. If one appears anyway, delete it (folder,
   git worktree registration, and branch) as soon as it's safe to do so.
+- Do not commit changes without the user's explicit consent for that
+  specific commit. Making the changes/edits is fine; ask before running
+  `git commit`.
 - Do not push commits (or delete branches) without the user's explicit
-  consent for that specific push. Committing locally is fine; ask before
-  running `git push`.
+  consent for that specific push.
