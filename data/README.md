@@ -17,14 +17,9 @@
   distinctly-named dataset — never merged. Point-per-row training data vs.
   reference/range tables is not distinguished by folder, only by name/content
   — check each file's columns before using it.
-- `raw/helical_minichannel/` — 32 raw sensor-log CHF experiments (helical
-  minichannel evaporator rig). See its own `README.md` and `INDEX.csv`
-  before touching the raw files directly.
 
 ## data/processed/ — cleaned, derived, ready-to-train outputs
-- `processed/helical_minichannel/` — cleaned version of the raw minichannel
-  logs above, with a burnout-point summary CSV ready for training. See its
-  `README.md` — `minichannel_chf_summary.csv` is the file to use.
+- (currently empty — nothing derived yet needs its own processed folder)
 
 ## Rule of thumb
 - Need to add a new dataset from a paper/source? Put the raw file in
@@ -33,3 +28,9 @@
 - Need to derive/clean something from a raw file? Output goes in
   `data/processed/<dataset_name>/`, with its own short README explaining
   what to actually train on.
+
+## Dropped
+- Helical minichannel evaporator raw logs + processed CHF summary — removed.
+  Output was heater power (W), not true heat flux; converting it required
+  per-geometry heated-area assumptions that were too subjective to be worth
+  it for 32 rows. Not used in training.
