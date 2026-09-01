@@ -599,7 +599,7 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 SLUG = "helical_coil_r123_appendixCD"
 SLUG_TITLE = "Helical-Coil R-123 CHF (Appendix C/D)"
 
-df = pd.read_csv(DATA_DIR / "helical_coil_r123_appendixCD.csv")
+df = pd.read_csv(DATA_DIR / "paper_extracted_test_only" / "helical_coil_r123_appendixCD.csv")
 
 NUMERIC_COLS = ["Lh_mm", "G_kg_m2s", "Psys_bar", "rho_l_over_rho_g", "xe", "Q_watt", "CHF_kW_m2"]
 CATEGORICAL_COLS = ["appendix", "Coil_no"]
@@ -611,8 +611,8 @@ df.head()
         code(r"""
 try:
     from pypdf import PdfReader
-    reader = PdfReader(DATA_DIR / "helical_coil_chf_research_data.pdf")
-    print("Source PDF:", (DATA_DIR / "helical_coil_chf_research_data.pdf").name)
+    reader = PdfReader(DATA_DIR / "paper_extracted_test_only" / "helical_coil_chf_research_data.pdf")
+    print("Source PDF:", (DATA_DIR / "paper_extracted_test_only" / "helical_coil_chf_research_data.pdf").name)
     print("Pages:", len(reader.pages))
 except Exception as e:
     print("Could not read source PDF:", e)
@@ -672,7 +672,7 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 SLUG = "nureg_km0011_table4-1_sample"
 SLUG_TITLE = "NUREG/KM-0011 Table 4-1 (Sample)"
 
-df = pd.read_csv(DATA_DIR / "nureg_km0011_table4-1_SAMPLE_ONLY.csv")
+df = pd.read_csv(DATA_DIR / "paper_extracted_test_only" / "nureg_km0011_table4-1_SAMPLE_ONLY.csv")
 for c in ["G_kg_m2s", "CHF_kW_m2"]:
     df[c] = df[c].astype(str).str.replace(",", "", regex=False).astype(float)
 
@@ -832,7 +832,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external")
+DATA_DIR = Path("../../data/raw/external/paper_extracted_test_only")
 OUT_DIR = Path("../../results/eda/{slug}")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
