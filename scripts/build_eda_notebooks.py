@@ -201,7 +201,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external")
+DATA_DIR = Path("../../data/raw")
 OUT_DIR = Path("../../results/eda/{slug}")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -239,7 +239,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external")
+DATA_DIR = Path("../../data/raw")
 OUT_DIR = Path("../../results/eda/pinfin_chf_water_fc72")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -247,8 +247,8 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 SLUG = "pinfin_chf_water_fc72"
 SLUG_TITLE = "Pin-Fin CHF (Water/FC-72)"
 
-df = pd.read_csv(DATA_DIR / "pinfin_chf_water_fc72.csv", encoding="utf-8-sig")
-dup = pd.read_csv(DATA_DIR / "CHF Dataset.csv", encoding="utf-8-sig")
+df = pd.read_csv(DATA_DIR / "fine_tuning" / "pinfin_chf_water_fc72.csv", encoding="utf-8-sig")
+dup = pd.read_csv(DATA_DIR / "fine_tuning" / "CHF Dataset.csv", encoding="utf-8-sig")
 print("CHF Dataset.csv is byte-identical to pinfin_chf_water_fc72.csv:", df.equals(dup))
 
 NUMERIC_COLS = ["Subcooling(K)", "Width(um)", "Height(um)", "Spacing(um)", "Coverage",
@@ -302,7 +302,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external")
+DATA_DIR = Path("../../data/raw")
 OUT_DIR = Path("../../results/eda/kaeri_tr1665_uniform")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -310,7 +310,7 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 SLUG = "kaeri_tr1665_uniform"
 SLUG_TITLE = "KAERI TR-1665 Uniform Heating"
 
-df = pd.read_csv(DATA_DIR / "kaeri_tr1665_uniform_chf.csv")
+df = pd.read_csv(DATA_DIR / "fine_tuning" / "kaeri_tr1665_uniform_chf.csv")
 
 NUMERIC_COLS = ["Diameter", "Perimeter", "Area", "Length", "Pressure", "Power",
                 "MassFlux", "MassFlow", "EquilibriumQuality", "InletTemperature",
@@ -324,7 +324,7 @@ df.head()
         code(r"""
 import xml.etree.ElementTree as ET
 
-tree = ET.parse(DATA_DIR / "kaeri_tr1665_uniform.xml")
+tree = ET.parse(DATA_DIR / "fine_tuning" / "kaeri_tr1665_uniform.xml")
 records = []
 for ds in tree.getroot().findall("dataset"):
     rec = {}
@@ -387,7 +387,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external")
+DATA_DIR = Path("../../data/raw")
 OUT_DIR = Path("../../results/eda/kaeri_tr1665_nonuniform")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -395,7 +395,7 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 SLUG = "kaeri_tr1665_nonuniform"
 SLUG_TITLE = "KAERI TR-1665 Non-Uniform Heating"
 
-df = pd.read_csv(DATA_DIR / "kaeri_tr1665_nonuniform_chf.csv")
+df = pd.read_csv(DATA_DIR / "fine_tuning" / "kaeri_tr1665_nonuniform_chf.csv")
 
 NUMERIC_COLS = ["Diameter", "Perimeter", "Area", "Length", "Pressure", "Power",
                 "MassFlux", "MassFlow", "InletTemperature", "InletEnthalpy",
@@ -420,7 +420,7 @@ section reconstructs those profiles.
         code(r"""
 import xml.etree.ElementTree as ET
 
-tree = ET.parse(DATA_DIR / "kaeri_tr1665_nonuniform.xml")
+tree = ET.parse(DATA_DIR / "fine_tuning" / "kaeri_tr1665_nonuniform.xml")
 profiles = []
 for ds in tree.getroot().findall("dataset"):
     test_id = ds.find("TestID").text
@@ -502,7 +502,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external")
+DATA_DIR = Path("../../data/raw")
 OUT_DIR = Path("../../results/eda/nrc_groeneveld_chf_database")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -510,7 +510,7 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 SLUG = "nrc_groeneveld_chf_database"
 SLUG_TITLE = "NRC/Groeneveld 24,579-pt CHF Database"
 
-raw = pd.read_csv(DATA_DIR / "nrc_groeneveld_24579pt_chf_database.csv",
+raw = pd.read_csv(DATA_DIR / "pretraining" / "nrc_groeneveld_24579pt_chf_database.csv",
                    encoding="utf-8-sig", skiprows=[1])
 
 numeric_like = ["Number", "Tube Diameter", "Heated Length", "Pressure", "Mass Flux",
@@ -591,7 +591,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external")
+DATA_DIR = Path("../../data/raw")
 OUT_DIR = Path("../../results/eda/helical_coil_r123_appendixCD")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -599,7 +599,7 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 SLUG = "helical_coil_r123_appendixCD"
 SLUG_TITLE = "Helical-Coil R-123 CHF (Appendix C/D)"
 
-df = pd.read_csv(DATA_DIR / "paper_extracted_test_only" / "helical_coil_r123_appendixCD.csv")
+df = pd.read_csv(DATA_DIR / "fine_tuning" / "helical_coil_r123_appendixCD.csv")
 
 NUMERIC_COLS = ["Lh_mm", "G_kg_m2s", "Psys_bar", "rho_l_over_rho_g", "xe", "Q_watt", "CHF_kW_m2"]
 CATEGORICAL_COLS = ["appendix", "Coil_no"]
@@ -611,8 +611,8 @@ df.head()
         code(r"""
 try:
     from pypdf import PdfReader
-    reader = PdfReader(DATA_DIR / "paper_extracted_test_only" / "helical_coil_chf_research_data.pdf")
-    print("Source PDF:", (DATA_DIR / "paper_extracted_test_only" / "helical_coil_chf_research_data.pdf").name)
+    reader = PdfReader(DATA_DIR / "fine_tuning" / "helical_coil_chf_research_data.pdf")
+    print("Source PDF:", (DATA_DIR / "fine_tuning" / "helical_coil_chf_research_data.pdf").name)
     print("Pages:", len(reader.pages))
 except Exception as e:
     print("Could not read source PDF:", e)
@@ -664,7 +664,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external")
+DATA_DIR = Path("../../data/raw")
 OUT_DIR = Path("../../results/eda/nureg_km0011_table4-1_sample")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -672,7 +672,7 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 SLUG = "nureg_km0011_table4-1_sample"
 SLUG_TITLE = "NUREG/KM-0011 Table 4-1 (Sample)"
 
-df = pd.read_csv(DATA_DIR / "paper_extracted_test_only" / "nureg_km0011_table4-1_SAMPLE_ONLY.csv")
+df = pd.read_csv(DATA_DIR / "testing" / "nureg_km0011_table4-1_SAMPLE_ONLY.csv")
 for c in ["G_kg_m2s", "CHF_kW_m2"]:
     df[c] = df[c].astype(str).str.replace(",", "", regex=False).astype(float)
 
@@ -725,7 +725,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external")
+DATA_DIR = Path("../../data/raw")
 OUT_DIR = Path("../../results/eda/zhao2020_chf_flowboiling_tubes")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -733,7 +733,7 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 SLUG = "zhao2020_chf_flowboiling_tubes"
 SLUG_TITLE = "Zhao (2020) Flow-Boiling CHF (Tubes)"
 
-df = pd.read_csv(DATA_DIR / "zhao2020_chf_flowboiling_tubes.csv", encoding="utf-8-sig")
+df = pd.read_csv(DATA_DIR / "fine_tuning" / "zhao2020_chf_flowboiling_tubes.csv", encoding="utf-8-sig")
 
 NUMERIC_COLS = ["pressure [MPa]", "mass_flux [kg/m2-s]", "x_e_out [-]", "D_e [mm]",
                  "D_h [mm]", "length [mm]", "chf_exp [MW/m2]"]
@@ -832,7 +832,7 @@ from pathlib import Path
 pd.set_option("display.max_columns", 60)
 plt.rcParams["figure.dpi"] = 100
 
-DATA_DIR = Path("../../data/raw/external/paper_extracted_test_only")
+DATA_DIR = Path("../../data/raw/testing")
 OUT_DIR = Path("../../results/eda/{slug}")
 FIG_DIR = OUT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
