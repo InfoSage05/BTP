@@ -1,3 +1,0 @@
-material,roughness_Ra_nm,roughness_Ra_um,static_contact_angle_deg,CHF_kW_m2,CHF_n_tests,pressure,surface_orientation_deg,fluid,notes
-Zircaloy-4,88,0.088,85,635,5,atmospheric,0,water,"Table 2 average of 5 tests (517/650/648/753/607); paper also quotes 665 as max-heat-flux average"
-SiC,107,0.107,93,1037,4,atmospheric,0,water,"average of reported SiC tests (1105/899/1108/1037)"

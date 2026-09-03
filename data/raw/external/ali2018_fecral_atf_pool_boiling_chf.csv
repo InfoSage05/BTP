@@ -1,5 +1,0 @@
-material,surface_condition,roughness_Ra_um,static_contact_angle_deg,CHF_kW_m2,pressure,fluid,notes
-Zircaloy-4,as_machined,0.358,74.56,784.1,atmospheric,water,"static contact angle exact from text (Fig. 4a average of 10 droplet measurements); CHF from Fig. 11a"
-Fe13Cr4Al,as_machined,0.59,,807.5,atmospheric,water,"static contact angle not given as text value for this exact material/condition (only shown in Fig. 6 chart, not digitized here -- left blank rather than guessed)"
-Fe13Cr4Al,oxidized_BWR-NWC,0.61,,970.2,atmospheric,water,"same contact-angle caveat as above; roughness value increases only slightly vs as-machined per paper's own note (within +/-8% of 0.59um average)"
-Fe13Cr4Al,oxidized_PWR,0.63,,1088.7,atmospheric,water,"same contact-angle caveat as above"

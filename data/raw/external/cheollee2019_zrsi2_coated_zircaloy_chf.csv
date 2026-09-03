@@ -1,5 +1,0 @@
-material,surface_condition,roughness_Ra_nm,roughness_Ra_nm_sd,roughness_Ra_um,static_contact_angle_deg,receding_contact_angle_deg,CHF_kW_m2,pressure,surface_orientation_deg,fluid,notes
-Zircaloy-4,as-received,153.7,13.8,0.1537,63,17.5,858,atmospheric,0,water,""
-Zircaloy-4,pre-oxidized,207.0,31.2,0.2070,0,0,1004,atmospheric,0,water,"oxidized surface apparent contact angle ~0; +17% CHF vs as-received"
-ZrSi2-coated Zircaloy-4,as-received,187.7,11.5,0.1877,65,12.0,804,atmospheric,0,water,""
-ZrSi2-coated Zircaloy-4,pre-oxidized,204.3,56.0,0.2043,0,0,813,atmospheric,0,water,"oxidized surface apparent contact angle ~0"

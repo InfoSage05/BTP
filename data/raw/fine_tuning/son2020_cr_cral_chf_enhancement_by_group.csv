@@ -1,0 +1,4 @@
+structure_group,fabrication_method,Ra_range_um,rn_range,apparent_contact_angle_deg,nucleate_boiling_effect,CHF_enhancement_pct
+nanostructure,DC_sputtering,0.04,1.16-1.40,~0,ineffective,9
+microstructure,grinding,0.11-0.27,1.0,60-70,n/a,19
+nano_microstructure,grinding_and_DC_sputtering,0.09-0.26,1.16-1.40,~0,effective,79

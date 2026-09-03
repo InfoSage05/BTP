@@ -1,8 +1,0 @@
-surface,substrate_temperature_C,roughness_Ra_nm,roughness_Ra_nm_sd,roughness_Ra_um,Rsm_um,rn_nanoscale_area_ratio,CHF_kW_m2,static_contact_angle_deg,notes
-Bare SS304L,,105.27,46.19,0.10527,3.514,,705.0,80.8,"bare reference: CHF and contact angle are the only two given as exact text values in this paper"
-Fresh Cr-coated,150,98.00,9.91,0.09800,1.952,1.15,,,"per-specimen CHF and contact angle appear only in Figs. 8-9, not tabulated - not digitized here"
-Fresh Cr-coated,300,96.82,6.04,0.09682,2.202,1.13,,,"as above"
-Fresh Cr-coated,600,93.77,7.71,0.09377,2.605,1.10,,,"as above"
-Oxidized Cr-coated,150,106.53,20.26,0.10653,2.014,1.19,,,"as above"
-Oxidized Cr-coated,300,96.37,16.12,0.09637,2.197,1.17,,,"as above"
-Oxidized Cr-coated,600,92.94,19.48,0.09294,2.523,1.15,,,"as above"
