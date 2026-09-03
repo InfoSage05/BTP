@@ -67,6 +67,16 @@ ATF_SOURCES = [
     ("kim2019_cr_coated_oxidized_roughness.csv", "Kim2019", "vertical_tube",
      dict(CHF_kW_m2="CHF_kW_m2", Ra_um="roughness_Ra_um", CA_deg="static_contact_angle_deg",
           material="surface")),
+    # --- added 2026-09-02, second extraction round ---
+    ("jo2019_atf_coating_pool_boiling_chf.csv", "Jo2019", "flat_plate",
+     dict(CHF_kW_m2="CHF_kW_m2", Ra_um="roughness_Ra_um", CA_deg="static_contact_angle_deg",
+          material="material", orient_deg="surface_orientation_deg")),
+    ("cheollee2019_zrsi2_coated_zircaloy_chf.csv", "CheolLee2019", "flat_plate",
+     dict(CHF_kW_m2="CHF_kW_m2", Ra_um="roughness_Ra_um", CA_deg="static_contact_angle_deg",
+          material="material", orient_deg="surface_orientation_deg")),
+    ("seo2015_zircaloy_sic_cladding_chf.csv", "Seo2015", "vertical_tube",
+     dict(CHF_kW_m2="CHF_kW_m2", Ra_um="roughness_Ra_um", CA_deg="static_contact_angle_deg",
+          material="material", orient_deg="surface_orientation_deg")),
 ]
 
 

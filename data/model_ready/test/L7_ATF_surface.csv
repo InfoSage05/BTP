@@ -1,0 +1,89 @@
+dataset,study,boiling_mode,fluid,D_m,L_m,P_kPa,G_kg_m2s,X,dHin_kJkg,Ra_um,CA_deg,orient_deg,CHF_kW_m2,material,geometry
+ATF_surface,He2022,pool,water,,,84.0,,,,5.11,65.71,0.0,567.3,Zircaloy 4,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,23.62,65.71,0.0,607.89,Zircaloy 4,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,3.76,63.87,0.0,419.32,Zirlo,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,549.48,Zirlo,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,4.15,57.11,0.0,417.41,Zr 705,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,521.41,Zr 705,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,2.12,66.53,0.0,648.25,FeCrAl-C26M,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,858.2,FeCrAl-C26M,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,4.86,74.86,0.0,420.55,FeCrAl-B126Y,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,499.21,FeCrAl-B126Y,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,6.84,81.84,0.0,380.96,FeCrAl-B136Y,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,549.5,FeCrAl-B136Y,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,25.21,54.12,0.0,748.52,Titanium-2,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,6.55,59.56,0.0,398.18,Titanium-9,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,611.71,Titanium-9,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,19.29,67.92,0.0,763.86,Inconel 400,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,19.29,67.92,0.0,645.24,Inconel 400,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,2.64,62.14,0.0,588.62,Inconel 625,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,1.55,65.54,0.0,646.04,Inconel 600,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,1.55,65.54,0.0,452.23,Inconel 600,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,1.55,65.54,0.0,419.32,Inconel 600,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,571.49,Inconel 600,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,4.77,70.77,0.0,564.96,SS 304,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,723.66,SS 304,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,4.77,70.77,0.0,441.38,SS 304,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,922.25,SS 304,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,4.77,70.77,0.0,559.27,SS 304,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,620.43,SS 304,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,4.77,70.77,0.0,525.82,SS 304,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,4.77,70.77,0.0,519.5,SS 304,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,5.97,73.7,0.0,551.94,SS 316,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,5.97,73.7,0.0,518.93,SS 316,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,5.97,73.7,0.0,485.51,SS 316,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,673.27,SS 316,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,5.97,73.7,0.0,460.54,SS 316,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,5.97,73.7,0.0,427.9,SS 316,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,5.62,77.62,0.0,556.65,SS 321,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,751.47,SS 321,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,4.72,72.14,0.0,434.63,SS 347,horizontal_tube
+ATF_surface,He2022,pool,water,,,84.0,,,,,,0.0,564.03,SS 347,horizontal_tube
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.32,0.0,0.0,1924.0,Zircaloy-4,flat_plate
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.31,0.0,0.0,1770.0,Zircaloy-4,flat_plate
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.07,2.1,0.0,1406.0,Zircaloy-4,flat_plate
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.05,3.2,0.0,1669.0,Zircaloy-4,flat_plate
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.15,9.1,0.0,1352.0,Zircaloy-4,flat_plate
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.11,14.6,0.0,1167.0,Zircaloy-4,flat_plate
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.13,15.6,0.0,1148.0,Zircaloy-4,flat_plate
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.16,25.7,0.0,1240.0,Zircaloy-4,flat_plate
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.15,29.4,0.0,1272.0,Zircaloy-4,flat_plate
+ATF_surface,Ahn2010,pool,water,,,101.325,,,,0.15,49.3,0.0,1004.0,Zircaloy-4,flat_plate
+ATF_surface,Yeom2020,pool,water,,,101.325,,,,0.12,72.0,0.0,645.0,Zirlo,rodlet
+ATF_surface,Yeom2020,pool,water,,,101.325,,,,0.21,52.0,0.0,814.0,Zirlo,rodlet
+ATF_surface,Yeom2020,pool,water,,,101.325,,,,5.72,107.0,0.0,931.0,Cold spray Cr coated Zirlo,rodlet
+ATF_surface,Yeom2020,pool,water,,,101.325,,,,0.07,77.0,0.0,558.0,Cold spray Cr coated Zirlo,rodlet
+ATF_surface,Yeom2020,pool,water,,,101.325,,,,0.17,93.0,0.0,550.0,Cold spray Cr coated Zirlo,rodlet
+ATF_surface,Yeom2020,pool,water,,,101.325,,,,0.07,86.0,0.0,630.0,Cold spray FeCrAl coated Zirlo,rodlet
+ATF_surface,Yeom2020,pool,water,,,101.325,,,,0.15,79.0,0.0,737.0,Cold spray FeCrAl coated Zirlo,rodlet
+ATF_surface,Yeom2020,pool,water,,,101.325,,,,0.14,33.0,0.0,454.0,CVD SiC,rodlet
+ATF_surface,Yeom2020,pool,water,,,101.325,,,,0.15,77.0,0.0,667.0,CVD SiC,rodlet
+ATF_surface,Ali2020,pool,water,,,101.325,,,,0.35,71.82,0.0,784.14,Bare Zircaloy-4,flat_plate
+ATF_surface,Ali2020,pool,water,,,101.325,,,,0.34,81.2,0.0,749.66,Bare Zircaloy-4,flat_plate
+ATF_surface,Ali2020,pool,water,,,101.325,,,,0.12,73.49,0.0,711.67,Cr-coated 30um polished,flat_plate
+ATF_surface,Ali2020,pool,water,,,101.325,,,,0.13,83.39,0.0,676.83,Cr-coated 30um polished,flat_plate
+ATF_surface,Ali2018,pool,water,,,101.325,,,,0.358,74.56,0.0,784.1,Zircaloy-4,flat_plate
+ATF_surface,Ali2018,pool,water,,,101.325,,,,0.59,,0.0,807.5,Fe13Cr4Al,flat_plate
+ATF_surface,Ali2018,pool,water,,,101.325,,,,0.61,,0.0,970.2,Fe13Cr4Al,flat_plate
+ATF_surface,Ali2018,pool,water,,,101.325,,,,0.63,,0.0,1088.7,Fe13Cr4Al,flat_plate
+ATF_surface,Kam2015,pool,water,,,101.325,,,,0.025438,61.0,0.0,1020.0,Bare stainless steel,flat_plate
+ATF_surface,Kam2015,pool,water,,,101.325,,,,,59.0,0.0,940.0,Zircaloy-4,flat_plate
+ATF_surface,Kam2015,pool,water,,,101.325,,,,0.021496,24.0,0.0,1230.0,SiC-coated,flat_plate
+ATF_surface,Kam2015,pool,water,,,101.325,,,,0.022267,19.0,0.0,1470.0,SiC-coated,flat_plate
+ATF_surface,Zhang2023,pool,water,,,101.2,,,,,29.0,0.0,980.0,Chromium,flat_plate
+ATF_surface,Zhang2023,pool,water,,,101.2,,,,,10.0,0.0,1710.0,Alumina,flat_plate
+ATF_surface,Zhang2023,pool,water,,,101.2,,,,,85.0,0.0,1180.0,ITO,flat_plate
+ATF_surface,Zhang2023,pool,water,,,101.2,,,,,0.0,0.0,1470.0,ZnO nanowires,flat_plate
+ATF_surface,Zhang2023,pool,water,,,101.2,,,,,0.0,0.0,1920.0,CuO nanoleaves,flat_plate
+ATF_surface,Zhang2023,pool,water,,,101.2,,,,,0.0,0.0,2220.0,SiO2 nanoparticles,flat_plate
+ATF_surface,Kim2019,pool,water,,,101.325,,,,0.10527,80.8,0.0,705.0,Bare SS304L,vertical_tube
+ATF_surface,Jo2019,pool,water,,,101.325,,,,0.12,64.0,0.0,645.0,ZIRLO,flat_plate
+ATF_surface,Jo2019,pool,water,,,101.325,,,,0.074,77.0,0.0,571.0,Cr-coated ZIRLO,flat_plate
+ATF_surface,Jo2019,pool,water,,,101.325,,,,0.067,89.0,0.0,630.0,FeCrAl-coated ZIRLO,flat_plate
+ATF_surface,Jo2019,pool,water,,,101.325,,,,0.07,68.0,0.0,709.0,SS304,flat_plate
+ATF_surface,CheolLee2019,pool,water,,,101.325,,,,0.1537,63.0,0.0,858.0,Zircaloy-4,flat_plate
+ATF_surface,CheolLee2019,pool,water,,,101.325,,,,0.207,0.0,0.0,1004.0,Zircaloy-4,flat_plate
+ATF_surface,CheolLee2019,pool,water,,,101.325,,,,0.1877,65.0,0.0,804.0,ZrSi2-coated Zircaloy-4,flat_plate
+ATF_surface,CheolLee2019,pool,water,,,101.325,,,,0.2043,0.0,0.0,813.0,ZrSi2-coated Zircaloy-4,flat_plate
+ATF_surface,Seo2015,pool,water,,,101.325,,,,0.088,85.0,0.0,635.0,Zircaloy-4,vertical_tube
+ATF_surface,Seo2015,pool,water,,,101.325,,,,0.107,93.0,0.0,1037.0,SiC,vertical_tube

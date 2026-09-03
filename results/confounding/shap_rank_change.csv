@@ -1,0 +1,17 @@
+dataset,feature,grouped,random,rank_change
+ATF_surface,CA_deg,1.0,1.0,0.0
+ATF_surface,Ra_um,2.0,2.0,0.0
+pin_fin,Coverage,7.0,7.0,0.0
+pin_fin,Height(um),3.0,3.0,0.0
+pin_fin,Porosity,6.0,6.0,0.0
+pin_fin,Ra_um,5.0,5.0,0.0
+pin_fin,Spacing(um),4.0,4.0,0.0
+pin_fin,Subcooling(K),2.0,2.0,0.0
+pin_fin,is_water,1.0,1.0,0.0
+NRC_flow,D_m,6.0,6.0,0.0
+NRC_flow,G_kg_m2s,2.0,2.0,0.0
+NRC_flow,L_m,1.0,1.0,0.0
+NRC_flow,P_kPa,5.0,5.0,0.0
+NRC_flow,Tin_C,4.0,4.0,0.0
+NRC_flow,X,3.0,3.0,0.0
+NRC_flow,dHin_sub_kJkg,7.0,7.0,0.0

@@ -187,6 +187,32 @@ def load_families():
     fams["pin_fin"] = (pin, ["Ra_um", "Porosity", "Coverage", "Subcooling(K)",
                              "Height(um)", "Spacing(um)", "is_water"])
 
+    # Zhao 2020: compiled multi-source flow-boiling database, 10 named authors.
+    # Sits in the 10^3 gap between pin-fin (175) and NRC (24k) on the
+    # rows-per-study axis, which is the axis the whole paper is organised around.
+    z = pd.read_csv(ROOT / "data/raw/external/zhao2020_chf_flowboiling_tubes.csv")
+    z = z.rename(columns={"author": "study", "pressure [MPa]": "P_MPa",
+                          "mass_flux [kg/m2-s]": "G", "x_e_out [-]": "X",
+                          "D_e [mm]": "D_e_mm", "D_h [mm]": "D_h_mm",
+                          "length [mm]": "L_mm", "chf_exp [MW/m2]": "CHF_MW"})
+    z = z.dropna(subset=["CHF_MW", "study"]).copy()
+    z["CHF_kW_m2"] = z.CHF_MW * 1000.0
+    z = z[z.CHF_kW_m2 > 0]
+    z["logCHF"] = np.log(z.CHF_kW_m2)
+    fams["Zhao_flow"] = (z, ["P_MPa", "G", "X", "D_e_mm", "L_mm"])
+
+    # KAERI TR-1665 non-uniform axial power, 11 named source studies.
+    k = pd.read_csv(ROOT / "data/raw/external/kaeri_tr1665_nonuniform_chf.csv")
+    k = k.rename(columns={"Source": "study"})
+    k = k.dropna(subset=["HeatFlux", "study"]).copy()
+    k["CHF_kW_m2"] = pd.to_numeric(k.HeatFlux, errors="coerce")
+    k = k[k.CHF_kW_m2 > 0].dropna(subset=["CHF_kW_m2"])
+    k["logCHF"] = np.log(k.CHF_kW_m2)
+    for c in ["Diameter", "Length", "Pressure", "MassFlux", "InletEnthalpy"]:
+        k[c] = pd.to_numeric(k[c], errors="coerce")
+    k = k.dropna(subset=["Diameter", "Length", "Pressure", "MassFlux", "InletEnthalpy"])
+    fams["KAERI_flow"] = (k, ["Diameter", "Length", "Pressure", "MassFlux", "InletEnthalpy"])
+
     nrc = pd.read_csv(ROOT / "data/nrc_chf_clean.csv")
     nrc = nrc.rename(columns={"ref_id": "study"})
     nrc = nrc.dropna(subset=["CHF_kW_m2"]).copy()

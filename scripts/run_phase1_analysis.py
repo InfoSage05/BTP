@@ -178,49 +178,84 @@ def mixed_effects(name, d):
 # --------------------------------------------------------------------------
 # 3. bootstrap CIs on pooled vs within-study correlation
 # --------------------------------------------------------------------------
+def _corr(a, b):
+    if len(a) < 3:
+        return np.nan
+    sa, sb = a.std(), b.std()
+    if sa == 0 or sb == 0:
+        return np.nan
+    return float(((a - a.mean()) * (b - b.mean())).mean() / (sa * sb))
+
+
 def boot_corr(name, d):
+    """Cluster bootstrap over STUDIES (rows within a study are not independent).
+
+    Implemented on pre-extracted numpy arrays, one per study. The earlier
+    pandas version rebuilt the whole frame on every draw, which is O(n) per
+    iteration and made the 24k-row NRC set effectively non-terminating.
+    """
     df, feats = d["df"], d["feats"]
     rows = []
     for f in feats:
         sub = df.dropna(subset=[f, "logCHF"])
         if sub[f].nunique() < 3:
             continue
-        studies = sub.study.unique()
 
-        def one(sample):
-            pooled = sample[f].corr(sample.logCHF)
-            c = sample.copy()
-            c["_f"] = c[f] - c.groupby("study")[f].transform("mean")
-            c["_t"] = c.logCHF - c.groupby("study")["logCHF"].transform("mean")
-            return pooled, c["_f"].corr(c["_t"])
+        # pre-split once: study -> (feature array, target array, centred versions)
+        chunks = []
+        for _, g in sub.groupby("study", sort=False):
+            fv = g[f].to_numpy(float)
+            tv = g["logCHF"].to_numpy(float)
+            chunks.append((fv, tv, fv - fv.mean(), tv - tv.mean()))
+        n_st = len(chunks)
+        if n_st < 2:
+            continue
 
-        p0, w0 = one(sub)
+        def stats(idx):
+            fv = np.concatenate([chunks[i][0] for i in idx])
+            tv = np.concatenate([chunks[i][1] for i in idx])
+            fc = np.concatenate([chunks[i][2] for i in idx])
+            tc = np.concatenate([chunks[i][3] for i in idx])
+            return _corr(fv, tv), _corr(fc, tc)
+
+        p0, w0 = stats(np.arange(n_st))
         bp, bw = [], []
         for _ in range(N_BOOT):
-            # cluster bootstrap: resample STUDIES, not rows -- rows within a study
-            # are not independent, which is the whole point of the paper
-            pick = rng.choice(studies, size=len(studies), replace=True)
-            samp = pd.concat([sub[sub.study == s] for s in pick], ignore_index=True)
-            if samp.study.nunique() < 2:
+            idx = rng.integers(0, n_st, size=n_st)
+            if len(np.unique(idx)) < 2:
                 continue
-            a, b = one(samp)
+            a, b = stats(idx)
             if np.isfinite(a): bp.append(a)
             if np.isfinite(b): bw.append(b)
-        rows.append(dict(dataset=name, feature=f, n=len(sub),
+        if not bp or not bw:
+            continue
+        wlo, whi = np.percentile(bw, 2.5), np.percentile(bw, 97.5)
+        rows.append(dict(dataset=name, feature=f, n=len(sub), n_studies=n_st,
                          pooled_r=p0, pooled_lo=np.percentile(bp, 2.5), pooled_hi=np.percentile(bp, 97.5),
-                         within_r=w0, within_lo=np.percentile(bw, 2.5), within_hi=np.percentile(bw, 97.5),
+                         within_r=w0, within_lo=wlo, within_hi=whi,
                          reversal=bool(np.sign(p0) != np.sign(w0)),
-                         within_ci_excludes_zero=bool(np.percentile(bw, 2.5) > 0 or np.percentile(bw, 97.5) < 0)))
+                         within_ci_excludes_zero=bool(wlo > 0 or whi < 0)))
     return pd.DataFrame(rows)
 
 
 # --------------------------------------------------------------------------
 # 4. SHAP importance under both protocols
 # --------------------------------------------------------------------------
+SHAP_MAX_ROWS = 600   # mean|SHAP| is an average -- a sample estimates it fine
+
+
 def shap_by_protocol(name, d):
+    """Mean |SHAP| per feature under each split protocol.
+
+    Explaining every test row is unnecessary and, on the 24k-row NRC set with
+    300 deep trees, quadratically expensive -- it hung the script twice. The
+    importance we report is a mean over rows, so a fixed random subsample of
+    the test fold is an unbiased estimator of it at a fraction of the cost.
+    """
     import shap
     df, feats = d["df"], d["feats"]
     X, y, g = df[feats].values, df.logCHF.values, df.study.astype(str).values
+    sub_rng = np.random.default_rng(SEED)
     rows = []
     for proto, splitter in [("random", KFold(5, shuffle=True, random_state=SEED)),
                             ("grouped", GroupKFold(n_splits=min(5, len(np.unique(g)))))]:
@@ -228,6 +263,8 @@ def shap_by_protocol(name, d):
         it = splitter.split(X, y, g) if proto == "grouped" else splitter.split(X)
         for tr, te in it:
             m = clone(rf()).fit(X[tr], y[tr])
+            if len(te) > SHAP_MAX_ROWS:
+                te = sub_rng.choice(te, SHAP_MAX_ROWS, replace=False)
             sv = shap.TreeExplainer(m).shap_values(X[te], check_additivity=False)
             imps.append(np.abs(sv).mean(axis=0))
         mean_imp = np.mean(imps, axis=0)
@@ -271,16 +308,26 @@ def main():
     fams = load()
 
     splits, mixed, boots, shaps, shap_ranks = [], [], [], [], []
+
+    def checkpoint():
+        """Write everything accumulated so far, so a later failure loses nothing."""
+        if splits: pd.concat(splits, ignore_index=True).to_csv(RES / "four_split_strategies.csv", index=False)
+        if mixed:  pd.concat(mixed, ignore_index=True).to_csv(RES / "mixed_effects_vs_pooled.csv", index=False)
+        if boots:  pd.concat(boots, ignore_index=True).to_csv(RES / "bootstrap_correlations.csv", index=False)
+        if shaps:  pd.concat(shaps, ignore_index=True).to_csv(RES / "shap_importance_by_protocol.csv", index=False)
+        if shap_ranks: pd.concat(shap_ranks, ignore_index=True).to_csv(RES / "shap_rank_change.csv", index=False)
+
     for name, d in fams.items():
         print(f"[{name}] four splits ...", flush=True)
-        splits.append(four_splits(name, d))
+        splits.append(four_splits(name, d)); checkpoint()
         print(f"[{name}] mixed effects ...", flush=True)
-        mixed.append(mixed_effects(name, d))
+        mixed.append(mixed_effects(name, d)); checkpoint()
         print(f"[{name}] bootstrap ({N_BOOT}) ...", flush=True)
-        boots.append(boot_corr(name, d))
+        boots.append(boot_corr(name, d)); checkpoint()
         print(f"[{name}] SHAP ...", flush=True)
         s, r = shap_by_protocol(name, d)
-        shaps.append(s); shap_ranks.append(r)
+        shaps.append(s); shap_ranks.append(r); checkpoint()
+        print(f"[{name}] complete", flush=True)
 
     S = pd.concat(splits, ignore_index=True); S.to_csv(RES / "four_split_strategies.csv", index=False)
     M = pd.concat(mixed, ignore_index=True); M.to_csv(RES / "mixed_effects_vs_pooled.csv", index=False)

@@ -1,0 +1,11 @@
+role,file,dataset,rows,studies,mode,fluid,has_CORE,has_EXTENDED,missing
+train,01_NRC_flow.csv,NRC,24443,60,flow,water,True,True,-
+train,02_Zhao2020_flow.csv,Zhao2020,1865,10,flow,water,True,True,-
+train,03_PinFin_pool.csv,PinFin,175,16,pool,Water,False,False,"G_kg_m2s, X, D_m, L_m"
+test,L1_NUREG_Lowdermilk.csv,NUREG_Lowdermilk,10,1,flow,water,True,True,-
+test,L2_KAERI_uniform.csv,KAERI_uniform,651,10,flow,water,True,True,-
+test,L3_KAERI_nonuniform.csv,KAERI_nonuniform,888,11,flow,water,True,True,-
+test,L4_Pioro2002_R134a.csv,Pioro2002_R134a,268,1,flow,R-134a,True,False,L_m
+test,L5_Hardik2016_helical.csv,Hardik2016_helical,156,1,flow,R-123,True,False,D_m
+test,L6_Helical_R123.csv,Helical_R123_appendix,257,2,flow,R-123,True,False,D_m
+test,L7_ATF_surface.csv,ATF_surface,88,11,pool,water,False,False,"G_kg_m2s, X, D_m, L_m"

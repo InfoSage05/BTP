@@ -1,0 +1,11 @@
+dataset,study,boiling_mode,fluid,D_m,L_m,P_kPa,G_kg_m2s,X,dHin_kJkg,Ra_um,CA_deg,orient_deg,CHF_kW_m2
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.396,100,77.5,0.84,317,,,,442.0
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.396,100,142.7,0.79,317,,,,757.0
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.396,100,203.9,0.7,317,,,,978.0
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.594,100,77.5,0.88,324,,,,300.0
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.594,100,135.9,0.81,324,,,,505.0
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.594,100,203.9,0.75,324,,,,694.0
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.594,100,258.2,0.71,331,,,,852.0
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.792,100,78.8,0.74,331,,,,196.0
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.792,100,135.9,0.76,331,,,,347.0
+NUREG_Lowdermilk,"Lowdermilk, 1958",flow,water,0.004,0.792,100,217.5,0.72,331,,,,536.0

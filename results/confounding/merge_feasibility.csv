@@ -1,0 +1,22 @@
+dataset_A,dataset_B,n_features_A,n_features_B,n_shared,shared
+ATF_surface,pin_fin,6,10,1,Ra_um
+ATF_surface,Zhao_flow,6,6,0,NONE
+ATF_surface,KAERI_flow,6,6,0,NONE
+ATF_surface,NRC_flow,6,7,1,P_kPa
+ATF_surface,NRC_flow_noX,6,6,1,P_kPa
+ATF_surface,pin_fin_noFluid,6,9,1,Ra_um
+pin_fin,Zhao_flow,10,6,0,NONE
+pin_fin,KAERI_flow,10,6,0,NONE
+pin_fin,NRC_flow,10,7,0,NONE
+pin_fin,NRC_flow_noX,10,6,0,NONE
+pin_fin,pin_fin_noFluid,10,9,9,"Coverage, Height(um), MBL, Lateral (um), MBL, Total (um), Porosity, Ra_um, Spacing(um), Subcooling(K), Width(um)"
+Zhao_flow,KAERI_flow,6,6,0,NONE
+Zhao_flow,NRC_flow,6,7,1,X
+Zhao_flow,NRC_flow_noX,6,6,0,NONE
+Zhao_flow,pin_fin_noFluid,6,9,0,NONE
+KAERI_flow,NRC_flow,6,7,0,NONE
+KAERI_flow,NRC_flow_noX,6,6,0,NONE
+KAERI_flow,pin_fin_noFluid,6,9,0,NONE
+NRC_flow,NRC_flow_noX,7,6,6,"D_m, G_kg_m2s, L_m, P_kPa, Tin_C, dHin_sub_kJkg"
+NRC_flow,pin_fin_noFluid,7,9,0,NONE
+NRC_flow_noX,pin_fin_noFluid,6,9,0,NONE

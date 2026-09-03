@@ -1,0 +1,4 @@
+subset,n,studies,pooled_r,within_r,reversal
+all rows,58,7,-0.29326564779514624,0.4392614518553512,True
+exclude sandblasted (Ra>10um),54,7,-0.6563501968058171,0.034261880754603444,True
+exclude Ra>5um,44,7,-0.6310632287848532,-0.10984713698809756,False
