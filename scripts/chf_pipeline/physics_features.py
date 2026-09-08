@@ -21,7 +21,12 @@ FLUID_NAME_MAP = {
     "water": "Water",
     "r123": "R123",
     "r134a": "R134a",
-    "fc72": None,  # not in CoolProp's default fluid list; handled separately
+    # FC-72 is chemically n-perfluorohexane (C6F14). CoolProp has it under the
+    # case-sensitive name "n-Perfluorohexane" (verified: Tcrit ~175 C,
+    # Pcrit ~1.74 MPa, matching published FC-72 critical properties). Do NOT
+    # substitute "Novec649" -- that also resolves in CoolProp but is a
+    # chemically different 3M fluid (a fluorinated ketone, not perfluorohexane).
+    "fc72": "n-Perfluorohexane",
 }
 
 

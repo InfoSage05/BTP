@@ -76,9 +76,29 @@ than full fine-tuning, not merely a cheaper approximation of it.
 ## Known limitations, stated plainly
 - Pool-boiling test set is n=11 -- every number above from that domain is
   from a very small sample; treat as directional.
-- MoE was evaluated with an admittedly undertrained gate (pool-only
-  training data); a fair MoE evaluation needs joint-regime training,
-  documented as follow-up work, not done here due to time scope.
+- MoE gate routing: FIXED. The original pool-only-trained gate was inverted
+  (P(pool_expert)|pool_row ~0.07-0.11); adding a direct auxiliary
+  cross-entropy loss against the true regime label (known exactly from
+  G_kg_m2s==0, not a hidden label) fixed routing to ~0.98-1.00 for both
+  architectures.
+- MoE pool-expert data-hunger: FIXED. Fixing the gate exposed a separate
+  problem -- the Transformer MoE's pool-expert sub-network (a fresh,
+  un-pretrained FTTransformer trained on only 36 rows) failed outright
+  (R2=-0.006). Root cause: both experts were built from-scratch inside the
+  MoE by omission, the one place this project's pretrain-then-finetune
+  pattern wasn't applied. Fix: both experts now initialize from the Stage 1
+  pretrained checkpoint, pool_expert fine-tuned at the same low LR every
+  other pretrained-then-finetuned model in this project uses. Result:
+  Transformer pool R2 -0.006 -> 0.742; MLP pool R2 also improved 0.712 ->
+  0.730 from the same fix. Both architectures now have correctly-routing,
+  correctly-performing MoE models on both regimes. Full detail in
+  `data/processed/pool_boiling/README.md`.
+- FC-72 CoolProp gap: FIXED. `physics_features.py`'s FLUID_NAME_MAP now maps
+  "fc72" to the verified correct CoolProp name "n-Perfluorohexane" (case-
+  sensitive; critical properties confirmed against published FC-72 values).
+  Note this does NOT reverse the pin-fin exclusion below -- that exclusion
+  was for a different, unrelated reason (no diameter concept for fin
+  geometry), not the missing fluid mapping.
 - pin-fin pool-boiling data remains entirely unused (excluded, not
   fabricated around) -- a real, still-open dataset for future work if a
   defensible diameter proxy or a genuinely separate pool-boiling schema

@@ -1,0 +1,7 @@
+arch,technique,test_set,n,R2,rRMSE,MAPE_%,within_10pct_%,RMSE_kW_m2,avg_pool_gate_on_pool_rows,avg_flow_gate_on_flow_rows
+mlp,moe_supervised_gate,pool_only_heldout,11,0.712472677230835,0.21863311529159546,19.633506774902344,18.181818181818183,583.370361328125,,
+mlp,moe_supervised_gate,flow_only_heldout,11,0.9208595752716064,0.21395231783390045,18.400808334350586,27.27272727272727,264.9716491699219,,
+mlp,moe_supervised_gate_check,both_heldout,22,,,,,,0.9989,0.9956
+transformer,moe_supervised_gate,pool_only_heldout,11,-0.0064849853515625,0.691711962223053,56.789588928222656,9.090909090909092,1091.461669921875,,
+transformer,moe_supervised_gate,flow_only_heldout,11,0.9034860730171204,0.1928386092185974,16.009225845336914,36.36363636363637,292.61407470703125,,
+transformer,moe_supervised_gate_check,both_heldout,22,,,,,,0.9993,0.9646
