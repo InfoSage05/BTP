@@ -11,7 +11,11 @@
 
 cd /scratch/$USER/BTP || { echo "Project not found at /scratch/$USER/BTP -- git clone it first"; exit 1; }
 
-module load python/3.10
-module load pytorch/2.x-cuda
+# apps/python-package/python/3.10.13 module is broken on this cluster (its
+# PATH entry doesn't exist on disk) -- use the conda env instead:
+# conda create -n chf_env python=3.10
+source /home/apps/anaconda3/etc/profile.d/conda.sh
+conda activate chf_env
+module load compiler/cuda/12.4
 
 python -u "$1"
