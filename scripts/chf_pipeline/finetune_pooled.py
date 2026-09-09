@@ -22,6 +22,7 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import SmallMLP, FTTransformer
 from data_prep import FEATURE_COLS, TARGET_COL
 from finetune_mlp import DOMAIN_LOADERS, to_tensor, evaluate, add_dimensionless_features, CKPT_DIR
@@ -122,8 +123,8 @@ def main():
     all_results = []
     for arch in ["mlp", "transformer"]:
         print(f"\n=== pooled fine-tune: {arch} ===", flush=True)
-        pretrained_state = torch.load(os.path.join(CKPT_DIR, f"{arch}_pretrained.pt"))
-        model = build_model(arch, len(FEATURE_COLS))
+        pretrained_state = torch.load(os.path.join(CKPT_DIR, f"{arch}_pretrained.pt"), map_location=DEVICE)
+        model = build_model(arch, len(FEATURE_COLS)).to(DEVICE)
         model.load_state_dict(pretrained_state)
         model = train(model, x_tr, y_tr, x_val, y_val, EPOCH_BUDGET[arch], LR[arch], f"pooled-{arch}")
 

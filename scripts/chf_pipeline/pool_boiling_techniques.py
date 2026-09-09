@@ -7,6 +7,7 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import SmallMLP, FTTransformer, LoRAMLP, LoRAFTTransformer, MoEModel
 from data_prep import FEATURE_COLS, TARGET_COL
 
@@ -33,7 +34,7 @@ def to_tensor(df, feat_scaler, target_mean, target_std):
     x = feat_scaler.transform(df[FEATURE_COLS].to_numpy(dtype=np.float32))
     y_log = np.log(df[TARGET_COL].to_numpy(dtype=np.float32))
     y_log = (y_log - target_mean) / target_std
-    return torch.tensor(x, dtype=torch.float32), torch.tensor(y_log, dtype=torch.float32)
+    return torch.tensor(x, dtype=torch.float32).to(DEVICE), torch.tensor(y_log, dtype=torch.float32).to(DEVICE)
 
 
 def evaluate(model, x, y_log, target_mean, target_std):
@@ -85,7 +86,7 @@ def train_loop(model, params, x_tr, y_tr, x_val, y_val, epochs, lr, label):
 
 
 def build_base(arch, n_features):
-    return SmallMLP(n_features) if arch == "mlp" else FTTransformer(n_features)
+    return (SmallMLP(n_features) if arch == "mlp" else FTTransformer(n_features)).to(DEVICE)
 
 
 def main():
@@ -117,7 +118,7 @@ def main():
     results = []
     for arch in ["mlp", "transformer"]:
         n_feat = len(FEATURE_COLS)
-        pretrained_state = torch.load(os.path.join(CKPT_DIR, arch + "_pretrained.pt"))
+        pretrained_state = torch.load(os.path.join(CKPT_DIR, arch + "_pretrained.pt"), map_location=DEVICE)
 
         print("\n=== " + arch + ": from_scratch ===", flush=True)
         m = build_base(arch, n_feat)
@@ -141,7 +142,7 @@ def main():
         print("\n=== " + arch + ": lora ===", flush=True)
         base = build_base(arch, n_feat)
         base.load_state_dict(pretrained_state)
-        lora_m = LoRAMLP(base, rank=4) if arch == "mlp" else LoRAFTTransformer(base, rank=4)
+        lora_m = (LoRAMLP(base, rank=4) if arch == "mlp" else LoRAFTTransformer(base, rank=4)).to(DEVICE)
         n_lora = sum(p.numel() for p in lora_m.lora_parameters())
         n_base = sum(p.numel() for p in base.parameters())
         print("    LoRA trainable params: " + str(n_lora) + " vs base: " + str(n_base), flush=True)
@@ -156,7 +157,7 @@ def main():
         flow_expert = build_base(arch, n_feat)
         flow_expert.load_state_dict(pretrained_state)
         pool_expert = build_base(arch, n_feat)
-        moe = MoEModel(flow_expert, pool_expert, n_feat)
+        moe = MoEModel(flow_expert, pool_expert, n_feat).to(DEVICE)
         trainable = [p for p in moe.parameters() if p.requires_grad]
         moe = train_loop(moe, trainable, x_tr, y_tr, x_val, y_val,
                           EPOCHS[arch], LR["moe"][arch], arch + "-moe")

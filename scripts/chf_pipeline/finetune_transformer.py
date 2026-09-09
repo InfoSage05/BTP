@@ -14,6 +14,7 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import FTTransformer
 from data_prep import FEATURE_COLS, TARGET_COL
 from finetune_mlp import (DOMAIN_LOADERS, to_tensor, evaluate, add_dimensionless_features,
@@ -76,7 +77,7 @@ def main():
         scaler_bundle = pickle.load(f)
     feat_scaler = scaler_bundle["feat_scaler"]
     target_mean, target_std = scaler_bundle["target_mean"], scaler_bundle["target_std"]
-    pretrained_state = torch.load(os.path.join(CKPT_DIR, "transformer_pretrained.pt"))
+    pretrained_state = torch.load(os.path.join(CKPT_DIR, "transformer_pretrained.pt"), map_location=DEVICE)
 
     results = []
     for domain_name, loader in DOMAIN_LOADERS.items():
@@ -100,7 +101,7 @@ def main():
         print(f"\n=== {domain_name} (fluid={fluid}) ===", flush=True)
         print(f"  rows: total={n_before} train={len(train_df)} val={len(val_df)} test={len(test_df)}", flush=True)
 
-        finetuned = FTTransformer(len(FEATURE_COLS))
+        finetuned = FTTransformer(len(FEATURE_COLS)).to(DEVICE)
         finetuned.load_state_dict(pretrained_state)
         finetuned = train(finetuned, x_tr, y_tr, x_val, y_val, FINETUNE_EPOCHS, LR_FINETUNE,
                            f"{domain_name}-finetuned")
@@ -108,7 +109,7 @@ def main():
         m_finetuned.update({"domain": domain_name, "fluid": fluid, "model": "pretrained_finetuned"})
         print(f"  pretrained+finetuned: {m_finetuned}", flush=True)
 
-        scratch = FTTransformer(len(FEATURE_COLS))
+        scratch = FTTransformer(len(FEATURE_COLS)).to(DEVICE)
         scratch = train(scratch, x_tr, y_tr, x_val, y_val, SCRATCH_EPOCHS, LR_SCRATCH,
                          f"{domain_name}-scratch")
         m_scratch = evaluate(scratch, x_test, y_test, target_mean, target_std)

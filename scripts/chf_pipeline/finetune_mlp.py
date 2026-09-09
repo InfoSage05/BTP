@@ -48,6 +48,7 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import SmallMLP
 from physics_features import add_dimensionless_features
 from data_prep import FEATURE_COLS, TARGET_COL
@@ -129,7 +130,7 @@ def to_tensor(df, feat_scaler, target_mean, target_std):
     x = feat_scaler.transform(df[FEATURE_COLS].to_numpy(dtype=np.float32))
     y_log = np.log(df[TARGET_COL].to_numpy(dtype=np.float32))
     y_log = (y_log - target_mean) / target_std
-    return torch.tensor(x, dtype=torch.float32), torch.tensor(y_log, dtype=torch.float32)
+    return torch.tensor(x, dtype=torch.float32).to(DEVICE), torch.tensor(y_log, dtype=torch.float32).to(DEVICE)
 
 
 def evaluate(model, x, y_log, target_mean, target_std):
@@ -187,7 +188,7 @@ def main():
         scaler_bundle = pickle.load(f)
     feat_scaler = scaler_bundle["feat_scaler"]
     target_mean, target_std = scaler_bundle["target_mean"], scaler_bundle["target_std"]
-    pretrained_state = torch.load(os.path.join(CKPT_DIR, "mlp_pretrained.pt"))
+    pretrained_state = torch.load(os.path.join(CKPT_DIR, "mlp_pretrained.pt"), map_location=DEVICE)
 
     results = []
     for domain_name, loader in DOMAIN_LOADERS.items():
@@ -213,7 +214,7 @@ def main():
         print(f"  rows: total={n_before} dropped(prop-lookup)={n_dropped} "
               f"train={len(train_df)} val={len(val_df)} test={len(test_df)}", flush=True)
 
-        finetuned = SmallMLP(len(FEATURE_COLS))
+        finetuned = SmallMLP(len(FEATURE_COLS)).to(DEVICE)
         finetuned.load_state_dict(pretrained_state)
         finetuned = train(finetuned, x_tr, y_tr, x_val, y_val, FINETUNE_EPOCHS, LR_FINETUNE,
                            f"{domain_name}-finetuned")
@@ -221,7 +222,7 @@ def main():
         m_finetuned.update({"domain": domain_name, "fluid": fluid, "model": "pretrained_finetuned"})
         print(f"  pretrained+finetuned: {m_finetuned}", flush=True)
 
-        scratch = SmallMLP(len(FEATURE_COLS))
+        scratch = SmallMLP(len(FEATURE_COLS)).to(DEVICE)
         scratch = train(scratch, x_tr, y_tr, x_val, y_val, SCRATCH_EPOCHS, LR_SCRATCH,
                          f"{domain_name}-scratch")
         m_scratch = evaluate(scratch, x_test, y_test, target_mean, target_std)

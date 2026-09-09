@@ -18,6 +18,7 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import MoEModel
 from data_prep import FEATURE_COLS
 from pool_boiling_techniques import to_tensor, evaluate, build_base, Standardizer
@@ -124,7 +125,7 @@ def main():
     results = []
     for arch in ["mlp", "transformer"]:
         n_feat = len(FEATURE_COLS)
-        pretrained_state = torch.load(os.path.join(CKPT_DIR, arch + "_pretrained.pt"))
+        pretrained_state = torch.load(os.path.join(CKPT_DIR, arch + "_pretrained.pt"), map_location=DEVICE)
 
         print("\n=== " + arch + ": moe (joint-regime + supervised gate) ===", flush=True)
         flow_expert = build_base(arch, n_feat)
@@ -137,7 +138,7 @@ def main():
         # omitted, not a considered choice to skip it.
         pool_expert = build_base(arch, n_feat)
         pool_expert.load_state_dict(pretrained_state)
-        moe = MoEModel(flow_expert, pool_expert, n_feat)
+        moe = MoEModel(flow_expert, pool_expert, n_feat).to(DEVICE)
         moe = train_moe_supervised(moe, x_tr, y_tr, regime_tr, x_val, y_val, regime_val,
                                     EPOCHS[arch], LR[arch], POOL_EXPERT_FT_LR[arch],
                                     arch + "-moe-supervised")

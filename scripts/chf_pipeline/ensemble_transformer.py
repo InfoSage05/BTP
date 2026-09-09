@@ -17,6 +17,7 @@ import pandas as pd
 import torch
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import FTTransformer
 from data_prep import FEATURE_COLS
 from finetune_mlp import DOMAIN_LOADERS, to_tensor, add_dimensionless_features, CKPT_DIR
@@ -46,7 +47,7 @@ def run_context(name, train_df, val_df, test_df, feat_scaler, target_mean, targe
     models = []
     for seed in range(N_MEMBERS):
         torch.manual_seed(2000 + seed)
-        model = FTTransformer(len(FEATURE_COLS))
+        model = FTTransformer(len(FEATURE_COLS)).to(DEVICE)
         model.load_state_dict(pretrained_state)
         model = train(model, x_tr, y_tr, x_val, y_val, FINETUNE_EPOCHS, LR_FINETUNE,
                        f"{name}-member{seed}")
@@ -73,7 +74,7 @@ def main():
         scaler_bundle = pickle.load(f)
     feat_scaler = scaler_bundle["feat_scaler"]
     target_mean, target_std = scaler_bundle["target_mean"], scaler_bundle["target_std"]
-    pretrained_state = torch.load(os.path.join(CKPT_DIR, "transformer_pretrained.pt"))
+    pretrained_state = torch.load(os.path.join(CKPT_DIR, "transformer_pretrained.pt"), map_location=DEVICE)
 
     results = []
 

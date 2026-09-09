@@ -21,6 +21,7 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import SmallMLP, FTTransformer
 from data_prep import FEATURE_COLS, TARGET_COL, OUT_DIR
 
@@ -49,7 +50,7 @@ def to_tensor(df, feat_scaler, target_mean, target_std):
     x = feat_scaler.transform(df[FEATURE_COLS].to_numpy(dtype=np.float32))
     y_log = np.log(df[TARGET_COL].to_numpy(dtype=np.float32))
     y_log = (y_log - target_mean) / target_std
-    return torch.tensor(x, dtype=torch.float32), torch.tensor(y_log, dtype=torch.float32)
+    return torch.tensor(x, dtype=torch.float32).to(DEVICE), torch.tensor(y_log, dtype=torch.float32).to(DEVICE)
 
 
 def build_model(arch, n_features):
@@ -61,7 +62,7 @@ def build_model(arch, n_features):
 
 
 def pretrain_one(arch, x_synth, y_synth, x_val, y_val, n_features):
-    model = build_model(arch, n_features)
+    model = build_model(arch, n_features).to(DEVICE)
     optimizer = torch.optim.Adam(model.parameters(), lr=2e-3)
     mse = nn.MSELoss()
     best_val, best_state, bad_epochs = float("inf"), None, 0

@@ -25,6 +25,7 @@ import torch
 import torch.nn as nn
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import SmallMLP, FTTransformer
 from data_prep import FEATURE_COLS, TARGET_COL, OUT_DIR
 
@@ -53,7 +54,7 @@ def to_tensor(df, feat_scaler, target_mean=None, target_std=None):
     y_log = np.log(df[TARGET_COL].to_numpy(dtype=np.float32))
     if target_mean is not None:
         y_log = (y_log - target_mean) / target_std
-    return torch.tensor(x, dtype=torch.float32), torch.tensor(y_log, dtype=torch.float32)
+    return torch.tensor(x, dtype=torch.float32).to(DEVICE), torch.tensor(y_log, dtype=torch.float32).to(DEVICE)
 
 
 def monotonicity_penalty(model, x_batch, x_idx_of_X):
@@ -157,7 +158,7 @@ def main():
         for arch in ["mlp", "transformer"]:
             t0 = time.time()
             print(f"\n=== {arch} | {split_name} split ===")
-            model = build_model(arch, len(FEATURE_COLS))
+            model = build_model(arch, len(FEATURE_COLS)).to(DEVICE)
 
             print(f"  pretraining on {len(x_synth)} synthetic rows...")
             model = train_with_early_stopping(

@@ -25,6 +25,7 @@ import pandas as pd
 import torch
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import SmallMLP, FTTransformer, MoEModel
 from data_prep import FEATURE_COLS, TARGET_COL
 from pool_boiling_techniques import to_tensor, evaluate, train_loop, build_base, Standardizer
@@ -80,13 +81,13 @@ def main():
     results = []
     for arch in ["mlp", "transformer"]:
         n_feat = len(FEATURE_COLS)
-        pretrained_state = torch.load(os.path.join(CKPT_DIR, f"{arch}_pretrained.pt"))
+        pretrained_state = torch.load(os.path.join(CKPT_DIR, f"{arch}_pretrained.pt"), map_location=DEVICE)
 
         print(f"\n=== {arch}: moe (JOINT-regime gate training) ===", flush=True)
         flow_expert = build_base(arch, n_feat)
         flow_expert.load_state_dict(pretrained_state)
         pool_expert = build_base(arch, n_feat)
-        moe = MoEModel(flow_expert, pool_expert, n_feat)
+        moe = MoEModel(flow_expert, pool_expert, n_feat).to(DEVICE)
         trainable = [p for p in moe.parameters() if p.requires_grad]
         moe = train_loop(moe, trainable, x_tr, y_tr, x_val, y_val,
                           EPOCHS[arch], LR[arch], f"{arch}-moe-joint")

@@ -6,6 +6,7 @@ import pandas as pd
 import torch
 
 sys.path.insert(0, "scripts/chf_pipeline")
+from device_utils import DEVICE
 from models import SmallMLP, FTTransformer
 from data_prep import FEATURE_COLS
 from pool_boiling_techniques import to_tensor, evaluate, train_loop, CKPT_DIR, POOL_DATA, TEST_FRAC, EPOCHS
@@ -71,12 +72,12 @@ def main():
     results = []
     for arch in ["mlp", "transformer"]:
         n_feat = len(FEATURE_COLS)
-        pretrained_state = torch.load(os.path.join(CKPT_DIR, arch + "_pretrained.pt"))
+        pretrained_state = torch.load(os.path.join(CKPT_DIR, arch + "_pretrained.pt"), map_location=DEVICE)
         single_r2 = []
         members = []
         for seed in range(N_MEMBERS):
             torch.manual_seed(3000 + seed)
-            m = SmallMLP(n_feat) if arch == "mlp" else FTTransformer(n_feat)
+            m = (SmallMLP(n_feat) if arch == "mlp" else FTTransformer(n_feat)).to(DEVICE)
             m.load_state_dict(pretrained_state)
             lr = 1e-4 if arch == "mlp" else 5e-5
             m = train_loop(m, list(m.parameters()), x_tr, y_tr, x_val, y_val,
