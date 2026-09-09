@@ -1,0 +1,24 @@
+arm                      ROUTER_v1_dimensionless  ROUTER_v2_identity  global_model_no_routing  oracle_upper_bound  pure_physics_Katto
+held_out                                                                                                                             
+D1_NRC                                    0.7358              0.4972                   0.4711              0.9528              0.9261
+D2_Zhao2020                               0.2318              0.7032                   0.7009              0.8037             -0.4368
+D3_KAERI_uniform                          0.7239              0.7220                   0.7420              0.9133              0.6200
+D4_KAERI_nonuniform                       0.7352              0.3688                   0.3017              0.8736              0.7970
+D5_Helical_R123                          -7.5432           -155.7109                -155.7109              0.1026              0.0510
+D6_Hardik_helical_water                  -0.0329             -2.1972                  -2.1982              0.4322             -0.1613
+D7_Hardik_straight_R123                  -4.6750            -29.8087                 -29.8087              0.8578              0.6362
+D8_Pioro_R134a                          -42.4645             -0.0974               -1276.4378             -0.0974             -0.0974
+
+arm                      ROUTER_v1_dimensionless  ROUTER_v2_identity  global_model_no_routing  oracle_upper_bound  pure_physics_Katto
+held_out                                                                                                                             
+D1_NRC                                    0.2588              0.1975                   0.1795              0.6050              0.5199
+D2_Zhao2020                               0.1684              0.3319                   0.3571              0.3882              0.0316
+D3_KAERI_uniform                          0.4378              0.3948                   0.3948              0.6697              0.5330
+D4_KAERI_nonuniform                       0.0090              0.0079                   0.0068              0.4336              0.4268
+D5_Helical_R123                           0.0350              0.0156                   0.0156              0.1167              0.1012
+D6_Hardik_helical_water                   0.0962              0.0705                   0.0705              0.4423              0.3846
+D7_Hardik_straight_R123                   0.1818              0.2000                   0.2000              0.3636              0.2000
+D8_Pioro_R134a                            0.0000              0.1119                   0.0000              0.1119              0.1119
+
+router beats global on 5/8; beats physics on 2/8
+VERDICT: FAIL -- routing did not earn its complexity

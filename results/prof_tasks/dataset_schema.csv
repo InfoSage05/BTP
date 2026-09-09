@@ -1,0 +1,11 @@
+dataset,rows,fluid,geometry,n_groups,local_features,inlet_features,inlet_form,banned,CHF_min,CHF_max,note
+D1_NRC,24443,water,vertical_tube,60,6,7,yes,-,50.0,16339.3,X is back-computed from CHF via the energy balance; see Exhibit A.
+D2_Zhao2020,1865,water,tube_annulus_plate,10,8,0,NOT POSSIBLE,-,800.0,19300.0,"No inlet enthalpy reported, so the inlet form cannot be built."
+D3_KAERI_uniform,651,water,tube,10,7,7,yes,Power;Perimeter;Area;MassFlow;InletEnthalpy,81.8,17200.0,
+D4_KAERI_nonuniform,888,water,tube,11,10,10,yes,Power;Perimeter;Area;MassFlow;InletEnthalpy;CHFLocation;QualityPosition,143.2,28800.0,
+D5_Helical_R123,257,R-123,helical_coil,2,6,0,NOT POSSIBLE,Q_watt,37.7,419.8,Tube diameter per coil is not published for this paper; Coil kept categorical.
+D6_Hardik_helical_water,156,water,helical_coil,6,6,0,NOT POSSIBLE,Q_W;CHF_ratio,286.0,2984.0,"CHF_ratio is CHF normalised by the 2006 LUT, i.e. a function of the target."
+D7_Hardik_straight_R123,55,R-123,horizontal_tube,0,6,6,yes,-,74.5,337.3,55 rows: an 80/20 test set is 11 rows. Indicative only.
+D8_Pioro_R134a,268,R-134a,horiz_and_vert_tube,9,4,0,NOT POSSIBLE,-,8.0,430.0,"Eye-digitised, +/-5-10%. Constant D=6.92mm dropped (no variance)."
+D9_LUT2006,11088,water,normalised_8mm_tube,0,3,0,NOT POSSIBLE,-,15.0,44338.0,"Smoothed table, not raw measurement. 504 zero rows at X=1.0 removed."
+M_merged_flow,28583,mixed,mixed,8,8,0,NOT POSSIBLE,-,8.0,28800.0,Common schema across all eight flow sources; grouping is leave-one-dataset-out.

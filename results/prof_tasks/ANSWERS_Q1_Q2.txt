@@ -1,0 +1,271 @@
+====================================================================================================
+FLOW-BOILING MODEL COMPARISON  --  results by formulation and split
+====================================================================================================
+
+result rows: 961   datasets: 10   models: 22
+datasets present: D1_NRC, D2_Zhao2020, D3_KAERI_uniform, D4_KAERI_nonuniform, D5_Helical_R123, D6_Hardik_helical_water, D7_Hardik_straight_R123, D8_Pioro_R134a, D9_LUT2006, M_merged_flow
+
+
+----------------------------------------------------------------------------------------------------
+THE FORMULATION GAP  (mean of best-model R2 over datasets)
+----------------------------------------------------------------------------------------------------
+split    form  datasets  mean_best_R2  mean_best_within10
+80/20   local        10         0.973               0.863
+80/20   inlet         4         0.961               0.865
+80/20 reduced        10         0.743               0.508
+70/30   local        10         0.973               0.853
+70/30   inlet         4         0.961               0.831
+70/30 reduced        10         0.741               0.489
+ LOSO   local         8        -1.144               0.333
+ LOSO   inlet         3        -2.732               0.389
+ LOSO reduced         8        -3.115               0.273
+
+
+----------------------------------------------------------------------------------------------------
+Q1  BEST MODEL PER DATASET   form=reduced   split=80/20
+----------------------------------------------------------------------------------------------------
+                dataset     n  fluid            geometry        model  R2_mean  R2_sd  within_10pct_mean  within_20pct_mean  MAPE_pct_mean  n_test_mean
+        D5_Helical_R123   257  R-123        helical_coil     CatBoost    0.963  0.010              0.799              0.938          6.995       52.000
+D6_Hardik_helical_water   156  water        helical_coil   ExtraTrees    0.955  0.018              0.867              0.939          6.535       32.000
+D7_Hardik_straight_R123    55  R-123     horizontal_tube   GPR_Matern    0.943  0.041              0.845              0.968          5.946       11.000
+    D4_KAERI_nonuniform   888  water                tube RandomForest    0.928  0.060              0.565              0.794         17.883      178.000
+                 D1_NRC 24443  water       vertical_tube RandomForest    0.925  0.001              0.469              0.703         16.528     4889.000
+          M_merged_flow 28583  mixed               mixed RandomForest    0.918  0.005              0.472              0.707         17.209     5717.000
+       D3_KAERI_uniform   651  water                tube   ExtraTrees    0.812  0.111              0.439              0.707         26.627      131.000
+            D2_Zhao2020  1865  water  tube_annulus_plate       HistGB    0.715  0.036              0.400              0.655         18.913      373.000
+         D8_Pioro_R134a   268 R-134a horiz_and_vert_tube   GPR_Matern    0.271  0.097              0.137              0.281         68.237       54.000
+             D9_LUT2006 11088  water normalised_8mm_tube      SVR_RBF   -0.003  0.016              0.090              0.172        365.171     2218.000
+
+
+----------------------------------------------------------------------------------------------------
+Q1  BEST MODEL PER DATASET   form=local   split=80/20
+----------------------------------------------------------------------------------------------------
+                dataset     n  fluid            geometry      model  R2_mean  R2_sd  within_10pct_mean  within_20pct_mean  MAPE_pct_mean  n_test_mean
+             D9_LUT2006 11088  water normalised_8mm_tube ExtraTrees    0.999  0.000              0.927              0.981          3.291     2218.000
+        D5_Helical_R123   257  R-123        helical_coil GPR_Matern    0.998  0.001              0.987              0.997          1.562       52.000
+                 D1_NRC 24443  water       vertical_tube ExtraTrees    0.987  0.001              0.781              0.924          6.987     4889.000
+D7_Hardik_straight_R123    55  R-123     horizontal_tube GPR_Matern    0.986  0.009              0.964              1.000          3.085       11.000
+    D4_KAERI_nonuniform   888  water                tube GPR_Matern    0.983  0.024              0.920              0.989          3.886      178.000
+          M_merged_flow 28583  mixed               mixed ExtraTrees    0.982  0.002              0.783              0.921          7.232     5717.000
+D6_Hardik_helical_water   156  water        helical_coil GPR_Matern    0.975  0.016              0.939              0.956          4.341       32.000
+       D3_KAERI_uniform   651  water                tube GPR_Matern    0.964  0.027              0.823              0.960          6.319      131.000
+         D8_Pioro_R134a   268 R-134a horiz_and_vert_tube    SVR_RBF    0.937  0.025              0.728              0.841         16.244       54.000
+            D2_Zhao2020  1865  water  tube_annulus_plate GPR_Matern    0.923  0.016              0.777              0.932          7.177      373.000
+
+
+----------------------------------------------------------------------------------------------------
+Q1  BEST MODEL PER DATASET   form=inlet   split=80/20
+----------------------------------------------------------------------------------------------------
+                dataset     n fluid        geometry      model  R2_mean  R2_sd  within_10pct_mean  within_20pct_mean  MAPE_pct_mean  n_test_mean
+                 D1_NRC 24443 water   vertical_tube ExtraTrees    0.995  0.001              0.971              0.996          2.555     4889.000
+    D4_KAERI_nonuniform   888 water            tube ExtraTrees    0.968  0.019              0.850              0.946          9.037      178.000
+       D3_KAERI_uniform   651 water            tube ExtraTrees    0.944  0.034              0.840              0.920         15.845      131.000
+D7_Hardik_straight_R123    55 R-123 horizontal_tube GPR_Matern    0.936  0.039              0.800              0.959          6.689       11.000
+
+
+----------------------------------------------------------------------------------------------------
+Q1  BEST MODEL PER DATASET   form=reduced   split=70/30
+----------------------------------------------------------------------------------------------------
+                dataset     n  fluid            geometry        model  R2_mean  R2_sd  within_10pct_mean  within_20pct_mean  MAPE_pct_mean  n_test_mean
+        D5_Helical_R123   257  R-123        helical_coil     CatBoost    0.958  0.011              0.771              0.931          7.669       78.000
+D6_Hardik_helical_water   156  water        helical_coil   GPR_Matern    0.956  0.019              0.890              0.960          6.505       47.000
+D7_Hardik_straight_R123    55  R-123     horizontal_tube   GPR_Matern    0.948  0.027              0.815              0.947          6.357       17.000
+    D4_KAERI_nonuniform   888  water                tube RandomForest    0.939  0.052              0.542              0.787         17.662      267.000
+                 D1_NRC 24443  water       vertical_tube      XGBoost    0.921  0.004              0.420              0.683         17.349     7333.000
+          M_merged_flow 28583  mixed               mixed RandomForest    0.916  0.005              0.466              0.703         17.399     8575.000
+       D3_KAERI_uniform   651  water                tube     CatBoost    0.827  0.070              0.399              0.701         25.802      196.000
+            D2_Zhao2020  1865  water  tube_annulus_plate     CatBoost    0.705  0.028              0.363              0.630         19.631      560.000
+         D8_Pioro_R134a   268 R-134a horiz_and_vert_tube       Linear    0.242  0.085              0.137              0.271         64.611       81.000
+             D9_LUT2006 11088  water normalised_8mm_tube      SVR_RBF   -0.003  0.010              0.090              0.174        362.418     3327.000
+
+
+----------------------------------------------------------------------------------------------------
+Q1  BEST MODEL PER DATASET   form=local   split=70/30
+----------------------------------------------------------------------------------------------------
+                dataset     n  fluid            geometry      model  R2_mean  R2_sd  within_10pct_mean  within_20pct_mean  MAPE_pct_mean  n_test_mean
+             D9_LUT2006 11088  water normalised_8mm_tube ExtraTrees    0.999  0.000              0.912              0.974          3.716     3327.000
+        D5_Helical_R123   257  R-123        helical_coil GPR_Matern    0.997  0.001              0.979              0.995          1.812       78.000
+                 D1_NRC 24443  water       vertical_tube ExtraTrees    0.985  0.002              0.772              0.921          7.257     7333.000
+D7_Hardik_straight_R123    55  R-123     horizontal_tube GPR_Matern    0.984  0.009              0.950              1.000          3.529       17.000
+          M_merged_flow 28583  mixed               mixed ExtraTrees    0.981  0.002              0.766              0.918          7.498     8575.000
+    D4_KAERI_nonuniform   888  water                tube GPR_Matern    0.981  0.019              0.917              0.985          3.957      267.000
+D6_Hardik_helical_water   156  water        helical_coil GPR_Matern    0.974  0.018              0.935              0.964          4.989       47.000
+       D3_KAERI_uniform   651  water                tube GPR_Matern    0.970  0.017              0.811              0.961          6.405      196.000
+         D8_Pioro_R134a   268 R-134a horiz_and_vert_tube    SVR_RBF    0.941  0.018              0.719              0.838         15.287       81.000
+            D2_Zhao2020  1865  water  tube_annulus_plate GPR_Matern    0.920  0.015              0.770              0.931          7.370      560.000
+
+
+----------------------------------------------------------------------------------------------------
+Q1  BEST MODEL PER DATASET   form=inlet   split=70/30
+----------------------------------------------------------------------------------------------------
+                dataset     n fluid        geometry        model  R2_mean  R2_sd  within_10pct_mean  within_20pct_mean  MAPE_pct_mean  n_test_mean
+                 D1_NRC 24443 water   vertical_tube   ExtraTrees    0.994  0.001              0.967              0.995          2.719     7333.000
+    D4_KAERI_nonuniform   888 water            tube RandomForest    0.969  0.015              0.780              0.932         10.385      267.000
+       D3_KAERI_uniform   651 water            tube   ExtraTrees    0.943  0.028              0.820              0.915         16.226      196.000
+D7_Hardik_straight_R123    55 R-123 horizontal_tube   GPR_Matern    0.936  0.035              0.759              0.947          7.289       17.000
+
+
+----------------------------------------------------------------------------------------------------
+Q1  BEST MODEL PER DATASET   form=reduced   split=LOSO
+----------------------------------------------------------------------------------------------------
+                dataset     n  fluid            geometry        model  R2_mean  R2_sd  within_10pct_mean  within_20pct_mean  MAPE_pct_mean  n_test_mean
+D6_Hardik_helical_water   156  water        helical_coil       Linear    0.860  0.149              0.670              0.949          7.907       26.000
+                 D1_NRC 24443  water       vertical_tube      XGBoost    0.822  0.104              0.327              0.597         23.064     2444.300
+        D5_Helical_R123   257  R-123        helical_coil     CatBoost    0.604  0.192              0.273              0.563         21.444      128.500
+            D2_Zhao2020  1865  water  tube_annulus_plate   GPR_Matern    0.108  0.262              0.227              0.474         28.845      186.500
+         D8_Pioro_R134a   268 R-134a horiz_and_vert_tube       Linear    0.076  0.209              0.126              0.266         69.065       29.778
+          M_merged_flow 28583  mixed               mixed RandomForest   -2.271  5.707              0.238              0.411        100.210     3572.875
+    D4_KAERI_nonuniform   888  water                tube   GPR_Matern   -2.762  2.757              0.102              0.206         85.333       88.800
+       D3_KAERI_uniform   651  water                tube      SVR_RBF  -22.357 32.703              0.222              0.277        123.484       65.100
+
+
+----------------------------------------------------------------------------------------------------
+Q1  BEST MODEL PER DATASET   form=local   split=LOSO
+----------------------------------------------------------------------------------------------------
+                dataset     n  fluid            geometry        model  R2_mean  R2_sd  within_10pct_mean  within_20pct_mean  MAPE_pct_mean  n_test_mean
+                 D1_NRC 24443  water       vertical_tube      XGBoost    0.937  0.028              0.507              0.780         14.989     2444.300
+D6_Hardik_helical_water   156  water        helical_coil       Linear    0.860  0.133              0.717              0.962          8.237       26.000
+         D8_Pioro_R134a   268 R-134a horiz_and_vert_tube RandomForest    0.838  0.131              0.394              0.644         24.349       29.778
+        D5_Helical_R123   257  R-123        helical_coil     CatBoost    0.556  0.174              0.248              0.520         22.664      128.500
+            D2_Zhao2020  1865  water  tube_annulus_plate     CatBoost    0.323  0.512              0.345              0.558         23.911      186.500
+    D4_KAERI_nonuniform   888  water                tube   GPR_Matern   -0.589  2.301              0.265              0.472         45.504       88.800
+       D3_KAERI_uniform   651  water                tube       Linear   -5.749  6.212              0.107              0.207         58.465       65.100
+          M_merged_flow 28583  mixed               mixed       Linear   -6.326 15.784              0.082              0.137        131.163     3572.875
+
+
+----------------------------------------------------------------------------------------------------
+Q1  BEST MODEL PER DATASET   form=inlet   split=LOSO
+----------------------------------------------------------------------------------------------------
+            dataset     n fluid      geometry    model  R2_mean  R2_sd  within_10pct_mean  within_20pct_mean  MAPE_pct_mean  n_test_mean
+             D1_NRC 24443 water vertical_tube CatBoost    0.967  0.011              0.757              0.920          9.769     2444.300
+D4_KAERI_nonuniform   888 water          tube CatBoost   -1.274  2.649              0.195              0.374         53.079       88.800
+   D3_KAERI_uniform   651 water          tube   Linear   -7.890 11.702              0.217              0.448         70.677       65.100
+
+
+----------------------------------------------------------------------------------------------------
+Q2  MOST CONSISTENT MODEL ACROSS DATASETS   form=reduced   split=80/20
+   (ranked by mean rank; min_R2 is the worst dataset it faces)
+   D9_LUT2006 excluded here: its reduced form is (P, G) with no quality, an ill-posed problem where every model scores ~0.
+----------------------------------------------------------------------------------------------------
+       model  datasets  mean_rank  median_R2  mean_R2_floored  min_R2  mean_within10           worst_dataset
+    CatBoost         9      4.222      0.897            0.809   0.233          0.512          D8_Pioro_R134a
+  ExtraTrees         9      4.222      0.912            0.808   0.233          0.549          D8_Pioro_R134a
+     XGBoost         9      4.222      0.916            0.809   0.232          0.519          D8_Pioro_R134a
+RandomForest         9      4.444      0.918            0.808   0.232          0.514          D8_Pioro_R134a
+     SVR_RBF         9      5.667      0.875            0.793   0.253          0.493          D8_Pioro_R134a
+    LightGBM         9      5.778      0.906            0.780   0.244          0.445          D8_Pioro_R134a
+      HistGB         9      6.556      0.893            0.773   0.246          0.438          D8_Pioro_R134a
+      kNN_k5         9      8.222      0.879            0.740   0.201          0.417          D8_Pioro_R134a
+ Poly2_Ridge         9      8.333      0.710            0.670   0.235          0.391        D3_KAERI_uniform
+      Linear         9      9.667      0.532            0.582   0.129          0.334        D3_KAERI_uniform
+         MLP         9     10.111      0.572            0.041 -48.340          0.313 D6_Hardik_helical_water
+
+
+----------------------------------------------------------------------------------------------------
+Q2  MOST CONSISTENT MODEL ACROSS DATASETS   form=local   split=80/20
+   (ranked by mean rank; min_R2 is the worst dataset it faces)
+----------------------------------------------------------------------------------------------------
+       model  datasets  mean_rank  median_R2  mean_R2_floored  min_R2  mean_within10           worst_dataset
+  ExtraTrees        10      2.800      0.954            0.956   0.910          0.779          D8_Pioro_R134a
+     XGBoost        10      4.700      0.952            0.949   0.905          0.691          D8_Pioro_R134a
+     SVR_RBF        10      4.800      0.952            0.956   0.921          0.766             D2_Zhao2020
+    CatBoost        10      5.000      0.956            0.952   0.904          0.724 D7_Hardik_straight_R123
+RandomForest        10      5.000      0.933            0.940   0.874          0.702 D7_Hardik_straight_R123
+    LightGBM        10      6.700      0.926            0.912   0.671          0.667 D7_Hardik_straight_R123
+      HistGB        10      7.500      0.922            0.903   0.694          0.630 D7_Hardik_straight_R123
+ Poly2_Ridge        10      7.600      0.871            0.855   0.521          0.549     D4_KAERI_nonuniform
+      kNN_k5        10      8.700      0.886            0.885   0.707          0.588        D3_KAERI_uniform
+         MLP        10     10.200      0.867            0.283 -45.318          0.521 D6_Hardik_helical_water
+      Linear        10     10.800      0.821            0.808   0.591          0.383        D3_KAERI_uniform
+
+
+----------------------------------------------------------------------------------------------------
+Q2  MOST CONSISTENT MODEL ACROSS DATASETS   form=reduced   split=70/30
+   (ranked by mean rank; min_R2 is the worst dataset it faces)
+   D9_LUT2006 excluded here: its reduced form is (P, G) with no quality, an ill-posed problem where every model scores ~0.
+----------------------------------------------------------------------------------------------------
+       model  datasets  mean_rank  median_R2  mean_R2_floored  min_R2  mean_within10           worst_dataset
+    CatBoost         9      3.556      0.896            0.809   0.207          0.507          D8_Pioro_R134a
+  ExtraTrees         9      4.333      0.917            0.805   0.207          0.537          D8_Pioro_R134a
+     XGBoost         9      4.333      0.913            0.803   0.206          0.501          D8_Pioro_R134a
+RandomForest         9      5.111      0.916            0.799   0.207          0.495          D8_Pioro_R134a
+     SVR_RBF         9      5.556      0.874            0.788   0.219          0.484          D8_Pioro_R134a
+    LightGBM         9      5.667      0.907            0.671  -0.241          0.407 D7_Hardik_straight_R123
+      HistGB         9      6.889      0.894            0.660  -0.241          0.394 D7_Hardik_straight_R123
+ Poly2_Ridge         9      8.111      0.697            0.653   0.224          0.389          D8_Pioro_R134a
+      kNN_k5         9      8.556      0.869            0.727   0.158          0.411          D8_Pioro_R134a
+      Linear         9      9.444      0.529            0.586   0.140          0.331        D3_KAERI_uniform
+         MLP         9     10.333      0.256            0.015 -35.712          0.300 D6_Hardik_helical_water
+
+
+----------------------------------------------------------------------------------------------------
+Q2  MOST CONSISTENT MODEL ACROSS DATASETS   form=local   split=70/30
+   (ranked by mean rank; min_R2 is the worst dataset it faces)
+----------------------------------------------------------------------------------------------------
+       model  datasets  mean_rank  median_R2  mean_R2_floored   min_R2  mean_within10           worst_dataset
+  ExtraTrees        10      2.800      0.956            0.955    0.914          0.767             D2_Zhao2020
+    CatBoost        10      4.400      0.957            0.950    0.888          0.711 D7_Hardik_straight_R123
+     SVR_RBF        10      4.700      0.954            0.952    0.914          0.758             D2_Zhao2020
+RandomForest        10      5.000      0.928            0.936    0.849          0.683 D7_Hardik_straight_R123
+     XGBoost        10      5.400      0.947            0.944    0.884          0.673 D7_Hardik_straight_R123
+    LightGBM        10      6.600      0.919            0.818   -0.241          0.627 D7_Hardik_straight_R123
+ Poly2_Ridge        10      7.500      0.874            0.809    0.048          0.549     D4_KAERI_nonuniform
+      HistGB        10      7.700      0.913            0.804   -0.241          0.594 D7_Hardik_straight_R123
+      kNN_k5        10      8.700      0.877            0.874    0.686          0.562        D3_KAERI_uniform
+      Linear        10     10.400      0.827            0.814    0.630          0.390        D3_KAERI_uniform
+         MLP        10     10.600      0.344            0.052 -208.915          0.487        D3_KAERI_uniform
+
+
+----------------------------------------------------------------------------------------------------
+Q2  MOST CONSISTENT MODEL ACROSS DATASETS   form=reduced   split=LOSO
+   (ranked by mean rank; min_R2 is the worst dataset it faces)
+   D9_LUT2006 excluded here: its reduced form is (P, G) with no quality, an ill-posed problem where every model scores ~0.
+----------------------------------------------------------------------------------------------------
+       model  datasets  mean_rank  median_R2  mean_R2_floored                    min_R2  mean_within10    worst_dataset
+    CatBoost         8      4.500     -0.195           -0.160                   -31.458          0.239 D3_KAERI_uniform
+      Linear         8      4.750     -1.220           -0.284                   -36.757          0.233 D3_KAERI_uniform
+  ExtraTrees         8      4.875     -0.319           -0.225                   -30.962          0.265 D3_KAERI_uniform
+     XGBoost         8      5.500     -0.143           -0.159                   -43.355          0.246 D3_KAERI_uniform
+      HistGB         8      5.750     -0.161           -0.218                   -29.599          0.227 D3_KAERI_uniform
+    LightGBM         8      5.750     -0.157           -0.211                   -61.985          0.229    M_merged_flow
+     SVR_RBF         8      6.500     -0.536           -0.342                   -22.357          0.233 D3_KAERI_uniform
+RandomForest         8      6.750     -0.250           -0.263                   -31.774          0.239 D3_KAERI_uniform
+      kNN_k5         8      7.125     -0.568           -0.319                   -47.615          0.241    M_merged_flow
+ Poly2_Ridge         8     10.000    -19.205           -0.628 -65882686916757004288.000          0.208    M_merged_flow
+         MLP         8     11.375   -266.458           -0.786             -13882472.363          0.149  D5_Helical_R123
+
+
+----------------------------------------------------------------------------------------------------
+Q2  MOST CONSISTENT MODEL ACROSS DATASETS   form=local   split=LOSO
+   (ranked by mean rank; min_R2 is the worst dataset it faces)
+----------------------------------------------------------------------------------------------------
+       model  datasets  mean_rank  median_R2  mean_R2_floored                           min_R2  mean_within10       worst_dataset
+    CatBoost         8      3.625      0.439            0.022                          -22.386          0.310    D3_KAERI_uniform
+  ExtraTrees         8      4.750      0.272            0.008                          -23.932          0.325    D3_KAERI_uniform
+    LightGBM         8      5.000      0.301           -0.013                         -113.303          0.307       M_merged_flow
+      HistGB         8      5.500      0.237           -0.026                          -94.907          0.300       M_merged_flow
+     XGBoost         8      5.875      0.389            0.015                          -96.463          0.312       M_merged_flow
+      Linear         8      6.250     -2.146           -0.222                          -10.169          0.246 D4_KAERI_nonuniform
+     SVR_RBF         8      6.500     -0.246           -0.209                          -24.602          0.290    D3_KAERI_uniform
+RandomForest         8      7.000      0.161           -0.051                         -144.913          0.293       M_merged_flow
+      kNN_k5         8      8.250      0.223           -0.046                         -109.658          0.267       M_merged_flow
+ Poly2_Ridge         8      8.375     -1.969           -0.263 -517026703705472741891112960.000          0.268       M_merged_flow
+         MLP         8     10.625   -246.733           -0.709                  -3840786003.147          0.164     D5_Helical_R123
+
+
+----------------------------------------------------------------------------------------------------
+OPTIMISM: random 80/20 vs leave-one-source-out, same model and dataset
+----------------------------------------------------------------------------------------------------
+                dataset               form            model  R2_floored_rand  R2_floored_loso  optimism_gap
+        D5_Helical_R123              local       GPR_Matern            0.998           -1.000         1.998
+          M_merged_flow              local       ExtraTrees            0.982           -1.000         1.982
+    D4_KAERI_nonuniform              local       ExtraTrees            0.982           -1.000         1.982
+       D3_KAERI_uniform              local       GPR_Matern            0.964           -1.000         1.964
+            D2_Zhao2020              local              MLP            0.857           -1.000         1.857
+                 D1_NRC              inlet      Poly2_Ridge            0.852           -1.000         1.852
+         D8_Pioro_R134a            reduced           kNN_k5            0.201           -0.871         1.071
+D6_Hardik_helical_water physics_or_closure BOUND_Katto_x3.0            0.897            0.158         0.739
+
+(R2 floored at -1.0 before differencing)
+median optimism gap over all model x dataset pairs: 0.991
+mean   optimism gap over all model x dataset pairs: 1.040

@@ -1,0 +1,41 @@
+material,surface_morphology,OD_mm,WT_mm,roughness_Ra_um,static_contact_angle_deg,receding_contact_angle_deg,advancing_contact_angle_deg,CHF_kW_m2,CHF_uncertainty_kW_m2,pressure_kPa,sat_temp_C,surface_orientation_deg,heated_length_mm,geometry,fluid,notes
+Zircaloy 4,As-Received,9.525,0.508,5.11,65.71,49.3,83.4,567.3,17.25,84,94.5,0,50.8,horizontal_tube,water,
+Zircaloy 4,Sandblasted Grit180,9.525,0.508,23.62,65.71,49.3,83.4,607.89,18.48,84,94.5,0,50.8,horizontal_tube,water,
+Zirlo,As-Received,9.475,0.486,3.76,63.87,48.34,84.83,419.32,14.34,84,94.5,0,50.8,horizontal_tube,water,
+Zirlo,Post-CHF Oxidized,9.475,0.486,,,,,549.48,18.79,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+Zr 705,As-Received,9.5,0.65,4.15,57.11,40.62,85.73,417.41,16.78,84,94.5,0,50.8,horizontal_tube,water,
+Zr 705,Post-CHF Oxidized,9.5,0.65,,,,,521.41,20.96,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+FeCrAl-C26M,As-Received,9.474,0.353,2.12,66.53,54.26,94.88,648.25,13.16,84,94.5,0,50.8,horizontal_tube,water,
+FeCrAl-C26M,Post-CHF Oxidized,9.474,0.353,,,,,858.2,17.42,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+FeCrAl-B126Y,As-Received,9.487,0.386,4.86,74.86,63.45,97.78,420.55,8.54,84,94.5,0,50.8,horizontal_tube,water,
+FeCrAl-B126Y,Post-CHF Oxidized,9.487,0.386,,,,,499.21,10.13,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+FeCrAl-B136Y,As-Received,9.499,0.374,6.84,81.84,67.28,104.79,380.96,7.73,84,94.5,0,50.8,horizontal_tube,water,
+FeCrAl-B136Y,Post-CHF Oxidized,9.499,0.374,,,,,549.5,11.15,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+Titanium-2,Sandblasted Grit180,9.525,0.889,25.21,54.12,40.36,72.11,748.52,37.58,84,94.5,0,50.8,horizontal_tube,water,
+Titanium-9,As-Received,9.525,0.508,6.55,59.56,47.41,73.59,398.18,19.99,84,94.5,0,50.8,horizontal_tube,water,
+Titanium-9,Post-CHF Oxidized,9.525,0.508,,,,,611.71,30.71,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+Inconel 400,Sandblasted Grit180,9.525,0.508,19.29,67.92,55.7,98.49,763.86,15.43,84,94.5,0,50.8,horizontal_tube,water,
+Inconel 400,Sandblasted Grit180,9.525,0.889,19.29,67.92,55.7,98.49,645.24,16.91,84,94.5,0,50.8,horizontal_tube,water,
+Inconel 625,As-Received,9.525,0.508,2.64,62.14,50.16,88.23,588.62,11.89,84,94.5,0,50.8,horizontal_tube,water,
+Inconel 600,As-Received,9.525,0.508,1.55,65.54,55.69,93.23,646.04,13.05,84,94.5,0,50.8,horizontal_tube,water,
+Inconel 600,As-Received,9.525,0.7112,1.55,65.54,55.69,93.23,452.23,9.14,84,94.5,0,50.8,horizontal_tube,water,
+Inconel 600,As-Received,9.525,0.889,1.55,65.54,55.69,93.23,419.32,10.99,84,94.5,0,50.8,horizontal_tube,water,
+Inconel 600,Post-CHF Oxidized,9.525,0.889,,,,,571.49,14.97,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+SS 304,As-Received,9.525,0.254,4.77,70.77,63.36,87.16,564.96,11.41,84,94.5,0,50.8,horizontal_tube,water,
+SS 304,Post-CHF Oxidized,9.525,0.254,,,,,723.66,14.62,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+SS 304,As-Received,9.525,0.381,4.77,70.77,63.36,87.16,441.38,8.92,84,94.5,0,50.8,horizontal_tube,water,
+SS 304,Post-CHF Oxidized,9.525,0.381,,,,,922.25,18.63,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+SS 304,As-Received,9.525,0.508,4.77,70.77,63.36,87.16,559.27,11.3,84,94.5,0,50.8,horizontal_tube,water,
+SS 304,Post-CHF Oxidized,9.525,0.508,,,,,620.43,12.53,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+SS 304,As-Received,9.525,0.7112,4.77,70.77,63.36,87.16,525.82,10.62,84,94.5,0,50.8,horizontal_tube,water,
+SS 304,As-Received,9.525,0.889,4.77,70.77,63.36,87.16,519.5,10.5,84,94.5,0,50.8,horizontal_tube,water,
+SS 316,As-Received,9.525,0.254,5.97,73.7,65.34,91.35,551.94,11.5,84,94.5,0,50.8,horizontal_tube,water,
+SS 316,As-Received,9.525,0.381,5.97,73.7,65.34,91.35,518.93,10.48,84,94.5,0,50.8,horizontal_tube,water,
+SS 316,As-Received,9.525,0.508,5.97,73.7,65.34,91.35,485.51,9.82,84,94.5,0,50.8,horizontal_tube,water,
+SS 316,Post-CHF Oxidized,9.525,0.508,,,,,673.27,13.6,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+SS 316,As-Received,9.525,0.7112,5.97,73.7,65.34,91.35,460.54,9.3,84,94.5,0,50.8,horizontal_tube,water,
+SS 316,As-Received,9.525,0.889,5.97,73.7,65.34,91.35,427.9,8.64,84,94.5,0,50.8,horizontal_tube,water,
+SS 321,As-Received,9.525,0.508,5.62,77.62,68.56,92.09,556.65,11.24,84,94.5,0,50.8,horizontal_tube,water,
+SS 321,Post-CHF Oxidized,9.525,0.508,,,,,751.47,15.18,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row
+SS 347,As-Received,9.525,0.508,4.72,72.14,64.21,89.75,434.63,8.78,84,94.5,0,50.8,horizontal_tube,water,
+SS 347,Post-CHF Oxidized,9.525,0.508,,,,,564.03,11.39,84,94.5,0,50.8,horizontal_tube,water,surface characterized post-CHF oxidation - Ra/contact angle from Tables 3-4 do NOT apply to this row

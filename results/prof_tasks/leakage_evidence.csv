@@ -1,0 +1,6 @@
+dataset,banned,formula,R2,within10,median_ratio
+D3_KAERI_uniform,"Power,Perimeter(,Length)",Power/(Perimeter*Length),0.9999934090132886,1.0,1.0000499888983645
+D4_KAERI_nonuniform,"Power,Perimeter(,Length)",Power/(Perimeter*Length),0.9999928163733637,1.0,1.0005046199533365
+D5_Helical_R123,Q_watt,Q_watt/(pi*d*Lh) with d implied per coil,,,0.007500029132761587
+D6_Hardik_helical_water,Q_W,Q_W/(pi*d*L),0.979297609068633,0.9807692307692307,0.999981084412652
+D6_Hardik_helical_water,CHF_ratio,"CHF_ratio = CHF / LUT(P,G,x)",,,1.2570000000000001
