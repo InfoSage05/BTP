@@ -1,0 +1,10 @@
+sample_id,heater_material,surface_finish,autoclave_tested,roughness_Ra_um,roughness_Ra_sd,static_contact_angle_deg,contact_angle_sd,contact_angle_after_boiling_deg,CHF_kW_m2,CHF_sd,n_samples,pressure,surface_orientation_deg,fluid
+Zir-Po,Zirlo,600 grit SiC polished,no,0.12,0.02,72,13,79,645,10,4,atmospheric,0,water
+Zir-Po-Au,Zirlo,600 grit SiC polished,yes,0.21,0.06,52,10,77,814,65,11,atmospheric,0,water
+Cr-As,Cold spray Cr coated Zirlo,as-deposited,no,5.72,0.40,107,9,,931,94,3,atmospheric,0,water
+Cr-Po,Cold spray Cr coated Zirlo,600 grit SiC polished,no,0.07,0.01,77,6,77,558,32,6,atmospheric,0,water
+Cr-Po-Au,Cold spray Cr coated Zirlo,600 grit SiC polished,yes,0.17,0.02,93,5,77,550,16,5,atmospheric,0,water
+FCA-Po,Cold spray FeCrAl coated Zirlo,600 grit SiC polished,no,0.07,0.01,86,5,88,630,14,3,atmospheric,0,water
+FCA-Po-Au,Cold spray FeCrAl coated Zirlo,600 grit SiC polished,yes,0.15,0.05,79,9,74,737,58,5,atmospheric,0,water
+SiC-Po,CVD SiC,30 um diamond polished,no,0.14,0.01,33,6,105,454,50,4,atmospheric,0,water
+SiC-Po-Au,CVD SiC,30 um diamond polished,yes,0.15,0.02,77,15,83,667,84,3,atmospheric,0,water

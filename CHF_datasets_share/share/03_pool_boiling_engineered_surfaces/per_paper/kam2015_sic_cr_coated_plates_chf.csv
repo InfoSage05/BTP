@@ -1,0 +1,7 @@
+surface,coating_thickness,roughness_Ra_nm,roughness_Ra_um,static_contact_angle_deg,contact_angle_sd,CHF_kW_m2,pressure,fluid,notes
+Bare stainless steel,,25.438,0.025438,61,5,1020,atmospheric,water,"roughness = Table 2 average of 3 scans"
+Zircaloy-4,,,,59,6,940,atmospheric,water,"no roughness reported for Zircaloy-4 in Table 2"
+SiC-coated,400 nm,21.496,0.021496,24,6,1230,atmospheric,water,"roughness = Table 2 average"
+SiC-coated,1 um,22.267,0.022267,19,4,1470,atmospheric,water,"single-scan roughness; CHF from text"
+Cr-coated,1 um,24.593,0.024593,81,4,,atmospheric,water,"Table 2 average roughness; CHF stated only as 'lower' and shown in Fig. 7/12 - no exact text value, left blank"
+Cr-coated,10 um,,,81,4,,atmospheric,water,"text says 1um and 10um Cr gave similar CHF; no exact value in text"
