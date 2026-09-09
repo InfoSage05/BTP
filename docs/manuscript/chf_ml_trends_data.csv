@@ -1,0 +1,7 @@
+year,model_label,r2,source
+2025,Transformer (rod bundle),0.956,"Physics-informed hybrid ML comparative study, 5x5 rod bundle (2025)"
+2025,Bayesian NN,0.986,"Bayesian Neural Network for CHF, unified UQ approach (2025)"
+2025,Unit-aware Transformer,0.982,"Unit-aware physical-embedding Transformer, IJHMT (2025)"
+2025,Pretrain-Finetune MLP (Yang et al.),0.963,"Yang et al., LUT-pretrained transfer-learning MLP, Appl. Thermal Eng. (2025)"
+2026,This Study (MLP),0.963,This study -- pretrained + fine-tuned MLP (interpolation)
+2026,This Study (Transformer),0.968,This study -- pretrained + fine-tuned Transformer (interpolation)
