@@ -98,6 +98,12 @@ def load_zhao() -> Dataset:
         "P_kPa": d["pressure [MPa]"] * 1000.0,
         "G_kg_m2s": d["mass_flux [kg/m2-s]"],
         "X": d["x_e_out [-]"],
+        # D_mm must exist or enrich() silently substitutes a hard-coded 8 mm for
+        # every row. Zhao's true diameters span 1-37.5 mm, so that default made the
+        # physics backbone meaningless on all 1,865 rows. D_e (heated equivalent) is
+        # used: measured against D_h it gives a better Katto baseline (R2 -0.350 vs
+        # -0.362) and a better held-out pipeline score (-0.415 vs -0.507).
+        "D_mm": d["D_e [mm]"],
         "De_mm": d["D_e [mm]"],
         "Dh_mm": d["D_h [mm]"],
         "L_mm": d["length [mm]"],
@@ -106,6 +112,11 @@ def load_zhao() -> Dataset:
         "group": "zhao_" + d["author"].astype(str),
     })
     out["LtoD"] = out["L_mm"] / out["De_mm"]
+    # One row is a plate at G = 0, i.e. pool boiling inside a flow-boiling corpus.
+    # Katto-Ohno and Biasi both divide by G, so it has no defined physics baseline.
+    n_before = len(out)
+    out = out[out["G_kg_m2s"] > 0].reset_index(drop=True)
+    assert n_before - len(out) == 1, f"expected to drop exactly 1 G=0 row, dropped {n_before-len(out)}"
     return Dataset(
         name="D2_Zhao2020",
         df=out,
@@ -158,7 +169,12 @@ def load_kaeri_nonuniform() -> Dataset:
         "L_mm": d["Length"] * 1000.0,
         "P_kPa": d["Pressure"] / 1000.0,
         "G_kg_m2s": d["MassFlux"],
-        "X": d["Quality"],
+        # VERIFIED inlet quality, not outlet: (h_in - h_f)/h_fg reproduces this
+        # column on all 888 rows to within 0.001 (r = 0.999999). It is an
+        # independently measured inlet condition, so it is NOT circular and it
+        # belongs in the inlet and reduced feature sets, unlike every other
+        # dataset's quality column.
+        "X_inlet": d["Quality"],
         "Tin_C": d["InletTemperature"],
         "WallPower": d["WallPower"],
         "WallMesh": d["WallMesh"],
@@ -169,11 +185,13 @@ def load_kaeri_nonuniform() -> Dataset:
     })
     out["LtoD"] = out["L_mm"] / out["D_mm"]
     base = ["D_mm", "L_mm", "LtoD", "P_kPa", "G_kg_m2s", "WallPower", "WallMesh",
-            "Shape", "Continuous"]
+            "Shape", "Continuous", "X_inlet"]
     return Dataset(
         name="D4_KAERI_nonuniform",
         df=out,
-        local=base + ["X"],
+        # no outlet quality is published for this set, so there is no circular
+        # "local" form to build -- all three forms carry the inlet quality.
+        local=base,
         inlet=base + ["Tin_C"],
         group="group",
         fluid="water",
@@ -218,7 +236,10 @@ def load_helical_r123() -> Dataset:
         fluid="R-123",
         geometry="helical_coil",
         banned=["Q_watt"],
-        note="Tube diameter recovered per coil by inverting the heated-area relation.",
+        note=("Tube diameter recovered per coil by inverting the heated-area relation. "
+              "28 of 257 rows report exit quality above 1.0 (max 1.169), i.e. nominally "
+              "superheated vapour, where dryout normally occurs at x <= 1. Retained as "
+              "published and flagged rather than silently dropped."),
     )
 
 

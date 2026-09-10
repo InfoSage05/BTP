@@ -35,3 +35,7 @@ inspect_*.py
 print_summary.py
 .env
 .DS_Store
+
+# trained pipeline artefacts (exceed GitHub file limits)
+results/prof_tasks/*.pkl
+results/prof_tasks/*.pkl.gz

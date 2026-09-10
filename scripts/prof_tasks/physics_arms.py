@@ -43,7 +43,27 @@ from physics.correlations import katto_ohno_chf  # noqa: E402
 from chf_physics import biasi_chf                # noqa: E402
 
 OUT = os.path.join(ROOT, "results", "prof_tasks")
+# Names used inside the corpus. Anything else is passed to CoolProp as-is, so the
+# pipeline is not limited to three fluids -- but an unknown name RAISES instead of
+# silently falling back to water, which would return a confident number computed
+# from the wrong substance.
 CP = {"water": "Water", "R-123": "R123", "R-134a": "R134a"}
+
+
+_name_cache: dict = {}
+
+
+def cp_name(fluid: str) -> str:
+    """Resolve to a CoolProp substance, cached -- this is called per row."""
+    if fluid in _name_cache:
+        return _name_cache[fluid]
+    name = CP.get(fluid, str(fluid).strip())
+    try:
+        PropsSI("Pcrit", name)
+    except Exception as exc:
+        raise ValueError(f"unknown fluid {fluid!r}: not a CoolProp substance") from exc
+    _name_cache[fluid] = name
+    return name
 
 
 # ------------------------------------------------------------------ properties
@@ -52,7 +72,7 @@ _cache: dict = {}
 
 def props(fluid: str, P_kPa: np.ndarray) -> pd.DataFrame:
     """Saturation properties at each row's pressure. SI units."""
-    name = CP[fluid]
+    name = cp_name(fluid)
     pc = PropsSI("Pcrit", name)
     rows = []
     for p in np.asarray(P_kPa, float):
@@ -78,7 +98,7 @@ def props(fluid: str, P_kPa: np.ndarray) -> pd.DataFrame:
 def enrich(ds) -> pd.DataFrame:
     """Attach fluid properties, inlet subcooling and dimensionless groups."""
     df = ds.df.copy()
-    fluid = ds.fluid if ds.fluid in CP else "water"
+    fluid = ds.fluid          # cp_name() raises on an unknown substance
     pr = props(fluid, df["P_kPa"].to_numpy())
     for c in pr.columns:
         df[c] = pr[c].to_numpy()
@@ -91,7 +111,7 @@ def enrich(ds) -> pd.DataFrame:
         hin = []
         for t, p in zip(df["Tin_C"], df["P_kPa"]):
             try:
-                hin.append(PropsSI("H", "T", t + 273.15, "P", p * 1e3, CP[fluid]))
+                hin.append(PropsSI("H", "T", t + 273.15, "P", p * 1e3, cp_name(fluid)))
             except Exception:
                 hin.append(np.nan)
         df["dh_sub"] = np.clip(df["h_f"] - np.array(hin), 0, None)
@@ -100,9 +120,19 @@ def enrich(ds) -> pd.DataFrame:
         df["dh_sub"] = 0.0            # saturated-inlet limit
         df["dh_sub_known"] = False
 
-    d_m = df["D_mm"] / 1e3 if "D_mm" in df else pd.Series(0.008, index=df.index)
-    l_m = df["L_mm"] / 1e3 if "L_mm" in df else pd.Series(1.0, index=df.index)
+    # Geometry defaults are recorded, never silent. A hard-coded 8 mm diameter was
+    # applied to all 1,865 Zhao rows for a long time because that frame names its
+    # column De_mm; the physics backbone was meaningless there and nothing said so.
+    has_d, has_l = "D_mm" in df, "L_mm" in df
+    d_m = df["D_mm"] / 1e3 if has_d else pd.Series(0.008, index=df.index)
+    l_m = df["L_mm"] / 1e3 if has_l else pd.Series(1.0, index=df.index)
     df["_D_m"], df["_L_m"] = d_m, l_m
+    df["geom_known"] = bool(has_d and has_l)
+    if not (has_d and has_l):
+        missing = ", ".join(c for c, h in (("D_mm", has_d), ("L_mm", has_l)) if not h)
+        warnings.warn(f"{getattr(ds, 'name', '?')}: {missing} absent; a placeholder "
+                      f"geometry is being used and the physics baseline is unreliable "
+                      f"for these rows")
 
     # dimensionless groups -- the transferable feature space
     G = df["G_kg_m2s"].clip(lower=1e-6)
