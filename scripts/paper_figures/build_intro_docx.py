@@ -73,21 +73,97 @@ for b in bullets:
 
 doc.add_heading('1.3 Limitations of Conventional CHF Correlations', level=2)
 
+
 doc.add_paragraph(
     "Given how much depends on getting this number right, the natural question is how CHF is "
     "actually predicted in practice today. For decades, the standard tools have been empirical "
-    "correlations and look-up tables, such as the widely used 2006 Groeneveld look-up table, built "
+    "correlations and look up tables, such as the widely used 2006 Groeneveld look up table, built "
     "by fitting mathematical relationships directly to large collections of experimental "
-    "measurements. These tools work well within the specific range of pressures, flow rates, "
-    "geometries, and fluids they were built from, since they were tuned on exactly that data. The "
-    "problem shows up at the edges. Step outside the original database, into a new fluid, an "
-    "unusual tube diameter, a different surface condition, or a pressure range with little "
-    "experimental coverage, and these correlations can degrade sharply or fail outright, precisely "
-    "because they have no underlying mechanistic understanding of the boiling crisis to fall back "
-    "on. They interpolate well; they extrapolate poorly. This gap between the conditions a real "
-    "reactor might encounter and the narrow window a correlation was actually validated against is "
-    "exactly the opening that data-driven and machine learning methods have started to fill, and "
-    "it is the motivation behind the growing body of CHF research summarized in Figure 1."
+    "measurements. These correlations work, and they have served the industry for decades, but they "
+    "carry a specific set of limitations that are worth naming individually, since each one shapes "
+    "exactly where a data driven alternative could actually help."
+)
+
+doc.add_paragraph(
+    "Empirical nature. Correlations such as the Groeneveld look up table are curve fits to measured "
+    "data, not derivations from a physical model of the boiling crisis. The functional form used, "
+    "often a power law or a piecewise multiplicative combination of pressure, mass flux, and "
+    "quality, is chosen because it fits the available data reasonably well, not because it follows "
+    "from the underlying physics of bubble growth, microlayer evaporation, or vapor escape. This "
+    "means the correlation carries no built in understanding of why CHF happens, only a description "
+    "of what it looked like in the specific experiments it was fitted to.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Narrow experimental ranges. Every correlation is only as good as the data it was built from, "
+    "and that data was collected within a specific window of pressure, mass flux, quality, and tube "
+    "diameter. Even the 2006 Groeneveld look up table, despite being one of the broadest CHF "
+    "databases ever assembled, still contains entire regions that are interpolated or extrapolated "
+    "rather than measured directly, simply because no experiment has ever been run at every "
+    "combination of conditions a reactor could see.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Dependence on specific fluids. Correlations built from water data do not transfer cleanly to "
+    "other fluids, even when the flow conditions look similar on paper. Pioro et al. (2002) compared "
+    "CHF under matched flow conditions for water and for R-134a, a common refrigerant used as a "
+    "water surrogate in scaled experiments, and found that the effect of surface orientation on CHF "
+    "was measurably stronger for R-134a than for water under otherwise equivalent conditions. A "
+    "correlation tuned only on water data has no way of knowing this discrepancy exists, let alone "
+    "correcting for it.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Dependence on particular geometries. A CHF correlation built for one channel geometry, a round "
+    "tube, an annulus, a rod bundle, does not automatically apply to another. The usual fix is a "
+    "geometry correction factor, but even this correction is not constant. Tanase et al. (2009) "
+    "tabulated a diameter correction exponent for CHF across 24 separate combinations of pressure, "
+    "mass flux, and quality, and found the exponent itself ranging from about minus 0.3 to plus 0.6 "
+    "depending on which regime a given condition fell into. In other words, there is no single "
+    "number that describes how CHF scales with tube diameter, only a patchwork of regime specific "
+    "values.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Difficulty incorporating surface characteristics. As the next section describes in detail, "
+    "conventional correlations are built almost entirely around bulk flow variables, pressure, mass "
+    "flux, and quality, and have no natural input slot for surface roughness, wettability, coating, "
+    "or material. A correlation can be refit for one specific engineered surface, but it cannot "
+    "generalize to a new surface it has never seen, because surface condition was never part of its "
+    "functional form to begin with.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Poor extrapolation. Because these correlations are fitted rather than derived, they interpolate "
+    "well within their original database and extrapolate poorly outside it. Step into a new fluid, "
+    "an unusual diameter, or a pressure range with little experimental coverage, and a correlation "
+    "can degrade sharply or fail outright, precisely because it has no mechanistic understanding of "
+    "the boiling crisis to fall back on once the data runs out.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Nonlinear coupling among parameters. CHF does not respond to pressure, mass flux, diameter, and "
+    "quality independently. It responds to specific combinations of them, and the way these "
+    "parameters interact changes from one flow regime to another. The same Tanase et al. (2009) "
+    "diameter exponent data makes this concrete: the exponent describing how CHF scales with "
+    "diameter is not one number but 24 different numbers, each valid only for a specific combination "
+    "of pressure, mass flux, and quality. Capturing this kind of regime dependent, multi parameter "
+    "interaction with a single tidy equation is exactly the sort of problem that empirical "
+    "correlations, built around simple multiplicative forms, are poorly suited to represent.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "This gap between the conditions a real reactor might encounter and the narrow, fluid specific, "
+    "geometry specific window a correlation was actually validated against is exactly the opening "
+    "that data driven and machine learning methods have started to fill, and it is the motivation "
+    "behind the growing body of CHF research summarized in Figure 1."
 )
 
 doc.add_paragraph()
@@ -110,7 +186,122 @@ cap_run.italic = True
 cap_run.font.size = Pt(9)
 
 
-doc.add_heading('1.4 Influence of Surface Characteristics', level=2)
+doc.add_heading('1.4 Machine Learning as a Potential Solution', level=2)
+
+doc.add_paragraph(
+    "Machine learning offers a genuinely different way of building a CHF model, and it is worth "
+    "being precise about exactly which of the seven limitations above it addresses directly, which "
+    "it improves only partially, and which it does not solve just by virtue of being machine "
+    "learning. Taken point by point against the same list:"
+)
+
+doc.add_paragraph(
+    "Empirical nature. Machine learning models are also fitted to data rather than derived from "
+    "first principles, so in a strict sense they do not remove the empirical nature of CHF "
+    "prediction. What changes is the flexibility of the fit. A correlation is locked into a "
+    "functional form chosen in advance, usually a power law or a fixed multiplicative combination, "
+    "while a neural network can represent a much wider family of shapes, including sharp transitions "
+    "and interactions that a person would not think to write down as a single equation. This "
+    "project's own models reached an R-squared of 0.963 (MLP) and 0.968 (Transformer) under "
+    "interpolation testing, a level of fit that a fixed-form correlation is not built to achieve "
+    "across such a wide range of conditions at once.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Narrow experimental ranges. Merging many independent datasets into one much larger training set "
+    "directly widens the range of conditions a model has actually seen. A collaborator on this "
+    "project combined seven independent CHF sources into a single 28,470 row dataset spanning tubes, "
+    "annuli, helical coils, and pin-fin surfaces, a far broader coverage than any single "
+    "correlation's original database. This genuinely helps, but it is worth being honest about what "
+    "it does not do: it pushes the boundary of the covered range outward, it does not remove the "
+    "boundary. A model trained on this larger dataset can still only interpolate within it.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Dependence on specific fluids. Rather than needing a separate correlation refit for every "
+    "fluid, a machine learning model can take fluid properties directly as input features, things "
+    "like reduced pressure or other dimensionless groups that describe a fluid's thermodynamic state "
+    "relative to its critical point. This project's own feature set is built this way, and the per "
+    "domain fine-tuning results, R-squared values ranging from about 0.48 to 0.91 depending on the "
+    "fluid and geometry combination, show a single underlying model architecture adapting across "
+    "genuinely different fluids, rather than requiring a separate hand-built correlation for each "
+    "one.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Dependence on particular geometries. The same logic applies to geometry. Instead of a single "
+    "diameter correction exponent applied uniformly, a model can take geometry descriptors, "
+    "diameter, geometry family, hydraulic diameter, as direct inputs and learn how CHF depends on "
+    "them jointly with the flow conditions, rather than through a bolted-on correction factor. The "
+    "cross-geometry fine-tuning results from this project's own testing, spanning five different "
+    "geometry and fluid combinations, are a direct test of this idea.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Difficulty incorporating surface characteristics. Surface descriptors, roughness, contact "
+    "angle, coating type, can simply be added as extra columns in the input data, something a bulk "
+    "flow correlation has no mechanism for at all. The pin-fin pool-boiling dataset used in this "
+    "project's own testing includes exactly this kind of surface-specific information, and a model "
+    "trained on it can, in principle, learn how CHF shifts with surface condition directly from the "
+    "data rather than needing a person to encode that relationship by hand.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Poor extrapolation. This is the point where it is important not to overclaim. Plain machine "
+    "learning does not fix poor extrapolation just by being machine learning; in several respects it "
+    "can be worse than a classical correlation outside its training range, since a neural network "
+    "has no physical constraint forcing it to behave sensibly once it leaves the data it was trained "
+    "on. Under a hard pressure-based extrapolation split, this project's own testing found "
+    "random-forest and gradient-boosted tree models collapsing to an R-squared of roughly 0.41 to "
+    "0.45, and a separate pretrain-and-fine-tune transfer learning study reported a standard neural "
+    "network reaching a negative R-squared of minus 6.56 under a comparable pressure-based "
+    "extrapolation test. What actually helps is a more deliberate training strategy, not simply "
+    "switching from a correlation to a neural network. This project's own model, pretrained on a "
+    "large synthetic dataset spanning a wide parameter space and then fine-tuned on real "
+    "experimental data with a deliberately held-out high-pressure extrapolation region, reached an "
+    "R-squared of 0.916 (MLP) and 0.953 (Transformer) on that held-out extrapolation test, far above "
+    "the tree-based results under the same split. Yang et al. (2025) report a similar pattern, "
+    "reaching an R-squared of 0.9632 with a physics-informed hybrid approach rather than a plain "
+    "data fit. The lesson is specific rather than general: machine learning does not solve "
+    "extrapolation automatically, but pretraining, transfer learning, and physics-informed "
+    "structure, used deliberately, can measurably narrow the gap in a way that neither a classical "
+    "correlation nor a naively trained neural network achieves on its own.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Nonlinear coupling among parameters. This is arguably where machine learning has the clearest "
+    "structural advantage. A neural network is, by construction, a universal function approximator: "
+    "it does not need a person to pre-specify how pressure, mass flux, diameter, and quality "
+    "interact, or to split the parameter space into 24 separate regimes the way the Tanase et al. "
+    "(2009) diameter exponent table does. It learns the interactions directly from the data. The "
+    "practical result in this project's own testing is a single model, not two dozen regime-specific "
+    "equations, reaching an R-squared above 0.96 on interpolation testing across the full combined "
+    "range of pressure, mass flux, quality, and diameter, without any manual splitting of the "
+    "parameter space into separate regimes.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "None of this means machine learning is a drop-in replacement for physical understanding, or "
+    "that it should be trusted blindly outside the range of conditions it has actually seen. But "
+    "point by point, it directly addresses five of the seven limitations above, fluid dependence, "
+    "geometry dependence, surface characteristics, nonlinear coupling, and to a real extent the "
+    "narrow-range problem, offers a genuine but carefully qualified improvement on a sixth, poor "
+    "extrapolation, when combined with pretraining and transfer learning rather than used naively, "
+    "and is honest, rather than evasive, about the seventh, its own empirical nature. That is the "
+    "case, grounded in the results already discussed above and summarized in Figure 1, for treating "
+    "machine learning as a genuinely promising direction for CHF prediction, rather than as a "
+    "buzzword substitute for the correlations it is trying to improve on."
+)
+
+
+doc.add_heading('1.5 Influence of Surface Characteristics', level=2)
 
 doc.add_paragraph(
     "The correlations described above are built almost entirely around bulk flow conditions: "
@@ -210,6 +401,86 @@ doc.add_paragraph(
     "more of these mechanisms. Any CHF prediction approach that ignores surface condition is, in "
     "effect, ignoring the mechanism itself and hoping that a bulk flow correlation happens to average "
     "it out."
+)
+
+
+doc.add_heading('1.6 Limitations of Current CHF Prediction Approaches', level=2)
+
+doc.add_paragraph(
+    "It is worth being direct about something the field does not always state plainly: predicting "
+    "CHF accurately across the full range of fluids, geometries, surfaces, and flow regimes that "
+    "real engineering applications actually encounter is not a solved problem, no matter how the "
+    "headline accuracy numbers in recent papers might read. A model that reports an R-squared of "
+    "0.95 or higher is reporting the truth, but that number is almost always measured on a test set "
+    "drawn from the same distribution as its training data. What that number does not tell you is "
+    "how the same model performs the moment it is asked to generalize beyond that distribution, and "
+    "the gap between the two can be enormous."
+)
+
+doc.add_paragraph(
+    "Interpolation is not extrapolation. When a model is evaluated on a random split of a large, "
+    "well-populated dataset, it is effectively being asked to fill in gaps between points it has "
+    "already seen many close neighbors of. This is a genuinely easier task than predicting CHF for "
+    "a pressure, geometry, or surface condition that lies outside anything in the training data, "
+    "and the difference in reported accuracy between the two settings is not a small effect. A "
+    "recent pretrain-and-fine-tune transfer learning study found that a standard neural network "
+    "achieved a negative R-squared value of minus 6.56 when tested on pressures above a cutoff that "
+    "excluded only the highest end of its training range, even though the same architecture scored "
+    "well above 0.9 on a random split of the identical dataset. Random-forest and gradient-boosted "
+    "tree ensembles, evaluated in this project's own earlier testing under a hard pressure-based "
+    "extrapolation split, showed the same pattern, collapsing from near-perfect interpolation scores "
+    "to an R-squared of roughly 0.41 to 0.45 once asked to predict outside the pressure range they "
+    "were trained on. This happens because tree-based models are fundamentally piecewise-constant: "
+    "they can only predict values close to what they have already seen, and have no mechanism for "
+    "recognizing that a physical trend should continue smoothly past the edge of their training data.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Generalizing across surfaces and sources is harder still. A collaborator on this project "
+    "recently assembled a unified, 28,470-row dataset merging seven independent point-level CHF "
+    "sources, tubes, annuli, helical coils, and pin-fin pool-boiling surfaces among them, and "
+    "evaluated the same model bake-off (a standard neural network, random forest, gradient-boosted "
+    "trees, Gaussian process regression, and a physics-informed neural network) under four "
+    "increasingly demanding test strategies. On a random stratified split, every model looked "
+    "strong, with the best reaching an R-squared of 0.968. On a condition-wise split, where only the "
+    "highest-pressure portion of each source was held out, the best models still managed roughly "
+    "0.89, but the physics-informed neural network collapsed to an R-squared of minus 64.9, far "
+    "worse than simply predicting the average CHF value every time. On a surface-wise split, where "
+    "two entire geometries (pin-fin pool boiling and helical coils) were withheld completely rather "
+    "than just a condition range, even the best-performing tree models dropped to an R-squared of "
+    "about 0.17 to 0.22, while the standard neural network and the physics-informed model both "
+    "produced results so unstable that their R-squared values fell below minus 3900. Finally, under "
+    "a leave-one-source-out cross-validation (systematically holding out each of the seven sources "
+    "in turn and pooling the results), the best model reached an R-squared of about 0.78, a real and "
+    "useful number, but still a clear step down from the 0.97 the same approach reported on the "
+    "random split of the same underlying data.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Physics-informed does not automatically mean robust. One of the more counterintuitive findings "
+    "in the results above is that the physics-informed neural network was not the most reliable "
+    "model under distribution shift; in several cases it was the least reliable, producing the "
+    "single worst results of any model tested. This matters because it is tempting to assume that "
+    "adding physical structure to a model automatically buys generalization ability. It does not, "
+    "on its own. How the physics is incorporated (as a hard constraint, a soft penalty, a pretrained "
+    "prior, or a residual correction) determines whether it actually helps outside the training "
+    "distribution, and a poorly chosen physics-informed architecture can perform worse than a "
+    "plain data-driven model with no physical structure at all.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Taken together, these results point to a conclusion that is easy to state but important not to "
+    "gloss over: a single reported R-squared value, without knowing exactly how the test set "
+    "relates to the training data, says very little about whether a CHF prediction model is "
+    "actually reliable for a new fluid, a new geometry, or a new surface it has never encountered. "
+    "Interpolation performance and extrapolation performance are, in effect, two different "
+    "questions, and a model that answers one well can fail the other by several orders of "
+    "magnitude. Any CHF prediction approach that claims broad, large-scale applicability needs to be "
+    "evaluated against genuinely held-out conditions and sources, not just a random split of its own "
+    "training database, before that claim can be trusted."
 )
 
 doc.save("CHF_Research_Paper.docx")
