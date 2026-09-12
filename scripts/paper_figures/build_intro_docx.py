@@ -301,7 +301,116 @@ doc.add_paragraph(
 )
 
 
-doc.add_heading('1.5 Influence of Surface Characteristics', level=2)
+doc.add_heading('1.5 Existing ML-based CHF Prediction', level=2)
+
+doc.add_paragraph(
+    "With the case for machine learning established, it is worth looking at what has actually been "
+    "tried so far. Over roughly the last decade and a half, a fairly consistent set of algorithms "
+    "keeps showing up across the CHF literature: artificial neural networks, random forest, gradient "
+    "boosting, XGBoost, support vector regression, Gaussian process regression, and deeper neural "
+    "network architectures. Reviewing what each of these has actually achieved, including where this "
+    "project's own testing produced comparable numbers, gives a clearer picture of where the field "
+    "genuinely stands."
+)
+
+doc.add_paragraph(
+    "Artificial Neural Networks (ANN). A standard fully connected neural network is the most common "
+    "starting point in CHF machine learning studies, and it generally performs well on a like-for-"
+    "like test. This project's own testing found an ANN reaching an R-squared of 0.921 on a random "
+    "split of the collaborator's unified 28,470-row dataset, and Yang et al. (2025) report an "
+    "R-squared of 0.9632 with a physics-informed architecture built on the same underlying network "
+    "family. That accuracy is not guaranteed to hold up once the test conditions shift: the same ANN "
+    "in this project's own testing dropped to an R-squared of 0.515 under a condition-wise split, "
+    "and collapsed to an R-squared of roughly minus 4133 once two entire surface types were withheld "
+    "under a surface-wise split.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Random Forest. A random forest builds many decision trees on random subsets of the data and "
+    "features, then averages their predictions, which tends to make it more stable than a single "
+    "model. In this project's own testing, random forest reached an R-squared of 0.965 on a random "
+    "split, still a respectable 0.875 under a condition-wise split, but only 0.219 once two surface "
+    "types were withheld entirely, and 0.269 under a leave-one-source-out test across all seven "
+    "sources.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Gradient Boosting. Gradient boosting builds trees sequentially, with each new tree correcting "
+    "the errors left by the ones before it. In this project's own testing, a gradient-boosted tree "
+    "model reached an R-squared of 0.968 on a random split, the best of the five algorithms compared, "
+    "and it remained the strongest or tied-strongest model under every one of the four test "
+    "strategies used, including an R-squared of 0.784 under the leave-one-source-out test, the "
+    "hardest of the four.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "XGBoost. This specific, heavily optimized implementation of gradient boosting was not part of "
+    "this project's own model comparison, but it appears repeatedly in the wider literature. A 2025 "
+    "study of CHF prediction in a 5x5 rod bundle assembly, using over 6000 datapoints and fifteen "
+    "input features, compared a Transformer, XGBoost, random forest, KNN, SVM, and AdaBoost, and "
+    "found XGBoost reaching an R-squared above 0.94, just behind the Transformer's 0.956, while "
+    "needing substantially less computation. Its SHAP-based feature ranking in that study identified "
+    "heated rod length as the single most influential input.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Support Vector Regression (SVR). SVR looks for the flattest function that still fits the "
+    "training data within a set error margin, which can make it comparatively resistant to "
+    "overfitting on smaller datasets. A 2024 comparison study evaluated a neural network, Gaussian "
+    "process regression, and nu-support vector regression on a large CHF database and reported the "
+    "predicted-to-measured ratio standard deviation at 12.3 percent for the neural network, about "
+    "three times tighter than the 2006 look up table, and 17.7 percent for both GPR and nu-SVR, "
+    "about two times tighter than the look up table. A separate study on narrow rectangular channel "
+    "CHF, comparing a back-propagation neural network, random forest, SVR, and a long short-term "
+    "memory model, found the neural network reaching the lowest prediction error of the four.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Gaussian Process Regression (GPR). This project's own testing of GPR tells a cautionary story "
+    "about how much an algorithm's usefulness depends on how it is set up. GPR reached an R-squared "
+    "of 0.872 on a random split, but only a slightly negative R-squared of about minus 0.05 under a "
+    "condition-wise split, meaning it performed no better than simply predicting the average CHF "
+    "value once asked to extrapolate to higher pressures. A separate kernel-comparison study reported "
+    "that GPR with a properly chosen anisotropic kernel can outperform both ANN and SVR for CHF "
+    "prediction, which points to kernel choice, not the algorithm family itself, as the deciding "
+    "factor.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Deep Neural Networks (DNN). Architectures with more layers and specialized structure, rather "
+    "than a single hidden layer, have pushed reported accuracy higher still in recent CHF studies. A "
+    "Bayesian neural network study reported an R-squared of 0.986, and a Transformer architecture "
+    "using unit-aware input embeddings reached 0.9818 on a large public tube database, both notably "
+    "higher than the plain ANN figures above. This is consistent with the overall trend shown earlier "
+    "in Figure 1: as architectures have grown deeper and more specialized, reported interpolation "
+    "accuracy has climbed fairly steadily over the last few years.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Across all seven of these approaches, a consistent and important pattern emerges, one that is "
+    "easy to miss if the only number reported is a single headline R-squared. Every one of them "
+    "looks strong on a random split of a training-like dataset, and every one of them can lose most "
+    "or all of that accuracy once tested outside that distribution, whether that means a higher "
+    "pressure range, a different flow condition, or, most severely, a surface type it has never "
+    "encountered before. What is largely missing across the great majority of these studies, this "
+    "project's own model comparison included, is a systematic test of generalization: results are "
+    "almost always reported for a single train-test split, usually random, without checking whether "
+    "the model has actually learned the underlying physical relationship or has simply learned the "
+    "specific surfaces and conditions represented in its own training data. This gap, a strong focus "
+    "on maximizing accuracy over demonstrating genuine generalization and physical consistency across "
+    "unseen surface conditions, is exactly the gap the remainder of this project's own testing was "
+    "designed to expose and measure directly, rather than assume away."
+)
+
+
+doc.add_heading('1.6 Influence of Surface Characteristics', level=2)
 
 doc.add_paragraph(
     "The correlations described above are built almost entirely around bulk flow conditions: "
@@ -404,7 +513,7 @@ doc.add_paragraph(
 )
 
 
-doc.add_heading('1.6 Limitations of Current CHF Prediction Approaches', level=2)
+doc.add_heading('1.7 Limitations of Current CHF Prediction Approaches', level=2)
 
 doc.add_paragraph(
     "It is worth being direct about something the field does not always state plainly: predicting "
@@ -481,6 +590,274 @@ doc.add_paragraph(
     "magnitude. Any CHF prediction approach that claims broad, large-scale applicability needs to be "
     "evaluated against genuinely held-out conditions and sources, not just a random split of its own "
     "training database, before that claim can be trusted."
+)
+
+doc.add_heading('1.8 Research Gap', level=2)
+
+doc.add_paragraph(
+    "Given everything discussed above, the specific gaps this project focuses on can be stated "
+    "plainly, in four parts, each grounded in a pattern that showed up repeatedly in this project's "
+    "own testing rather than assumed in the abstract."
+)
+
+doc.add_paragraph(
+    "Gap 1: Existing CHF correlations inadequately account for engineered surface characteristics. "
+    "As detailed in Section 1.6, roughness, wettability, contact angle, surface material, and "
+    "orientation are established, physically important drivers of CHF, yet the correlations "
+    "discussed in Section 1.3 were built almost entirely around bulk flow variables, pressure, mass "
+    "flux, and quality, and have no input slot for any of them. This is not a minor omission: two of "
+    "the seven sources in the collaborator's own unified dataset are surface-driven pin-fin and "
+    "helical-coil pool-boiling data, and neither integrates naturally into a correlation that was "
+    "never designed to take surface condition as an input in the first place.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Gap 2: Existing ML models frequently rely on randomly divided datasets, allowing samples from "
+    "the same surface or operating condition to appear in both training and testing sets. The "
+    "clearest evidence for this in this project's own testing is the gap between a random split and "
+    "a condition-wise split of the exact same underlying data: the best model on a random split "
+    "reached an R-squared of 0.968, but under a condition-wise split, where only the highest-pressure "
+    "portion of each source was held out rather than points scattered randomly throughout, the best "
+    "model dropped to about 0.89, and a physics-informed model collapsed to an R-squared of minus "
+    "64.9. A random split lets a model see near-neighbors of almost every test point during training, "
+    "which inflates the reported accuracy without actually testing whether the model has learned "
+    "anything that generalizes.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Gap 3: Cross-surface generalization remains insufficiently demonstrated. When two entire surface "
+    "types, pin-fin pool boiling and helical coils, were withheld completely from training rather "
+    "than just a condition range, even the best-performing tree-based model in this project's own "
+    "testing dropped to an R-squared of about 0.17 to 0.22, and the standard neural network and the "
+    "physics-informed neural network both produced R-squared values below minus 3900. Later testing "
+    "in this project was built specifically to confront this gap directly, using techniques such as "
+    "low-rank adapters and mixture-of-experts routing to try to transfer a model trained on tube and "
+    "annulus data to genuinely new pool-boiling surfaces, rather than assuming a model trained on one "
+    "geometry will simply carry over to another.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Gap 4: ML predictions are often treated as black boxes, with limited interpretation of how "
+    "surface and thermal-hydraulic parameters control CHF. This project's own experience with a "
+    "physics-informed neural network is a direct illustration of how this gap shows up in practice, "
+    "not just in principle. The model was originally built around a small, physically motivated set "
+    "of three core input features, but extending it to ingest the wider and more varied feature sets "
+    "present across different real experimental datasets, so that it could be tested against data it "
+    "was not originally designed for, made its internal behavior considerably harder to trace back to "
+    "any specific physical mechanism. A model that started as a deliberately interpretable, "
+    "physics-constrained design became, in practice, close to as opaque as a purely data-driven one "
+    "once it had to accommodate real-world data heterogeneity.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Beyond these four formal gaps, two practical difficulties stood out repeatedly over the course "
+    "of this project's own experiments, and both are worth stating plainly rather than glossing over. "
+    "The first is that assembling usable data was, in practice, harder than training any individual "
+    "model. Different sources reported different input features, different units, different geometry "
+    "conventions, and different CHF detection criteria, and merging seven such sources into the "
+    "collaborator's unified 28,470-row dataset required deciding, source by source, what could be "
+    "combined honestly and what could not, well before any model was trained. Finding a single "
+    "architecture that performed acceptably across every one of these differing feature sets and "
+    "geometries was similarly difficult: a model tuned to do well on tube data with one set of "
+    "available inputs did not automatically do well once asked to work with a pin-fin dataset "
+    "carrying an entirely different set of surface descriptors."
+)
+
+doc.add_paragraph(
+    "The second difficulty is the one already illustrated by the numbers throughout this "
+    "introduction, and it is worth stating the interpretation directly. Every tree ensemble and "
+    "every plain neural network tested in this project's own work reached strong, sometimes "
+    "excellent, accuracy under interpolation, R-squared values above 0.9 were common, but the same "
+    "models performed far worse, in several cases catastrophically, once tested under extrapolation. "
+    "Tree-based models settled around an R-squared of 0.41 to 0.45 under a pressure-based "
+    "extrapolation split, while standard neural networks and the physics-informed neural network "
+    "produced sharply negative R-squared values under condition-wise and surface-wise splits. A "
+    "pattern this consistent, strong performance next to seen data and weak or collapsing "
+    "performance beyond it, is hard to read as anything other than evidence that these models are "
+    "not learning the underlying physical relationship governing CHF. What they appear to be doing "
+    "instead is closer to locating a new point relative to the nearby points they have already seen "
+    "and interpolating between them, which works well exactly as long as a new point actually has "
+    "close neighbors in the training data, and fails as soon as it does not."
+)
+
+doc.add_paragraph(
+    "This project's own attempts at pretraining and fine-tuning, applied to both MLP and Transformer "
+    "architectures in an effort to give the models a head start through transfer learning, ran into a "
+    "related version of the same problem. Models trained this way performed well on data that "
+    "resembled their pretraining distribution, but noticeably worse on genuinely unseen real "
+    "experimental data carrying feature combinations the model had not encountered in that particular "
+    "combination before. Pretraining and fine-tuning narrowed the interpolation-extrapolation gap "
+    "relative to training from scratch, as shown by the improved extrapolation R-squared values "
+    "reported earlier in this introduction, but it did not close it."
+)
+
+doc.add_paragraph(
+    "Part of the underlying difficulty is that many of the input features used across these datasets "
+    "are not actually independent of one another. Density, pressure, and the forces acting on a "
+    "growing bubble, for instance, are connected through well-established physical relationships, not "
+    "coincidence. A model that receives these quantities simply as separate numeric columns has no "
+    "built-in way of knowing that such relationships exist. It can only pick up on them indirectly, "
+    "if the training data happens to cover enough combinations for the relationship to become visible "
+    "in the numbers, and it does not carry that relationship forward reliably into combinations of "
+    "conditions it has not seen. In that sense, the models used across this field, including in this "
+    "project's own testing, are considerably less sophisticated than they can appear from a single "
+    "strong headline accuracy score. They are good at recognizing patterns in data they have already "
+    "been shown, and considerably less capable of anything that could reasonably be called physical "
+    "reasoning."
+)
+
+doc.add_heading('1.9 Objectives', level=2)
+
+doc.add_paragraph(
+    "Pulling together everything discussed so far, the aim of this work can be stated simply: to "
+    "build a single, general machine learning pipeline for CHF prediction that a practicing engineer "
+    "can actually trust and reuse, one that does not need to be redesigned, retrained from scratch, "
+    "or handed a bespoke set of input features every time it meets a new fluid, geometry, or surface. "
+    "A useful CHF model should behave less like a correlation tuned to one specific dataset and more "
+    "like a tool: something that takes whatever thermal-hydraulic and surface information is "
+    "available for a given case and returns a prediction that is at least as reliable as, and ideally "
+    "considerably better than, the correlations and look-up tables currently in routine use, without "
+    "asking the user to understand the details of how it was built."
+)
+
+doc.add_paragraph(
+    "This objective did not start out this way, and the path that led to it is itself part of the "
+    "motivation for this paper. The early phase of this work set out to do what most of the "
+    "literature reviewed in Section 1.5 does: maximize a single reported R-squared value. That "
+    "effort succeeded on its own terms, this project's own pretrained and fine-tuned models reached "
+    "an R-squared of 0.963 (MLP) and 0.968 (Transformer) when interpolating within the range of a "
+    "single look-up-table-style dataset. The problem appeared once the same models were tested "
+    "against the collaborator's independently assembled, multi-source experimental data described "
+    "throughout this introduction. Accuracy dropped sharply and, in several configurations, collapsed "
+    "outright, exactly the pattern documented in Sections 1.7 and 1.8. The conclusion was hard to "
+    "avoid: a high R-squared on one dataset had been mistaken for a model that understood CHF, when "
+    "what had actually happened was a model fitted closely, and somewhat narrowly, to the specific "
+    "numerical patterns of that one dataset."
+)
+
+doc.add_paragraph(
+    "That realization reframed the objective. Rather than continuing to treat CHF prediction as a "
+    "straightforward regression problem, feed in pressure, mass flux, and quality, and fit the "
+    "output, the goal shifted toward architectures that have some chance of capturing the underlying "
+    "physical structure of the problem: pretraining on a wide synthetic parameter space before "
+    "fine-tuning on real data, using physically motivated and dimensionless input features rather "
+    "than raw values alone, and testing generalization deliberately rather than assuming it. "
+    "Creating genuinely new benchmarks along the way turned out to be harder than expected, mainly "
+    "because reconciling the different input feature sets, units, and geometry conventions used "
+    "across independent CHF datasets, discussed in Section 1.8, is itself a substantial undertaking, "
+    "and finding one architecture that behaves consistently well across every one of them remains an "
+    "open and only partially solved problem. That open problem is precisely what the remainder of "
+    "this paper works on."
+)
+
+doc.add_paragraph("With that context, the specific objectives of this paper are:")
+
+objectives = [
+    "Develop a single machine learning pipeline for CHF prediction that can be applied across "
+    "multiple fluids, geometries, and surface conditions without requiring a bespoke model or a "
+    "hand-picked feature set for each new case.",
+    "Evaluate that pipeline honestly, using random, condition-wise, surface-wise, and "
+    "leave-one-source-out validation strategies side by side, rather than reporting a single "
+    "random-split R-squared as if it represented general reliability.",
+    "Move the model's behavior closer to physical understanding rather than blind curve fitting, "
+    "through pretraining on a broad synthetic parameter space, physically motivated input features, "
+    "and transfer learning, and measure directly how much this narrows the gap between interpolation "
+    "and extrapolation performance rather than assuming that it does.",
+    "Establish a general-purpose CHF prediction approach that a non-specialist user can apply with "
+    "reasonable confidence, one whose accuracy has been demonstrated on data it was not trained on, "
+    "not just on the dataset it was built from.",
+]
+for o in objectives:
+    doc.add_paragraph(o, style='List Bullet')
+
+doc.add_paragraph(
+    "Everything that follows in this paper, the dataset construction, the model architectures, the "
+    "validation strategy, and the interpretability analysis, is organized around testing whether "
+    "these four objectives can actually be met, not just claimed."
+)
+
+doc.add_heading('2. Experimental Database and CHF Measurements', level=1)
+doc.add_heading('2.1 CHF Detection Criterion', level=2)
+
+doc.add_paragraph(
+    "Before any of the modeling described later in this paper is possible, every experimental CHF "
+    "value in the underlying dataset first has to be identified from raw sensor readings, and that "
+    "identification step is not as clean cut as it might sound. Different experimental facilities "
+    "use different rules for deciding, from a stream of pressure, temperature, and heat flux "
+    "measurements, exactly which data point counts as CHF. Four detection criteria account for most "
+    "of the approaches used across the wider literature and across the sources merged into this "
+    "project's own dataset."
+)
+
+doc.add_paragraph(
+    "Criterion 1, wall temperature excursion. This is the most common general-purpose criterion: "
+    "heat flux or heater power is raised gradually while wall temperature is continuously logged, "
+    "and CHF is identified as the point where the wall superheat time series shows the onset of a "
+    "sustained upward excursion rather than settling to a new steady value, the sign that nucleate "
+    "boiling has broken down and the surface is no longer being cooled effectively. Because it is the "
+    "excursion itself, not a single instantaneous reading, that defines the point, most facilities "
+    "record the full time history of heat flux, wall superheat, pressure, and mass flux around the "
+    "event and locate CHF from where that excursion begins, rather than from any one isolated "
+    "measurement.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Criterion 2, sudden wall-temperature increase. A closely related but more automatable version "
+    "of Criterion 1 sets a numerical trip threshold rather than relying on inspection of the "
+    "excursion curve after the fact. Rod bundle CHF experiments commonly trigger detection when a "
+    "monitored wall temperature rises faster than about 10 degrees Celsius per second, or crosses an "
+    "absolute ceiling such as 500 degrees Celsius, whichever comes first. A similar trip criterion "
+    "has been used in downward-facing boiling surface experiments relevant to severe accident "
+    "research, where a thermocouple reaching a preset value of 160 degrees Celsius within 10 to 15 "
+    "seconds of the excursion beginning is used to automatically or manually cut heater power before "
+    "the test section is physically damaged. This distinction matters for a dataset: a criterion "
+    "built primarily as a safety trip is tuned to protect the equipment first and capture the exact "
+    "CHF condition second, so its reported CHF value can carry a small, systematic bias toward "
+    "slightly exceeding the true critical point.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Criterion 3, heat-flux reduction. In test setups where the heater surface temperature, rather "
+    "than the heat flux, is the directly controlled variable, CHF shows up differently. As surface "
+    "temperature is increased in steps, heat flux initially increases with it, tracing out the "
+    "familiar boiling curve, but at CHF the curve turns over: heat flux stops increasing, and can "
+    "even decrease, even as the wall temperature keeps rising. This turnover point in the boiling "
+    "curve has been used directly as a CHF criterion in several studies, since it does not require "
+    "detecting a temperature excursion at all, only a change in the slope of the heat-flux to "
+    "wall-superheat relationship.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Criterion 4, visual detection. On transparent or optically accessible test sections, CHF can be "
+    "identified directly by observing the boiling process itself rather than inferring it from a "
+    "temperature or heat-flux signal. Total reflection imaging can detect the dry patches that form "
+    "underneath vapor bubbles on a transparent heated surface, and high-speed and infrared imaging "
+    "have been used to track dry-spot growth and bubble coalescence frame by frame as CHF is "
+    "approached. This approach has also produced a finding that complicates the purely thermal "
+    "criteria above: direct visual observation in water has found that irreversible dry spots first "
+    "form at a surface temperature of around 134 degrees Celsius, well below the Leidenfrost "
+    "temperature that a simple thermal criterion would predict, a reminder that a temperature-based "
+    "definition of CHF is a practical proxy for the underlying physical event, not a first-principles "
+    "description of it.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "These four criteria do not always identify exactly the same physical instant, and switching "
+    "between them, even applied to the same raw data, can shift the reported CHF value by a small "
+    "but nonzero amount. Because the dataset used later in this paper is merged from multiple "
+    "independent sources, each of which may have used a different one of these four criteria, this "
+    "is itself a real, concrete source of the label noise and cross-source inconsistency discussed "
+    "elsewhere in this paper, and one more reason why a CHF prediction model needs to be evaluated "
+    "with some tolerance for the fact that its training labels were not all produced by an identical "
+    "measurement procedure."
 )
 
 doc.save("CHF_Research_Paper.docx")
