@@ -227,7 +227,10 @@ doc.add_paragraph(
     "domain fine-tuning results, R-squared values ranging from about 0.48 to 0.91 depending on the "
     "fluid and geometry combination, show a single underlying model architecture adapting across "
     "genuinely different fluids, rather than requiring a separate hand-built correlation for each "
-    "one.",
+    "one. This solution carries its own honest caveat, discussed further in Section 1.8: the same "
+    "dimensionless representation that lets a model transfer across fluids can also make an unseen "
+    "fluid look, numerically, like one the model has already seen, which is a real cost of this "
+    "approach and not a minor detail.",
     style='List Bullet'
 )
 
@@ -592,6 +595,7 @@ doc.add_paragraph(
     "training database, before that claim can be trusted."
 )
 
+
 doc.add_heading('1.8 Research Gap', level=2)
 
 doc.add_paragraph(
@@ -605,37 +609,71 @@ doc.add_paragraph(
     "As detailed in Section 1.6, roughness, wettability, contact angle, surface material, and "
     "orientation are established, physically important drivers of CHF, yet the correlations "
     "discussed in Section 1.3 were built almost entirely around bulk flow variables, pressure, mass "
-    "flux, and quality, and have no input slot for any of them. This is not a minor omission: two of "
-    "the seven sources in the collaborator's own unified dataset are surface-driven pin-fin and "
-    "helical-coil pool-boiling data, and neither integrates naturally into a correlation that was "
-    "never designed to take surface condition as an input in the first place.",
+    "flux, and quality, and have no input slot for any of them. This omission is not just "
+    "structural, it can actively mislead a simple statistical analysis of surface effects: when "
+    "roughness and CHF were correlated after pooling data across several engineered-surface studies, "
+    "the relationship came out negative, roughness associated with lower CHF, but the same "
+    "relationship measured within each individual study came out positive, roughness associated with "
+    "higher CHF, matching the capillary-wicking mechanism the source papers themselves describe. "
+    "Pooling surface data from different laboratories without accounting for which laboratory each "
+    "row came from can reverse the sign of a real physical relationship, not merely blur it.",
     style='List Bullet'
 )
 
 doc.add_paragraph(
     "Gap 2: Existing ML models frequently rely on randomly divided datasets, allowing samples from "
-    "the same surface or operating condition to appear in both training and testing sets. The "
-    "clearest evidence for this in this project's own testing is the gap between a random split and "
-    "a condition-wise split of the exact same underlying data: the best model on a random split "
-    "reached an R-squared of 0.968, but under a condition-wise split, where only the highest-pressure "
-    "portion of each source was held out rather than points scattered randomly throughout, the best "
-    "model dropped to about 0.89, and a physics-informed model collapsed to an R-squared of minus "
-    "64.9. A random split lets a model see near-neighbors of almost every test point during training, "
-    "which inflates the reported accuracy without actually testing whether the model has learned "
-    "anything that generalizes.",
+    "the same surface or operating condition to appear in both training and testing sets, and the "
+    "actual scale of the resulting inflation turned out to be far larger than a single example can "
+    "convey. On the smallest of the engineered-surface datasets used in this project, averaging only "
+    "about six or seven rows per publication, knowing only which laboratory produced a given row "
+    "explained roughly 80.6 percent of the variance in log CHF, more than the roughness and contact "
+    "angle values the paper was actually about, which added only a further 4.1 percentage points "
+    "once laboratory identity was already known. The same measurement, repeated across five datasets "
+    "of increasing size, showed a clean, decreasing pattern: 80.6 percent of variance explained by "
+    "source identity alone at roughly 7 rows per publication, falling to 73.5 percent at 81 rows per "
+    "publication, 65.9 percent at 11, and down to 34.5 and 27.3 percent on the two largest, "
+    "best-populated datasets. A further, more literal version of the same leakage was found hiding "
+    "inside individual sources even after grouping by source: 578 rows across this project's merged "
+    "dataset turned out to be exact or near-exact duplicates of other rows in feature space, "
+    "concentrated overwhelmingly in one compilation where 39 percent of all rows duplicated another "
+    "row already in the set, and correcting for this alone flipped that dataset's apparent "
+    "random-split score from a positive 0.066 to a negative 0.016. The most severe version of this "
+    "problem was not a duplicate row at all: in several of these datasets, the reported flow quality "
+    "is itself calculated from the measured CHF value through a standard energy balance, so using it "
+    "as a model input lets a model reconstruct the answer arithmetically rather than predict it. "
+    "Feeding that quality value back in as an input reproduced CHF on one dataset's 24,443 rows with "
+    "an R-squared of 0.999771 using nothing but a textbook energy-balance equation and no fitted "
+    "parameters at all, a direct demonstration of how a model can report a near-perfect score while "
+    "having learned essentially nothing about CHF. A random split cannot tell any of these three "
+    "shortcuts apart from genuine physical learning, because it never asks a model to generalize "
+    "past what it has effectively already been shown.",
     style='List Bullet'
 )
 
 doc.add_paragraph(
-    "Gap 3: Cross-surface generalization remains insufficiently demonstrated. When two entire surface "
-    "types, pin-fin pool boiling and helical coils, were withheld completely from training rather "
-    "than just a condition range, even the best-performing tree-based model in this project's own "
-    "testing dropped to an R-squared of about 0.17 to 0.22, and the standard neural network and the "
-    "physics-informed neural network both produced R-squared values below minus 3900. Later testing "
-    "in this project was built specifically to confront this gap directly, using techniques such as "
-    "low-rank adapters and mixture-of-experts routing to try to transfer a model trained on tube and "
-    "annulus data to genuinely new pool-boiling surfaces, rather than assuming a model trained on one "
-    "geometry will simply carry over to another.",
+    "Gap 3: Cross-surface generalization remains insufficiently demonstrated. When two entire "
+    "surface types, pin-fin pool boiling and helical coils, were withheld completely from training "
+    "rather than just a condition range, even the best-performing tree-based model in this project's "
+    "own testing dropped to an R-squared of about 0.17 to 0.22, and the standard neural network and "
+    "the physics-informed neural network both produced R-squared values below minus 3900. Under a "
+    "comparably unseen test on axially non-uniform heating conditions, a closed-form physical "
+    "correlation with no fitted parameters at all reached an R-squared of 0.821, outperforming every "
+    "machine learning model tested, the best of which reached only minus 0.077. This project's later "
+    "testing attempted to address cross-surface generalization directly, using low-rank adapters and "
+    "a mixture-of-experts architecture meant to route pool-boiling inputs to a specialized pathway, "
+    "but the routing gate itself did not learn that distinction reliably, activating correctly on "
+    "only about 11 percent of genuine pool-boiling rows while activating on 61 percent of ordinary "
+    "flow rows, close to the opposite of the pattern it was meant to detect. A related and, on "
+    "reflection, more fundamental obstacle showed up when this project tried to build a system that "
+    "could at least recognize when it was being asked about a genuinely new fluid rather than a new "
+    "surface: representing fluids through dimensionless physical groups, the same approach used in "
+    "Section 1.4 to address fluid dependence, placed an unseen refrigerant's operating conditions "
+    "inside the same numerical region as the water data the model had already trained on, so a "
+    "novelty detector built on that representation flagged zero percent of that refrigerant's data "
+    "points as unfamiliar, even though the model had never seen that fluid during training. The same "
+    "representation that helps a model transfer across fluids and surfaces is, by construction, the "
+    "representation that hides the fact that a fluid or surface has changed, and no solution to that "
+    "specific tension has yet been found.",
     style='List Bullet'
 )
 
@@ -646,10 +684,21 @@ doc.add_paragraph(
     "not just in principle. The model was originally built around a small, physically motivated set "
     "of three core input features, but extending it to ingest the wider and more varied feature sets "
     "present across different real experimental datasets, so that it could be tested against data it "
-    "was not originally designed for, made its internal behavior considerably harder to trace back to "
-    "any specific physical mechanism. A model that started as a deliberately interpretable, "
-    "physics-constrained design became, in practice, close to as opaque as a purely data-driven one "
-    "once it had to accommodate real-world data heterogeneity.",
+    "was not originally designed for, made its internal behavior considerably harder to trace back "
+    "to any specific physical mechanism. The interpretability problem runs deeper than any single "
+    "model's design: feature-importance rankings computed under an optimistic random split and under "
+    "an honest, source-grouped split came out essentially unchanged in this project's own testing, "
+    "even though the honest split's actual predictive accuracy was far worse, which means a "
+    "feature-importance ranking alone cannot be trusted to reveal whether a model has learned "
+    "something real or something that will not survive contact with new data. A related blind spot "
+    "showed up in the models' uncertainty estimates rather than their point predictions: an ensemble "
+    "of models built specifically to report calibrated 95 percent confidence intervals contained the "
+    "true CHF value only 9 to 22 percent of the time when tested on genuinely new data, and even "
+    "after switching to a more principled conformal prediction approach, coverage that reached 92 to "
+    "96 percent on familiar, in-distribution data fell to 57 percent on a laboratory the model had "
+    "never seen. A model that is confidently wrong about its own uncertainty is arguably more "
+    "concerning for a safety-relevant quantity like CHF than one that is simply less accurate, "
+    "because it gives a false sense of how much a given prediction should be trusted.",
     style='List Bullet'
 )
 
@@ -657,14 +706,23 @@ doc.add_paragraph(
     "Beyond these four formal gaps, two practical difficulties stood out repeatedly over the course "
     "of this project's own experiments, and both are worth stating plainly rather than glossing over. "
     "The first is that assembling usable data was, in practice, harder than training any individual "
-    "model. Different sources reported different input features, different units, different geometry "
-    "conventions, and different CHF detection criteria, and merging seven such sources into the "
-    "collaborator's unified 28,470-row dataset required deciding, source by source, what could be "
-    "combined honestly and what could not, well before any model was trained. Finding a single "
+    "model, and not in a vague sense. Concrete bugs kept surfacing well after the data looked clean: "
+    "one exported file had its units row sitting directly beneath the header, so an entire pressure "
+    "column was read as the text string \"kPa\" instead of a number until an explicit check caught "
+    "it; one dataset's diameter column was silently replaced by a hard-coded 8 millimeters whenever "
+    "the real value was missing, and that placeholder went unnoticed for 1,865 rows spanning true "
+    "diameters from 1 to 37.5 millimeters, until it was caught by asking why that one dataset was the "
+    "pipeline's single worst performer; and a property-lookup routine silently substituted water's "
+    "density and latent heat for any fluid it did not recognize, so a request for an unfamiliar fluid "
+    "returned a confident, wrong number rather than an error. None of these were modeling failures, "
+    "and every one of them would have quietly lowered, or in the diameter case actively corrupted, "
+    "whatever a model built on top of that data claimed to have learned. Finding a single "
     "architecture that performed acceptably across every one of these differing feature sets and "
-    "geometries was similarly difficult: a model tuned to do well on tube data with one set of "
-    "available inputs did not automatically do well once asked to work with a pin-fin dataset "
-    "carrying an entirely different set of surface descriptors."
+    "geometries was similarly difficult, but it turned out to matter less than getting the data "
+    "itself right: on one of the hardest test splits, correcting unit errors and a poorly populated "
+    "subcooling column, with no change to the model or any physics assumption, moved that split's "
+    "accuracy from an R-squared of 0.173 to 0.711, a bigger jump than any single modeling idea tried "
+    "afterward managed on its own."
 )
 
 doc.add_paragraph(
@@ -675,13 +733,27 @@ doc.add_paragraph(
     "models performed far worse, in several cases catastrophically, once tested under extrapolation. "
     "Tree-based models settled around an R-squared of 0.41 to 0.45 under a pressure-based "
     "extrapolation split, while standard neural networks and the physics-informed neural network "
-    "produced sharply negative R-squared values under condition-wise and surface-wise splits. A "
-    "pattern this consistent, strong performance next to seen data and weak or collapsing "
-    "performance beyond it, is hard to read as anything other than evidence that these models are "
-    "not learning the underlying physical relationship governing CHF. What they appear to be doing "
-    "instead is closer to locating a new point relative to the nearby points they have already seen "
-    "and interpolating between them, which works well exactly as long as a new point actually has "
-    "close neighbors in the training data, and fails as soon as it does not."
+    "produced sharply negative R-squared values under condition-wise and surface-wise splits, and in "
+    "one leave-one-publication-out test a plain linear regression outperformed considerably more "
+    "sophisticated methods, including gradient-boosted trees and Gaussian process regression, a "
+    "further sign that model complexity does not, by itself, buy generalization. A pattern this "
+    "consistent, strong performance next to seen data and weak or collapsing performance beyond it, "
+    "is hard to read as anything other than evidence that these models are not learning the "
+    "underlying physical relationship governing CHF. What they appear to be doing instead is closer "
+    "to locating a new point relative to the nearby points they have already seen and interpolating "
+    "between them, which works well exactly as long as a new point actually has close neighbors in "
+    "the training data, and fails as soon as it does not."
+)
+
+doc.add_paragraph(
+    "Combining multiple models did not fix this either, which matters because stacking or "
+    "ensembling is often the first thing reached for when a single model looks unreliable. Under an "
+    "honest, source-grouped evaluation in this project's own testing, a stacked ensemble of several "
+    "model types scored an R-squared of 0.459, against 0.945 for a single tree-based model evaluated "
+    "the same way, because the ensemble's own combination weights were fit on the training "
+    "laboratories and simply learned to trust whichever base model looked best on data it had "
+    "already seen. Adding models on top of models does not add physical understanding; it adds "
+    "another layer that can itself overfit to source identity."
 )
 
 doc.add_paragraph(
@@ -709,7 +781,6 @@ doc.add_paragraph(
     "been shown, and considerably less capable of anything that could reasonably be called physical "
     "reasoning."
 )
-
 doc.add_heading('1.9 Objectives', level=2)
 
 doc.add_paragraph(
@@ -787,10 +858,11 @@ doc.add_paragraph(
     "Before any of the modeling described later in this paper is possible, every experimental CHF "
     "value in the underlying dataset first has to be identified from raw sensor readings, and that "
     "identification step is not as clean cut as it might sound. Different experimental facilities "
-    "use different rules for deciding, from a stream of pressure, temperature, and heat flux "
-    "measurements, exactly which data point counts as CHF. Four detection criteria account for most "
-    "of the approaches used across the wider literature and across the sources merged into this "
-    "project's own dataset."
+    "use different rules for deciding, from a stream of pressure, temperature, heat flux, acoustic, "
+    "or image measurements, exactly which data point counts as CHF. The outline for this project "
+    "names four criteria, and two more, drawn from the wider CHF literature, are worth adding "
+    "because they show up increasingly often in recent experimental and machine-learning-adjacent "
+    "work."
 )
 
 doc.add_paragraph(
@@ -850,14 +922,168 @@ doc.add_paragraph(
 )
 
 doc.add_paragraph(
-    "These four criteria do not always identify exactly the same physical instant, and switching "
+    "Criterion 5, acoustic emission. Bubble nucleation, growth, and collapse generate small, rapid "
+    "pressure fluctuations in the liquid, and these can be picked up non-intrusively by a "
+    "microphone or transducer mounted outside the test section rather than in contact with the "
+    "heated surface at all. As boiling approaches CHF, the character of this acoustic signal "
+    "changes in ways that correlate with the transition from nucleate boiling to film boiling, and "
+    "recent work has combined externally measured acoustic emission signals with deep learning "
+    "models to detect CHF directly from sound, tracked continuously from natural convection through "
+    "to the critical point. This criterion is particularly useful where thermocouples or optical "
+    "access are impractical, for example in harsh or enclosed industrial equipment.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Criterion 6, image-based machine-learning classification. This criterion is a direct "
+    "extension of Criterion 4 rather than a wholly separate physical signal: instead of a person or "
+    "a fixed image-processing rule identifying dry-patch formation from high-speed video, a trained "
+    "deep learning model is used to classify boiling-regime images or bubble morphology frame by "
+    "frame and flag the onset of CHF automatically. Reported results show that such models can "
+    "correlate bubble morphology with the actual measured heat flux even when the resolution or "
+    "frame rate of the images is reduced, which makes this approach attractive as a way of "
+    "processing very large volumes of high-speed video without a human reviewing every frame by "
+    "eye, and it is the one criterion on this list that is itself a small CHF prediction model "
+    "rather than a fixed physical rule.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "These six criteria do not always identify exactly the same physical instant, and switching "
     "between them, even applied to the same raw data, can shift the reported CHF value by a small "
     "but nonzero amount. Because the dataset used later in this paper is merged from multiple "
     "independent sources, each of which may have used a different one of these four criteria, this "
     "is itself a real, concrete source of the label noise and cross-source inconsistency discussed "
     "elsewhere in this paper, and one more reason why a CHF prediction model needs to be evaluated "
     "with some tolerance for the fact that its training labels were not all produced by an identical "
-    "measurement procedure."
+    "measurement procedure. The two additional criteria are also worth flagging for a different "
+    "reason: a model trained to detect CHF from acoustic or image data is, in effect, a separate "
+    "machine learning system sitting upstream of the CHF prediction models discussed later in this "
+    "paper, and any bias or error in that upstream detector becomes part of the ground truth the "
+    "downstream CHF model is trained against, whether or not that error is ever reported."
+)
+
+doc.add_heading('3. Machine-Learning Methodology', level=1)
+doc.add_heading('3.1 Data Preprocessing', level=2)
+
+doc.add_paragraph(
+    "Merging independent CHF datasets into a single modeling table, described in Section 2, does "
+    "not by itself produce something a model can be trained on safely. The merged schema used in "
+    "this project carries 51 columns once every source's fields are combined, and getting from that "
+    "raw merge to a trustworthy training set involved five distinct kinds of preprocessing work: "
+    "deciding what to do about missing values, deciding which unusual points were real and which "
+    "were errors, choosing how to scale the inputs and the target, checking which features actually "
+    "carried independent information, and working out what the effective dimensionality of the "
+    "problem really was."
+)
+
+doc.add_paragraph(
+    "Missing-value treatment. Column coverage across the merged dataset is extremely uneven. Core "
+    "flow variables such as CHF itself, mass flux, and geometry family are present on effectively "
+    "every row, heated length, quality, and pressure are present on more than 99 percent of rows, "
+    "and diameter is present on 98.3 percent, but surface-specific columns such as roughness factor "
+    "and surface material are present on well under 1 percent of rows, simply because the great "
+    "majority of sources never measured them. The rule adopted throughout this project is to never "
+    "impute a value a source does not report, rather than filling a gap with a column mean, a "
+    "model-based estimate, or any other guess. This matters because two different kinds of "
+    "missingness are easy to confuse: a pool-boiling dataset has no mass flux or quality because "
+    "there is no forced flow to measure, which is a physically meaningful absence, not missing data "
+    "in the usual sense, while a flow-boiling paper that simply never reported subcooling is missing "
+    "data that does, in principle, exist. Only the second kind is a candidate for careful imputation "
+    "at all, and even there this project chose to leave the gap as a genuine missing value rather "
+    "than invent a number, so that no model result can be quietly resting on an assumption dressed "
+    "up as a measurement.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Outlier detection. The instruction not to remove outliers blindly is worth taking seriously, "
+    "because this dataset contains at least three genuinely different situations that a single "
+    "statistical outlier rule would treat identically and should not. First, CHF itself spans three "
+    "orders of magnitude, from about 15 to over 44,000 kW per square meter, so a small number of "
+    "very high or very low values are real physical outcomes at extreme pressure, mass flux, or "
+    "subcooling combinations, not errors, and a naive standard-deviation filter would delete exactly "
+    "the high-CHF conditions that matter most for margin calculations. Second, some points are "
+    "genuinely suspect due to how they were collected rather than what they measure: one dataset "
+    "used in this project was digitized by eye from a published scatter plot, which carries an "
+    "estimated 5 to 10 percent error on both axes, and this project's response was not to delete "
+    "those points but to keep them clearly labeled as a lower-trust source used only for "
+    "out-of-distribution testing, never for training. Third, some apparent outliers are unresolved "
+    "disagreements in the literature itself: one pool-boiling study's own published text gives CHF "
+    "values for its coated surfaces that do not match the range quoted for the same study in a later "
+    "review paper, and rather than guessing which source was right, the values were kept exactly as "
+    "printed in the original paper and the discrepancy was documented rather than silently resolved. "
+    "A fourth case is not an outlier at all but a data-entry defect masquerading as one: a diameter "
+    "column that had silently defaulted to a fixed placeholder value whenever the true diameter was "
+    "missing was only caught because the affected dataset was the pipeline's worst performer, and "
+    "the fix there was to correct the underlying value, not to remove the rows.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Normalization and standardization. Because CHF spans three orders of magnitude, every model in "
+    "this project is trained on the logarithm of CHF rather than the raw value, with predictions "
+    "exponentiated back before any accuracy metric is computed. For the input side, an early "
+    "baseline simply standardized the raw physical variables to zero mean and unit variance before "
+    "fitting, which is a reasonable default but treats pressure, mass flux, and fluid identity as "
+    "arbitrary numbers to be rescaled rather than physical quantities with known relationships to "
+    "each other. The approach carried into the final pipeline instead collapses the fluid and flow "
+    "variables into a small set of dimensionless physical groups, an inverse Weber number, a "
+    "density ratio, a length-to-diameter ratio, a subcooling ratio, and a reduced pressure, so that "
+    "water at 15 megapascals and a refrigerant at 1 megapascal that are in physically equivalent "
+    "states map to the same point in the input space. This is not just a scaling convenience: tested "
+    "directly, moving from raw standardized inputs to this dimensionless formulation improved "
+    "cross-fluid prediction error by a factor of roughly 10 to 32, while leaving within-fluid "
+    "accuracy essentially unchanged, 0.851 against 0.849 R-squared, which is the control that shows "
+    "the gain is coming from better cross-fluid normalization and not from some unrelated side "
+    "effect.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Feature correlation analysis. Run naively on data pooled from many independent laboratories, a "
+    "feature correlation analysis in this project turned out to be actively misleading rather than "
+    "simply noisy. Computed across pooled engineered-surface data, the correlation between surface "
+    "roughness and CHF came out negative, but computed within each individual study it came out "
+    "positive, matching the physical mechanism the source papers themselves describe. Extending the "
+    "same kind of analysis to ask how much variance a purely administrative variable, which "
+    "laboratory produced a given row, explains on its own, rather than only checking physical "
+    "features against the target, is what first revealed that source identity alone can account for "
+    "the majority of the apparent signal in a small dataset. Correlation analysis was also used "
+    "directly as a leakage-detection tool rather than only a feature-selection one: several columns "
+    "in the merged data, including one combination of electrical power, perimeter, and flow area in "
+    "one dataset, and a heater-power column in another, reconstructed the CHF target almost exactly "
+    "through simple algebra once checked, and were excluded once that reconstruction was confirmed. "
+    "In this project, feature correlation analysis removed at least as much as it selected.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Dimensionality analysis. The physical problem itself is low-dimensional: CHF in flow boiling is "
+    "conventionally described by four or five variables, pressure, mass flux, quality, diameter, and "
+    "heated length, plus fluid identity, so this project never faced the classic high-dimensional "
+    "setting that would call for something like principal component analysis. The dimensionality "
+    "problem that did show up came from merging, not from the physics: once seven independent "
+    "sources were combined, the resulting schema carried 51 columns, because each source contributed "
+    "its own geometry- or surface-specific descriptors, and the great majority of those columns are "
+    "populated on well under 10 percent of rows. The practical dimensionality question in this "
+    "project was therefore not how to compress a rich feature space, but how to decide, column by "
+    "column, which of these sparsely populated fields could be used at all without either discarding "
+    "most of the dataset by requiring every column to be present, or inventing values for rows that "
+    "never measured that quantity in the first place. The dimensionless feature construction "
+    "described above served this purpose as well, replacing a long, sparse tail of source-specific "
+    "raw columns with a small, fixed set of variables that apply to every row regardless of which "
+    "source it came from.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "None of these five preprocessing decisions were free of consequence, and it is worth restating "
+    "the finding from Section 1.8 in this context: on one of the hardest test splits used in this "
+    "project, correcting a handful of data-preprocessing issues, unit errors and a poorly populated "
+    "column, with no change to the model or to any physics assumption, moved that split's accuracy "
+    "from an R-squared of 0.173 to 0.711. In this project, the preprocessing choices described above "
+    "turned out to matter at least as much as which model was ultimately trained on the result."
 )
 
 doc.save("CHF_Research_Paper.docx")
