@@ -32,6 +32,19 @@ def add_caption(doc, text_str):
     run.italic = True
     run.font.size = Pt(9)
 
+
+def add_figure(doc, path, caption_text, width_in=6.3):
+    doc.add_paragraph()
+    fig_para = doc.add_paragraph()
+    fig_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = fig_para.add_run()
+    run.add_picture(path, width=Inches(width_in))
+    caption = doc.add_paragraph()
+    caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    cap_run = caption.add_run(caption_text)
+    cap_run.italic = True
+    cap_run.font.size = Pt(9)
+
 doc.add_heading('Critical Heat Flux Prediction Using Machine Learning: A Physics-Informed Approach', level=0)
 doc.add_heading('1. Introduction', level=1)
 doc.add_heading('1.1 Nuclear Relevance of Critical Heat Flux', level=2)
@@ -1002,6 +1015,17 @@ doc.add_paragraph(
     "problem really was."
 )
 
+add_figure(doc, "docs/manuscript/fig_eda_distribution_geometry.png",
+    "Figure 1a. Exploratory data analysis on the real merged dataset (28,470 rows): the CHF "
+    "distribution spans about three orders of magnitude (left), and row counts per geometry "
+    "family are highly imbalanced, from 27,557 tube rows down to 48 plate rows (right, log scale).")
+
+add_figure(doc, "docs/manuscript/fig_eda_pressure_vs_chf.png",
+    "Figure 1b. CHF against pressure for the three largest geometry families in the merged "
+    "dataset. Only three series are shown because more than three categorical colors on a "
+    "scatter plot stop being reliably distinguishable, including under color-vision deficiency.",
+    width_in=5.2)
+
 doc.add_paragraph(
     "Missing-value treatment. Column coverage across the merged dataset is extremely uneven. Core "
     "flow variables such as CHF itself, mass flux, and geometry family are present on effectively "
@@ -1194,6 +1218,10 @@ add_table(doc,
     ]
 )
 
+add_figure(doc, "docs/manuscript/fig_model_comparison_strategies.png",
+    "Figure 2. Table 2 shown visually. The y-axis uses a symmetric log scale because scores "
+    "range from 0.97 to -4133; a linear axis would make every bar except PINN's look identical.")
+
 doc.add_paragraph(
     "The physics-informed neural network in Table 2 deserves a brief, honest note, since this "
     "project spent considerable effort on it before setting it aside. Early results looked "
@@ -1266,6 +1294,10 @@ add_table(doc,
     ]
 )
 
+add_figure(doc, "docs/manuscript/fig_unseen_dataset_performance.png",
+    "Figure 3. Table 4 shown visually: R-squared by dataset (left, symmetric log scale) and "
+    "the proposed hybrid's within +/-10% accuracy by dataset (right).")
+
 doc.add_paragraph(
     "The headline result in Table 4 is not the median score by itself, it is the absence of "
     "catastrophe. An unanchored data-driven model reaches an R-squared of minus 868 on one unseen "
@@ -1336,6 +1368,10 @@ add_table(doc,
         ["Layer 4", "Conformal prediction interval and regime label", "Produces an uncertainty interval calibrated on a held-out calibration slice rather than on ensemble spread, and labels each prediction as interpolating, extrapolating, or falling back to the correlation alone"],
     ]
 )
+
+add_figure(doc, "docs/manuscript/fig_pipeline_hierarchy.png",
+    "Figure 4. Table 6 shown as a schematic: raw inputs flow down through all five layers to a "
+    "final prediction with a calibrated uncertainty interval.", width_in=4.6)
 
 doc.add_paragraph(
     "This hierarchy exists specifically because the alternative, simpler designs tested earlier in "
