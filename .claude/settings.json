@@ -11,5 +11,8 @@
       "NotebookEdit"
     ],
     "defaultMode": "bypassPermissions"
+  },
+  "worktree": {
+    "bgIsolation": "none"
   }
 }

@@ -1007,7 +1007,61 @@ doc.add_paragraph(
     "downstream CHF model is trained against, whether or not that error is ever reported."
 )
 
+doc.add_heading('2.2 Boiling Regimes and Heating Configurations in the Merged Database', level=2)
+
+doc.add_paragraph(
+    "The six detection criteria above apply across a database that is itself split unevenly "
+    "across boiling regime and heating configuration, and it is worth making that composition "
+    "explicit before Section 3 starts training models on it. Counted by source file, the eleven "
+    "datasets used across this project split into flow boiling with uniform axial heating (the "
+    "NRC Groeneveld database and the KAERI uniform set, together 25,230 rows), flow boiling with "
+    "non-uniform axial heating (the KAERI non-uniform set, 888 rows, the only dataset of this kind "
+    "this project holds), flow boiling where the source material does not specify a heating profile "
+    "one way or the other (Zhao 2020, the Helical R-123 and Hardik sets, and the Pioro R-134a "
+    "holdout, together 2,601 rows), and pool boiling on engineered surfaces (the pin-fin, strip-"
+    "heater, and consolidated surface-master sets, together 330 rows). Figure 2 shows this "
+    "breakdown directly."
+)
+
+add_figure(doc, "docs/manuscript/fig_dataset_composition.png",
+    "Figure 2. Database composition by boiling regime and heating configuration, one bar per "
+    "source file (left) and grouped into four categories (right). Both axes are log scaled "
+    "because row counts span nearly three orders of magnitude, from 55 to 24,579.")
+
+doc.add_paragraph(
+    "This imbalance matters for how the results in Section 3 should be read. Pool boiling makes "
+    "up only about 1 percent of the merged database by row count, which is part of why Section "
+    "3.3's inference procedure declines to produce a prediction for zero mass flux rather than "
+    "trusting the pooled correction to have learned pool boiling well from so little data. "
+    "Non-uniform axial heating is similarly a minority case, a single 888-row dataset next to "
+    "25,230 rows of uniform heating, so any result reported for the KAERI non-uniform set later "
+    "in this paper, including in Table 4, is a result on this project's only non-uniform-heating "
+    "source, not an average over several. Figure 3 shows directly what that non-uniform condition "
+    "looks like in practice: local quality plotted along the heated length for a sample of "
+    "individual tests from the KAERI non-uniform set, each tracing out its own axial profile "
+    "rather than the single monotonic curve a uniformly heated tube would produce."
+)
+
+add_figure(doc, "docs/manuscript/fig_axial_quality_profiles_nonuniform.png",
+    "Figure 3. Axial quality profiles for a sample of individual tests in the KAERI non-uniform "
+    "heating dataset (left: how many axial points each test reports; right: local quality against "
+    "axial position for eight sample tests), illustrating what a non-uniform axial heat flux "
+    "profile actually looks like at the level of a single test.")
+
 doc.add_heading('3. Machine-Learning Methodology', level=1)
+
+doc.add_paragraph(
+    "Figure 4 maps the rest of this section before the detail begins: raw sources of the kind "
+    "just described in Section 2 are merged and preprocessed (Section 3.1), passed through the "
+    "physics-plus-learned-correction hierarchy (Section 3.3), evaluated under four validation "
+    "strategies (Section 3.4), and turned into a final prediction carrying its own calibrated "
+    "uncertainty interval."
+)
+
+add_figure(doc, "docs/manuscript/fig_pipeline_overview.png",
+    "Figure 4. End-to-end pipeline from raw CHF measurements to a calibrated prediction, naming "
+    "the section that describes each stage in detail.", width_in=6.3)
+
 doc.add_heading('3.1 Data Preprocessing', level=2)
 
 doc.add_paragraph(
@@ -1022,12 +1076,12 @@ doc.add_paragraph(
 )
 
 add_figure(doc, "docs/manuscript/fig_eda_distribution_geometry.png",
-    "Figure 2. Exploratory data analysis on the real merged dataset (28,470 rows): the CHF "
+    "Figure 5. Exploratory data analysis on the real merged dataset (28,470 rows): the CHF "
     "distribution spans about three orders of magnitude (left), and row counts per geometry "
     "family are highly imbalanced, from 27,557 tube rows down to 48 plate rows (right, log scale).")
 
 add_figure(doc, "docs/manuscript/fig_eda_pressure_vs_chf.png",
-    "Figure 3. CHF against pressure for the three largest geometry families in the merged "
+    "Figure 6. CHF against pressure for the three largest geometry families in the merged "
     "dataset. Only three series are shown because more than three categorical colors on a "
     "scatter plot stop being reliably distinguishable, including under color-vision deficiency.",
     width_in=5.2)
@@ -1113,6 +1167,14 @@ doc.add_paragraph(
     style='List Bullet'
 )
 
+add_figure(doc, "docs/manuscript/fig_correlation_heatmap_nrc.png",
+    "Figure 7. Pairwise correlation matrix for the NRC/Groeneveld sub-dataset (24,579 rows, this "
+    "project's single largest source), the kind of within-source correlation check described "
+    "above. Mass flux and outlet quality show the strongest linear association with CHF here "
+    "(0.42 and -0.55); note that this is one source's own internal correlation structure, not "
+    "the pooled, cross-source analysis whose sign-reversal problem is discussed in the same "
+    "paragraph.", width_in=4.3)
+
 doc.add_paragraph(
     "Dimensionality analysis. The physical problem itself is low-dimensional: CHF in flow boiling is "
     "conventionally described by four or five variables, pressure, mass flux, quality, diameter, and "
@@ -1152,16 +1214,12 @@ doc.add_paragraph(
 )
 
 doc.add_paragraph(
-    "Model 1, Artificial Neural Network (ANN / MLP). A fully connected multilayer perceptron, "
-    "trained on the logarithm of CHF rather than the raw value, was this project's primary "
-    "nonlinear baseline throughout every phase of the work, and a Transformer encoder variant was "
-    "added later specifically to test whether attention-based architecture offered any advantage "
-    "over a plain feedforward network. The earliest test of this model, on the 2006 Groeneveld "
-    "look-up table alone, already showed the pattern that shaped the rest of the project: excellent "
-    "accuracy under an easy split, and a sharp decline under a genuinely hard one. Table 1 shows "
-    "this alongside three other baselines evaluated the same way, using three splits of increasing "
-    "difficulty: Split A, an ordinary random 80/20 split; Split B, an interior pressure holdout; and "
-    "Split C, an edge-of-range pressure extrapolation, described further in Section 3.4."
+    "Model 1, Artificial Neural Network (ANN / MLP), later joined by a Transformer encoder variant. "
+    "Table 1 summarizes this project's earliest phase, the 2006 Groeneveld look-up table alone, "
+    "across three splits of increasing difficulty (Split A: random; Split B: interior pressure "
+    "holdout; Split C: edge-of-range extrapolation; Section 3.4), and already showed the pattern "
+    "the rest of this paper returns to: strong accuracy under an easy split, sharp decline under a "
+    "hard one."
 )
 
 add_caption(doc, "Table 1. Early baseline comparison on the 2006 Groeneveld look-up table (11,088 usable rows), before any real experimental data was introduced. MAPE is mean absolute percentage error, computed on Split C.")
@@ -1177,15 +1235,11 @@ add_table(doc,
 )
 
 doc.add_paragraph(
-    "Two things from this early phase carried forward into everything that followed. First, "
-    "deterministic grid interpolation, simply reading the value off the look-up table itself with "
-    "no learning involved, held its accuracy far better than any learned model under genuine "
-    "extrapolation, the first sign that a physical anchor might matter more than model choice. "
-    "Second, an internal review had initially ranked a different blend first, at an R-squared of "
-    "0.855 on Split C, but multi-seed verification showed that result did not replicate, the "
-    "underlying model averaged 0.547 across 30 random seeds and not one seed reached 0.84 on its "
-    "own. The claim was withdrawn, and from that point on, every number in this project is reported "
-    "as a multi-seed mean, never a single run."
+    "Deterministic grid interpolation held up far better than any learned model under genuine "
+    "extrapolation here, the first sign that a physical anchor can matter more than model choice, "
+    "a lead this paper follows through to the proposed hybrid below. (An initially reported 0.855 "
+    "blend result did not replicate under multi-seed verification and was withdrawn; every number "
+    "in this paper is a multi-seed mean, never a single run.)"
 )
 
 doc.add_paragraph(
@@ -1225,7 +1279,7 @@ add_table(doc,
 )
 
 add_figure(doc, "docs/manuscript/fig_model_comparison_strategies.png",
-    "Figure 4. Table 2 shown visually. The y-axis uses a symmetric log scale because scores "
+    "Figure 8. Table 2 shown visually. The y-axis uses a symmetric log scale because scores "
     "range from 0.97 to -4133; a linear axis would make every bar except PINN's look identical.")
 
 doc.add_paragraph(
@@ -1312,7 +1366,7 @@ add_table(doc,
 )
 
 add_figure(doc, "docs/manuscript/fig_unseen_dataset_performance.png",
-    "Figure 5. Table 4 shown visually: R-squared by dataset (left, symmetric log scale) and "
+    "Figure 9. Table 4 shown visually: R-squared by dataset (left, symmetric log scale) and "
     "the proposed hybrid's within +/-10% accuracy by dataset (right).")
 
 doc.add_paragraph(
@@ -1326,14 +1380,30 @@ doc.add_paragraph(
 )
 
 doc.add_paragraph(
-    "Other models and configurations explored. The five models above are the headline comparison, "
-    "but they are far from everything this project tried. Across several rounds of hyperparameter "
-    "tuning and architecture search, involving roughly thirty configurations in the earliest phase "
-    "alone and a further 720-configuration search specifically for the physics-informed network, a "
-    "considerable number of ideas were tested and set aside once they failed to improve genuinely "
-    "held-out accuracy. Table 5 summarizes the ones most worth recording, precisely because a "
-    "negative result, tested honestly, is still useful evidence about what does not work for this "
-    "problem."
+    "Putting Table 2 and Table 4 side by side, rather than reading each in isolation, surfaces a "
+    "pattern neither table shows clearly on its own: the model or approach that wins is not always "
+    "the one that wins everywhere else. Gradient boosting is the strongest model under three of "
+    "the four validation strategies in Table 2, but under Strategy 3 specifically, the surface-wise "
+    "split that withholds pin-fin pool-boiling and helical-coil rows entirely, Random Forest edges "
+    "it out, 0.219 against 0.173, a real if modest reversal at the one strategy built specifically "
+    "to test an unseen surface type. A similar reversal shows up in Table 4: the proposed hybrid "
+    "wins on seven of the eight entirely unseen datasets, but on KAERI uniform specifically, the "
+    "plain data-driven model with no physics scores higher, 0.852 against the hybrid's 0.735, even "
+    "though the same plain data-driven model is far behind the hybrid on every other dataset in the "
+    "table, including the non-uniform-heating KAERI set right next to it. Figure 10 makes both "
+    "reversals visible at once."
+)
+
+add_figure(doc, "docs/manuscript/fig_best_by_scenario.png",
+    "Figure 10. Which model or approach actually wins, scenario by scenario, read directly off "
+    "Table 2 (top) and Table 4 (bottom). Bracketed labels flag the two directly comparable "
+    "heating configurations, KAERI uniform and KAERI non-uniform, so that a single dataset pair "
+    "matched on almost everything except axial heating profile can be compared directly.")
+
+doc.add_paragraph(
+    "Other models and configurations explored. The five models above are the headline comparison; "
+    "Table 5 briefly records the other ideas tried and set aside, negative results included, since "
+    "they are still useful evidence about what does not work for this problem."
 )
 
 add_caption(doc, "Table 5. Additional models, hyperparameter variations, and architectural ideas tested over the course of this project, beyond the five headline models above.")
@@ -1359,11 +1429,9 @@ add_table(doc,
 )
 
 doc.add_paragraph(
-    "The one modification out of eleven tested in this particular round that was actually adopted "
-    "was not a modeling idea at all: it was correcting a fabricated placeholder value in one "
-    "dataset's diameter column, already described in Section 1.8. Across this entire project, that "
-    "pattern held up more often than not: fixing what the data actually said tended to matter more "
-    "than which model, loss function, or architecture was used to fit it."
+    "The one change from this round that actually stuck was not a modeling idea at all: correcting "
+    "a fabricated placeholder in one dataset's diameter column (Section 1.8) -- fixing the data "
+    "mattered more, more often, than any model, loss, or architecture choice."
 )
 
 doc.add_heading('3.3 Proposed Model Hierarchy', level=2)
@@ -1387,7 +1455,7 @@ add_table(doc,
 )
 
 add_figure(doc, "docs/manuscript/fig_pipeline_hierarchy.png",
-    "Figure 6. Table 6 shown as a schematic: raw inputs flow down through all five layers to a "
+    "Figure 11. Table 6 shown as a schematic: raw inputs flow down through all five layers to a "
     "final prediction with a calibrated uncertainty interval.", width_in=4.6)
 
 doc.add_paragraph(
@@ -1470,6 +1538,11 @@ add_table(doc,
     ]
 )
 
+add_figure(doc, "docs/manuscript/fig_validation_strategies.png",
+    "Figure 12. What train and test actually mean under each of the four validation strategies in "
+    "Table 8, schematically: colored blocks are sources, dark segments are held out as test.",
+    width_in=5.6)
+
 doc.add_paragraph(
     "Two further points about how these strategies were implemented are worth recording, because "
     "both were discovered as mistakes and then fixed, and both are the kind of error that is easy "
@@ -1532,6 +1605,11 @@ doc.add_paragraph(
     "once the split gets harder, which is a difficult combination to justify in practice."
 )
 
+add_figure(doc, "docs/manuscript/fig_accuracy_vs_cost.png",
+    "Figure 13. Table 9 as an accuracy-vs-cost view: R-squared against training time (log scale), "
+    "marker size scaled to MAPE. There is no trade-off to argue about here, the most accurate model "
+    "is also nearly the cheapest to train.", width_in=5.0)
+
 doc.add_paragraph(
     "This project's own MLP and Transformer architectures were evaluated the same way, on the "
     "separate NRC-derived interpolation and extrapolation splits described in Section 3.4, and "
@@ -1562,6 +1640,12 @@ doc.add_paragraph(
     "cost."
 )
 
+add_figure(doc, "docs/manuscript/fig_mlp_transformer_within10.png",
+    "Figure 14. Table 10 shown visually: R-squared (left) and within +/-10% accuracy (right) for "
+    "MLP and Transformer, interpolation vs. extrapolation. The Transformer's small R-squared edge "
+    "does not carry over to within +/-10% accuracy, where the MLP matches or beats it under "
+    "extrapolation for a fraction of the training cost.")
+
 doc.add_heading('3.6 Results Structure: Experimental vs. Predicted CHF', level=2)
 
 doc.add_paragraph(
@@ -1569,18 +1653,18 @@ doc.add_paragraph(
     "about individual predictions. A parity plot, measured CHF on one axis and predicted CHF on "
     "the other, with a diagonal line marking a perfect match, makes the same information "
     "impossible to skim past: every point off the diagonal is a specific case the model got wrong, "
-    "by a specific amount. Figure 7 shows this project's own MLP model, evaluated on real test-set "
+    "by a specific amount. Figure 15 shows this project's own MLP model, evaluated on real test-set "
     "rows it was not trained on, for both the interpolation and extrapolation splits described in "
     "Section 3.4."
 )
 
 add_figure(doc, "docs/manuscript/fig_parity_plot_mlp.png",
-    "Figure 7. Predicted vs. measured CHF for this project's own MLP model, on real held-out test "
+    "Figure 15. Predicted vs. measured CHF for this project's own MLP model, on real held-out test "
     "rows. Both axes are log scaled because CHF spans three orders of magnitude. The dashed lines "
     "mark a +/-10% error band around perfect prediction.")
 
 doc.add_paragraph(
-    "Two patterns are visible in Figure 7 that a single R-squared number would not show. First, "
+    "Two patterns are visible in Figure 15 that a single R-squared number would not show. First, "
     "scatter around the diagonal is not uniform across the range: low-CHF points show "
     "proportionally more spread than high-CHF points, which is consistent with the fact that MAPE, "
     "a percentage-based metric, penalizes a fixed absolute error far more heavily at low CHF than "
@@ -1599,11 +1683,11 @@ doc.add_paragraph(
 
 doc.add_paragraph(
     "The same experimental-versus-predicted comparison, aggregated to a single R-squared and a "
-    "single within-+/-10% percentage per dataset rather than shown point by point, is what Figure 5 "
+    "single within-+/-10% percentage per dataset rather than shown point by point, is what Figure 9 "
     "in Section 3.2 already presents for the proposed hybrid pipeline across every entirely unseen "
-    "dataset tested in this paper. Reading Figure 5 and Figure 7 together is the intended way to "
-    "judge this paper's results: Figure 7 shows what individual predictions look like for a model "
-    "evaluated the conventional way, and Figure 5 shows how much of that accuracy survives once the "
+    "dataset tested in this paper. Reading Figure 9 and Figure 15 together is the intended way to "
+    "judge this paper's results: Figure 15 shows what individual predictions look like for a model "
+    "evaluated the conventional way, and Figure 9 shows how much of that accuracy survives once the "
     "test data comes from a source, surface, or fluid the model has never encountered."
 )
 
