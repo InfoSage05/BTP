@@ -4,8 +4,14 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 doc = Document()
 style = doc.styles['Normal']
-style.font.name = 'Calibri'
-style.font.size = Pt(11)
+style.font.name = 'Times New Roman'
+style.font.size = Pt(12)
+style.paragraph_format.line_spacing = 1.5
+
+list_bullet_style = doc.styles['List Bullet']
+list_bullet_style.font.name = 'Times New Roman'
+list_bullet_style.font.size = Pt(12)
+list_bullet_style.paragraph_format.line_spacing = 1.5
 
 
 def add_table(doc, headers, data_rows):
@@ -990,7 +996,7 @@ doc.add_paragraph(
     "These six criteria do not always identify exactly the same physical instant, and switching "
     "between them, even applied to the same raw data, can shift the reported CHF value by a small "
     "but nonzero amount. Because the dataset used later in this paper is merged from multiple "
-    "independent sources, each of which may have used a different one of these four criteria, this "
+    "independent sources, each of which may have used a different one of these criteria, this "
     "is itself a real, concrete source of the label noise and cross-source inconsistency discussed "
     "elsewhere in this paper, and one more reason why a CHF prediction model needs to be evaluated "
     "with some tolerance for the fact that its training labels were not all produced by an identical "
@@ -1016,12 +1022,12 @@ doc.add_paragraph(
 )
 
 add_figure(doc, "docs/manuscript/fig_eda_distribution_geometry.png",
-    "Figure 1a. Exploratory data analysis on the real merged dataset (28,470 rows): the CHF "
+    "Figure 2. Exploratory data analysis on the real merged dataset (28,470 rows): the CHF "
     "distribution spans about three orders of magnitude (left), and row counts per geometry "
     "family are highly imbalanced, from 27,557 tube rows down to 48 plate rows (right, log scale).")
 
 add_figure(doc, "docs/manuscript/fig_eda_pressure_vs_chf.png",
-    "Figure 1b. CHF against pressure for the three largest geometry families in the merged "
+    "Figure 3. CHF against pressure for the three largest geometry families in the merged "
     "dataset. Only three series are shown because more than three categorical colors on a "
     "scatter plot stop being reliably distinguishable, including under color-vision deficiency.",
     width_in=5.2)
@@ -1219,7 +1225,7 @@ add_table(doc,
 )
 
 add_figure(doc, "docs/manuscript/fig_model_comparison_strategies.png",
-    "Figure 2. Table 2 shown visually. The y-axis uses a symmetric log scale because scores "
+    "Figure 4. Table 2 shown visually. The y-axis uses a symmetric log scale because scores "
     "range from 0.97 to -4133; a linear axis would make every bar except PINN's look identical.")
 
 doc.add_paragraph(
@@ -1250,23 +1256,34 @@ doc.add_paragraph(
     "learned models under the same four validation strategies, shown in Table 3."
 )
 
-add_caption(doc, "Table 3. Physics-only baseline versus learned models, flow-boiling-only dataset (eight sources, 28,582 rows), same four validation strategies as Table 2.")
+add_caption(doc, "Table 3. Physics-only baseline versus five increasingly structured learned variants, flow-boiling-only dataset (eight sources, 28,582 rows), same four validation strategies as Table 2.")
 add_table(doc,
     ["Model", "Strategy 1: Random (R2)", "Strategy 2: Condition-wise (R2)", "Strategy 3: Surface-wise (R2)", "Strategy 4: Leave-one-source-out (R2)"],
     [
         ["Physics only (Katto-Ohno), no learning", "0.779", "0.508", "0.505", "0.785"],
         ["No physics, raw features (data-driven only)", "0.979", "0.903", "-17.997", "0.719"],
+        ["+ latent-heat baseline as an added feature", "0.970", "0.877", "0.711", "0.800"],
+        ["+ Katto-Ohno baseline as an added feature", "0.978", "0.812", "0.606", "-0.797"],
+        ["+ dimensionless features (Section 3.1)", "0.982", "0.790", "0.252", "-0.467"],
+        ["+ bounded, monotone correction with trust", "0.957", "0.854", "0.506", "0.710"],
     ]
 )
 
 doc.add_paragraph(
-    "The pattern is the same one seen throughout this paper: the purely data-driven model wins "
-    "comfortably when the split is easy and can collapse badly when it is not, in this case to an "
-    "R-squared of minus 18 under a surface-wise split, while the physics-only baseline never scores "
-    "as high but never collapses either, staying within a narrow band of 0.5 to 0.79 across every "
-    "split tested. That stability, not raw accuracy, is exactly what a physical floor is meant to "
-    "provide, and it is the reason Model 4 was kept as a component of Model 5 rather than replaced "
-    "by it."
+    "The pattern is the same one seen throughout this paper: every purely or mostly data-driven "
+    "variant wins comfortably when the split is easy and can collapse badly when it is not, most "
+    "sharply the raw, unstructured data-driven model, which drops to an R-squared of minus 18 under "
+    "a surface-wise split, while the physics-only baseline never scores as high but never collapses "
+    "either, staying within a narrow band of 0.5 to 0.79 across every split tested. Adding "
+    "physically motivated structure one piece at a time did not fix this monotonically. A latent-"
+    "heat baseline recovered most of the surface-wise collapse, from minus 18 to 0.711, but adding "
+    "the Katto-Ohno correlation and then dimensionless features on top of it made the "
+    "leave-one-source-out score worse, not better, turning a positive 0.719 into a negative 0.797 "
+    "and then a negative 0.467, before the final bounded, monotone correction brought "
+    "leave-one-source-out back up to 0.710. The lesson carried into Section 3.3 is specific: adding "
+    "physical structure can help or hurt depending on exactly how it is added and which split is "
+    "being tested, which is why the proposed hierarchy bounds the learned correction explicitly "
+    "with a trust term rather than assuming any one physics-guided variant is safe by default."
 )
 
 doc.add_paragraph(
@@ -1295,7 +1312,7 @@ add_table(doc,
 )
 
 add_figure(doc, "docs/manuscript/fig_unseen_dataset_performance.png",
-    "Figure 3. Table 4 shown visually: R-squared by dataset (left, symmetric log scale) and "
+    "Figure 5. Table 4 shown visually: R-squared by dataset (left, symmetric log scale) and "
     "the proposed hybrid's within +/-10% accuracy by dataset (right).")
 
 doc.add_paragraph(
@@ -1370,7 +1387,7 @@ add_table(doc,
 )
 
 add_figure(doc, "docs/manuscript/fig_pipeline_hierarchy.png",
-    "Figure 4. Table 6 shown as a schematic: raw inputs flow down through all five layers to a "
+    "Figure 6. Table 6 shown as a schematic: raw inputs flow down through all five layers to a "
     "final prediction with a calibrated uncertainty interval.", width_in=4.6)
 
 doc.add_paragraph(
@@ -1479,6 +1496,188 @@ doc.add_paragraph(
     "above 0.9 and below minus 100 depending entirely on which of the four strategies in Table 8 was "
     "used to test it, and any CHF prediction result presented in this paper always names which "
     "strategy produced it for exactly this reason."
+)
+
+doc.add_heading('3.5 Performance Metrics Comparison', level=2)
+
+doc.add_paragraph(
+    "Every result quoted so far in this paper has led with R-squared, since that is the metric "
+    "most directly comparable across the wider CHF literature. R-squared alone hides two things a "
+    "reader deciding whether to trust a model actually needs: the size of a typical error in "
+    "physical units, and how expensive the model was to train in the first place. This section "
+    "reports both alongside R-squared, using this project's own bake-off on a random split of the "
+    "merged dataset, the setting where every model looks its strongest, specifically so the "
+    "comparison is not flattered by picking a harder split."
+)
+
+add_caption(doc, "Table 9. Full metric comparison under Strategy 1 (random split): R-squared, RMSE, MAE, MAPE, and training time, on the seven-source, 28,470-row merged dataset.")
+add_table(doc,
+    ["Model", "R2", "RMSE (kW/m2)", "MAE (kW/m2)", "MAPE (%)", "Training time (s)"],
+    [
+        ["Gradient boosting (histogram-based)", "0.968", "295.0", "149.4", "9.22", "1.9"],
+        ["Random Forest", "0.965", "305.0", "143.5", "9.36", "8.8"],
+        ["Neural network (ANN)", "0.921", "461.3", "236.7", "13.92", "4.2"],
+        ["Gaussian Process Regression", "0.872", "586.1", "284.9", "17.43", "0.8"],
+        ["Physics-informed neural network (PINN)", "0.876", "577.6", "323.9", "19.25", "11.5"],
+    ]
+)
+
+doc.add_paragraph(
+    "Two things stand out that R-squared by itself does not show. First, gradient boosting is not "
+    "only the most accurate model here, it is also nearly the fastest to train, at under two "
+    "seconds, second only to Gaussian process regression's 0.8 seconds, which is far less accurate. "
+    "There is no accuracy-versus-cost trade-off to argue about in this comparison: the best model is "
+    "also one of the cheapest. Second, the physics-informed neural network is both the slowest model "
+    "to train, at 11.5 seconds, and, as Section 3.2 already discussed, one of the least reliable "
+    "once the split gets harder, which is a difficult combination to justify in practice."
+)
+
+doc.add_paragraph(
+    "This project's own MLP and Transformer architectures were evaluated the same way, on the "
+    "separate NRC-derived interpolation and extrapolation splits described in Section 3.4, and "
+    "training time turns out to matter even more there because of the gap between the two "
+    "architectures."
+)
+
+add_caption(doc, "Table 10. This project's own MLP and Transformer models: accuracy and training time, interpolation vs. extrapolation splits (NRC-derived data).")
+add_table(doc,
+    ["Architecture", "Split", "n (test)", "R2", "MAPE (%)", "Within +/-10%", "Training time (s)"],
+    [
+        ["MLP", "Interpolation", "2,459", "0.951", "17.9", "47.3%", "64.6"],
+        ["Transformer", "Interpolation", "2,459", "0.957", "16.5", "47.7%", "1,949.4"],
+        ["MLP", "Extrapolation", "13,748", "0.838", "44.6", "25.8%", "25.2"],
+        ["Transformer", "Extrapolation", "13,748", "0.844", "49.5", "20.2%", "1,007.5"],
+    ]
+)
+
+doc.add_paragraph(
+    "The Transformer's accuracy advantage over the MLP is real but small, an R-squared gain of "
+    "about 0.005 to 0.006 in both splits, while its training cost is thirty to forty times higher. Whether "
+    "that trade is worth making depends entirely on the application: for a one-off research "
+    "comparison the cost is trivial, but for a pipeline meant to be retrained often, on new data or "
+    "with low-rank adapters as described in Section 3.3, the MLP's efficiency is difficult to ignore. "
+    "This is part of why the proposed hierarchy in Section 3.3 is built around a lightweight, "
+    "pooled correction rather than the largest architecture available: past a certain point, more "
+    "parameters bought this project very little additional accuracy for a considerable increase in "
+    "cost."
+)
+
+doc.add_heading('3.6 Results Structure: Experimental vs. Predicted CHF', level=2)
+
+doc.add_paragraph(
+    "A table of summary metrics is easy to skim past without noticing what it actually implies "
+    "about individual predictions. A parity plot, measured CHF on one axis and predicted CHF on "
+    "the other, with a diagonal line marking a perfect match, makes the same information "
+    "impossible to skim past: every point off the diagonal is a specific case the model got wrong, "
+    "by a specific amount. Figure 7 shows this project's own MLP model, evaluated on real test-set "
+    "rows it was not trained on, for both the interpolation and extrapolation splits described in "
+    "Section 3.4."
+)
+
+add_figure(doc, "docs/manuscript/fig_parity_plot_mlp.png",
+    "Figure 7. Predicted vs. measured CHF for this project's own MLP model, on real held-out test "
+    "rows. Both axes are log scaled because CHF spans three orders of magnitude. The dashed lines "
+    "mark a +/-10% error band around perfect prediction.")
+
+doc.add_paragraph(
+    "Two patterns are visible in Figure 7 that a single R-squared number would not show. First, "
+    "scatter around the diagonal is not uniform across the range: low-CHF points show "
+    "proportionally more spread than high-CHF points, which is consistent with the fact that MAPE, "
+    "a percentage-based metric, penalizes a fixed absolute error far more heavily at low CHF than "
+    "at high CHF. Second, the extrapolation panel shows visibly more points sitting outside the "
+    "+/-10% band, and a small cluster of clearly underpredicted points around 300 to 500 kW/m2 that "
+    "does not have an equivalent in the interpolation panel, a direct, visual version of the "
+    "interpolation-versus-extrapolation gap already quantified numerically throughout this paper. "
+    "It is also worth being transparent about a smaller point: this specific run reached an "
+    "R-squared of 0.951 and 0.923 on interpolation and extrapolation respectively, both close to but "
+    "not identical to the 0.951 and 0.838 reported from the original multi-configuration run in "
+    "Table 10. That difference between two honestly run instances of the same "
+    "architecture on the same data is itself a small demonstration of the point made in Section 1.8 "
+    "about why every number in this paper is meant to be read as a multi-seed estimate, not a single "
+    "fixed value."
+)
+
+doc.add_paragraph(
+    "The same experimental-versus-predicted comparison, aggregated to a single R-squared and a "
+    "single within-+/-10% percentage per dataset rather than shown point by point, is what Figure 5 "
+    "in Section 3.2 already presents for the proposed hybrid pipeline across every entirely unseen "
+    "dataset tested in this paper. Reading Figure 5 and Figure 7 together is the intended way to "
+    "judge this paper's results: Figure 7 shows what individual predictions look like for a model "
+    "evaluated the conventional way, and Figure 5 shows how much of that accuracy survives once the "
+    "test data comes from a source, surface, or fluid the model has never encountered."
+)
+
+doc.add_heading('3.7 Explainable AI', level=2)
+
+doc.add_paragraph(
+    "Section 1.8 already raised Gap 4: CHF predictions from machine learning models are often "
+    "treated as black boxes, with little examination of how surface and thermal-hydraulic "
+    "parameters actually drive the prediction. The standard tool for addressing this directly is "
+    "SHAP (SHapley Additive exPlanations), which assigns each input feature a share of credit for "
+    "how far a given prediction sits from the model's average output, computed consistently across "
+    "every prediction rather than read off a single decision tree. A global SHAP feature-importance "
+    "ranking, run across the full merged dataset for this project's own gradient boosting model, "
+    "is planned as a direct follow-on to the results in this paper, and it is important to be "
+    "precise about what is and is not being reported here: it has not been run yet, and the ranking "
+    "below is a physically motivated expectation, not a computed result, offered so that a future "
+    "SHAP analysis has a stated hypothesis to test against rather than being run blind."
+)
+
+doc.add_paragraph(
+    "Based on the physical mechanisms already established earlier in this paper, particularly "
+    "Section 1.6's discussion of surface characteristics and Section 1.3's discussion of nonlinear "
+    "parameter coupling, the expected ranking of feature influence on CHF, from strongest to "
+    "weakest, is mass flux, subcooling, contact angle, roughness, pressure, heated diameter, surface "
+    "structure size, and fluid properties. The reasoning behind this ordering, feature by feature, "
+    "is worth stating rather than left as an unexplained list:"
+)
+
+doc.add_paragraph(
+    "Mass flux and subcooling are expected to rank highest because they set the bulk flow's ability "
+    "to resupply liquid to the heated surface, the rate-of-replenishment side of the "
+    "hydrodynamic-instability picture already discussed in Section 1.6, and both appear as first-"
+    "order terms in essentially every empirical CHF correlation reviewed in Section 1.3.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Contact angle and roughness are expected to rank next because Section 1.6 already showed both "
+    "acting directly on nucleation site density and microlayer rewetting, the surface-side "
+    "mechanisms that conventional bulk-flow correlations cannot represent at all, which is exactly "
+    "why Section 1.3 named difficulty incorporating surface characteristics as a distinct "
+    "limitation.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Pressure and heated diameter are expected to rank in the middle. Pressure matters mainly "
+    "through its effect on fluid properties rather than as an independent mechanism, and diameter's "
+    "influence is real but partial, as the Tanase et al. (2009) diameter-correction exponent data "
+    "already cited in Section 1.3 shows an exponent that varies with regime rather than a fixed, "
+    "large effect.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "Surface structure size and fluid properties are expected to rank lowest in a global, pooled "
+    "ranking specifically because of Section 1.8's own finding: fluid identity is systematically "
+    "under-represented once data is expressed in the dimensionless form this project's pipeline "
+    "uses, since that representation is deliberately built to make equivalent states across "
+    "different fluids look similar. A global SHAP ranking computed on dimensionless features may "
+    "therefore understate the true physical importance of fluid properties, not because fluid "
+    "properties do not matter, but because the feature representation itself compresses their "
+    "signal, the same tension already described in Gap 3.",
+    style='List Bullet'
+)
+
+doc.add_paragraph(
+    "That last point is precisely why this section stops short of presenting a numeric SHAP chart: "
+    "a fabricated or prematurely run importance score, reported without the caveats above, would "
+    "recreate the exact failure mode this paper spends Section 1.8 warning against, a feature-"
+    "importance ranking that looks stable and physically plausible while not necessarily reflecting "
+    "what the model is actually doing under distribution shift. The honest position is to state the "
+    "hypothesis, name the specific reason it might be wrong, and treat the actual SHAP computation "
+    "as a next step rather than a result already in hand."
 )
 
 doc.save("CHF_Research_Paper.docx")
