@@ -12,9 +12,10 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.serif"] = ["Times New Roman", "DejaVu Serif"]
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border
+set_pub_style()
 
 INK = "#0b0b0b"
 MUTED = "#898781"
@@ -115,6 +116,7 @@ fig.text(0.5, -0.02,
           "Includes the Pioro R-134a set, held out and never used for training.",
           ha="center", fontsize=7.5, color=MUTED, style="italic")
 fig.tight_layout()
-fig.savefig("docs/manuscript/fig_dataset_composition.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_dataset_composition.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print("saved fig_dataset_composition.png")

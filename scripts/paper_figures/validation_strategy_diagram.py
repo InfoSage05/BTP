@@ -10,9 +10,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, FancyArrowPatch
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border
+set_pub_style()
 
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.serif"] = ["Times New Roman", "DejaVu Serif"]
+TEST_HATCH = "///"
 
 INK = "#0b0b0b"
 MUTED = "#898781"
@@ -49,21 +52,28 @@ for ax, (title, desc) in zip(axes, strategies):
     ax.text(0, 1.55, title, fontsize=12.5, fontweight="bold", color=INK, va="top", ha="left")
     ax.text(0, 1.18, desc, fontsize=8.8, color=MUTED, va="top", ha="left")
 
-for s in range(n_sources):
-    axes[0].add_patch(Rectangle((s, 0.15), 0.85, 0.6, facecolor=SOURCE_COLORS[s], alpha=0.35, zorder=2))
-    for k in range(5):
-        color = TEST if (s + k) % 3 == 0 else TRAIN
-        axes[0].add_patch(Rectangle((s + 0.02 + k * 0.16, 0.2), 0.14, 0.5, facecolor=color, zorder=3))
+def block(color, hatch=""):
+    return dict(facecolor=color, edgecolor=INK, linewidth=0.6, hatch=hatch)
+
 
 for s in range(n_sources):
-    axes[1].add_patch(Rectangle((s, 0.2), 0.6, 0.5, facecolor=TRAIN, zorder=3))
-    axes[1].add_patch(Rectangle((s + 0.6, 0.2), 0.25, 0.5, facecolor=TEST, zorder=3))
+    axes[0].add_patch(Rectangle((s, 0.15), 0.85, 0.6, facecolor=SOURCE_COLORS[s], alpha=0.35,
+                                 edgecolor=INK, linewidth=0.6, zorder=2))
+    for k in range(5):
+        is_test = (s + k) % 3 == 0
+        axes[0].add_patch(Rectangle((s + 0.02 + k * 0.16, 0.2), 0.14, 0.5, zorder=3,
+                                     **block(TEST if is_test else TRAIN, TEST_HATCH if is_test else "")))
+
+for s in range(n_sources):
+    axes[1].add_patch(Rectangle((s, 0.2), 0.6, 0.5, zorder=3, **block(TRAIN)))
+    axes[1].add_patch(Rectangle((s + 0.6, 0.2), 0.25, 0.5, zorder=3, **block(TEST, TEST_HATCH)))
     axes[1].text(s + 0.42, 0.75, f"S{s+1}", fontsize=8, color=MUTED, ha="center")
 
 held_out = {4, 5}
 for s in range(n_sources):
-    color = TEST if s in held_out else TRAIN
-    axes[2].add_patch(Rectangle((s, 0.2), 0.85, 0.5, facecolor=color, zorder=3))
+    is_test = s in held_out
+    axes[2].add_patch(Rectangle((s, 0.2), 0.85, 0.5, zorder=3,
+                                 **block(TEST if is_test else TRAIN, TEST_HATCH if is_test else "")))
     axes[2].text(s + 0.42, 0.75, f"S{s+1}", fontsize=8, color=MUTED, ha="center")
 
 fold_y = [0.78, 0.42, 0.06]
@@ -72,16 +82,17 @@ for fi, (fy, flabel) in enumerate(zip(fold_y, fold_labels)):
     axes[3].text(-0.05, fy + 0.15, flabel, fontsize=8, color=MUTED, ha="left", va="center")
     for s in range(n_sources):
         is_test = (s == fi) if fi < 2 else (s == n_sources - 1)
-        color = TEST if is_test else TRAIN
-        axes[3].add_patch(Rectangle((s + 0.9, fy), 0.75, 0.28, facecolor=color, zorder=3))
+        axes[3].add_patch(Rectangle((s + 0.9, fy), 0.75, 0.28, zorder=3,
+                                     **block(TEST if is_test else TRAIN, TEST_HATCH if is_test else "")))
 
-handles = [Rectangle((0, 0), 1, 1, facecolor=TRAIN), Rectangle((0, 0), 1, 1, facecolor=TEST)]
+handles = [Rectangle((0, 0), 1, 1, **block(TRAIN)), Rectangle((0, 0), 1, 1, **block(TEST, TEST_HATCH))]
 fig.legend(handles, ["Train", "Test"], loc="lower center", ncol=2, frameon=False,
            fontsize=10, bbox_to_anchor=(0.5, -0.01))
 
 fig.suptitle("The four validation strategies: what counts as train vs. test",
              fontsize=16.5, fontweight="bold", color=INK, y=0.995)
 fig.tight_layout(rect=[0, 0.03, 1, 0.965])
-fig.savefig("docs/manuscript/fig_validation_strategies.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_validation_strategies.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print("saved fig_validation_strategies.png")

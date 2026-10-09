@@ -1,0 +1,11 @@
+Huakang Wu, Minyang Gui, Di Wu,
+Physics-Informed hybrid machine learning for critical heat flux prediction: A comparative analysis of modeling approaches,
+Nuclear Engineering and Design,
+Volume 445,
+2025,
+114434,
+ISSN 0029-5493,
+https://doi.org/10.1016/j.nucengdes.2025.114434.
+(https://www.sciencedirect.com/science/article/pii/S0029549325006119)
+Abstract: Critical Heat Flux (CHF) is a crucial safety parameter in two-phase flow boiling systems, playing a fundamental role in the design and operation of nuclear reactors, heat exchangers, and other thermal systems. Traditional CHF prediction methods, such as the empirical correlations, Look-up Table (LUT) or mechanistic models, offer valuable physical insights but often struggle with accuracy under complex and untested operating conditions. Recently, machine learning (ML) techniques, particularly artificial neural networks (ANNs), have shown promise in capturing the nonlinear dependencies in CHF prediction. However, standalone ML models frequently suffer from limited physical consistency and poor extrapolation capability, restricting their reliability in engineering applications. To address these challenges, this study examines a physics-informed gray-box framework that integrates physical models with Multi-layer Perceptrons (MLPs) to enhance predictive accuracy and generalization. Two hybrid modeling approaches are explored: (1) LUT + MLP, where MLP refines the residuals of LUT-based predictions to improve accuracy, and (2) Mechanistic Model + MLP, which maintains physical consistency while optimizing empirical parameters critical to CHF prediction. The data evaluation results demonstrate that the proposed framework significantly outperforms traditional methods, including the standalone LUT and liquid sublayer dry-out model—achieving superior predictive accuracy and robustness within the evaluated operating envelope, particularly in complex flow conditions represented in the dataset.
+Keywords: Critical heat flux; Look-up Table; Mechanistic model; Multi-layer Perceptrons; Physics-Informed machine learning

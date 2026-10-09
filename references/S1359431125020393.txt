@@ -1,0 +1,11 @@
+Aidan Furlong, Xingang Zhao, Robert K. Salko, Xu Wu,
+Physics-based hybrid machine learning for critical heat flux prediction with uncertainty quantification,
+Applied Thermal Engineering,
+Volume 279, Part A,
+2025,
+127447,
+ISSN 1359-4311,
+https://doi.org/10.1016/j.applthermaleng.2025.127447.
+(https://www.sciencedirect.com/science/article/pii/S1359431125020393)
+Abstract: Critical heat flux (CHF) is a key quantity in nuclear system modeling due to its impact on heat transfer, safety margins, and reactor performance. This study develops and validates an uncertainty-aware hybrid modeling approach that combines machine learning with physics-based models to predict CHF in cases of dryout. The Biasi and Bowring empirical correlations were paired with three ML uncertainty quantification (UQ) techniques: deep neural network (DNN) ensembles, Bayesian neural networks (BNNs), and deep Gaussian processes (DGPs). A pure ML model without a base model was evaluated for comparison. Model performance was assessed under plentiful (7,350 points) and limited (9 points) training data scenarios using parity, uncertainty distributions, and calibration curves. Results show that the Biasi hybrid DNN ensemble achieved the best overall performance, with a mean absolute relative error of 1.846%, and well-calibrated uncertainty estimates. The BNN-based hybrids showed slightly higher error (2.14%) but superior uncertainty calibration. DGP models underperformed, with over 6% error and poor uncertainty calibration. All hybrid models outperformed pure machine learning configurations, demonstrating resistance against data scarcity. These findings indicate that hybrid modeling significantly improves predictive accuracy, interpretability, and resilience to data scarcity. The integration of uncertainty awareness provides actionable confidence in CHF predictions, which is vital for safety-critical decisions in nuclear applications. This hybrid approach offers a viable pathway for deploying ML models in reactor analysis tools while preserving domain knowledge and physical consistency.
+Keywords: Critical heat flux; Dryout; Machine learning; Hybrid modeling; Uncertainty quantification

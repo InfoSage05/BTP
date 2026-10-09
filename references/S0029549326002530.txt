@@ -1,0 +1,11 @@
+Johnson Lorlornyo Abusah, Shouxu Qiao, Ala Ayodeji, Samuel Yao Dedzie, Jiaxing Ren, Ruifeng Tian, Sichao Tan,
+Deep-learning-based 3D bubble parameter prediction in a rod bundle subchannel: A single-view inference approach trained on dual-view reconstructions,
+Nuclear Engineering and Design,
+Volume 456,
+2026,
+115001,
+ISSN 0029-5493,
+https://doi.org/10.1016/j.nucengdes.2026.115001.
+(https://www.sciencedirect.com/science/article/pii/S0029549326002530)
+Abstract: A non-intrusive, multi-view deep-learning framework was developed for real-time three-dimensional reconstruction of individual bubbles in an adiabatic air-water 2 × 2 rod-bundle subchannel. Two independent convolutional neural network models were trained on 3D labels derived from 3D reconstruction of dual orthogonal view bubble images. The trained models predicted bubble volume and projected surface area with mean absolute percentage errors of 9.1% and 5.4%, respectively. Complementary viewpoint-specific errors observed in fused predictions showed errors below 5% and 3%, rivaling conventional imaging techniques. From these primary measurements, four key thermal-hydraulic parameters were derived: Sauter mean diameter 4.9±0.5mm, deformation index 0.02±0.04, rise velocity 0.235±0.004ms−1, and interfacial area concentration 69.2−112.5 m−1. While the inference model operates on single frames from one viewpoint, rise velocity estimation additionally incorporates multi-frame tracking to capture temporal dynamics. All parameters fall within the narrow experimental bands reported in recent rod-bundle benchmark campaigns. The predicted parameters reproduce trends consistent with transient coalescence and deformation-related motion observed in the experiments. The methodology requires only optical access and is therefore well-suited for benchmarking.
+Keywords: Stereoscopic imaging; Multi-view reconstruction; Interfacial area concentration; Deep learning; Voting ensemble

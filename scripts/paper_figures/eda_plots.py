@@ -9,9 +9,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.serif"] = ["Times New Roman", "DejaVu Serif"]
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border, MARKERS
+set_pub_style()
 
 INK = "#0b0b0b"
 MUTED = "#898781"
@@ -69,7 +70,8 @@ fig.text(0.5, -0.04,
          "01_merged/merge_report.md.",
          ha="center", fontsize=7.5, color=MUTED, style="italic")
 fig.tight_layout()
-fig.savefig("docs/manuscript/fig_eda_distribution_geometry.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_eda_distribution_geometry.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print("saved fig_eda_distribution_geometry.png")
 
@@ -78,8 +80,9 @@ fig2, ax = plt.subplots(figsize=(8.5, 6.0), dpi=200)
 top_families = counts.index[:3].tolist()  # keep only top 3 for scatter (all-pairs color rule)
 for i, fam in enumerate(top_families):
     sub = df[df["geometry_family"] == fam]
-    ax.scatter(sub["pressure_kPa"], sub["CHF_kW_m2"], s=6, alpha=0.25,
-               color=COLORS[i], label=fam.replace("_", " "), edgecolors="none")
+    ax.scatter(sub["pressure_kPa"], sub["CHF_kW_m2"], s=12, alpha=0.35,
+               color=COLORS[i], label=fam.replace("_", " "), edgecolors="none",
+               marker=MARKERS[i])
 ax.set_xscale("log")
 ax.set_yscale("log")
 ax.set_xlabel("Pressure (kPa, log scale)", fontsize=10, color=INK)
@@ -93,6 +96,7 @@ fig2.text(0.5, -0.02,
           "per this project's own accessible-color guidance for scatter plots with more than three series.",
           ha="center", fontsize=7.5, color=MUTED, style="italic")
 fig2.tight_layout()
-fig2.savefig("docs/manuscript/fig_eda_pressure_vs_chf.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig2)
+fig2.savefig("docs/manuscript/fig_eda_pressure_vs_chf.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig2)
 print("saved fig_eda_pressure_vs_chf.png")

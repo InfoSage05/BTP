@@ -10,9 +10,10 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.serif"] = ["Times New Roman", "DejaVu Serif"]
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border
+set_pub_style()
 
 INK = "#0b0b0b"
 MUTED = "#898781"
@@ -47,8 +48,10 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.5, 5.2), dpi=200)
 x = np.arange(len(splits))
 width = 0.32
 
-bars1a = ax1.bar(x - width / 2, mlp_r2, width, color=COLORS["blue"], label="MLP", zorder=3)
-bars1b = ax1.bar(x + width / 2, tf_r2, width, color=COLORS["orange"], label="Transformer", zorder=3)
+bars1a = ax1.bar(x - width / 2, mlp_r2, width, color=COLORS["blue"], label="MLP", zorder=3,
+                  edgecolor=INK, linewidth=0.5)
+bars1b = ax1.bar(x + width / 2, tf_r2, width, color=COLORS["orange"], label="Transformer", zorder=3,
+                  edgecolor=INK, linewidth=0.5, hatch="///")
 for b, v in zip(list(bars1a) + list(bars1b), mlp_r2 + tf_r2):
     ax1.text(b.get_x() + b.get_width() / 2, v + 0.01, f"{v:.3f}", ha="center", fontsize=8.5, color=INK)
 ax1.set_xticks(x)
@@ -59,8 +62,10 @@ ax1.set_title("R-squared", fontsize=13, fontweight="bold", color=INK)
 style_axes(ax1)
 ax1.legend(loc="lower left", fontsize=9, frameon=False)
 
-bars2a = ax2.bar(x - width / 2, mlp_within10, width, color=COLORS["blue"], label="MLP", zorder=3)
-bars2b = ax2.bar(x + width / 2, tf_within10, width, color=COLORS["orange"], label="Transformer", zorder=3)
+bars2a = ax2.bar(x - width / 2, mlp_within10, width, color=COLORS["blue"], label="MLP", zorder=3,
+                  edgecolor=INK, linewidth=0.5)
+bars2b = ax2.bar(x + width / 2, tf_within10, width, color=COLORS["orange"], label="Transformer", zorder=3,
+                  edgecolor=INK, linewidth=0.5, hatch="///")
 for b, v in zip(list(bars2a) + list(bars2b), mlp_within10 + tf_within10):
     ax2.text(b.get_x() + b.get_width() / 2, v + 1, f"{v:.1f}%", ha="center", fontsize=8.5, color=INK)
 ax2.set_xticks(x)
@@ -80,6 +85,7 @@ fig.text(0.5, -0.02,
           "(25.8% vs. 20.2%), for a fraction of the training cost (Table 10).",
           ha="center", fontsize=7.5, color=MUTED, style="italic")
 fig.tight_layout()
-fig.savefig("docs/manuscript/fig_mlp_transformer_within10.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_mlp_transformer_within10.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print("saved fig_mlp_transformer_within10.png")

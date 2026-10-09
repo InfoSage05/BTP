@@ -1,0 +1,11 @@
+B.K. Hardik, S.V. Prabhu,
+Boiling pressure drop, local heat transfer distribution and critical heat flux in helical coils with R123,
+International Journal of Thermal Sciences,
+Volume 125,
+2018,
+Pages 149-165,
+ISSN 1290-0729,
+https://doi.org/10.1016/j.ijthermalsci.2017.11.026.
+(https://www.sciencedirect.com/science/article/pii/S1290072917306968)
+Abstract: The objectives of the present work are to study the influence of curvature on local heat transfer coefficient, two-phase pressure drop and CHF in helical coils. The curvature of coil generates secondary flow of fluid which affects the mechanism inside helical coils. Very less information is available on the influence of curvature on flow boiling system. The present work investigates the characteristics of single phase flow and flow boiling in helical coils. Infra-red thermal imaging technique is used to measure the local wall temperature in the axial direction (along the length of coil) and in the circumferential direction. Experiments are performed with six helical coil test sections made of SS 304 circular tubes having three different tube diameters with two different coil diameters. The tube inner diameters are varying from 5.5 to 9.5 mm with wall thickness of 0.25 mm. The coil diameter to the tube diameter ratio ranges from 14 to 58 and coil pitch is 50 mm. The system pressure is varying from 1.1 bar to 3.6 bar. The analysis is performed for different heated lengths of test section. The experimental data of pressure drop and CHF are compared with available helical coil correlations. In fully developed flow boiling region, the circumferential averaged heat transfer coefficient in helical coils is same as in straight tubes. Correlations are suggested to predict local heat transfer coefficient in single phase and in flow boiling process, two-phase pressure drop and CHF in helical coils.
+Keywords: Local heat transfer coefficient; Two-phase pressure drop; Critical heat flux; Flow boiling; Infra-red thermal camera

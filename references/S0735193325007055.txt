@@ -1,0 +1,11 @@
+Haidong Liu, Hongfu Jiang, Deqi Chen, Jiang Qin, Yangyang Wang, Mingxia Liu,
+Critical heat flux prediction for annular channel through application of machine learning techniques,
+International Communications in Heat and Mass Transfer,
+Volume 167, Part B,
+2025,
+109279,
+ISSN 0735-1933,
+https://doi.org/10.1016/j.icheatmasstransfer.2025.109279.
+(https://www.sciencedirect.com/science/article/pii/S0735193325007055)
+Abstract: Critical heat flux (CHF) is a prominent parameter for ensuring the security and economic efficiency of boiling heat transfer applications. Accordingly, the prediction of CHF is of vital importance in improving heat transfer performance and reducing the risk of failures. This study introduces a machine learning-based method for predicting flow boiling CHF in annular channels. A comprehensive dataset was established by combining the experimental data on the home-built experimental loop and the previous studies’ data. Five different algorithms were employed to improve prediction accuracy: backpropagation neural networks, support vector machines, random forests, radial basis function neural networks, and convolutional neural networks. All predictive models utilized this comprehensive database, which included six parameters, for training and testing purposes. The results show that the machine learning models can effectively predict CHF, with support vector machines exhibiting the best performance, attaining a root mean squared error (RMSE) of 0.18558 and demonstrating excellent generalization ability. Then, feature importance analysis and sensitivity analysis were conducted to identify the most significant feature in predicting flow boiling CHF. This study presents a new approach to predict flow boiling CHF meanwhile offering some referable insights for the application of artificial intelligence in boiling heat transfer systems.
+Keywords: Critical heat flux; Flow boiling; Annular channel; Machine learning; Neural network

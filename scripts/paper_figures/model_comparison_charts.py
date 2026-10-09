@@ -11,9 +11,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 import numpy as np
-
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.serif"] = ["Times New Roman", "DejaVu Serif"]
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border, HATCHES
+set_pub_style()
 
 INK = "#0b0b0b"
 MUTED = "#898781"
@@ -61,7 +62,8 @@ for i, m in enumerate(models):
     offset = (i - (n_models - 1) / 2) * width
     vals = r2_data[m]
     bars = ax.bar(x + offset, vals, width=width, color=model_colors[i],
-                   label=m.replace("\n", " "), zorder=3, edgecolor=SURFACE, linewidth=0.5)
+                   label=m.replace("\n", " "), zorder=3, edgecolor=INK, linewidth=0.5,
+                   hatch=HATCHES[i])
     for b, v in zip(bars, vals):
         label = f"{v:.2f}" if abs(v) < 10 else f"{v:.0f}"
         y = b.get_height()
@@ -84,7 +86,8 @@ fig.text(0.5, 0.01,
          "Y-axis uses a symmetric log scale because scores range from 0.97 to -4133.",
          ha="center", fontsize=7.5, color=MUTED, style="italic")
 fig.tight_layout(rect=[0, 0.08, 1, 1])
-fig.savefig("docs/manuscript/fig_model_comparison_strategies.png", facecolor=SURFACE)
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_model_comparison_strategies.png", facecolor=SURFACE, dpi=300)
 plt.close(fig)
 print("saved fig_model_comparison_strategies.png")
 
@@ -101,9 +104,12 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.5, 5.0), dpi=200)
 
 x = np.arange(len(datasets))
 width = 0.26
-ax1.bar(x - width, physics_r2, width=width, color=COLORS["violet"], label="Physics alone", zorder=3)
-ax1.bar(x, ml_r2, width=width, color=COLORS["red"], label="ML, no physics", zorder=3)
-ax1.bar(x + width, pipeline_r2, width=width, color=COLORS["blue"], label="Proposed hybrid", zorder=3)
+ax1.bar(x - width, physics_r2, width=width, color=COLORS["violet"], label="Physics alone", zorder=3,
+        edgecolor=INK, linewidth=0.5, hatch=HATCHES[0])
+ax1.bar(x, ml_r2, width=width, color=COLORS["red"], label="ML, no physics", zorder=3,
+        edgecolor=INK, linewidth=0.5, hatch=HATCHES[1])
+ax1.bar(x + width, pipeline_r2, width=width, color=COLORS["blue"], label="Proposed hybrid", zorder=3,
+        edgecolor=INK, linewidth=0.5, hatch=HATCHES[2])
 ax1.set_yscale("symlog", linthresh=1)
 ax1.axhline(0, color=BASELINE, linewidth=1.0, zorder=2)
 ax1.set_xticks(x)
@@ -131,6 +137,7 @@ fig.text(0.5, -0.03,
          "The unanchored ML model reaches R2 = -868.6 on one dataset; the hybrid's worst case is -0.429.",
          ha="center", fontsize=7.5, color=MUTED, style="italic")
 fig.tight_layout()
-fig.savefig("docs/manuscript/fig_unseen_dataset_performance.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_unseen_dataset_performance.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print("saved fig_unseen_dataset_performance.png")

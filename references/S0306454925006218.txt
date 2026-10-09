@@ -1,0 +1,11 @@
+Wei Zhang, Junsen Fu, Shuo Chen, Lijun Yu, Yao Xiao, Hanyang Gu,
+Investigation of a hybrid neural network framework for CHF prediction in a wire-wrapped rod bundle,
+Annals of Nuclear Energy,
+Volume 226,
+2026,
+111804,
+ISSN 0306-4549,
+https://doi.org/10.1016/j.anucene.2025.111804.
+(https://www.sciencedirect.com/science/article/pii/S0306454925006218)
+Abstract: While predicting critical heat transfer in rod bundles is crucial for reactor safety analysis, most of the existing methods fall short in achieving a balance between accuracy and generalization. Utilizing machine learning algorithms, the hybrid neural network framework was applied to explore prediction methods for critical heat transfer in a wire-wrapped rod bundle. It is concluded that the improvement of the prior model will lead to a better estimation result. Besides, with a larger size, the neural network will certainly improve the estimation performance, but it tends to sacrifice the mean of the data to optimize the variance. The hybrid prediction method, moreover, also has a satisfactory error characteristic at different neural network sizes. Besides, the learning preference of the neural network was also analyzed to elucidate the advantages of hybrid prediction methods. This study proposes and verifies an improved scheme for critical prediction methods which has an outstanding prediction performance over traditional fitting and standalone FCNN. Work facilitates the application of machine learning algorithms in thermal–hydraulic engineering..
+Keywords: Boiling crisis; Critical heat transfer estimation; Fully connected neural network; Empirical correlation

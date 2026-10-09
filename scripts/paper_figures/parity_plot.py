@@ -6,14 +6,16 @@ real pretrain-then-fine-tune pipeline and saves per-row true/predicted
 values). Nothing here is synthetic or invented; every point is a real test-set
 row and a real model prediction.
 """
+import sys
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.serif"] = ["Times New Roman", "DejaVu Serif"]
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border
+set_pub_style()
 
 INK = "#0b0b0b"
 MUTED = "#898781"
@@ -93,7 +95,8 @@ fig.text(0.5, -0.02,
          "(Section 1.8's own point about needing multi-seed reporting).",
          ha="center", fontsize=7.5, color=MUTED, style="italic")
 fig.tight_layout()
-fig.savefig("docs/manuscript/fig_parity_plot_mlp.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_parity_plot_mlp.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print(f"interp: R2={r2_i:.4f} MAPE={mape_i:.2f}% within10={w10_i:.2f}%")
 print(f"extrap: R2={r2_e:.4f} MAPE={mape_e:.2f}% within10={w10_e:.2f}%")

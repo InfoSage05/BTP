@@ -1,0 +1,11 @@
+Ibrahim Ahmed, Irene Gatti, Enrico Zio,
+Optimized ensemble of neural networks for the prediction of critical heat flux,
+Nuclear Engineering and Design,
+Volume 439,
+2025,
+114111,
+ISSN 0029-5493,
+https://doi.org/10.1016/j.nucengdes.2025.114111.
+(https://www.sciencedirect.com/science/article/pii/S0029549325002882)
+Abstract: Critical Heat Flux (CHF) is a thermal limit in boiling heat transfer, beyond which there is a substantial reduction in heat transfer efficiency. This phenomenon plays a vital role in the thermal engineering design of systems involving two-phase flow. As a result, an accurate CHF prediction is essential for both safety and performance, particularly in water-cooled nuclear reactors where thermohydraulic margins are critical. In this paper, a novel optimized ensemble of neural networks (NNs) for CHF prediction is proposed to enhance the accuracy of individual models trained separately with distinct architectures and hyperparameters settings. Two systematic procedures are presented to identify potentially optimal NN models and aggregate them into an optimal ensemble model. The proposed method is validated using experimental CHF data made available by the Working Party on Scientific Issues and Uncertainty Analysis of Reactor Systems (WPRS) Expert Group on Reactor Systems Multi-Physics (EGMUP) task force on AI and ML for Scientific Computing in Nuclear Engineering projects, promoted by the OECD/NEA. The results obtained show that the ensemble model outperforms standalone models and other state-of-the-art modelling approaches. Parametric and sensitivity analyses across various input parameters confirm the robustness of the ensemble model and its consistency with expected physical behaviors, further underlying its potential for improving CHF prediction in nuclear reactor applications.
+Keywords: Departure from nucleate boiling; Critical heat flux; Nuclear Reactors; Neural Networks; Ensemble models

@@ -8,9 +8,10 @@ train, or is there a trade-off to argue about?
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.serif"] = ["Times New Roman", "DejaVu Serif"]
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border, MARKERS
+set_pub_style()
 
 INK = "#0b0b0b"
 MUTED = "#898781"
@@ -46,9 +47,10 @@ models = [
 
 fig, ax = plt.subplots(figsize=(8.8, 6.2), dpi=200)
 
-for name, r2, mape, t, color in models:
+for i, (name, r2, mape, t, color) in enumerate(models):
     size = 300 + mape * 30
-    ax.scatter(t, r2, s=size, color=color, alpha=0.85, edgecolor=INK, linewidth=0.8, zorder=3)
+    ax.scatter(t, r2, s=size, color=color, alpha=0.85, edgecolor=INK, linewidth=0.8, zorder=3,
+               marker=MARKERS[i])
     ax.annotate(f"{name.replace(chr(10), ' ')}\nMAPE {mape:.1f}%", (t, r2),
                 textcoords="offset points", xytext=(0, -34 if name != "GPR" else 20),
                 ha="center", fontsize=8.5, color=INK)
@@ -67,6 +69,7 @@ fig.text(0.5, -0.01,
           "gradient boosting is both the most accurate model and nearly the fastest to train.",
           ha="center", fontsize=7.5, color=MUTED, style="italic")
 fig.tight_layout(rect=[0, 0.05, 1, 1])
-fig.savefig("docs/manuscript/fig_accuracy_vs_cost.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_accuracy_vs_cost.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print("saved fig_accuracy_vs_cost.png")

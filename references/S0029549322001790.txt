@@ -1,0 +1,11 @@
+Krzysztof Marcinkiewicz, Ole Wieckhorst, Rafael Macián-Juan, Markus Rehm, Peter Pohl,
+Recurrent neural network-based prediction of critical heat flux in rod bundles with non-uniform axial power shape,
+Nuclear Engineering and Design,
+Volume 395,
+2022,
+111825,
+ISSN 0029-5493,
+https://doi.org/10.1016/j.nucengdes.2022.111825.
+(https://www.sciencedirect.com/science/article/pii/S0029549322001790)
+Abstract: The Critical Heat Flux (CHF) prediction is one of the most important phenomena for the safety analyses of nuclear reactors. Current state-of-the-art CHF correlations for PWR fuel assemblies are based on classical regression approaches. In this paper a new method based on Recurrent Neural Networks (RNNs) for the calculation of the CHF in fuel assemblies is proposed. The sequential nature of the RNN allows it to learn the influence of the geometrical features of the fuel assembly and of the history effect by calculating the CHF not only based on the local flow conditions at the CHF location, but also upstream from it. The model was tested on two rod bundle datasets. The results show that the neural network model can reasonably well predict both the value of the CHF and its location without the need of any additional correction factors.
+Keywords: Critical heat flux; Machine learning; Recurrent neural networks; Prediction

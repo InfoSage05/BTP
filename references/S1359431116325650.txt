@@ -1,0 +1,11 @@
+B.K. Hardik, S.V. Prabhu,
+Critical heat flux in helical coils at low pressure,
+Applied Thermal Engineering,
+Volume 112,
+2017,
+Pages 1223-1239,
+ISSN 1359-4311,
+https://doi.org/10.1016/j.applthermaleng.2016.10.114.
+(https://www.sciencedirect.com/science/article/pii/S1359431116325650)
+Abstract: The work presents the study on flow boiling crisis in helical coils at low pressure with water as working medium. Published correlations of critical heat flux in helical coils are collated. The characteristics of boiling crisis in helical coils are studied. The experiments are performed with six helical coils made of SS 304 tubes having inner diameters varying from 6 to 10mm. The coil diameter to the tube diameter ratio ranges from 14 to 58. The critical heat flux data are collected in complete saturated region for the quality range of 0–1. The wall temperature distribution is measured in the axial direction using infrared thermal imaging technique. The results concluded that, the wall temperature in inner half surface is higher than outer half surface of helical coils. Increase in mass flux increases the critical heat flux. Critical heat flux decreases with increase in quality. For the same quality, the critical heat flux decreases with increase in tube diameter and coil diameter. In a high quality region, the critical heat flux in helical coils is higher than vertical straight tubes. A correlation is suggested for critical heat flux in helical coils.
+Keywords: Helical coil; Local wall temperature distribution; Critical heat flux; Low pressure; Infrared thermal camera

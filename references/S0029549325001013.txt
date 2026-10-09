@@ -1,0 +1,11 @@
+Bruno P. Serrao, Ye Kwon Huh, Eliot Ciuperca, Elvan Sahin, Kaibo Liu, Juliana P. Duarte,
+A quantitative analysis of ATF surface characteristics on critical heat flux using Machine learning,
+Nuclear Engineering and Design,
+Volume 435,
+2025,
+113924,
+ISSN 0029-5493,
+https://doi.org/10.1016/j.nucengdes.2025.113924.
+(https://www.sciencedirect.com/science/article/pii/S0029549325001013)
+Abstract: The effects of surface characteristics on pool boiling Critical Heat Flux (CHF) are qualitatively understood based on previous investigations. However, more quantitative analyses are needed since the existing CHF correlations do not provide good predictions for modified surfaces. Using machine learning (ML) models as a tool, this study performed a quantitative analysis of relevant CHF parameters under pool boiling conditions: pressure, a dimensional feature, average roughness, static contact angle, surface orientation, and substrate thermal effusivity. A database was constructed by collecting accident tolerant fuels (ATF) CHF experimental data available from fourteen published studies. After hyperparameter optimization, the random forest (RF) model was selected for achieving the best fitting scores relative to other tested models. Feature importance models ranked static contact angle and pressure as the most important features, which is consistent with some of the literature CHF predictive models that take the surface characteristics into consideration. Finally, CHF predictions were obtained and compared to CHF experimental data. The effect of each feature on CHF was analyzed, while keeping other features fixed, by observing the experimental and predicted datapoints trends. The RF model demonstrated the ability to capture the experimental data trends, showing the RF model is suitable as a predictive pool boiling CHF model for this database.
+Keywords: Accident-tolerant fuels; Surface characteristics; Machine learning; Random forest

@@ -1,0 +1,11 @@
+B.K. Hardik, Gajendra Kumar, S.V. Prabhu,
+Boiling pressure drop, local heat transfer distribution and critical heat flux in horizontal straight tubes,
+International Journal of Heat and Mass Transfer,
+Volume 113,
+2017,
+Pages 466-481,
+ISSN 0017-9310,
+https://doi.org/10.1016/j.ijheatmasstransfer.2017.05.073.
+(https://www.sciencedirect.com/science/article/pii/S0017931016340443)
+Abstract: The objective of the present work is to measure the heat transfer and pressure drop in flow boiling with refrigerant R123 as the working medium. Local heat transfer coefficient along the axial length of tube and overall averaged heat transfer coefficient are compared with available correlations. In the present study, spatial variation in heat transfer coefficient along the axial length of tube is analysed with the increase of quality. Variation in heat transfer coefficient in different flow boiling region i.e. subcooled, nucleate and convective is studied. The experiments are conducted with seven test sections made of SS304 having four different tube diameters 5.5mm, 7.5mm, 9.5mm and 12.0mm with two different heated lengths 500mm and 1000mm. The system pressure is varying from 1.3bar to 3.2bar. The experimental data of two-phase pressure drop and critical heat flux are compared with available correlations. Correlations are suggested to measure the local heat transfer coefficient during boiling process, two-phase pressure drop and critical heat flux. Data of critical heat flux are published to contribute in the data bank for horizontal straight tubes.
+Keywords: Local heat transfer coefficient; Pressure drop; Critical heat flux; Infrared thermal camera; Two-phase flow

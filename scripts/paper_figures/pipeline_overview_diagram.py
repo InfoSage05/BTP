@@ -12,6 +12,10 @@ paper.
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border
+set_pub_style()
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 
 plt.rcParams["font.family"] = "serif"
@@ -70,6 +74,7 @@ for i, (tag, title, detail) in enumerate(stages):
 fig.suptitle("End-to-end pipeline: from raw CHF measurements to a calibrated prediction",
              fontsize=16.5, fontweight="bold", color=INK, y=0.985)
 fig.tight_layout(rect=[0, 0, 1, 0.94])
-fig.savefig("docs/manuscript/fig_pipeline_overview.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_pipeline_overview.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print("saved fig_pipeline_overview.png")

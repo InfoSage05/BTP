@@ -1,0 +1,11 @@
+F. Abbasian, G.I. Hadaller, R.A. Fortman, J. Snell, S. Park,
+An Artificial Neural Network (ANN) Model to Predict Critical Heat Flux (CHF) in a CANDU Fuel Element Simulation (FES) with Various Nonuniform Axial Heat Flux Shapes and Flow Liner Creep Profiles,
+Nuclear Engineering and Design,
+Volume 432,
+2025,
+113736,
+ISSN 0029-5493,
+https://doi.org/10.1016/j.nucengdes.2024.113736.
+(https://www.sciencedirect.com/science/article/pii/S0029549324008367)
+Abstract: A classification ANN model was developed to predict critical power in a CANDU Fuel Element Simulation (FES) with various Axial Heat Flux Distributions (AFDs) and flow liner creep profiles. The ANN model employs 29 input features to model the AFDs and liner creep profiles and was trained by 433 test data. The classification ANN model was benchmarked against a standard regression ANN model developed with TensorFlow and the results are presented in this paper. The two models delivered roughly the same level of accuracy with a Root Mean Square Error (RMSE) of ∼ 2.5 %; however, the methodology used in the classification model seems to be able to alleviate overfitting and create a more tangible robustness in comparison with the regression model, albeit at the cost of a longer solution time. It is therefore recommended that the presented classification model be used in conjunction with typical regression models to attain more reliability, especially in problems including many features and small training datasets.
+Keywords: CANDU; CHF; ANN

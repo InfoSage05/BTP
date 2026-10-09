@@ -1,0 +1,11 @@
+Zili Huang, Yihua Duo, Hong Xu,
+Prediction of two-phase flow patterns based on machine learning,
+Nuclear Engineering and Design,
+Volume 421,
+2024,
+113107,
+ISSN 0029-5493,
+https://doi.org/10.1016/j.nucengdes.2024.113107.
+(https://www.sciencedirect.com/science/article/pii/S0029549324002073)
+Abstract: Due to the advantages of flexibility, security and economy, small modular reactor (SMR) has become a research hotspot in the field of nuclear energy. Gas liquid two-phase flow is one of the most common phenomena for the research and development of SMR. An effective two-phase flow pattern prediction model with high accuracy is very crucial since it will impact the thermal–hydraulic and heat transfer phenomena, and consequently, the safety of SMR. In this paper, support vector machine (SVM), Random Forest (RF) and K-Nearest Neighbor (KNN) algorithm were chosen as the candidates of machine learning (ML) models. we selected 12 databases to train and test ML models. Through the identification of flow pattern feature correlation and the preprocess of dataset, we proposed an ML model for gas–liquid flow pattern prediction based on the improved K-Nearest Neighbor (KNN). its accuracy can reach more than 99%, higher than the traditional methods.
+Keywords: Small Modular Reactor; Two-phase Flow; Flow Pattern; Machine Learning; Thermal Hydraulic

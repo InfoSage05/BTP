@@ -1,0 +1,11 @@
+V. Kefer, W. Kḧler, W. Kastner,
+Critical heat flux (CHF) and post-CHF heat transfer in horizontal and inclined evaoprator tubes,
+International Journal of Multiphase Flow,
+Volume 15, Issue 3,
+1989,
+Pages 385-392,
+ISSN 0301-9322,
+https://doi.org/10.1016/0301-9322(89)90008-6.
+(https://www.sciencedirect.com/science/article/pii/0301932289900086)
+Abstract: The paper describes heat transfer experiments performed on evaporator tubes at various inclinations and over a parameter range typical of fossil-fired once-through boilers and waste heat recovery boilers. Particular attention is paid to the influence of tube inclination on the occurrence of the boiling crisis (dryout) and on heat transfer in the post-CHF regime. The paper indentifies calculation models which can be used to determine the critical steam quality and wall temperatures in partially wetted and dried-out tube regions.
+Keywords: heat transfer; boiler tubes; once-through boiler; waste heat recovery boiler; critical heat flux (CHF); post-CHF heat transfer; critical steam quality; wall temperatures

@@ -1,0 +1,11 @@
+Abdullah Al Mahmud, Koji Morita, Wei Liu,
+Critical heat flux prediction: A new approach adapting multi physics-aided machine learning,
+International Communications in Heat and Mass Transfer,
+Volume 173,
+2026,
+110879,
+ISSN 0735-1933,
+https://doi.org/10.1016/j.icheatmasstransfer.2026.110879.
+(https://www.sciencedirect.com/science/article/pii/S0735193326004008)
+Abstract: Critical Heat Flux (CHF) is a fundamental safety parameter in high-heat-flux equipment, but its prediction is complicated by multiple underlying mechanisms (e.g., departure from nucleate boiling (DNB) in bubbly flow, dryout in annular flow, etc.). Conventional approaches like empirical correlations, look-up tables, and mechanistic models are often constrained by their applicability to certain flow regimes or CHF mechanisms. Recently, machine learning (ML) methods have received attention for the ability to capture complex nonlinear relationships from data. While physics-aided machine learning (PAML) integrates a physical model within ML to overcome the limitation of purely data-driven tactics, conventional PAML relies on a single physical model, biasing predictions towards its specific CHF mechanism. A novel framework adapting multiple physical models within ML framework for diverse flow boiling conditions, termed as multi-physics aided machine learning (MPAML) is proposed for accurate CHF prediction. A large database (26,894 points) has been accumulated for training and validation of the framework. Two physical models, Katto (1984) correlation and Liu (2000) models chosen as representative of dryout and DNB CHF mechanisms are integrated within neural network (NN) to develop the framework. This framework shows good accuracy while prediction in multi-CHF mechanism regions. Physical behavior analysis of CHF in terms of mass flux, pressure, inlet subcooling, diameter and length-to-diameter ratio shows better physics information inheritance capability of this framework over other frameworks in multi-CHF mechanisms. The findings display that MPAML mitigates bias in CHF estimation and outperforms traditional PAML methods, offering higher prediction accuracy and broader applicability across various CHF mechanisms.
+Keywords: Critical heat flux; DNB; Dryout; Machine learning; Neural network; Physics-driven ML

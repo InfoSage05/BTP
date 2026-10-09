@@ -15,6 +15,10 @@ benchmarking of CHF-ML models is a very recent (2025-26) practice.
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import numpy as np
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border
+set_pub_style()
 
 # -- Data (each row: year, model/paper label, R^2, citation key) ------------
 SOURCES = {
@@ -124,7 +128,8 @@ fig.text(0.02, 0.02,
           fontsize=7.5, color=INK_MUTED, ha="left", va="bottom", wrap=True)
 
 out_path = "docs/manuscript/chf_ml_trends_chart.png"
-fig.savefig(out_path, facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig(out_path, facecolor=SURFACE, bbox_inches="tight", dpi=300)
 print(f"Saved {out_path}")
 
 # also write the sourced data table alongside, for transparency/citation

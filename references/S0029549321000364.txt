@@ -1,0 +1,11 @@
+Xingang Zhao, Robert K. Salko, Koroush Shirvan,
+Improved departure from nucleate boiling prediction in rod bundles using a physics-informed machine learning-aided framework,
+Nuclear Engineering and Design,
+Volume 374,
+2021,
+111084,
+ISSN 0029-5493,
+https://doi.org/10.1016/j.nucengdes.2021.111084.
+(https://www.sciencedirect.com/science/article/pii/S0029549321000364)
+Abstract: The critical heat flux (CHF) corresponding to the departure from nucleate boiling (DNB) crisis is a regulatory limit for the licensing of pressurized water reactors (PWRs) worldwide. Despite the abundance of predictive tools available to the reactor thermal-hydraulics community, the path for an accurate CHF model remains elusive. This work approaches the prediction of DNB through a physics-informed machine learning-aided framework (PIMLAF) with the objective of achieving superior predictive capabilities for a rod bundle. In view of the limitations in existing macro-scale physics-driven tools, an improved mechanistic model is first proposed, leveraging key concepts in the liquid sublayer dryout and bubble crowding mechanisms. The proposed mechanistic model is able to predict DNB in different heater geometries for a broad range of flow conditions without the need for recalibration. This model is then incorporated as the physics-informed component of the hybrid framework PIMLAF, which takes advantage of established understanding in the field (i.e., domain knowledge [DK]) and uses machine learning (ML) to capture undiscovered information from the mismatch between the actual and DK-predicted output. Two bundle-related case studies using the PWR subchannel and bundle tests (PSBT) database are carried out to illustrate the PIMLAF’s improved performance over traditional approaches for both interpolation and extrapolation purposes. In light of the PIMLAF’s promising potential to reduce prediction error, reactor vendors are encouraged to leverage their in-house experimental efforts and apply the hybrid framework to potentially achieve margin reductions in the minimum DNB ratio (MDNBR) for the designs of interest.
+Keywords: CHF; DNB; Physics-informed machine learning-aided framework; Mechanistic model; Rod bundle; MDNBR

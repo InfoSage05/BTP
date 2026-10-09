@@ -12,9 +12,10 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.serif"] = ["Times New Roman", "DejaVu Serif"]
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border
+set_pub_style()
 
 INK = "#0b0b0b"
 MUTED = "#898781"
@@ -58,6 +59,11 @@ approach_color = {
     "ML, no physics": COLORS["red"],
     "Proposed hybrid": COLORS["blue"],
 }
+approach_hatch = {
+    "Physics alone": "///",
+    "ML, no physics": "...",
+    "Proposed hybrid": "",
+}
 dataset_winners = [
     ("KAERI non-uniform\n[non-uniform axial heating]", "Proposed hybrid", 0.970),
     ("NRC\n[uniform axial heating]", "Proposed hybrid", 0.944),
@@ -94,8 +100,11 @@ ax1.invert_yaxis()
 labels_b = [d[0] for d in dataset_winners]
 vals_b = [d[2] for d in dataset_winners]
 colors_b = [approach_color[d[1]] for d in dataset_winners]
+hatches_b = [approach_hatch[d[1]] for d in dataset_winners]
 y2 = np.arange(len(labels_b))
-bars2 = ax2.barh(y2, vals_b, color=colors_b, zorder=3, edgecolor=SURFACE, linewidth=0.5)
+bars2 = ax2.barh(y2, vals_b, color=colors_b, zorder=3, edgecolor=INK, linewidth=0.5)
+for b, h in zip(bars2, hatches_b):
+    b.set_hatch(h)
 ax2.axvline(0, color=BASELINE, linewidth=1.0, zorder=2)
 for b, (label, approach, v) in zip(bars2, dataset_winners):
     x_text = v + 0.03 if v >= 0 else v - 0.03
@@ -111,7 +120,8 @@ ax2.set_title("B. Best approach per entirely unseen dataset (Table 4)", fontsize
 style_axes(ax2)
 ax2.invert_yaxis()
 
-handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in approach_color.values()]
+handles = [plt.Rectangle((0, 0), 1, 1, facecolor=c, edgecolor=INK, hatch=approach_hatch[k])
+           for k, c in approach_color.items()]
 ax2.legend(handles, approach_color.keys(), loc="lower right", fontsize=8.5, frameon=False)
 
 fig.suptitle("Which model or approach actually wins, scenario by scenario",
@@ -122,6 +132,7 @@ fig.text(0.5, 0.005,
           "ML with no physics, not the hybrid, wins on KAERI uniform specifically.",
           ha="center", fontsize=7.5, color=MUTED, style="italic")
 fig.tight_layout(rect=[0, 0.02, 1, 0.97])
-fig.savefig("docs/manuscript/fig_best_by_scenario.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_best_by_scenario.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print("saved fig_best_by_scenario.png")

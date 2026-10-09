@@ -8,6 +8,10 @@ plain, uncluttered layout.
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0, "scripts/paper_figures")
+from style_common import set_pub_style, add_outer_border
+set_pub_style()
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 
 plt.rcParams["font.family"] = "serif"
@@ -75,6 +79,7 @@ ax.set_ylim(last_box_bottom - 1.2, ax.get_ylim()[1])
 
 fig.suptitle("Proposed model hierarchy", fontsize=18, fontweight="bold", color=INK, y=0.99)
 fig.tight_layout()
-fig.savefig("docs/manuscript/fig_pipeline_hierarchy.png", facecolor=SURFACE, bbox_inches="tight")
+add_outer_border(fig)
+fig.savefig("docs/manuscript/fig_pipeline_hierarchy.png", facecolor=SURFACE, bbox_inches="tight", dpi=300)
 plt.close(fig)
 print("saved fig_pipeline_hierarchy.png")

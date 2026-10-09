@@ -1,0 +1,11 @@
+Zaid Abulawi, Doyeong Lim, Abhiram Garimidi, Yang Liu,
+Bayesian-optimized, feature-augmented deep ensemble for physics-guided critical heat-flux prediction with uncertainty quantification,
+Annals of Nuclear Energy,
+Volume 230,
+2026,
+112139,
+ISSN 0306-4549,
+https://doi.org/10.1016/j.anucene.2026.112139.
+(https://www.sciencedirect.com/science/article/pii/S0306454926000277)
+Abstract: Accurate prediction of the critical heat flux (CHF) is a crucial design and safety consideration for a wide range of high-performance thermal systems, including water-cooled nuclear reactors. Traditional predictive tools, such as empirical correlations and look-up tables, often lack accuracy when extrapolated or at different interpolation regions. To overcome these limitations, this work introduces a novel physics-guided, optimized deep-ensemble framework for robust CHF prediction with comprehensive uncertainty quantification. Our approach first expands the model’s inputs by augmenting base thermal-hydraulic parameters with physics-based features derived from established correlations. This feature engineering injects domain knowledge, constraining the solution space and promoting convergence to physically plausible solutions. Furthermore, we employ a sophisticated hyperparameter optimization strategy, combining a Sobol sequence with Bayesian optimization, to systematically select a diverse and high-performing set of neural networks for the ensemble. The resulting physics-guided ensemble demonstrates superior performance across all metrics compared to a baseline ensemble, a standard look-up table, and a benchmark neural network. The model produces smoother, more physically consistent predictive trends and provides reliable uncertainty estimates. This framework offers a powerful and broadly applicable tool for CHF prediction, enabling higher-fidelity safety margins and the design of more efficient and reliable thermal management systems.
+Keywords: Critical heat flux; Uncertainty quantification; Deep ensemble; Bayesian optimization; Physics-guided feature augmentation
