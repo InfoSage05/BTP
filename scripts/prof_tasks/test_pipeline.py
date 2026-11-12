@@ -70,3 +70,43 @@ def test_roundtrip(tmp_path, fitted):
     back = PL.CHFPipeline.load(str(p))
     kw = dict(fluid="water", P_kPa=10000, G_kg_m2s=2000, D_mm=8, L_mm=1000, Tin_C=200)
     assert back.predict_one(**kw)["CHF_kW_m2"] == fitted.predict_one(**kw)["CHF_kW_m2"]
+
+
+def test_quality_indexed_backbone_is_deployable_via_closure():
+    """A quality-indexed backbone must still predict from pre-test inputs.
+
+    Pins a real bug: Zhao selects phys_lut, which is indexed on local vapour
+    quality. predict_one() does not supply quality (by design -- it does not
+    exist before the test), so the backbone came back NaN and predict_one raised
+    "outside its validity range", which blamed the inputs for an architectural
+    gap. It is now closed against the energy balance instead.
+    """
+    import numpy as np
+    import datasets as D
+    import pipeline as PL
+
+    ds = D.LOADERS["D2_Zhao2020"]()
+    m = PL.CHFPipeline(seed=0).fit(PL.prepare(ds))
+    assert m.backbone_ in PL.LOCAL_ARMS, "expected a quality-indexed backbone here"
+
+    out = m.predict_one(fluid="water", P_kPa=10000, G_kg_m2s=2000,
+                        D_mm=8, L_mm=1000, Tin_C=200)
+    assert np.isfinite(out["CHF_kW_m2"]) and out["CHF_kW_m2"] > 0
+    assert any("closure" in w for w in out["warnings"]), \
+        "the closure must be disclosed in the warnings, not applied silently"
+
+    # rising mass flux must raise CHF through the closed backbone
+    base = dict(fluid="water", P_kPa=10000, D_mm=8, L_mm=1000, Tin_C=200)
+    chf = [m.predict_one(**base, G_kg_m2s=g)["CHF_kW_m2"] for g in (500, 1000, 2000, 4000)]
+    assert all(b > a for a, b in zip(chf, chf[1:])), f"not monotone in G: {chf}"
+
+
+def test_can_force_a_quality_free_backbone():
+    """allow_local_backbone=False must exclude Biasi and the LUT."""
+    import datasets as D
+    import pipeline as PL
+
+    ds = D.LOADERS["D2_Zhao2020"]()
+    m = PL.CHFPipeline(seed=0, allow_local_backbone=False).fit(PL.prepare(ds))
+    assert m.backbone_ == "phys_katto"
+    assert m.backbone_ not in PL.LOCAL_ARMS

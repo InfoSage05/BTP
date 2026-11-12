@@ -1,0 +1,33 @@
+AUTHOR ACTIONS BEFORE SUBMISSION
+
+The revised scientific manuscript, highlights and supporting material are complete as a paper-only revision. They do not certify that the underlying scientific validity concerns have been resolved.
+
+AUTHOR INFORMATION STILL REQUIRED
+1. Designate the corresponding author from the supplied author list.
+2. Supply the CRediT contribution statement. This is intentionally pending your promised input.
+3. Confirm the competing-interest declaration. No declaration of no interests has been invented.
+4. Confirm permission and terms for sharing the compiled datasets; provide the public code repository URL or DOI when assigned.
+5. All authors must review and approve the content, authorship, AI disclosure and submission.
+
+SCIENTIFIC POINTS THAT PAPER EDITING CANNOT SETTLE
+- Establish whether nonfinite predictions invoked target-median replacement in the five-seed results, or replace/exclude affected estimates.
+- Resolve quality-dependent auxiliary paths and evaluation-versus-deployment equivalence before claiming prospective validation.
+- Independently confirm the target-reconstructed helical geometry and review missing-input assumptions.
+- Reconcile Katto branch-selection implementation with the original source.
+- Reconcile the archived KAERI nonuniform snapshot with the updated source release; the effect on scores is unknown.
+- Preserve exact run configurations and row predictions before presenting the study as fully reproducible.
+
+The manuscript reports these limitations explicitly and withdraws unsupported universal, leakage-free, safety and calibration claims. No code changes or training were performed for this revision. A paper-only revision cannot guarantee acceptance or cure invalid experimental evidence.
+
+CONFIRMED DETAILS
+Authors, in order: Mauryavardhan Singh; Mayank Nagar; Ayushman Paul; Hardik Mahawar; Bikash Pattanayak.
+Affiliation: Indian Institute of Technology Kharagpur, Kharagpur, West Bengal 721302, India.
+Funding: no funding, as supplied by the author.
+Code: intended for public sharing, as supplied by the author.
+
+TYPOGRAPHY AND FILES
+Manuscript body: 12 pt Times New Roman, single column.
+Figures: 10 pt Times New Roman at 165.1 mm width; vector PDFs and 1000 dpi PNGs.
+Elsevier artwork sizing: https://www.elsevier.com/about/policies-and-standards/author/artwork-and-media-instructions/artwork-sizing
+Journal guide: https://www.sciencedirect.com/journal/nuclear-engineering-and-design/publish/guide-for-authors
+The 10 pt figure choice is a readability choice supported by the general guidance, not a verified recollection of the professor's instruction.

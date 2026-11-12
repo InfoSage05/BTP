@@ -189,7 +189,29 @@ def phys_lut(df) -> np.ndarray:
         _lut = RegularGridInterpolator((P, G, X), grid, bounds_error=False,
                                        fill_value=None)
     pts = np.column_stack([df["P_kPa"], df["G_kg_m2s"], df["X"]])
-    return np.clip(_lut(pts), 1e-3, None)
+    chf8 = np.clip(_lut(pts), 1e-3, None)
+    return chf8 * lut_diameter_factor(df["_D_m"].to_numpy(float))
+
+
+# The table is normalised to an 8 mm tube. Returning its value directly for a
+# 1 mm or a 37 mm channel -- which is what this code did until the audit -- is a
+# straight error, and it was silently degrading the LUT arm on every dataset.
+#
+# Groeneveld et al. (2007), Nucl. Eng. Des. 237:1909-1922, section 3:
+#     "The effect of tube diameter on CHF is accounted for using the diameter
+#      correction factor: CHF_D / CHF_{D=8mm} = (D/8)^{-1/2} for the range
+#      3 < D < 25 mm. Outside this range the diameter effect appears to be
+#      absent (Wong, 1994)."
+# so D is CLAMPED to [3, 25] mm before the factor is formed, rather than
+# extrapolating a correction its own authors say does not apply there. [V]
+LUT_D_REF_MM = 8.0
+LUT_D_MIN_MM, LUT_D_MAX_MM = 3.0, 25.0
+
+
+def lut_diameter_factor(D_m: np.ndarray) -> np.ndarray:
+    d_mm = np.clip(np.asarray(D_m, float) * 1e3,
+                   LUT_D_MIN_MM, LUT_D_MAX_MM)
+    return np.sqrt(LUT_D_REF_MM / d_mm)
 
 
 PHYSICS = {"PHYS_KattoOhno": phys_katto, "PHYS_Biasi": phys_biasi,

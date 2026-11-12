@@ -1,0 +1,11 @@
+Figure 1. Record counts in the eight-dataset flow corpus. The horizontal axis is logarithmic. Colours distinguish water and refrigerant datasets; counts refer to the archived experimental populations after the stated preprocessing, not to new measurements.
+
+Figure 2. Evaluated prediction pathway. Local quality can enter the archived physics arms and their disagreement even though it is not a direct input to the residual learner. The calibration slice and heuristic correction bound are shown separately. This schematic does not imply equivalence with the later inlet-only query interface.
+
+Figure 3. Mean fractions within ±10% of observed CHF under random 80/20, grouped and leave-one-dataset-out evaluation. Random values summarize ten seeds, grouped values summarize folds with seed 0, and dataset-holdout values summarize five seeds. Grouped evaluation is unavailable for straight R-123. Group meanings vary by dataset.
+
+Figure 4. Five-seed leave-one-dataset-out performance. Panel (a) shows mean R² with one standard deviation across seeds; panel (b) shows the mean fraction within ±10%. These error bars are not confidence intervals and do not incorporate source-selection or measurement uncertainty.
+
+Figure 5. Baseline and anchored variants in the separate three-seed base-feature comparison. The unbounded and bounded predictions use the same fitted residual model. The selected baseline is Katto in all eight folds. Direct-learning values are reported in Table 5 rather than omitted from the numerical comparison.
+
+Figure 6. Empirical coverage in the separate seed-0 interval audit. Pairwise source exclusion excludes both the target dataset and the residual-generating dataset during calibration-model fitting. The additional widening factor is 1 + (1 − t). The dashed line marks the nominal 90% level, not a proven coverage guarantee.

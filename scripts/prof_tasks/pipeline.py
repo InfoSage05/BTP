@@ -16,10 +16,21 @@ Design follows what the measurements support.
            not per-dataset: per-dataset routing failed twice on this corpus.
 
   Layer 3  trust scales the BOUND on that correction; it never picks a model.
-           Routing is a switch and every switch error costs a factor of 1000 (the
-           router hit -1276 on an unseen fluid). Bounding is a dial with a measured
-           monotonic trade-off. Low trust => tight clip => the prediction decays into
-           the correlation rather than falling off a cliff.
+
+           CORRECTED 2026-09-14. This docstring previously said "the router hit
+           -1276 on an unseen fluid". That is wrong: in ANSWER_Q3_router.txt the
+           -1276 on D8 belongs to global_model_no_routing. The routers scored
+           -42.46 (v1) and -0.097 (v2). The -1276 argues FOR anchoring, not
+           against routing. Routing still failed its bar (5/8 vs the global model,
+           2/8 vs physics) -- only the supporting number was wrong.
+
+           What the bound is actually worth, measured: across the eight feature
+           configurations in audit_v2_features.csv it changes the MEDIAN held-out
+           R2 in neither direction (wins 3/8, median delta +0.0001, Wilcoxon
+           p=0.24 over datasets) but improves the WORST case in 8/8. It is a
+           tail-risk control, not an accuracy mechanism. The large win over an
+           unanchored model (median R2 -2.06 -> +0.71) belongs to the ANCHOR --
+           the log(CHF/backbone) target -- not to the bound.
 
            A trust-weighted blend toward a free (unanchored) pooled model was
            tried as a deployable replacement for per-dataset fallback and is OFF by
@@ -30,9 +41,22 @@ Design follows what the measurements support.
            physics, not an unfamiliar source -- so it must not be used to hand rows
            to an unanchored model. Keep `blend_free=False` unless re-measured.
 
-  Layer 4  split-conformal intervals, quantiled separately per trust band
-           (Mondrian). Required, not optional: this project's deep ensembles produce
-           nominal 95% intervals with 9-22% actual coverage.
+           Note this is about an unfamiliar SOURCE, not an unfamiliar FLUID. The
+           related claim that a novelty gate cannot detect an unseen fluid is
+           WITHDRAWN: with each fluid held out, Mahalanobis distance alone flags
+           82% of R-123 rows and 100% of R-134a rows. The router's 0% was a
+           threshold-calibration failure of that one gate (absolute cutoff rather
+           than percentile-normalised), not a structural impossibility.
+
+  Layer 4  split-conformal intervals. Required, not optional: this project's deep
+           ensembles produce nominal 95% intervals with 9-22% actual coverage.
+
+           For a query from a NEW source, use conformal='ood' with a quantile from
+           fit_ood_quantile(). In-distribution calibration gives median coverage
+           0.564 against a 0.90 target on held-out datasets; the cross-dataset
+           quantile gives 0.885, verified with a leakage-free 28-fit protocol
+           (audit_ood_conformal_strict.csv). The intervals are ~4x wider -- that
+           is the honest width, and the old ones were understating it.
 
 Ablation result worth knowing: the three trust signals are near-interchangeable
 (median R2 0.736-0.753 whichever is used alone). The bounded-correction structure
@@ -147,15 +171,68 @@ def validate_inputs(fluid_cp: str, P_kPa: float, G_kg_m2s: float,
 
 ARMS = ["phys_katto", "phys_biasi", "phys_lut"]
 
+# Arms indexed on LOCAL vapour quality. They cannot be evaluated from pre-test
+# inputs directly, because x does not exist until CHF has happened. They are not
+# useless -- they are *local closure relations*, and the legitimate way to use one
+# for forward prediction is to solve it jointly with the energy balance, which is
+# what a reactor thermal-hydraulics code does. See close_local_arm().
+LOCAL_ARMS = {"phys_biasi", "phys_lut"}
+
+
+def close_local_arm(arm_fn, fluid: str, P_kPa: float, G: float, D_m: float,
+                    L_m: float, dh_sub: float, h_fg: float,
+                    lo: float = 1.0, hi: float = 1e5) -> float:
+    """Solve  q = arm(P, G, x(q))  with x supplied by the energy balance.
+
+    The energy balance for a uniformly heated tube (Hall & Mudawar 2000b Eq. 8)
+    gives the local quality implied by a candidate heat flux:
+
+        x(q) = (4 * L * q / (G * D) - dh_sub) / h_fg
+
+    Substituting that into a quality-indexed correlation leaves one equation in
+    one unknown. Solving it turns a CIRCULAR arm into a legitimately predictive
+    one: nothing but inlet conditions goes in, and the quality is produced by the
+    solver rather than read from a measurement that does not exist yet.
+
+    Returns CHF in kW/m^2, or nan if no root brackets in [lo, hi].
+    """
+    from scipy.optimize import brentq
+
+    def residual(q_kw):
+        x = (4.0 * L_m * (q_kw * 1e3) / (G * D_m) - dh_sub) / h_fg
+        row = pd.DataFrame([{"P_kPa": P_kPa, "G_kg_m2s": G, "X": np.clip(x, -0.5, 1.0),
+                             "_D_m": D_m, "_L_m": L_m}])
+        return float(np.asarray(arm_fn(row), float)[0]) - q_kw
+
+    try:
+        f_lo, f_hi = residual(lo), residual(hi)
+        if not (np.isfinite(f_lo) and np.isfinite(f_hi)) or f_lo * f_hi > 0:
+            return float("nan")
+        return float(brentq(residual, lo, hi, xtol=1e-3, maxiter=100))
+    except Exception:
+        return float("nan")
+
 
 class CHFPipeline:
     """Fit on pooled rows; predict CHF with a calibrated interval and a trust label."""
 
     def __init__(self, alpha: float = 0.10, seed: int = 0, use_spread: bool = True,
                  blend_free: bool = False, backbone: str | None = None,
-                 conformal: str = 'global'):
+                 conformal: str = 'global', model=None,
+                 allow_local_backbone: bool = True):
         self.alpha = alpha            # target coverage is 1 - alpha
         self.seed = seed
+        # `model` is a callable taking (seed) and returning an UNFITTED
+        # sklearn-compatible regressor for the correction. Default ExtraTrees(300).
+        # Made configurable so the correction learner can be compared INSIDE the
+        # anchored architecture -- the 961-run grid only compared learners
+        # standalone, which is a different question.
+        self.model = model
+        # A quality-indexed backbone (Biasi, 2006 LUT) scores better in-sample but
+        # cannot be evaluated from pre-test inputs without the energy-balance
+        # closure. Set False to restrict selection to arms that need only
+        # quantities an experimenter knows BEFORE the test.
+        self.allow_local_backbone = allow_local_backbone
         self.use_spread = use_spread
         self.blend_free = blend_free
         self.backbone = backbone      # None => select on training rows
@@ -163,7 +240,17 @@ class CHFPipeline:
         # trust band. 'band' is tighter in-distribution but WORSE on a held-out
         # laboratory, because trust rates a new lab as high-trust and hands it
         # the tightest interval. Measured, see pipeline_coverage.csv.
+        #
+        # 'ood' uses a CROSS-DATASET quantile fitted by fit_ood_quantile() and
+        # is the correct choice when the query may come from a source unlike any
+        # in training. The in-distribution quantile answers "how wrong am I on
+        # rows like my training rows?", which is the wrong question on a new rig:
+        # measured coverage against a 0.90 target ranged 0.137-0.995, median
+        # 0.564. The cross-dataset quantile answers "how wrong have I been on
+        # entire unseen datasets?" and lifts median coverage to 0.885 (strict
+        # leakage-free protocol, audit_ood_conformal_strict.csv).
         self.conformal = conformal
+        self.q_ood_ = None
 
     # ------------------------------------------------------- layer 1 select
     def _select_backbone(self, tr: pd.DataFrame) -> str:
@@ -173,6 +260,8 @@ class CHFPipeline:
         best, best_err = "phys_katto", np.inf
         for arm in ARMS:
             if arm not in tr:
+                continue
+            if not self.allow_local_backbone and arm in LOCAL_ARMS:
                 continue
             p = tr[arm].to_numpy(float)
             m = np.isfinite(p) & (p > 0)
@@ -199,8 +288,9 @@ class CHFPipeline:
         cal_idx, fit_idx = idx[:n_cal], idx[n_cal:]
 
         # ---- layer 2: anchored correction, and optionally a free model
-        self.model_ = ExtraTreesRegressor(n_estimators=300, n_jobs=-1,
-                                          random_state=self.seed)
+        self.model_ = (self.model(self.seed) if self.model is not None
+                       else ExtraTreesRegressor(n_estimators=300, n_jobs=-1,
+                                                random_state=self.seed))
         self.model_.fit(X[fit_idx], target[fit_idx])
         if self.blend_free:
             self.free_ = ExtraTreesRegressor(n_estimators=300, n_jobs=-1,
@@ -270,6 +360,12 @@ class CHFPipeline:
             w = np.empty(len(te))
             for b, m in self._bands(t).items():
                 w[m] = self.q_band_.get(b, self.q_global_)
+        elif self.conformal == "ood":
+            if self.q_ood_ is None:
+                raise ValueError(
+                    "conformal='ood' requires fit_ood_quantile(...) to have been "
+                    "run and its result assigned to .q_ood_")
+            w = self.q_ood_ * (1.0 + 1.0 * (1.0 - t))
         else:
             # widen as trust falls, from a single global quantile
             w = self.q_global_ * (1.0 + 2.0 * (1.0 - t))
@@ -332,6 +428,27 @@ class CHFPipeline:
         ds = type("D", (), {"df": row, "fluid": canon, "name": "query"})()
         f = _attach_physics(P.enrich(ds).reset_index(drop=True), canon)
         f["fluid_name"] = canon
+
+        # If the selected backbone is quality-indexed, it is NaN here -- no outlet
+        # quality was supplied, by design. Close it against the energy balance
+        # instead of failing: this is the non-circular way to use a local
+        # correlation for forward prediction, and it is what reactor codes do.
+        if self.backbone_ in LOCAL_ARMS and not np.isfinite(f[self.backbone_].iloc[0]):
+            arm_fn = {"phys_biasi": P.phys_biasi, "phys_lut": P.phys_lut}[self.backbone_]
+            q = close_local_arm(arm_fn, canon, P_kPa, G_kg_m2s,
+                                float(f["_D_m"].iloc[0]), float(f["_L_m"].iloc[0]),
+                                float(f["dh_sub"].iloc[0]), float(f["h_fg"].iloc[0]))
+            if not np.isfinite(q):
+                raise ValueError(
+                    f"backbone {self.backbone_!r} is indexed on local quality and the "
+                    f"energy-balance closure found no root for these inputs. Refit "
+                    f"with allow_local_backbone=False to force a quality-free "
+                    f"backbone (Katto-Ohno).")
+            f[self.backbone_] = q
+            warns.append(f"backbone {self.backbone_!r} is quality-indexed; its value "
+                         f"was obtained by energy-balance closure, not from a "
+                         f"measured outlet quality")
+
         r = self.predict(f).iloc[0]
         chf = float(r.chf)
         if not np.isfinite(chf) or chf <= 0:
@@ -342,3 +459,55 @@ class CHFPipeline:
                 "confidence": str(r.regime), "trust": round(float(r.trust), 3),
                 "physics_only_kW_m2": round(float(r.physics_only), 1),
                 "backbone": self.backbone_, "warnings": warns}
+
+
+# --------------------------------------------------------------- layer 4b
+def fit_ood_quantile(corpus: pd.DataFrame, dataset_col: str = "dataset",
+                     alpha: float = 0.10, seed: int = 0, strict: bool = False,
+                     verbose: bool = False) -> float:
+    """Cross-dataset conformal quantile: how wrong is this pipeline on a NEW source?
+
+    Split conformal calibrates on a slice held out of TRAINING, which is
+    exchangeable with the training rows. A new laboratory is not, so that
+    guarantee is void exactly where it is needed -- measured coverage against a
+    0.90 target ranged 0.137 to 0.995 across eight held-out datasets.
+
+    This instead jackknifes over DATASETS: hold each one out, record the
+    residuals, pool them, take the quantile. It replaces an assumption that is
+    false (a new dataset resembles the training rows) with one that is close to
+    true (new datasets resemble other new datasets).
+
+    strict=False  8 fits. Residuals for dataset e come from a model trained on
+                  everything except e -- which includes any other dataset, so a
+                  given dataset influences the residuals used to size its own
+                  interval. Measured effect: none (0.885 either way).
+    strict=True   28 fits, pairwise exclusion, no such influence. Slower, and it
+                  reproduces the same number; use it when a referee asks.
+
+    Returns one scalar. Assign to pipe.q_ood_ and set conformal='ood'.
+    """
+    import itertools
+    names = sorted(corpus[dataset_col].unique())
+    res = []
+    if strict:
+        for a, b in itertools.combinations(names, 2):
+            tr = corpus[(corpus[dataset_col] != a) & (corpus[dataset_col] != b)]
+            m = CHFPipeline(alpha=alpha, seed=seed).fit(tr)
+            for held in (a, b):
+                te = corpus[corpus[dataset_col] == held]
+                p = m.predict(te)["chf"].to_numpy()
+                y = te["CHF_kW_m2"].to_numpy(float)
+                res.append(np.abs(np.log(np.clip(y, 1e-9, None))
+                                  - np.log(np.clip(p, 1e-9, None))))
+    else:
+        for held in names:
+            tr = corpus[corpus[dataset_col] != held]
+            te = corpus[corpus[dataset_col] == held]
+            m = CHFPipeline(alpha=alpha, seed=seed).fit(tr)
+            p = m.predict(te)["chf"].to_numpy()
+            y = te["CHF_kW_m2"].to_numpy(float)
+            res.append(np.abs(np.log(np.clip(y, 1e-9, None))
+                              - np.log(np.clip(p, 1e-9, None))))
+            if verbose:
+                print(f"  held out {held}: median |log err| {np.median(res[-1]):.4f}")
+    return float(np.quantile(np.concatenate(res), 1 - alpha))
